@@ -1,0 +1,589 @@
+// package.json
+{
+  "name": "ecocommerce-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@next/bundle-analyzer": "^14.0.4",
+    "@prisma/client": "^5.7.1",
+    "@rainbow-me/rainbowkit": "^1.3.5",
+    "@upstash/redis": "^1.28.1",
+    "@vercel/kv": "^0.2.4",
+    "ethers": "^6.9.0",
+    "ipfs-http-client": "^60.0.1",
+    "jose": "^5.2.0",
+    "next": "14.0.4",
+    "qrcode": "^1.5.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "viem": "^1.19.11",
+    "wagmi": "^1.4.12",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "postcss": "^8",
+    "prisma": "^5.7.1",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5",
+    "tsx": "^4.6.2"
+  }
+}
+
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String    @id @default(cuid())
+  address         String    @unique
+  email           String?
+  phone           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  orders          Order[]
+  classifications Classification[]
+  
+  @@map("users")
+}
+
+model Facility {
+  id            String   @id @default(cuid())
+  name          String
+  address       String
+  lat           Float
+  lng           Float
+  phone         String?
+  email         String?
+  typesAccepted String[] // Array of waste types
+  operatingHours Json?   // Store as JSON object
+  verifiedAt    DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  orders        Order[]
+  
+  @@map("facilities")
+}
+
+model Classification {
+  id           String   @id @default(cuid())
+  userId       String
+  imageCID     String   // IPFS CID
+  imageUrl     String?  // Preview URL
+  label        String   // Primary classification
+  confidence   Float
+  secondary    String[] // Secondary classifications
+  explanation  String?  // Markdown explanation
+  tips         String?  // Safety/disposal tips
+  createdAt    DateTime @default(now())
+  
+  user         User     @relation(fields: [userId], references: [id])
+  orders       Order[]
+  
+  @@map("classifications")
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  facilityId      String
+  classificationId String
+  status          OrderStatus @default(CREATED)
+  wasteType       String
+  estimatedWeight Float?
+  actualWeight    Float?
+  scheduledAt     DateTime?
+  pickupType      PickupType
+  qrCode          String?
+  otpHint         String?     // Last 4 digits for verification
+  evidenceCID     String?     // IPFS CID of verification photo
+  txHash          String?     // Blockchain transaction hash
+  creditsMinted   Float?      // Amount of eco credits minted
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  
+  user            User          @relation(fields: [userId], references: [id])
+  facility        Facility      @relation(fields: [facilityId], references: [id])
+  classification  Classification @relation(fields: [classificationId], references: [id])
+  timeline        TimelineEvent[]
+  
+  @@map("orders")
+}
+
+model TimelineEvent {
+  id        String          @id @default(cuid())
+  orderId   String
+  type      TimelineEventType
+  title     String
+  message   String?
+  metadata  Json?           // Additional data as JSON
+  createdAt DateTime        @default(now())
+  
+  order     Order           @relation(fields: [orderId], references: [id])
+  
+  @@map("timeline_events")
+}
+
+enum OrderStatus {
+  CREATED
+  SCHEDULED
+  PICKED_UP
+  VERIFIED
+  PROCESSED
+  COMPLETED
+  CANCELLED
+}
+
+enum PickupType {
+  PICKUP
+  DROP_OFF
+}
+
+enum TimelineEventType {
+  CREATED
+  CLASSIFIED
+  SCHEDULED
+  PICKED_UP
+  VERIFIED
+  MINTING
+  COMPLETED
+  CANCELLED
+}
+
+// app/api/uploads/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { create } from 'ipfs-http-client';
+import { verifyAuth } from '@/lib/auth';
+import { z } from 'zod';
+
+const ipfs = create({
+  host: 'ipfs.infura.io',
+  port: 5001,
+  protocol: 'https',
+  headers: {
+    authorization: `Basic ${Buffer.from(
+      `${process.env.INFURA_PROJECT_ID}:${process.env.INFURA_PROJECT_SECRET}`
+    ).toString('base64')}`,
+  },
+});
+
+const uploadSchema = z.object({
+  image: z.string(), // Base64 encoded image
+  contentType: z.string().regex(/^image\/(jpeg|jpg|png|webp)$/),
+});
+
+export async function POST(request: NextRequest) {
+  try {
+    const auth = await verifyAuth(request);
+    if (!auth) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const body = await request.json();
+    const { image, contentType } = uploadSchema.parse(body);
+
+    // Convert base64 to buffer
+    const imageBuffer = Buffer.from(image, 'base64');
+    
+    // Validate file size (max 10MB)
+    if (imageBuffer.length > 10 * 1024 * 1024) {
+      return NextResponse.json(
+        { error: 'File size exceeds 10MB limit' },
+        { status: 400 }
+      );
+    }
+
+    // Upload to IPFS
+    const result = await ipfs.add(imageBuffer);
+    const cid = result.path;
+
+    // Generate preview URL
+    const previewUrl = `https://ipfs.io/ipfs/${cid}`;
+
+    return NextResponse.json({
+      cid,
+      previewUrl,
+      size: imageBuffer.length,
+    });
+  } catch (error) {
+    console.error('Upload error:', error);
+    return NextResponse.json(
+      { error: 'Failed to upload image' },
+      { status: 500 }
+    );
+  }
+}
+
+// app/api/classify/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { verifyAuth } from '@/lib/auth';
+import { z } from 'zod';
+
+const prisma = new PrismaClient();
+
+const classifySchema = z.object({
+  imageCID: z.string(),
+  imageUrl: z.string().optional(),
+});
+
+export async function POST(request: NextRequest) {
+  try {
+    const auth = await verifyAuth(request);
+    if (!auth) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const body = await request.json();
+    const { imageCID, imageUrl } = classifySchema.parse(body);
+
+    // Call AI classification service
+    const aiResponse = await fetch(`${process.env.AI_SERVICE_URL}/classify`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ cid: imageCID }),
+    });
+
+    if (!aiResponse.ok) {
+      throw new Error('AI service unavailable');
+    }
+
+    const aiResult = await aiResponse.json();
+
+    // Store classification in database
+    const classification = await prisma.classification.create({
+      data: {
+        userId: auth.userId,
+        imageCID,
+        imageUrl,
+        label: aiResult.label,
+        confidence: aiResult.confidence,
+        secondary: aiResult.secondary || [],
+        explanation: aiResult.explanation_md,
+        tips: aiResult.tips_md,
+      },
+    });
+
+    // Find compatible facilities
+    const facilities = await prisma.facility.findMany({
+      where: {
+        typesAccepted: {
+          has: aiResult.label,
+        },
+      },
+      take: 5,
+    });
+
+    return NextResponse.json({
+      classification,
+      facilities,
+      aiResult,
+    });
+  } catch (error) {
+    console.error('Classification error:', error);
+    return NextResponse.json(
+      { error: 'Failed to classify image' },
+      { status: 500 }
+    );
+  }
+}
+
+// app/api/orders/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { verifyAuth } from '@/lib/auth';
+import { generateQRCode, generateOTP } from '@/lib/utils';
+import { z } from 'zod';
+
+const prisma = new PrismaClient();
+
+const createOrderSchema = z.object({
+  facilityId: z.string(),
+  classificationId: z.string(),
+  pickupType: z.enum(['PICKUP', 'DROP_OFF']),
+  scheduledAt: z.string().datetime().optional(),
+  estimatedWeight: z.number().positive().optional(),
+});
+
+export async function POST(request: NextRequest) {
+  try {
+    const auth = await verifyAuth(request);
+    if (!auth) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const body = await request.json();
+    const data = createOrderSchema.parse(body);
+
+    // Get classification to determine waste type
+    const classification = await prisma.classification.findUnique({
+      where: { id: data.classificationId },
+    });
+
+    if (!classification || classification.userId !== auth.userId) {
+      return NextResponse.json(
+        { error: 'Classification not found' },
+        { status: 404 }
+      );
+    }
+
+    // Generate OTP and QR code
+    const otp = generateOTP();
+    const qrCodeData = JSON.stringify({
+      orderId: '', // Will be updated after creation
+      otp,
+      facilityId: data.facilityId,
+    });
+
+    const order = await prisma.order.create({
+      data: {
+        userId: auth.userId,
+        facilityId: data.facilityId,
+        classificationId: data.classificationId,
+        wasteType: classification.label,
+        pickupType: data.pickupType,
+        scheduledAt: data.scheduledAt ? new Date(data.scheduledAt) : null,
+        estimatedWeight: data.estimatedWeight,
+        otpHint: otp.slice(-4),
+        status: data.scheduledAt ? 'SCHEDULED' : 'CREATED',
+      },
+      include: {
+        facility: true,
+        classification: true,
+      },
+    });
+
+    // Generate QR code with order ID
+    const qrCodeDataWithId = JSON.stringify({
+      orderId: order.id,
+      otp,
+      facilityId: data.facilityId,
+    });
+    const qrCodeURI = await generateQRCode(qrCodeDataWithId);
+
+    // Update order with QR code
+    await prisma.order.update({
+      where: { id: order.id },
+      data: { qrCode: qrCodeURI },
+    });
+
+    // Create timeline events
+    await prisma.timelineEvent.createMany({
+      data: [
+        {
+          orderId: order.id,
+          type: 'CREATED',
+          title: 'Order Created',
+          message: 'Your waste disposal order has been created.',
+        },
+        ...(data.scheduledAt
+          ? [
+              {
+                orderId: order.id,
+                type: 'SCHEDULED' as const,
+                title: 'Pickup Scheduled',
+                message: `Pickup scheduled for ${new Date(
+                  data.scheduledAt
+                ).toLocaleString()}.`,
+              },
+            ]
+          : []),
+      ],
+    });
+
+    return NextResponse.json({
+      orderId: order.id,
+      qrCodeURI,
+      otpHint: otp.slice(-4),
+      order,
+    });
+  } catch (error) {
+    console.error('Order creation error:', error);
+    return NextResponse.json(
+      { error: 'Failed to create order' },
+      { status: 500 }
+    );
+  }
+}
+
+// app/api/orders/[id]/verify/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { verifyAuth } from '@/lib/auth';
+import { queueMintingJob } from '@/lib/queue';
+import { z } from 'zod';
+
+const prisma = new PrismaClient();
+
+const verifySchema = z.object({
+  otp: z.string().length(6),
+  evidenceCID: z.string(),
+  actualWeight: z.number().positive(),
+});
+
+export async function POST(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const auth = await verifyAuth(request);
+    if (!auth) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { id: orderId } = params;
+    const body = await request.json();
+    const { otp, evidenceCID, actualWeight } = verifySchema.parse(body);
+
+    // Find order and verify OTP
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: { user: true, facility: true },
+    });
+
+    if (!order) {
+      return NextResponse.json({ error: 'Order not found' }, { status: 404 });
+    }
+
+    // Verify OTP (check last 4 digits)
+    if (!otp.endsWith(order.otpHint || '')) {
+      return NextResponse.json({ error: 'Invalid OTP' }, { status: 400 });
+    }
+
+    // Update order
+    const updatedOrder = await prisma.order.update({
+      where: { id: orderId },
+      data: {
+        status: 'VERIFIED',
+        evidenceCID,
+        actualWeight,
+      },
+    });
+
+    // Create timeline event
+    await prisma.timelineEvent.create({
+      data: {
+        orderId,
+        type: 'VERIFIED',
+        title: 'Waste Verified',
+        message: `${actualWeight}kg of ${order.wasteType} verified by ${order.facility.name}.`,
+        metadata: { actualWeight, evidenceCID },
+      },
+    });
+
+    // Queue minting job
+    await queueMintingJob({
+      orderId,
+      userAddress: order.user.address,
+      weightKg: actualWeight,
+      wasteType: order.wasteType,
+    });
+
+    return NextResponse.json({
+      success: true,
+      order: updatedOrder,
+    });
+  } catch (error) {
+    console.error('Verification error:', error);
+    return NextResponse.json(
+      { error: 'Failed to verify order' },
+      { status: 500 }
+    );
+  }
+}
+
+// lib/auth.ts
+import { NextRequest } from 'next/server';
+import { SignJWT, jwtVerify } from 'jose';
+import { z } from 'zod';
+
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!);
+
+export interface AuthPayload {
+  userId: string;
+  address: string;
+  iat: number;
+  exp: number;
+}
+
+export async function createJWT(payload: Omit<AuthPayload, 'iat' | 'exp'>) {
+  return new SignJWT(payload)
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setExpirationTime('7d')
+    .sign(JWT_SECRET);
+}
+
+export async function verifyAuth(request: NextRequest): Promise<AuthPayload | null> {
+  try {
+    const authHeader = request.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return null;
+    }
+
+    const token = authHeader.substring(7);
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    
+    return payload as AuthPayload;
+  } catch {
+    return null;
+  }
+}
+
+// lib/utils.ts
+import QRCode from 'qrcode';
+
+export function generateOTP(): string {
+  return Math.random().toString().slice(2, 8).padStart(6, '0');
+}
+
+export async function generateQRCode(data: string): Promise<string> {
+  return QRCode.toDataURL(data, {
+    width: 256,
+    margin: 2,
+    color: {
+      dark: '#000000',
+      light: '#FFFFFF',
+    },
+  });
+}
+
+// lib/queue.ts
+import { Redis } from '@upstash/redis';
+
+const redis = Redis.fromEnv();
+
+interface MintingJob {
+  orderId: string;
+  userAddress: string;
+  weightKg: number;
+  wasteType: string;
+}
+
+export async function queueMintingJob(job: MintingJob) {
+  await redis.lpush('minting-jobs', JSON.stringify(job));
+}
