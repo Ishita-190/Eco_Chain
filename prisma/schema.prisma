@@ -1,0 +1,127 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String    @id @default(cuid())
+  address         String    @unique
+  email           String?
+  phone           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  orders          Order[]
+  classifications Classification[]
+  
+  @@map("users")
+}
+
+model Facility {
+  id            String   @id @default(cuid())
+  name          String
+  address       String
+  lat           Float
+  lng           Float
+  phone         String?
+  email         String?
+  typesAccepted String[] // Array of waste types
+  operatingHours Json?   // Store as JSON object
+  verifiedAt    DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  orders        Order[]
+  
+  @@map("facilities")
+}
+
+model Classification {
+  id           String   @id @default(cuid())
+  userId       String
+  imageCID     String   // IPFS CID
+  imageUrl     String?  // Preview URL
+  label        String   // Primary classification
+  confidence   Float
+  secondary    String[] // Secondary classifications
+  explanation  String?  // Markdown explanation
+  tips         String?  // Safety/disposal tips
+  createdAt    DateTime @default(now())
+  
+  user         User     @relation(fields: [userId], references: [id])
+  orders       Order[]
+  
+  @@map("classifications")
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  facilityId      String
+  classificationId String
+  status          OrderStatus @default(CREATED)
+  wasteType       String
+  estimatedWeight Float?
+  actualWeight    Float?
+  scheduledAt     DateTime?
+  pickupType      PickupType
+  qrCode          String?
+  otpHint         String?     // Last 4 digits for verification
+  evidenceCID     String?     // IPFS CID of verification photo
+  txHash          String?     // Blockchain transaction hash
+  creditsMinted   Float?      // Amount of eco credits minted
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  
+  user            User          @relation(fields: [userId], references: [id])
+  facility        Facility      @relation(fields: [facilityId], references: [id])
+  classification  Classification @relation(fields: [classificationId], references: [id])
+  timeline        TimelineEvent[]
+  
+  @@map("orders")
+}
+
+model TimelineEvent {
+  id        String          @id @default(cuid())
+  orderId   String
+  type      TimelineEventType
+  title     String
+  message   String?
+  metadata  Json?           // Additional data as JSON
+  createdAt DateTime        @default(now())
+  
+  order     Order           @relation(fields: [orderId], references: [id])
+  
+  @@map("timeline_events")
+}
+
+enum OrderStatus {
+  CREATED
+  SCHEDULED
+  PICKED_UP
+  VERIFIED
+  PROCESSED
+  COMPLETED
+  CANCELLED
+}
+
+enum PickupType {
+  PICKUP
+  DROP_OFF
+}
+
+enum TimelineEventType {
+  CREATED
+  CLASSIFIED
+  SCHEDULED
+  PICKED_UP
+  VERIFIED
+  MINTING
+  COMPLETED
+  CANCELLED
+}
