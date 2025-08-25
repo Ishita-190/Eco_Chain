@@ -47,8 +47,8 @@
   ],
   "crons": [
     {
-      "path": "/api/relayer",
-      "schedule": "*/1 * * * *"
+      "path": "/api/background",
+      "schedule": "0 2 * * *"
     }
   ]
 }
