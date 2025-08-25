@@ -52,6 +52,10 @@ jobs:
       
       - name: Setup Database
         run: |
+          until pg_isready -h localhost -p 5432; do
+            echo "Waiting for postgres..."
+            sleep 2
+          done
           npx prisma generate
           npx prisma db push
         env:
@@ -77,6 +81,7 @@ jobs:
       - name: Build application
         run: npm run build
         env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ecocommerce_test
           NEXT_PUBLIC_CHAIN_ID: "11155111"
           NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID: "test"
 
@@ -99,7 +104,7 @@ jobs:
 
   deploy-frontend:
     if: github.ref == 'refs/heads/main'
-    needs: [test, deploy-ai-service]
+    needs: [test, deploy-ai-service] # remove deploy-ai-service if you want independent frontend deploy
     runs-on: ubuntu-latest
     
     steps:
