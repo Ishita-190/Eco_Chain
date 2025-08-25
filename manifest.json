@@ -1,0 +1,53 @@
+# manifest.json (PWA configuration)
+{
+  "name": "EcoCommerce - Waste to Rewards",
+  "short_name": "EcoCommerce",
+  "description": "Turn your waste into blockchain rewards",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#22c55e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["environment", "utilities", "finance"],
+  "lang": "en",
+  "shortcuts": [
+    {
+      "name": "Upload Waste",
+      "short_name": "Upload",
+      "description": "Quickly upload a photo of your waste",
+      "url": "/?action=upload",
+      "icons": [
+        {
+          "src": "/icon-upload-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "My Credits",
+      "short_name": "Credits", 
+      "description": "Check your eco credit balance",
+      "url": "/profile",
+      "icons": [
+        {
+          "src": "/icon-credits-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
