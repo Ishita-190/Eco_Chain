@@ -34,7 +34,10 @@ export default function SchedulePage() {
       
       const response = await fetch('/api/orders', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('ecocommerce_token') || ''}`
+        },
         body: JSON.stringify({
           facilityId,
           classificationId,

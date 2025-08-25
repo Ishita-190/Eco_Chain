@@ -1,10 +1,8 @@
 // app/api/classify/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import { verifyAuth } from '@/lib/auth';
 import { z } from 'zod';
-
-const prisma = new PrismaClient();
 
 const classifySchema = z.object({
   imageCID: z.string(),
@@ -22,7 +20,8 @@ export async function POST(request: NextRequest) {
     const { imageCID, imageUrl } = classifySchema.parse(body);
 
     // Call AI classification service
-    const aiResponse = await fetch(`${process.env.AI_SERVICE_URL}/classify`, {
+    const aiBase = process.env.AI_SERVICE_URL || 'http://localhost:8000';
+    const aiResponse = await fetch(`${aiBase}/classify`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

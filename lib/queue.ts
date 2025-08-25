@@ -1,15 +1,26 @@
 // lib/queue.ts
-import { Redis } from '@upstash/redis';
+import { kv } from '@vercel/kv';
+import Redis from 'ioredis';
 
-const redis = Redis.fromEnv();
+let localRedis: Redis | null = null;
+if (process.env.REDIS_URL && !(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN)) {
+	localRedis = new Redis(process.env.REDIS_URL);
+}
 
 interface MintingJob {
-  orderId: string;
-  userAddress: string;
-  weightKg: number;
-  wasteType: string;
+	orderId: string;
+	userAddress: string;
+	weightKg: number;
+	wasteType: string;
 }
 
 export async function queueMintingJob(job: MintingJob) {
-  await redis.lpush('minting-jobs', JSON.stringify(job));
+	const payload = JSON.stringify(job);
+	if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
+		await kv.lpush('minting-jobs', payload);
+	} else if (localRedis) {
+		await localRedis.lpush('minting-jobs', payload);
+	} else {
+		throw new Error('No queue backend configured. Set Vercel KV or REDIS_URL');
+	}
 }

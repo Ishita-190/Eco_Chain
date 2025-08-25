@@ -1,11 +1,9 @@
 // app/api/orders/[id]/verify/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import { verifyAuth } from '@/lib/auth';
 import { queueMintingJob } from '@/lib/queue';
 import { z } from 'zod';
-
-const prisma = new PrismaClient();
 
 const verifySchema = z.object({
   otp: z.string().length(6),

@@ -1,4 +1,4 @@
-# prisma/seed.ts
+// prisma/seed.ts
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -12,6 +12,7 @@ async function main() {
       {
         name: 'GreenCycle Recycling Center',
         address: '123 Eco Street, Delhi, DL 110001',
+        ethAddress: '0x1111111111111111111111111111111111111111',
         lat: 28.6139,
         lng: 77.2090,
         phone: '+91 11 1234 5678',
@@ -25,6 +26,7 @@ async function main() {
       {
         name: 'EcoWaste Solutions',
         address: '456 Green Avenue, Delhi, DL 110002',
+        ethAddress: '0x2222222222222222222222222222222222222222',
         lat: 28.6239,
         lng: 77.2190,
         phone: '+91 11 8765 4321',
@@ -38,6 +40,7 @@ async function main() {
       {
         name: 'Delhi Waste Management',
         address: '789 Clean Road, Delhi, DL 110003',
+        ethAddress: '0x3333333333333333333333333333333333333333',
         lat: 28.6339,
         lng: 77.2290,
         typesAccepted: ['plastic', 'metal', 'paper', 'glass'],
@@ -49,6 +52,7 @@ async function main() {
       {
         name: 'RecycleHub Central',
         address: '321 Sustainability Blvd, Delhi, DL 110004',
+        ethAddress: '0x4444444444444444444444444444444444444444',
         lat: 28.6439,
         lng: 77.2390,
         phone: '+91 11 5555 0000',
@@ -62,6 +66,7 @@ async function main() {
       {
         name: 'Green Earth Processing',
         address: '654 Environmental Way, Delhi, DL 110005',
+        ethAddress: '0x5555555555555555555555555555555555555555',
         lat: 28.6539,
         lng: 77.2490,
         phone: '+91 11 9999 1111',
