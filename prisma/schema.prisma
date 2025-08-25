@@ -26,6 +26,7 @@ model Facility {
   id            String   @id @default(cuid())
   name          String
   address       String
+  ethAddress    String   @db.VarChar(42)
   lat           Float
   lng           Float
   phone         String?

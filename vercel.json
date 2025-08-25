@@ -1,13 +1,14 @@
-# vercel.json
 {
   "functions": {
-    "app/api/**/*.js": {
+    "app/api/**/*.ts": {
       "maxDuration": 30
     }
   },
   "env": {
     "DATABASE_URL": "@database-url",
     "REDIS_URL": "@redis-url",
+    "KV_REST_API_URL": "@kv-rest-api-url",
+    "KV_REST_API_TOKEN": "@kv-rest-api-token",
     "PINATA_JWT": "@pinata-jwt",
     "ETH_RPC_URL": "@eth-rpc-url",
     "RELAYER_PRIVATE_KEY": "@relayer-private-key",
@@ -20,7 +21,9 @@
     "env": {
       "NEXT_PUBLIC_CHAIN_ID": "11155111",
       "NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID": "@walletconnect-project-id",
-      "NEXT_PUBLIC_ECO_TOKEN_ADDRESS": "@eco-token-address"
+      "NEXT_PUBLIC_ECO_TOKEN_ADDRESS": "@eco-token-address",
+      "NEXT_PUBLIC_ETH_RPC_URL": "@public-eth-rpc-url",
+      "NEXT_PUBLIC_ETH_MAINNET_RPC_URL": "@public-eth-mainnet-rpc-url"
     }
   },
   "headers": [
@@ -40,6 +43,12 @@
           "value": "Content-Type, Authorization"
         }
       ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/relayer",
+      "schedule": "*/1 * * * *"
     }
   ]
 }

@@ -1,11 +1,10 @@
-# next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   experimental: {
-    serverComponentsExternalPackages: ['@prisma/client']
+    tsconfigPaths: true,
   },
+  serverExternalPackages: ['@prisma/client'],
   images: {
     domains: [
       'ipfs.io',

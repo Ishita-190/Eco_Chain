@@ -60,7 +60,13 @@ export default function TrackOrderPage() {
 
   const fetchOrderData = async () => {
     try {
-      // Mock data for demonstration
+      const res = await fetch(`/api/orders/${orderId}/timeline`, { headers: { Authorization: `Bearer ${localStorage.getItem('ecocommerce_token') || ''}` } });
+      if (res.ok) {
+        const data = await res.json();
+        setOrder(data.order);
+        setTimeline(data.timeline);
+        if (data.order?.status === 'COMPLETED') setShowCelebration(true);
+      }
       setOrder({
         id: orderId,
         status: 'COMPLETED',

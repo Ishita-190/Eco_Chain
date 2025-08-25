@@ -1,11 +1,9 @@
 // app/api/orders/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import { verifyAuth } from '@/lib/auth';
 import { generateQRCode, generateOTP } from '@/lib/utils';
 import { z } from 'zod';
-
-const prisma = new PrismaClient();
 
 const createOrderSchema = z.object({
   facilityId: z.string(),

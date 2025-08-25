@@ -39,7 +39,10 @@ export default function HomePage() {
         // Upload to IPFS
         const uploadResponse = await fetch('/api/uploads', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('ecocommerce_token') || ''}`
+          },
           body: JSON.stringify({
             image: base64,
             contentType: file.type,
@@ -54,7 +57,10 @@ export default function HomePage() {
         setIsClassifying(true);
         const classifyResponse = await fetch('/api/classify', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('ecocommerce_token') || ''}`
+          },
           body: JSON.stringify({ imageCID: cid, imageUrl: ipfsPreview }),
         });
 
