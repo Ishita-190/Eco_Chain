@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
-    "relayer:once": "tsx -e \"import{RelayerService}from './lib/relayer';const r=new RelayerService();r.processOneFromQueue();\""
+    "relayer:once": "tsx -e \"import{RelayerService}from './lib/relayer';const r=new RelayerService();r.processOneFromQueue();\"",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.0.4",
@@ -48,14 +49,6 @@
     "tsx": "^4.6.2"
   }
 }
-
-
-
-
-
-
-
-
 
 
 
