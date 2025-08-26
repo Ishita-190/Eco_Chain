@@ -4,13 +4,32 @@ const nextConfig = {
   experimental: {
     tsconfigPaths: true,
   },
+  // Optimize for Vercel serverless functions
   serverExternalPackages: ['@prisma/client'],
+  // Enable output file tracing for better performance
+  output: 'standalone',
+  // Configure image optimization for IPFS
   images: {
-    domains: [
-      'ipfs.io',
-      'gateway.pinata.cloud',
-      'cloudflare-ipfs.com'
-    ]
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ipfs.io',
+        port: '',
+        pathname: '/ipfs/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'gateway.pinata.cloud',
+        port: '',
+        pathname: '/ipfs/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cloudflare-ipfs.com',
+        port: '',
+        pathname: '/ipfs/**',
+      },
+    ],
   },
   async headers() {
     return [
