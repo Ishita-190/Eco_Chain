@@ -5,45 +5,34 @@
     }
   },
   "env": {
-    "DATABASE_URL": "@database-url",
-    "REDIS_URL": "@redis-url",
-    "KV_REST_API_URL": "@kv-rest-api-url",
-    "KV_REST_API_TOKEN": "@kv-rest-api-token",
-    "PINATA_JWT": "@pinata-jwt",
-    "ETH_RPC_URL": "@eth-rpc-url",
-    "RELAYER_PRIVATE_KEY": "@relayer-private-key",
-    "CONTRACT_ECOCREDIT": "@contract-ecocredit",
-    "CONTRACT_ATTESTATION": "@contract-attestation",
-    "AI_SERVICE_URL": "@ai-service-url",
-    "JWT_SECRET": "@jwt-secret",
-    "INFURA_PROJECT_ID": "@infura-project-id",
-    "INFURA_PROJECT_SECRET": "@infura-project-secret"
+    "DATABASE_URL": "DATABASE_URL",
+    "REDIS_URL": "REDIS_URL",
+    "PINATA_JWT": "PINATA_JWT",
+    "ETH_RPC_URL": "ETH_RPC_URL",
+    "RELAYER_PRIVATE_KEY": "RELAYER_PRIVATE_KEY",
+    "CONTRACT_ECOCREDIT": "CONTRACT_ECOCREDIT",
+    "CONTRACT_ATTESTATION": "CONTRACT_ATTESTATION",
+    "AI_SERVICE_URL": "AI_SERVICE_URL",
+    "JWT_SECRET": "JWT_SECRET",
+    "INFURA_PROJECT_ID": "INFURA_PROJECT_ID",
+    "INFURA_PROJECT_SECRET": "INFURA_PROJECT_SECRET"
   },
   "build": {
     "env": {
       "NEXT_PUBLIC_CHAIN_ID": "11155111",
-      "NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID": "@walletconnect-project-id",
-      "NEXT_PUBLIC_ECO_TOKEN_ADDRESS": "@eco-token-address",
-      "NEXT_PUBLIC_ETH_RPC_URL": "@public-eth-rpc-url",
-      "NEXT_PUBLIC_ETH_MAINNET_RPC_URL": "@public-eth-mainnet-rpc-url"
+      "NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID": "NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID",
+      "NEXT_PUBLIC_ECO_TOKEN_ADDRESS": "NEXT_PUBLIC_ECO_TOKEN_ADDRESS",
+      "NEXT_PUBLIC_ETH_RPC_URL": "NEXT_PUBLIC_ETH_RPC_URL",
+      "NEXT_PUBLIC_ETH_MAINNET_RPC_URL": "NEXT_PUBLIC_ETH_MAINNET_RPC_URL"
     }
   },
   "headers": [
     {
       "source": "/api/(.*)",
       "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization"
-        }
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
       ]
     }
   ],
