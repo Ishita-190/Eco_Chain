@@ -15,7 +15,9 @@
     "CONTRACT_ECOCREDIT": "@contract-ecocredit",
     "CONTRACT_ATTESTATION": "@contract-attestation",
     "AI_SERVICE_URL": "@ai-service-url",
-    "JWT_SECRET": "@jwt-secret"
+    "JWT_SECRET": "@jwt-secret",
+    "INFURA_PROJECT_ID": "@infura-project-id",
+    "INFURA_PROJECT_SECRET": "@infura-project-secret"
   },
   "build": {
     "env": {
