@@ -1,6 +1,7 @@
 // app/providers.tsx
 'use client';
 
+import React from 'react';
 import { WagmiConfig, createConfig, useAccount } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
