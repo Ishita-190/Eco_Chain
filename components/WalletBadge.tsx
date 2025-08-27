@@ -13,7 +13,7 @@ export function WalletBadge() {
   const { data: balance } = useBalance({
     address,
     token: ECO_TOKEN_ADDRESS,
-    enabled: isConnected && !!ECO_TOKEN_ADDRESS,
+    enabled: isConnected && !!ECO_TOKEN_ADDRESS, // ✅ correct for wagmi v2
   });
 
   if (!isConnected) {
