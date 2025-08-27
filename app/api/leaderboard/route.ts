@@ -1,6 +1,8 @@
 // app/api/leaderboard/route.ts
 // REFACTOR: New endpoint for leaderboard data (replaces any cron-based leaderboard updates)
 // This calculates leaderboard on-demand instead of using background cron jobs
+export const dynamic = "force-dynamic";
+
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
