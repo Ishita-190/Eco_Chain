@@ -18,7 +18,7 @@ export async function POST(
 
     const { id: orderId } = params;
 
-    // Find verified order that hasn't been completed
+    // Find order
     const order = await prisma.order.findUnique({
       where: { id: orderId },
       include: { user: true, facility: true },
@@ -28,21 +28,15 @@ export async function POST(
       return NextResponse.json({ error: 'Order not found' }, { status: 404 });
     }
 
+    // Only allow minting if order is VERIFIED
     if (order.status !== 'VERIFIED') {
       return NextResponse.json(
-        { error: 'Order must be verified before minting' },
+        { error: `Order must be VERIFIED before minting (current: ${order.status})` },
         { status: 400 }
       );
     }
 
-    if (order.status === 'COMPLETED') {
-      return NextResponse.json(
-        { error: 'Order already completed' },
-        { status: 400 }
-      );
-    }
-
-    // Process minting immediately
+    // Mint credits
     const relayer = new RelayerService();
     await relayer.processJob({
       orderId,
