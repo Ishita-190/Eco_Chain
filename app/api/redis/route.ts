@@ -1,12 +1,19 @@
-import { createClient } from 'redis';
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import { Redis } from "@upstash/redis";
 
-const redis = await createClient().connect();
+// Initialize Redis client using environment variables
+const redis = Redis.fromEnv();
 
 export const POST = async () => {
-  // Fetch data from Redis
-  const result = await redis.get("item");
-  
-  // Return the result in the response
-  return new NextResponse(JSON.stringify({ result }), { status: 200 });
+  try {
+    // Fetch data from Redis
+    const result = await redis.get("item");
+
+    return NextResponse.json({ result }, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { error: error.message || "Redis fetch failed" },
+      { status: 500 }
+    );
+  }
 };
