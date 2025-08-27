@@ -160,7 +160,7 @@ class RelayerService {
 		let jobString: string | null = null;
 		// Prefer Vercel KV if configured
 		if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
-			const res = await kv.brpop<string>('minting-jobs', { timeout: 1 });
+			const res = await kv.rpop<string>('minting-jobs', { timeout: 1 });
 			jobString = (res as any)?.[1] ?? null;
 		} else if (this.localRedis) {
 			jobString = await this.localRedis.rpop('minting-jobs');
