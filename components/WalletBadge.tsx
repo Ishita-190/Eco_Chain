@@ -1,4 +1,3 @@
-// components/WalletBadge.tsx
 'use client';
 
 import { useAccount, useBalance } from 'wagmi';
@@ -11,9 +10,8 @@ const ECO_TOKEN_ADDRESS = process.env.NEXT_PUBLIC_ECO_TOKEN_ADDRESS as `0x${stri
 export function WalletBadge() {
   const { address, isConnected } = useAccount();
   const { data: balance } = useBalance({
-    address,
+    address: isConnected ? address : undefined, // ✅ only fetch if connected
     token: ECO_TOKEN_ADDRESS,
-    enabled: isConnected && !!ECO_TOKEN_ADDRESS, // ✅ correct for wagmi v2
   });
 
   if (!isConnected) {
