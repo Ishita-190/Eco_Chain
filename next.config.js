@@ -4,11 +4,8 @@ const nextConfig = {
   experimental: {
     tsconfigPaths: true,
   },
-  // Optimize for Vercel serverless functions
   serverExternalPackages: ['@prisma/client'],
-  // Enable output file tracing for better performance
   output: 'standalone',
-  // Configure image optimization for IPFS
   images: {
     remotePatterns: [
       {
@@ -40,16 +37,16 @@ const nextConfig = {
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT,OPTIONS' },
           { key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization' },
-        ]
-      }
+        ],
+      },
     ];
   },
   async rewrites() {
     return [
       {
         source: '/health',
-        destination: '/api/health'
-      }
+        destination: '/api/health',
+      },
     ];
   },
   webpack: (config) => {
@@ -57,12 +54,10 @@ const nextConfig = {
       ...config.resolve.fallback,
       fs: false,
       net: false,
-      tls: false
+      tls: false,
     };
     return config;
   },
-  // PWA configuration would go here with next-pwa if using
-  // For now, we'll handle PWA manually
 };
 
 module.exports = nextConfig;
