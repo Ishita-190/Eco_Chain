@@ -1,11 +1,11 @@
-// app/providers.tsx
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { WagmiConfig, createConfig, useAccount } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
 import { createPublicClient, http } from 'viem';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const config = createConfig(
   getDefaultConfig({
@@ -20,19 +20,25 @@ const config = createConfig(
 );
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  // one QueryClient per app instance
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
-    <WagmiConfig config={config}>
-      <ConnectKitProvider theme="soft">
-        <AuthTokenManager>
-          {children}
-        </AuthTokenManager>
-      </ConnectKitProvider>
-    </WagmiConfig>
+    <QueryClientProvider client={queryClient}>
+      <WagmiConfig config={config}>
+        <ConnectKitProvider theme="soft">
+          <AuthTokenManager>
+            {children}
+          </AuthTokenManager>
+        </ConnectKitProvider>
+      </WagmiConfig>
+    </QueryClientProvider>
   );
 }
 
 function AuthTokenManager({ children }: { children: React.ReactNode }) {
   const { address, isConnected } = useAccount();
+
   React.useEffect(() => {
     const syncToken = async () => {
       if (isConnected && address) {
@@ -46,12 +52,15 @@ function AuthTokenManager({ children }: { children: React.ReactNode }) {
           if (data.token) {
             localStorage.setItem('ecocommerce_token', data.token);
           }
-        } catch {}
+        } catch {
+          // ignore errors silently
+        }
       } else {
         localStorage.removeItem('ecocommerce_token');
       }
     };
     syncToken();
   }, [address, isConnected]);
+
   return <>{children}</>;
 }
