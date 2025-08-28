@@ -2,20 +2,22 @@
 
 import { useAccount, useConnect } from 'wagmi';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
 import { User, Award, Leaf, Clock, Activity, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
 import { WalletBadge } from '@/components/WalletBadge';
 
-export default function ProfilePage() {
+const ProfilePage = () => {
   const { address, isConnected } = useAccount();
+  const router = useRouter();
+  const { connect, connectors, error, isPending } = useConnect();
+  const [pendingConnector, setPendingConnector] = useState<any>(null);
   
   // Mock user data
   const userData = {
     name: "Eco Warrior",
     level: 3,
     points: 1250,
-    recycled: 1560, // kg
+    recycled: 1560,
     streak: 7,
     rank: 24,
     recentActivity: [
@@ -24,10 +26,6 @@ export default function ProfilePage() {
       { id: 3, type: 'recycle', amount: 85, date: '2d ago', points: 85 },
     ]
   };
-
-  const router = useRouter();
-  const { connect, connectors, error, isPending } = useConnect();
-  const [pendingConnector, setPendingConnector] = useState<any>(null);
 
   if (!isConnected) {
     return (
@@ -97,7 +95,8 @@ export default function ProfilePage() {
             <div className="flex items-center space-x-4">
               <button 
                 onClick={() => router.back()} 
-                className="flex items-center space-x-2 text-gray-600 hover:text-gray-800">
+                className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+              >
                 <ArrowLeft className="w-5 h-5" />
                 <span>Back</span>
               </button>
@@ -255,4 +254,6 @@ export default function ProfilePage() {
       </main>
     </div>
   );
-}
+};
+
+export default ProfilePage;
