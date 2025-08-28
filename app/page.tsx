@@ -41,33 +41,39 @@ export default function Home() {
       {/* Animated Gradient Background */}
       <div className={`absolute inset-0 transition-all duration-1000 ${colors[currentGradient]} bg-gradient-to-br`} />
       
-      {/* Animated Particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-white/10 backdrop-blur-sm"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              width: Math.random() * 10 + 1,
-              height: Math.random() * 10 + 1,
-            }}
-            animate={{
-              y: [0, -Math.random() * 100 - 50, -Math.random() * 200 - 100],
-              x: [0, (Math.random() - 0.5) * 100, (Math.random() - 0.5) * 200],
-              opacity: [0.2, 0.8, 0],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "linear",
-              delay: Math.random() * -20,
-            }}
-          />
-        ))}
-      </div>
+      {/* Animated Particles - Client-side only */}
+      {typeof window !== 'undefined' && (
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            return (
+              <motion.div
+                key={i}
+                className="absolute rounded-full bg-white/10 backdrop-blur-sm"
+                initial={{
+                  x: Math.random() * width,
+                  y: Math.random() * height,
+                  width: Math.random() * 10 + 1,
+                  height: Math.random() * 10 + 1,
+                }}
+                animate={{
+                  y: [0, -Math.random() * 100 - 50, -Math.random() * 200 - 100],
+                  x: [0, (Math.random() - 0.5) * 100, (Math.random() - 0.5) * 200],
+                  opacity: [0.2, 0.8, 0],
+                }}
+                transition={{
+                  duration: Math.random() * 10 + 10,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "linear",
+                  delay: Math.random() * -20,
+                }}
+              />
+            );
+          })}
+        </div>
+      )}
 
       {/* Main Content */}
       <motion.div 
