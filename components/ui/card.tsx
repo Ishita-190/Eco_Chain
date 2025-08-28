@@ -2,12 +2,22 @@ import * as React from "react";
 
 export function Card({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border p-4 shadow-md bg-white">
-      {children}
-    </div>
+    <div className="rounded-2xl border bg-white shadow-md">{children}</div>
   );
 }
 
+export function CardHeader({ children }: { children: React.ReactNode }) {
+  return <div className="p-4 border-b">{children}</div>;
+}
+
+export function CardTitle({ children }: { children: React.ReactNode }) {
+  return <h2 className="text-lg font-semibold">{children}</h2>;
+}
+
+export function CardDescription({ children }: { children: React.ReactNode }) {
+  return <p className="text-sm text-gray-500">{children}</p>;
+}
+
 export function CardContent({ children }: { children: React.ReactNode }) {
-  return <div className="p-2">{children}</div>;
+  return <div className="p-4">{children}</div>;
 }
