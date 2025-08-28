@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { setLocalStorage, removeLocalStorage } from '@/lib/storage';
 import { WagmiConfig, createConfig, useAccount } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
@@ -50,13 +51,13 @@ function AuthTokenManager({ children }: { children: React.ReactNode }) {
           });
           const data = await res.json();
           if (data.token) {
-            localStorage.setItem('ecocommerce_token', data.token);
+            setLocalStorage('ecocommerce_token', data.token);
           }
         } catch {
           // ignore errors silently
         }
       } else {
-        localStorage.removeItem('ecocommerce_token');
+        removeLocalStorage('ecocommerce_token');
       }
     };
     syncToken();
