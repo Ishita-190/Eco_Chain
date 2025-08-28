@@ -17,6 +17,7 @@
     "@next/bundle-analyzer": "14.2.32",
     "@prisma/client": "5.22.0",
     "@upstash/redis": "1.35.3",
+    "tailwind-merge": "^2.2.1",
     "@vercel/kv": "0.2.4",
     "ethers": "6.15.0",
     "ioredis": "5.7.0",
