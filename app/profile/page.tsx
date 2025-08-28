@@ -109,11 +109,11 @@ export default function ProfilePage() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 py-8">
+      <main className="max-w-3xl mx-auto px-4 py-8 text-center">
         {/* Profile Header */}
         <div className="card p-6 mb-8">
-          <div className="flex flex-col md:flex-row items-center md:items-start md:justify-between">
-            <div className="flex items-center space-x-6">
+          <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center space-y-6">
               <div className="relative">
                 <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center text-4xl text-white">
                   <User className="w-10 h-10" />
@@ -122,17 +122,25 @@ export default function ProfilePage() {
                   Level {userData.level}
                 </div>
               </div>
-              <div>
-                <h2 className="text-2xl font-bold text-gray-800">{userData.name}</h2>
-                <div className="flex items-center mt-1 text-gray-600">
-                  <div className="w-4 h-4 mr-2 flex items-center justify-center">
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                      <path d="M17.9 12c0-.6.1-1.2.1-1.8 0-5.5-4.5-10-10-10S-2 4.7-2 10.2 2.5 20.2 8 20.2c2.1 0 4.1-.7 5.8-1.9.3-.2.4-.6.2-.9-.1-.2-.3-.4-.6-.4h-2.1c-1.2 0-2.3-.4-3.2-1.1-.9-.7-1.5-1.7-1.7-2.8-.1-.3 0-.5.1-.8.2-.2.4-.4.7-.4h.4c1.3 0 2.5.5 3.4 1.4.9.9 1.4 2.1 1.4 3.4v2.4c0 .3.1.5.4.6.1 0 .2.1.3.1.1 0 .3 0 .4-.1 1.7-1.2 3-2.9 3.6-4.9.1-.3 0-.6-.3-.8-.2-.1-.5-.1-.8 0-1.1.4-2.3.6-3.5.6-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5c0 .6-.1 1.2-.2 1.8 0 .3.1.6.4.7.3.1.6 0 .8-.3.2-.3.3-.7.3-1.1 0-4.7-3.8-8.5-8.5-8.5S.5 5.5.5 10.2s3.8 8.5 8.5 8.5c1.3 0 2.6-.3 3.8-.9-.2.9-.5 1.8-1 2.6-1.4 2.1-3.8 3.4-6.3 3.4-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5c1.2 0 2.4.3 3.5.8.3.1.6 0 .8-.3.2-.3.1-.6-.2-.8-1.2-.6-2.6-.9-4-.9-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5c2.9 0 5.6-1.5 7.1-4 .5-.8.9-1.7 1.2-2.6.1-.3.4-.5.7-.5.4 0 .7.3.7.7v3.5c0 .4-.3.7-.7.7h-3.5c-.4 0-.7-.3-.7-.7s.3-.7.7-.7h2.1c-.5-1.6-1.5-3-2.8-4-1.3-1-2.9-1.6-4.6-1.6-3.3 0-6.1-2.7-6.1-6.1s2.7-6.1 6.1-6.1 6.1 2.7 6.1 6.1c0 .6-.1 1.2-.2 1.8-.1.4.1.8.5.9.4.1.8-.1.9-.5.1-.7.2-1.4.2-2.1 0-4.1-3.4-7.5-7.5-7.5S.5 6.1.5 10.2s3.4 7.5 7.5 7.5c1.8 0 3.5-.6 4.9-1.8 1.4 1.2 3.1 1.8 4.9 1.8 4.1 0 7.5-3.4 7.5-7.5 0-5.5-4.5-10-10-10S-2 4.7-2 10.2c0 1.2.2 2.4.6 3.5.1.3 0 .7-.3.9-.3.1-.7 0-.9-.3-.5-1.2-.7-2.5-.7-3.8 0-6.3 5.2-11.5 11.5-11.5S23.5 3.9 23.5 10.2c0 3.2-1.3 6.1-3.5 8.2-2.1 2.1-5 3.4-8.2 3.4-1.9 0-3.7-.5-5.3-1.4-1.6.9-3.4 1.4-5.3 1.4-3.2 0-6.1-1.3-8.2-3.5C-1.3 16.3-2.5 13.4-2.5 10.2c0-3.2 1.3-6.1 3.5-8.2C3.2-.1 6.1-1.3 9.3-1.3c3.2 0 6.1 1.3 8.2 3.5 2.1 2.1 3.4 5 3.4 8.2 0 .4-.3.7-.7.7s-.7-.3-.7-.7c0-2.8-1.1-5.3-3-7.1-1.9-1.9-4.4-3-7.1-3s-5.3 1.1-7.1 3-3 4.4-3 7.1 1.1 5.3 3 7.1c1.9 1.9 4.4 3 7.1 3 2.7 0 5.2-1.1 7.1-3 1.9-1.9 3-4.4 3-7.1 0-2.7-1.1-5.2-3-7.1-1.9-1.9-4.4-3-7.1-3s-5.3 1.1-7.1 3c-1.9 1.9-3 4.4-3 7.1s1.1 5.3 3 7.1c1.9 1.9 4.4 3 7.1 3 1.8 0 3.5-.5 5-1.4 1.5.9 3.2 1.4 5 1.4 2.7 0 5.2-1.1 7.1-3 1.9-1.9 3-4.4 3-7.1 0-5.5-4.5-10-10-10z"/>
+              <div className="flex flex-col items-center space-y-4">
+                <div className="flex flex-col items-center text-center">
+                  <div className="flex items-center space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Award 
+                        key={i} 
+                        className={`w-5 h-5 ${i < userData.level ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
+                      />
+                    ))}
+                  </div>
+                  <div className="mt-4">
+                    <div className="w-4 h-4 mr-2 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                        <path d="M17.9 12c0-.6.1-1.2.1-1.8 0-5.5-4.5-10-10-10S-2 4.7-2 10.2 2.5 20.2 8 20.2c2.1 0 4.1-.7 5.8-1.9.3-.2.4-.6.2-.9-.1-.2-.3-.4-.6-.4h-2.1c-1.2 0-2.3-.4-3.2-1.1-.9-.7-1.5-1.7-1.7-2.8-.1-.3 0-.5.1-.8.2-.2.4-.4.7-.4h.4c1.3 0 2.5.5 3.4 1.4.9.9 1.4 2.1 1.4 3.4v2.4c0 .3.1.5.4.6.1 0 .2.1.3.1.1 0 .3 0 .4-.1 1.7-1.2 3-2.9 3.6-4.9.1-.3 0-.6-.3-.8-.2-.1-.5-.1-.8 0-1.1.4-2.3.6-3.5.6-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5c0 .6-.1 1.2-.2 1.8 0 .3.1.6.4.7.3.1.6 0 .8-.3.2-.3.3-.7.3-1.1 0-4.7-3.8-8.5-8.5-8.5S.5 5.5.5 10.2s3.8 8.5 8.5 8.5c1.3 0 2.6-.3 3.8-.9-.2.9-.5 1.8-1 2.6-1.4 2.1-3.8 3.4-6.3 3.4-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5c1.2 0 2.4.3 3.5.8.3.1.6 0 .8-.3.2-.3.1-.6-.2-.8-1.2-.6-2.6-.9-4-.9-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5c2.9 0 5.6-1.5 7.1-4 .5-.8.9-1.7 1.2-2.6.1-.3.4-.5.7-.5.4 0 .7.3.7.7v3.5c0 .4-.3.7-.7.7h-3.5c-.4 0-.7-.3-.7-.7s.3-.7.7-.7h2.1c-.5-1.6-1.5-3-2.8-4-1.3-1-2.9-1.6-4.6-1.6-3.3 0-6.1-2.7-6.1-6.1s2.7-6.1 6.1-6.1 6.1 2.7 6.1 6.1c0 .6-.1 1.2-.2 1.8-.1.4.1.8.5.9.4.1.8-.1.9-.5.1-.7.2-1.4.2-2.1 0-4.1-3.4-7.5-7.5-7.5S.5 6.1.5 10.2s3.4 7.5 7.5 7.5c1.8 0 3.5-.6 4.9-1.8 1.4 1.2 3.1 1.8 4.9 1.8 4.1 0 7.5-3.4 7.5-7.5 0-5.5-4.5-10-10-10S-2 4.7-2 10.2c0 1.2.2 2.4.6 3.5.1.3 0 .7-.3.9-.3.1-.7 0-.9-.3-.5-1.2-.7-2.5-.7-3.8 0-6.3 5.2-11.5 11.5-11.5S23.5 3.9 23.5 10.2c0 3.2-1.3 6.1-3.5 8.2-2.1 2.1-5 3.4-8.2 3.4-1.9 0-3.7-.5-5.3-1.4-1.6.9-3.4 1.4-5.3 1.4-3.2 0-6.1-1.3-8.2-3.5C-1.3 16.3-2.5 13.4-2.5 10.2c0-3.2 1.3-6.1 3.5-8.2C3.2-.1 6.1-1.3 9.3-1.3c3.2 0 6.1 1.3 8.2 3.5 2.1 2.1 3.4 5 3.4 8.2 0 .4-.3.7-.7.7s-.7-.3-.7-.7c0-2.8-1.1-5.3-3-7.1-1.9-1.9-4.4-3-7.1-3s-5.3 1.1-7.1 3-3 4.4-3 7.1 1.1 5.3 3 7.1c1.9 1.9 4.4 3 7.1 3 2.7 0 5.2-1.1 7.1-3 1.9-1.9 3-4.4 3-7.1 0-2.7-1.1-5.2-3-7.1-1.9-1.9-4.4-3-7.1-3s-5.3 1.1-7.1 3c-1.9 1.9-3 4.4-3 7.1s1.1 5.3 3 7.1c1.9 1.9 4.4 3 7.1 3 1.8 0 3.5-.5 5-1.4 1.5.9 3.2 1.4 5 1.4 2.7 0 5.2-1.1 7.1-3 1.9-1.9 3-4.4 3-7.1 0-5.5-4.5-10-10-10z"/>
                     </svg>
                   </div>
                   <span className="font-mono text-sm">{shortenedAddress}</span>
                 </div>
-                <div className="flex items-center mt-3 space-x-1">
+                <div className="flex justify-center mt-4 space-x-1">
                   {[...Array(5)].map((_, i) => (
                     <Award 
                       key={i} 
@@ -142,7 +150,7 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
-            <div className="mt-4 md:mt-0 text-center md:text-right">
+            <div className="mt-6 text-center">
               <div className="text-4xl font-bold text-eco-600">{userData.points.toLocaleString()}</div>
               <div className="text-sm text-gray-500">Eco Points</div>
             </div>
@@ -150,10 +158,10 @@ export default function ProfilePage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 gap-6 mb-8 max-w-2xl mx-auto">
           <div className="card p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-center">
-              <div className="p-3 rounded-lg bg-eco-100 text-eco-600 mr-4">
+            <div className="flex flex-col items-center text-center">
+              <div className="p-3 rounded-lg bg-eco-100 text-eco-600 mb-3">
                 <Leaf className="w-6 h-6" />
               </div>
               <div>
@@ -164,8 +172,8 @@ export default function ProfilePage() {
           </div>
           
           <div className="card p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-center">
-              <div className="p-3 rounded-lg bg-yellow-100 text-yellow-600 mr-4">
+            <div className="flex flex-col items-center text-center">
+              <div className="p-3 rounded-lg bg-yellow-100 text-yellow-600 mb-3">
                 <Award className="w-6 h-6" />
               </div>
               <div>
@@ -176,8 +184,8 @@ export default function ProfilePage() {
           </div>
           
           <div className="card p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-center">
-              <div className="p-3 rounded-lg bg-blue-100 text-blue-600 mr-4">
+            <div className="flex flex-col items-center text-center">
+              <div className="p-3 rounded-lg bg-blue-100 text-blue-600 mb-3">
                 <Clock className="w-6 h-6" />
               </div>
               <div>
@@ -200,8 +208,8 @@ export default function ProfilePage() {
           <div className="divide-y divide-gray-100">
             {userData.recentActivity.map((activity) => (
               <div key={activity.id} className="p-4 hover:bg-gray-50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
+                <div className="flex flex-col items-center justify-between">
+                  <div className="flex flex-col items-center">
                     <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                       activity.type === 'recycle' ? 'bg-eco-50 text-eco-600' : 'bg-yellow-50 text-yellow-600'
                     }`}>
@@ -211,7 +219,7 @@ export default function ProfilePage() {
                         <Award className="w-5 h-5" />
                       )}
                     </div>
-                    <div className="ml-4">
+                    <div className="mt-2 text-center">
                       <p className="font-medium text-gray-800">
                         {activity.type === 'recycle' 
                           ? `Recycled ${activity.amount}kg of waste` 
