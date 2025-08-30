@@ -92,11 +92,13 @@ export default function Home() {
         `}
       </style>
       
-      <div className="min-h-screen flex flex-col items-center justify-center text-center text-white relative overflow-hidden bg-green-700">
-        {/* Animated Green Gradient Background */}
-        <div className={`absolute inset-0 transition-all duration-1000 ${colors[currentGradient]} bg-gradient-to-br mix-blend-overlay`} />
+     <div className="min-h-screen flex flex-col items-center justify-center text-center text-white relative overflow-hidden bg-green-700">
+       {/* Gradient Overlay */}
+        <div 
+          className={`absolute inset-0 transition-all duration-1000 ${colors[currentGradient]} bg-gradient-to-br opacity-80`}
+        />
         
-        {/* Animated Particles - Client-side only */}
+       {/* Animated Particles - Client-side only */}
         {typeof window !== 'undefined' && (
           <div className="absolute inset-0 overflow-hidden">
             {[...Array(20)].map((_, i) => {
