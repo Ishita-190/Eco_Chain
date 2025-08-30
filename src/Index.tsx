@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
-import AnimatedParticles from "@/components/AnimatedParticles";
-import StatCard from "@/components/StatCard";
-import FeatureCard from "@/components/FeatureCard";
-import TestimonialCard from "@/components/TestimonialCard";
-import WasteCounter from "@/components/WasteCounter";
+import AnimatedParticles from "@/src/components/AnimatedParticles";
+import StatCard from "@/src/components/StatCard";
+import FeatureCard from "@/src/components/FeatureCard";
+import TestimonialCard from "@/src/components/TestimonialCard";
+import WasteCounter from "@/src/components/WasteCounter";
 
 const Index = () => {
   const features = [
