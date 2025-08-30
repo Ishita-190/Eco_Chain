@@ -3,8 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { FacilityCard } from './src/components/FacilityCard';
-import { WalletBadge } from './src/components/WalletBadge';
+import { FacilityCard } from '../src/components/FacilityCard';
+import { WalletBadge } from '../src/components/WalletBadge';
 import { ArrowLeft, MapPin } from 'lucide-react';
 
 interface Facility {
