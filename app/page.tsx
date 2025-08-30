@@ -1,17 +1,17 @@
 "use client";
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Button } from "../src/components/ui/button";
+import { Button } from "./src/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../src/components/ui/card";
-import { Badge } from "../src/components/ui/badge";
-import { Alert, AlertDescription } from "../src/components/ui/alert";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../src/components/ui/tabs";
+} from "./src/components/ui/card";
+import { Badge } from "./src/components/ui/badge";
+import { Alert, AlertDescription } from "./src/components/ui/alert";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./src/components/ui/tabs";
 import {
   FileText,
   Upload,
@@ -37,7 +37,6 @@ import {
   BarChart3,
   Globe,
 } from "lucide-react";
-
 export default function FeaturesPage() {
   const [dragActive, setDragActive] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -47,7 +46,6 @@ export default function FeaturesPage() {
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [selectedSample, setSelectedSample] = useState<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
   // Sample documents with images
   const sampleDocuments = [
     {
@@ -267,7 +265,6 @@ export default function FeaturesPage() {
       }
     }
   ];
-
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -277,7 +274,6 @@ export default function FeaturesPage() {
       setDragActive(false);
     }
   };
-
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -286,14 +282,12 @@ export default function FeaturesPage() {
       handleFile(e.dataTransfer.files[0]);
     }
   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       handleFile(e.target.files[0]);
     }
   };
-
   const handleFile = (file: File) => {
     // Check file type
     const allowedTypes = [".pdf", ".doc", ".docx", ".txt"];
@@ -306,7 +300,6 @@ export default function FeaturesPage() {
     setAnalysis(null);
     setShowAnalysis(false);
   };
-
   const analyzeDocument = async () => {
     if (!uploadedFile) return;
     setIsAnalyzing(true);
@@ -380,7 +373,6 @@ export default function FeaturesPage() {
     // Add a slight delay before showing analysis for smoother transition
     setTimeout(() => setShowAnalysis(true), 100);
   };
-
   const getConcernColor = (level: string) => {
     switch (level) {
       case "high":
@@ -393,7 +385,6 @@ export default function FeaturesPage() {
         return "default";
     }
   };
-
   const loadSampleDocument = (doc: any) => {
     // Create a mock file for demonstration
     const file = new File(
@@ -405,7 +396,6 @@ export default function FeaturesPage() {
     setSelectedSample(doc);
     setActiveTab("upload");
   };
-
   const resetDocument = () => {
     setUploadedFile(null);
     setAnalysis(null);
@@ -415,7 +405,6 @@ export default function FeaturesPage() {
       fileInputRef.current.value = "";
     }
   };
-
   const goBackToSamples = () => {
     setActiveTab("samples");
     setShowAnalysis(false);
@@ -425,7 +414,6 @@ export default function FeaturesPage() {
       setSelectedSample(null);
     }, 300);
   };
-
   return (
     <>
       {/* Import Google Fonts dynamically */}
