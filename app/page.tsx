@@ -2,29 +2,26 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Leaf, Award, Users, TrendingUp, Star, ArrowRight } from "lucide-react";
-
 export default function Home() {
   const [waste, setWaste] = useState(126693);
   const [isHovered, setIsHovered] = useState(false);
   
   useEffect(() => {
     let count = waste;
+    // Update less frequently and with smoother increments
     const interval = setInterval(() => {
-      count += Math.floor(Math.random() * 15) + 5;
+      count += Math.floor(Math.random() * 5) + 1;
       setWaste(count);
-    }, 200);
+    }, 3000); // Changed from 200ms to 3000ms
     return () => clearInterval(interval);
   }, []);
-
-  // Animated gradient colors
+  
+  // Green gradient colors only
   const colors = [
-    'from-emerald-700 via-teal-600 to-cyan-600',
-    'from-cyan-600 via-blue-500 to-indigo-600',
-    'from-indigo-600 via-purple-500 to-pink-600',
-    'from-pink-600 via-rose-500 to-red-600',
-    'from-red-600 via-orange-500 to-amber-600',
-    'from-amber-600 via-yellow-500 to-lime-600',
-    'from-lime-600 via-green-500 to-emerald-700',
+    'from-emerald-700 via-green-600 to-teal-600',
+    'from-teal-600 via-emerald-600 to-green-700',
+    'from-green-700 via-lime-600 to-emerald-700',
+    'from-lime-700 via-green-600 to-teal-700',
   ];
   
   const [currentGradient, setCurrentGradient] = useState(0);
@@ -35,7 +32,7 @@ export default function Home() {
     }, 8000);
     return () => clearInterval(interval);
   }, []);
-
+  
   // Features data
   const features = [
     {
@@ -54,7 +51,7 @@ export default function Home() {
       description: "Connect with eco-warriors worldwide and participate in global sustainability challenges."
     }
   ];
-
+  
   // Testimonials data
   const testimonials = [
     {
@@ -76,7 +73,7 @@ export default function Home() {
       rating: 4
     }
   ];
-
+  
   return (
     <>
       {/* Import Google Fonts dynamically */}
@@ -96,7 +93,7 @@ export default function Home() {
       </style>
       
       <div className="min-h-screen flex flex-col items-center justify-center text-center text-white relative overflow-hidden bg-green-700">
-        {/* Animated Gradient Background */}
+        {/* Animated Green Gradient Background */}
         <div className={`absolute inset-0 transition-all duration-1000 ${colors[currentGradient]} bg-gradient-to-br mix-blend-overlay`} />
         
         {/* Animated Particles - Client-side only */}
@@ -135,7 +132,7 @@ export default function Home() {
         
         {/* Main Content */}
         <motion.div
-          className="relative z-10 max-w-6xl w-full px-6 py-12 bg-black/40 rounded-3xl shadow-xl border border-white/20 mx-4 backdrop-blur-md my-8"
+          className="relative z-10 max-w-6xl w-full px-6 py-12 bg-black/40 rounded-3xl shadow-xl border border-white/20 mx-4 backdrop-blur-md my-8 flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -187,7 +184,7 @@ export default function Home() {
           
           {/* Waste Counter */}
           <motion.div
-            className="mb-12 p-6 bg-black/40 rounded-2xl backdrop-blur-md border border-white/20"
+            className="mb-12 p-6 bg-black/40 rounded-2xl backdrop-blur-md border border-white/20 w-full max-w-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -195,8 +192,8 @@ export default function Home() {
             <h2 className="text-2xl font-semibold mb-2 text-gray-100 dynamic-font-subtitle">Total Waste Recycled</h2>
             <motion.p
               className="text-5xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-cyan-300 mb-2 select-text"
-              key={waste}
-              initial={{ scale: 1.2, opacity: 0.6 }}
+              // Removed key={waste} to prevent animation on every update
+              initial={{ scale: 1, opacity: 1 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
@@ -210,7 +207,7 @@ export default function Home() {
           
           {/* Stats Grid */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 w-full"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
@@ -222,7 +219,7 @@ export default function Home() {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className="bg-black/30 p-6 rounded-xl border border-white/10 hover:border-emerald-300/40 transition-colors shadow-inner"
+                className="bg-black/30 p-6 rounded-xl border border-white/10 hover:border-emerald-300/40 transition-colors shadow-inner flex flex-col items-center text-center"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
@@ -235,7 +232,7 @@ export default function Home() {
           
           {/* Features Section */}
           <motion.div
-            className="mb-16"
+            className="mb-16 w-full"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
@@ -245,7 +242,7 @@ export default function Home() {
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="bg-black/30 p-6 rounded-2xl border border-white/10 hover:border-emerald-300/40 transition-colors"
+                  className="bg-black/30 p-6 rounded-2xl border border-white/10 hover:border-emerald-300/40 transition-colors flex flex-col items-center text-center"
                   whileHover={{ y: -10 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
@@ -261,7 +258,7 @@ export default function Home() {
           
           {/* Testimonials Section */}
           <motion.div
-            className="mb-16"
+            className="mb-16 w-full"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
@@ -271,11 +268,11 @@ export default function Home() {
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={index}
-                  className="bg-black/30 p-6 rounded-2xl border border-white/10 hover:border-emerald-300/40 transition-colors"
+                  className="bg-black/30 p-6 rounded-2xl border border-white/10 hover:border-emerald-300/40 transition-colors flex flex-col"
                   whileHover={{ y: -10 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center justify-center mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
@@ -283,8 +280,8 @@ export default function Home() {
                       />
                     ))}
                   </div>
-                  <p className="text-gray-300 mb-4 italic">"{testimonial.content}"</p>
-                  <div>
+                  <p className="text-gray-300 mb-4 italic text-center flex-grow">"{testimonial.content}"</p>
+                  <div className="text-center">
                     <p className="font-bold text-white dynamic-font-main">{testimonial.name}</p>
                     <p className="text-sm text-emerald-300">{testimonial.role}</p>
                   </div>
@@ -295,7 +292,7 @@ export default function Home() {
           
           {/* CTA Section */}
           <motion.div
-            className="mt-16 text-center"
+            className="mt-16 text-center w-full"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4 }}
@@ -311,7 +308,7 @@ export default function Home() {
         </motion.div>
         
         {/* Footer */}
-        <footer className="relative z-10 mt-16 text-sm text-gray-300 pb-8 select-none">
+        <footer className="relative z-10 mt-16 text-sm text-gray-300 pb-8 select-none w-full">
           <div className="container mx-auto px-6">
             <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
               <div className="mb-4 md:mb-0 dynamic-font-subtitle">
