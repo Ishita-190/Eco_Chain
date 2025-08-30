@@ -1,18 +1,17 @@
 "use client";
-
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "../../components/ui/card";
+import { Badge } from "../../components/ui/badge";
+import { Alert, AlertDescription } from "../../components/ui/alert";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import {
   FileText,
   Upload,
@@ -471,7 +470,6 @@ export default function FeaturesPage() {
           >
             Upload your environmental documents for AI-powered analysis, insights, and recommendations to improve sustainability.
           </motion.p>
-
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2 bg-black/30 backdrop-blur-sm">
               <TabsTrigger value="upload" className="data-[state=active]:bg-emerald-600">
@@ -623,7 +621,6 @@ export default function FeaturesPage() {
               </Card>
             </TabsContent>
           </Tabs>
-
           {/* Loading State */}
           {isAnalyzing && (
             <div className="mt-8">
@@ -648,7 +645,6 @@ export default function FeaturesPage() {
               </Card>
             </div>
           )}
-
           {/* Analysis Results */}
           {analysis && (
             <div className={`mt-8 space-y-6 transition-all duration-500 ${showAnalysis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -840,7 +836,6 @@ export default function FeaturesPage() {
             </div>
           )}
         </motion.div>
-
         {/* Footer */}
         <footer className="relative z-10 mt-16 text-sm text-gray-300 pb-8 select-none">
           <div className="container mx-auto px-6">
