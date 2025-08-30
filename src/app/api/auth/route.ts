@@ -1,6 +1,6 @@
 // app/api/auth/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { createJWT } from '@/lib/auth';
+import { createJWT } from '@/src/lib/auth';
 import { z } from 'zod';
 
 const authSchema = z.object({
@@ -31,3 +31,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
