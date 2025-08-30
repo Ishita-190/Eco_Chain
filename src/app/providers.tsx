@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { setLocalStorage, removeLocalStorage } from '@/lib/storage';
+import { setLocalStorage, removeLocalStorage } from '@/src/lib/storage';
 import { WagmiConfig, createConfig, useAccount } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
@@ -65,3 +65,4 @@ function AuthTokenManager({ children }: { children: React.ReactNode }) {
 
   return <>{children}</>;
 }
+
