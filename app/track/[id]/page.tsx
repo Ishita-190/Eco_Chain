@@ -3,10 +3,10 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { WalletBadge } from '@/components/WalletBadge';
-import { Timeline } from '@/components/Timeline';
-import { QRCodeDisplay } from '@/components/QRCodeDisplay';
-import { CelebrationBanner } from '@/components/CelebrationBanner';
+import { WalletBadge } from '@/src/components/WalletBadge';
+import { Timeline } from '@/src/components/ui/Timeline';
+import { QRCodeDisplay } from '@/src/components/ui/QRCodeDisplay';
+import { CelebrationBanner } from '@/src/components/ui/CelebrationBanner';
 import { ArrowLeft, Package, MapPin, Calendar } from 'lucide-react';
 
 interface Order {
