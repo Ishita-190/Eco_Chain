@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getLocalStorage } from '@/lib/storage';
+import { getLocalStorage } from '@/src/lib/storage';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { WalletBadge } from '@/src/components/WalletBadge';
 import { ArrowLeft, Calendar, Clock, Truck, MapPin } from 'lucide-react';
@@ -202,3 +202,4 @@ export default function SchedulePage() {
     </div>
   );
 }
+
