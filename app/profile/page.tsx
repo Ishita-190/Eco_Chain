@@ -4,9 +4,9 @@ import { useAccount, useConnect, Connector } from 'wagmi';
 import { useRouter } from 'next/navigation';
 import { User, Award, Leaf, Clock, Activity, ArrowLeft } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { WalletBadge } from './src/components/WalletBadge';
-import { Button } from './src/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './src/components/ui/card';
+import { WalletBadge } from '../src/components/WalletBadge';
+import { Button } from '../src/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../src/components/ui/card';
 
 type ActivityType = 'recycle' | 'streak' | 'login' | 'challenge';
 
