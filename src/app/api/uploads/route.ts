@@ -1,6 +1,6 @@
 // app/api/uploads/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyAuth } from '@/lib/auth';
+import { verifyAuth } from '@/src/lib/auth';
 import { z } from 'zod';
 
 const uploadSchema = z.object({
@@ -46,3 +46,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Failed to upload image' }, { status: 500 });
   }
 }
+
