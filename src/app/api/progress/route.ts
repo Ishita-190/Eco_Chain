@@ -2,8 +2,8 @@
 // REFACTOR: New endpoint to get user progress and ecological impact banners
 // This replaces any cron-based progress calculation with on-demand API calls
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { verifyAuth } from '@/lib/auth';
+import { prisma } from '@/src/lib/prisma';
+import { verifyAuth } from '@/src/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {
@@ -95,3 +95,4 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
