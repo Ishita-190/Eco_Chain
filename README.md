@@ -35,6 +35,83 @@ A comprehensive waste management platform that rewards users with blockchain-bas
 - **Real-time Updates**: WebSocket connections for live tracking
 - **Mobile PWA**: Installable progressive web app
 
+### Project Structure
+```
+codesynth_1-8/
+│
+├── .github/                    # GitHub workflows
+│   └── workflows/
+│       └── ci.yml              # CI/CD configuration
+│
+├── artifacts/                  # Compiled smart contracts
+│   └── build-info/             # Build information
+│
+├── blockchain/                 # Blockchain related code
+│   └── scripts/                # Deployment scripts
+│
+├── contracts/                  # Smart contracts
+│   ├── AttestationRegistry.sol # Attestation management
+│   └── EcoCredit.sol           # Token contract
+│
+├── prisma/                     # Database ORM
+│   ├── schema.prisma           # Database schema
+│   └── seed.ts                 # Database seeding
+│
+├── public/                     # Static assets
+│   └── waves.svg               # SVG assets
+│
+├── scripts/                    # Utility scripts
+│   ├── deploy.sh               # Deployment script
+│   └── setup.sh                # Setup script
+│
+├── src/                        # Application source
+│   ├── app/                    # Next.js app directory
+│   │   ├── api/                # API routes
+│   │   ├── leaderboard/        # Leaderboard page
+│   │   ├── profile/            # User profile
+│   │   ├── result/             # Results page
+│   │   ├── schedule/           # Scheduling
+│   │   ├── track/              # Tracking
+│   │   └── upload/             # File upload
+│   │
+│   ├── components/             # React components
+│   │   └── ui/                 # UI components
+│   │
+│   ├── hooks/                  # Custom React hooks
+│   └── lib/                    # Utility functions
+│       ├── auth.ts             # Authentication
+│       ├── prisma.ts           # Database client
+│       └── queue.ts            # Task queue
+│
+├── test/                       # Test files
+├── types/                      # TypeScript type definitions
+│
+├── .env.example                # Environment variables example
+├── docker-compose.yml          # Docker configuration
+├── hardhat.config.js           # Hardhat configuration
+├── next.config.js              # Next.js configuration
+├── package.json                # Node.js dependencies
+├── README.md                   # Project documentation
+└── tsconfig.json               # TypeScript configuration
+
+```
+
+### Project Architecture
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│   Frontend      │◄───►│   Backend       │◄───►│   Blockchain    │
+│   (Next.js)     │     │   (Python)      │     │   (Hardhat)     │
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+        ▲                        ▲                       ▲
+        │                        │                       │
+        ▼                        ▼                       ▼
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   UI Components │     │   API Routes    │     │ Smart Contracts │
+│   (React)       │     │   (Next.js)     │     │ (Solidity)      │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+```
 ## 🚀 Quick Start
 
 ### Prerequisites
