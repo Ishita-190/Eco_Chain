@@ -3,7 +3,7 @@
 // REFACTOR: Minting is now handled immediately in the verification endpoint
 // This endpoint is kept for manual testing and emergency queue processing
 import { NextResponse } from 'next/server';
-import { RelayerService } from '@/lib/relayer';
+import { RelayerService } from '@/src/lib/relayer';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -20,4 +20,5 @@ export async function POST() {
 		warning: 'This endpoint is deprecated - minting now happens immediately during verification'
 	});
 }
+
 
