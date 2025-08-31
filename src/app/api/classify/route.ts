@@ -1,7 +1,7 @@
 // app/api/classify/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { verifyAuth } from '@/lib/auth';
+import { prisma } from '@/src/lib/prisma';
+import { verifyAuth } from '@/src/lib/auth';
 import { z } from 'zod';
 
 const classifySchema = z.object({
@@ -72,3 +72,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
