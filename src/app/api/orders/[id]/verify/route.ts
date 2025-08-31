@@ -1,8 +1,8 @@
 // app/api/orders/[id]/verify/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { verifyAuth } from '@/lib/auth';
-import { RelayerService } from '@/lib/relayer';
+import { prisma } from '@/src/lib/prisma';
+import { verifyAuth } from '@/src/lib/auth';
+import { RelayerService } from '@/src/lib/relayer';
 import { z } from 'zod';
 
 const verifySchema = z.object({
@@ -90,3 +90,4 @@ export async function POST(
     );
   }
 }
+
