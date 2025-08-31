@@ -2,8 +2,8 @@
 // REFACTOR: Daily background tasks endpoint (Vercel Hobby compatible)
 // This replaces high-frequency cron jobs with a single daily maintenance job
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { RelayerService } from '@/lib/relayer';
+import { prisma } from '@/src/lib/prisma';
+import { RelayerService } from '@/src/lib/relayer';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -115,3 +115,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
