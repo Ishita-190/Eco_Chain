@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
@@ -28,3 +30,4 @@ export default function StatCard({ value, label, icon, delay = 0 }: StatCardProp
     </motion.div>
   );
 }
+
