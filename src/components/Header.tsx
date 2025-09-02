@@ -1,14 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X, Leaf } from "lucide-react";
-import { useState } from "react";
-import { Button } from "@/src/components/ui/button";
+import { Leaf } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <header className="bg-background/80 border-b border-border/50 sticky top-0 z-50 backdrop-blur-xl shadow-lg shadow-primary/5">
       <div className="container mx-auto px-6">
@@ -21,8 +17,8 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
+          {/* Navigation (always horizontal) */}
+          <nav className="flex items-center space-x-1">
             <Link
               href="/upload"
               className={cn(
@@ -48,46 +44,7 @@ export function Header() {
               Profile
             </Link>
           </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-primary/5 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 space-y-4">
-            <Link
-              href="/upload"
-              className="block text-muted-foreground hover:text-primary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Upload
-            </Link>
-            <Link
-              href="/leaderboard"
-              className="block text-muted-foreground hover:text-primary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Leaderboard
-            </Link>
-            <Link
-              href="/profile"
-              className="block text-muted-foreground hover:text-primary transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Profile
-            </Link>
-          </div>
-        )}
       </div>
     </header>
   );
