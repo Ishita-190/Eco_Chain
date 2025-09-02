@@ -17,12 +17,12 @@ export default function AnimatedParticles() {
   useEffect(() => {
     const generateParticles = () => {
       const newParticles: Particle[] = [];
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 50; i++) {
         newParticles.push({
           id: i,
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
-          size: Math.random() * 8 + 2,
+          size: Math.random() * 5 + 2, // smaller and subtle
           delay: Math.random() * -20,
         });
       }
@@ -30,8 +30,8 @@ export default function AnimatedParticles() {
     };
 
     generateParticles();
-    window.addEventListener('resize', generateParticles);
-    return () => window.removeEventListener('resize', generateParticles);
+    window.addEventListener("resize", generateParticles);
+    return () => window.removeEventListener("resize", generateParticles);
   }, []);
 
   return (
@@ -39,7 +39,7 @@ export default function AnimatedParticles() {
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full bg-primary/20 backdrop-blur-sm"
+          className="absolute rounded-full bg-white/20" // subtle white overlay
           initial={{
             x: particle.x,
             y: particle.y,
@@ -53,10 +53,10 @@ export default function AnimatedParticles() {
               particle.x + (Math.random() - 0.5) * 200,
               particle.x + (Math.random() - 0.5) * 400,
             ],
-            opacity: [0, 0.8, 0],
+            opacity: [0, 0.3, 0], // keep it light
           }}
           transition={{
-            duration: Math.random() * 15 + 10,
+            duration: Math.random() * 20 + 15, // slower movement
             repeat: Infinity,
             repeatType: "loop",
             ease: "linear",
@@ -67,4 +67,3 @@ export default function AnimatedParticles() {
     </div>
   );
 }
-
