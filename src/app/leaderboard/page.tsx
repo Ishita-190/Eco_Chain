@@ -1,3 +1,4 @@
+'use client';
 import { Trophy } from 'lucide-react';
 import BackButton from '@/src/components/BackButton';
 
@@ -96,3 +97,4 @@ export default function LeaderboardPage() {
     </div>
   );
 }
+
