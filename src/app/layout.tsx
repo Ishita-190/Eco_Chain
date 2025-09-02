@@ -18,32 +18,32 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} antialiased`}>
         <Providers>
           {/* Navbar */}
-          <nav className="bg-white shadow-md sticky top-0 z-50">
+          <header className="bg-white shadow-md sticky top-0 z-50">
             <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-              <Link href="/" className="text-2xl font-bold text-green-700">
+              <Link href="/" className="text-2xl font-bold text-green-700 hover:text-green-600 transition-colors">
                 EcoCommerce 🌍
               </Link>
-              <div className="flex gap-6">
-                <Link href="/upload" className="hover:text-green-600">
+              <nav className="flex gap-6 text-gray-700 font-medium">
+                <Link href="/upload" className="hover:text-green-600 transition-colors">
                   Upload
                 </Link>
-                <Link href="/leaderboard" className="hover:text-green-600">
+                <Link href="/leaderboard" className="hover:text-green-600 transition-colors">
                   Leaderboard
                 </Link>
-                <Link href="/profile" className="hover:text-green-600">
+                <Link href="/profile" className="hover:text-green-600 transition-colors">
                   Profile
                 </Link>
-              </div>
+              </nav>
             </div>
-          </nav>
+          </header>
 
           {/* Main content */}
-          <div className="min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
+          <main className="min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
             {children}
-          </div>
+          </main>
         </Providers>
       </body>
     </html>
