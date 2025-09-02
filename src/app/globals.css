@@ -54,6 +54,40 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background;
+  }
+
+  .btn-hero {
+    @apply btn px-8 py-6 text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .btn-secondary {
+    @apply btn px-8 py-6 text-lg bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-input hover:bg-accent hover:text-accent-foreground shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .card-glass {
+    @apply bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-2xl;
+  }
+
+  .glow-effect {
+    @apply relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-500;
+  }
+
+  .font-display {
+    font-family: 'Poppins', sans-serif;
   }
 }
