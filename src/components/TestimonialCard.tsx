@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
@@ -41,3 +43,4 @@ export default function TestimonialCard({ name, role, content, rating, delay = 0
     </motion.div>
   );
 }
+
