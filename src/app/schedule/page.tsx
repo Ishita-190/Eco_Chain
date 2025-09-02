@@ -1,4 +1,3 @@
-// app/schedule/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -19,11 +18,12 @@ export default function SchedulePage() {
   const [estimatedWeight, setEstimatedWeight] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Redirect if required params missing
   useEffect(() => {
     if (!facilityId || !classificationId) {
-      router.push('/');
+      router.replace('/');
     }
-  }, [facilityId, classificationId]);
+  }, [facilityId, classificationId, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,12 +32,13 @@ export default function SchedulePage() {
     setIsSubmitting(true);
     try {
       const scheduledAt = new Date(`${selectedDate}T${selectedTime}`).toISOString();
-      
+      const token = getLocalStorage('ecocommerce_token');
+
       const response = await fetch('/api/orders', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${getLocalStorage('ecocommerce_token')}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           facilityId,
@@ -49,11 +50,10 @@ export default function SchedulePage() {
       });
 
       if (!response.ok) throw new Error('Failed to create order');
-      
       const { orderId } = await response.json();
       router.push(`/track/${orderId}`);
-    } catch (error) {
-      console.error('Scheduling error:', error);
+    } catch (err) {
+      console.error(err);
       alert('Failed to schedule pickup. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -62,22 +62,19 @@ export default function SchedulePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
-      {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={() => router.back()}
-                className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
-              >
-                <ArrowLeft className="w-5 h-5" />
-                <span>Back</span>
-              </button>
-              <h1 className="text-xl font-semibold text-gray-800">Schedule Pickup</h1>
-            </div>
-            <WalletBadge />
+        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => router.back()}
+              className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              <span>Back</span>
+            </button>
+            <h1 className="text-xl font-semibold text-gray-800">Schedule Pickup</h1>
           </div>
+          <WalletBadge />
         </div>
       </header>
 
@@ -147,15 +144,11 @@ export default function SchedulePage() {
                   required
                 >
                   <option value="">Select time</option>
-                  <option value="09:00">9:00 AM</option>
-                  <option value="10:00">10:00 AM</option>
-                  <option value="11:00">11:00 AM</option>
-                  <option value="12:00">12:00 PM</option>
-                  <option value="13:00">1:00 PM</option>
-                  <option value="14:00">2:00 PM</option>
-                  <option value="15:00">3:00 PM</option>
-                  <option value="16:00">4:00 PM</option>
-                  <option value="17:00">5:00 PM</option>
+                  {Array.from({ length: 9 }, (_, i) => (
+                    <option key={i} value={`${9 + i}:00`}>
+                      {9 + i}:00 {9 + i < 12 ? 'AM' : 'PM'}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -202,4 +195,3 @@ export default function SchedulePage() {
     </div>
   );
 }
-
