@@ -56,7 +56,7 @@ export default function Page() {
   ];
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-green-100 to-green-300 text-gray-900">
+    <div className="relative overflow-hidden bg-gradient-to-br from-green-100 to-green-300 text-gray-900 w-full text-center">
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-start px-6 py-12 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
         {/* Main Heading */}
@@ -293,3 +293,4 @@ export default function Page() {
     </div>
   );
 }
+
