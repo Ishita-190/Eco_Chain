@@ -11,35 +11,39 @@ export const metadata = {
   manifest: '/manifest.json',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased bg-gradient-to-br from-green-100 to-green-300`}>
-        <Providers>
-          {/* Navbar */}
-          <header className="bg-green-50 shadow-md sticky top-0 z-50">
-            <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-              <Link
-                href="/"
-                className="text-2xl font-bold text-green-800 hover:text-green-700 transition-colors"
-              >
-                EcoCommerce 🌍
-              </Link>
+import Link from "next/link";
 
-              {/* Navigation Links */}
-              <nav className="flex gap-6 text-green-800 font-medium">
-                <Link href="/upload" className="hover:text-green-700 transition-colors">
-                  Upload
-                </Link>
-                <Link href="/leaderboard" className="hover:text-green-700 transition-colors">
-                  Leaderboard
-                </Link>
-                <Link href="/profile" className="hover:text-green-700 transition-colors">
-                  Profile
-                </Link>
-              </nav>
-            </div>
-          </header>
+export default function Header() {
+  return (
+    <header className="flex items-center justify-between px-8 py-4 shadow-md bg-background">
+      <h1 className="text-2xl font-display font-bold text-gradient">
+        EcoCommerce
+      </h1>
+
+      {/* Right side: Navigation links */}
+      <nav className="flex gap-8">
+        <Link
+          href="/upload"
+          className="font-medium text-lg hover:text-primary transition-colors no-underline"
+        >
+          Upload
+        </Link>
+        <Link
+          href="/leaderboard"
+          className="font-medium text-lg hover:text-primary transition-colors no-underline"
+        >
+          Leaderboard
+        </Link>
+        <Link
+          href="/profile"
+          className="font-medium text-lg hover:text-primary transition-colors no-underline"
+        >
+          Profile
+        </Link>
+      </nav>
+    </header>
+  );
+}
 
           {/* Main content */}
           <main className="min-h-screen">
@@ -57,3 +61,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
