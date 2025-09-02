@@ -58,11 +58,11 @@ export default function Page() {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-green-100 to-green-300 text-gray-900">
+    <div className="relative overflow-hidden bg-gradient-to-br from-green-100 to-green-300 text-gray-900">
       <AnimatedParticles />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 py-10 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
+      <section className="relative flex items-center justify-center px-6 py-6 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg mt-4">
         <div className="max-w-6xl w-full mx-auto text-center">
           <motion.div
             className="mb-12"
@@ -306,3 +306,4 @@ export default function Page() {
     </div>
   );
 }
+
