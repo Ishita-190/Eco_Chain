@@ -11,11 +11,7 @@ export const metadata = {
   manifest: '/manifest.json',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased bg-gradient-to-br from-green-100 to-green-300`}>
@@ -29,23 +25,16 @@ export default function RootLayout({
               >
                 EcoCommerce 🌍
               </Link>
+
+              {/* Navigation Links */}
               <nav className="flex gap-6 text-green-800 font-medium">
-                <Link
-                  href="/upload"
-                  className="hover:text-green-700 transition-colors"
-                >
+                <Link href="/upload" className="hover:text-green-700 transition-colors">
                   Upload
                 </Link>
-                <Link
-                  href="/leaderboard"
-                  className="hover:text-green-700 transition-colors"
-                >
+                <Link href="/leaderboard" className="hover:text-green-700 transition-colors">
                   Leaderboard
                 </Link>
-                <Link
-                  href="/profile"
-                  className="hover:text-green-700 transition-colors"
-                >
+                <Link href="/profile" className="hover:text-green-700 transition-colors">
                   Profile
                 </Link>
               </nav>
