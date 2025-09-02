@@ -14,17 +14,17 @@ const WasteCounter = nextDynamic(() => import("@/src/components/WasteCounter"), 
 export default function Page() {
   const features = [
     {
-      icon: <Leaf className="h-12 w-12 text-primary" />,
+      icon: <Leaf className="h-12 w-12 text-green-700" />,
       title: "Track Your Impact",
       description: "Monitor your recycling activities and see your environmental contribution in real-time with advanced analytics.",
     },
     {
-      icon: <Award className="h-12 w-12 text-accent" />,
+      icon: <Award className="h-12 w-12 text-green-600" />,
       title: "Earn Blockchain Rewards",
       description: "Convert your recycling efforts into blockchain tokens and unlock exclusive eco-friendly rewards.",
     },
     {
-      icon: <Users className="h-12 w-12 text-primary-glow" />,
+      icon: <Users className="h-12 w-12 text-green-800" />,
       title: "Global Community",
       description: "Connect with eco-warriors worldwide and participate in sustainability challenges that matter.",
     },
@@ -52,27 +52,27 @@ export default function Page() {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-green-100 to-green-300 text-gray-900">
       <AnimatedParticles />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 py-20">
-        <div className="max-w-7xl w-full mx-auto">
+      <section className="relative min-h-screen flex items-center justify-center px-6 py-20 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
+        <div className="max-w-7xl w-full mx-auto text-center">
           <motion.div
-            className="text-center mb-16"
+            className="mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <motion.h1
-              className="text-7xl md:text-8xl font-bold mb-8 font-display"
+              className="text-6xl md:text-7xl font-bold mb-8 font-display"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-gradient">EcoCommerce</span>
+              <span className="text-green-800">EcoCommerce</span>
               <motion.span
-                className="ml-4 text-primary"
+                className="ml-4 text-green-700"
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 1 }}
               >
@@ -81,7 +81,7 @@ export default function Page() {
             </motion.h1>
 
             <motion.p
-              className="text-2xl md:text-3xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed"
+              className="text-xl md:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed text-green-900"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -97,7 +97,7 @@ export default function Page() {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <motion.button
-                className="btn-hero group"
+                className="btn-hero group bg-green-700 text-white hover:bg-green-800"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => console.log("Upload Waste clicked")}
@@ -108,7 +108,7 @@ export default function Page() {
               </motion.button>
 
               <motion.button
-                className="btn-secondary group"
+                className="btn-secondary group bg-green-100 text-green-800 hover:bg-green-200"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => console.log("View Leaderboard clicked")}
@@ -125,10 +125,10 @@ export default function Page() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative py-20 px-6">
+      <section className="relative py-20 px-6 bg-green-50">
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-center mb-16 font-display text-gradient"
+            className="text-4xl md:text-5xl font-bold text-center mb-16 font-display text-green-800"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -146,10 +146,10 @@ export default function Page() {
       </section>
 
       {/* Features Section */}
-      <section className="relative py-20 px-6">
+      <section className="relative py-20 px-6 bg-green-100">
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-center mb-16 font-display text-gradient"
+            className="text-4xl md:text-5xl font-bold text-center mb-16 font-display text-green-800"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -173,10 +173,10 @@ export default function Page() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="relative py-20 px-6">
+      <section className="relative py-20 px-6 bg-green-50">
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-center mb-16 font-display text-gradient"
+            className="text-4xl md:text-5xl font-bold text-center mb-16 font-display text-green-800"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -194,7 +194,7 @@ export default function Page() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-6 bg-gradient-to-b from-background to-muted/20">
+      <section className="relative py-20 px-6 bg-gradient-to-b from-green-200 to-green-50">
         <div className="max-w-4xl mx-auto text-center px-4">
           <motion.div
             className="card-glass p-8 md:p-12 glow-effect"
@@ -204,7 +204,7 @@ export default function Page() {
             transition={{ duration: 0.8 }}
           >
             <motion.h3
-              className="text-3xl md:text-4xl font-bold mb-6 font-display text-gradient"
+              className="text-3xl md:text-4xl font-bold mb-6 font-display text-green-800"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -213,7 +213,7 @@ export default function Page() {
               Ready to Transform the World?
             </motion.h3>
             <motion.p
-              className="text-xl text-muted-foreground mb-8 leading-relaxed"
+              className="text-xl text-green-900 mb-8 leading-relaxed"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -223,7 +223,7 @@ export default function Page() {
               Start your sustainable journey today.
             </motion.p>
             <motion.button
-              className="btn-hero group"
+              className="btn-hero group bg-green-700 text-white hover:bg-green-800"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -239,7 +239,7 @@ export default function Page() {
       </section>
 
       {/* Footer */}
-      <footer className="relative border-t border-border/50 py-12 px-6">
+      <footer className="relative border-t border-green-200 py-12 px-6 bg-green-50">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <motion.div
@@ -249,7 +249,7 @@ export default function Page() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-muted-foreground">
+              <p className="text-green-800">
                 © {new Date().getFullYear()} EcoCommerce. Building a sustainable future.
               </p>
             </motion.div>
@@ -264,7 +264,7 @@ export default function Page() {
                 <a
                   key={link}
                   href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors font-medium"
+                  className="text-green-800 hover:text-green-700 transition-colors font-medium"
                 >
                   {link}
                 </a>
