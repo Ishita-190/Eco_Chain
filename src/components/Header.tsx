@@ -1,40 +1,93 @@
-import Link from "next/link";
+"use client";
 
-export default function Header() {
+import Link from "next/link";
+import { Menu, X, Leaf } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-border not-prose">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="flex h-16 items-center justify-between">
-          {/* Left: Brand (click goes home) */}
-          <Link
-            href="/"
-            className="text-2xl font-bold tracking-tight text-green-900 no-underline hover:opacity-85"
-          >
-            Eco_Chain
+    <header className="bg-background/80 border-b border-border/50 sticky top-0 z-50 backdrop-blur-xl shadow-lg shadow-primary/5">
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Left: Logo */}
+          <Link href="/" className="flex items-center space-x-2 group">
+            <Leaf className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-200" />
+            <span className="text-2xl font-bold text-primary tracking-tight">
+              Eco_Chain
+            </span>
           </Link>
 
-          {/* Right: Nav (horizontal) */}
-          <nav className="flex items-center gap-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-1">
             <Link
               href="/upload"
-              className="no-underline text-lg text-gray-800 hover:text-green-700 visited:text-gray-800"
+              className={cn(
+                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-primary/5 text-muted-foreground hover:text-primary"
+              )}
             >
               Upload
             </Link>
             <Link
               href="/leaderboard"
-              className="no-underline text-lg text-gray-800 hover:text-green-700 visited:text-gray-800"
+              className={cn(
+                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-primary/5 text-muted-foreground hover:text-primary"
+              )}
             >
               Leaderboard
             </Link>
             <Link
               href="/profile"
-              className="no-underline text-lg text-gray-800 hover:text-green-700 visited:text-gray-800"
+              className={cn(
+                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-primary/5 text-muted-foreground hover:text-primary"
+              )}
             >
               Profile
             </Link>
           </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 rounded-lg hover:bg-primary/5 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
         </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden py-4 space-y-4">
+            <Link
+              href="/upload"
+              className="block text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Upload
+            </Link>
+            <Link
+              href="/leaderboard"
+              className="block text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Leaderboard
+            </Link>
+            <Link
+              href="/profile"
+              className="block text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Profile
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );
