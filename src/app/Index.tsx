@@ -3,11 +3,11 @@ import { Leaf, Award, Users, ArrowRight, Recycle, Target } from "lucide-react";
 import dynamic from 'next/dynamic';
 
 // Dynamically import components with no SSR
-const AnimatedParticles = dynamic(() => import("@/components/AnimatedParticles"), { ssr: false });
-const StatCard = dynamic(() => import("@/components/StatCard"), { ssr: false });
-const FeatureCard = dynamic(() => import("@/components/FeatureCard"), { ssr: false });
-const TestimonialCard = dynamic(() => import("@/components/TestimonialCard"), { ssr: false });
-const WasteCounter = dynamic(() => import("@/components/WasteCounter"), { ssr: false });
+const AnimatedParticles = dynamic(() => import("@/src/components/AnimatedParticles"), { ssr: false });
+const StatCard = dynamic(() => import("@/src/components/StatCard"), { ssr: false });
+const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
+const TestimonialCard = dynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
+const WasteCounter = dynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
 
 const Index = () => {
   const features = [
@@ -286,3 +286,4 @@ const Index = () => {
 };
 
 export default Index;
+
