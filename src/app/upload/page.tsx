@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Upload, Image as ImageIcon, X, Loader2 } from 'lucide-react';
+import { Upload, X, Loader2 } from 'lucide-react';
 
 export default function UploadPage() {
   const router = useRouter();
@@ -11,6 +11,13 @@ export default function UploadPage() {
   const [preview, setPreview] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
+
+  // Cleanup preview URL on unmount or when file changes
+  useEffect(() => {
+    return () => {
+      if (preview) URL.revokeObjectURL(preview);
+    };
+  }, [preview]);
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -26,7 +33,7 @@ export default function UploadPage() {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    
+
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const selectedFile = e.dataTransfer.files[0];
       if (selectedFile.type.startsWith('image/')) {
@@ -50,22 +57,24 @@ export default function UploadPage() {
 
     setIsUploading(true);
     try {
-      // Simulate API call
+      // TODO: Replace with actual API call
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Redirect to result page with mock data
+
+      // Navigate to result page with mock classification ID
       router.push('/result?classificationId=123');
     } catch (error) {
       console.error('Upload failed:', error);
+      alert('Upload failed. Please try again.');
     } finally {
       setIsUploading(false);
     }
   };
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <motion.h1 
+          <motion.h1
             className="text-4xl font-bold text-gray-900 mb-3"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -78,7 +87,7 @@ export default function UploadPage() {
           </p>
         </div>
 
-        <motion.div 
+        <motion.div
           className="bg-white rounded-2xl shadow-xl overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -86,7 +95,7 @@ export default function UploadPage() {
         >
           <div className="p-6 sm:p-8">
             <form onSubmit={handleSubmit}>
-              <div 
+              <div
                 className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors ${
                   dragActive ? 'border-emerald-500 bg-emerald-50' : 'border-gray-300 hover:border-emerald-400'
                 }`}
@@ -97,9 +106,9 @@ export default function UploadPage() {
               >
                 {preview ? (
                   <div className="relative">
-                    <img 
-                      src={preview} 
-                      alt="Preview" 
+                    <img
+                      src={preview}
+                      alt="Preview"
                       className="max-h-80 mx-auto rounded-lg object-cover"
                     />
                     <button
@@ -119,12 +128,8 @@ export default function UploadPage() {
                       <Upload className="w-8 h-8 text-emerald-600" />
                     </div>
                     <div className="space-y-1">
-                      <p className="text-lg font-medium text-gray-900">
-                        Drag and drop your image here
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        or click to browse files (JPG, PNG up to 10MB)
-                      </p>
+                      <p className="text-lg font-medium text-gray-900">Drag and drop your image here</p>
+                      <p className="text-sm text-gray-500">or click to browse files (JPG, PNG up to 10MB)</p>
                     </div>
                     <input
                       id="file-upload"
