@@ -1,6 +1,4 @@
-// app/page.tsx
-
-export const dynamic = "force-dynamic"; // 🚀 Force SSR, skip static build
+'use client';
 
 import { motion } from "framer-motion";
 import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
@@ -278,5 +276,3 @@ export default function Page() {
     </div>
   );
 }
-
-
