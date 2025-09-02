@@ -21,14 +21,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="flex flex-col min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
+          {/* Full-page flex layout */}
+          <div className="flex flex-col min-h-0 bg-gradient-to-br from-eco-50 to-blue-50">
             {/* Header */}
             <Header />
 
-            {/* Main content */}
+            {/* Main content grows to fill */}
             <main className="flex-1">{children}</main>
 
-            {/* Footer */}
+            {/* Footer sticks at bottom */}
             <Footer />
           </div>
         </Providers>
@@ -36,4 +37,3 @@ export default function RootLayout({
     </html>
   );
 }
-
