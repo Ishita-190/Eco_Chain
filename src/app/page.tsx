@@ -1,32 +1,36 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
 import nextDynamic from "next/dynamic";
+import Link from "next/link";
 
 // Dynamically import components with no SSR
-const AnimatedParticles = nextDynamic(() => import("@/src/components/AnimatedParticles"), { ssr: true });
-const StatCard = nextDynamic(() => import("@/src/components/StatCard"), { ssr: true });
-const FeatureCard = nextDynamic(() => import("@/src/components/FeatureCard"), { ssr: true });
-const TestimonialCard = nextDynamic(() => import("@/src/components/TestimonialCard"), { ssr: true });
-const WasteCounter = nextDynamic(() => import("@/src/components/WasteCounter"), { ssr: true });
+const AnimatedParticles = nextDynamic(() => import("@/src/components/AnimatedParticles"), { ssr: false });
+const StatCard = nextDynamic(() => import("@/src/components/StatCard"), { ssr: false });
+const FeatureCard = nextDynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
+const TestimonialCard = nextDynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
+const WasteCounter = nextDynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
 
 export default function Page() {
   const features = [
     {
       icon: <Leaf className="h-12 w-12 text-green-700" />,
       title: "Track Your Impact",
-      description: "Monitor your recycling activities and see your environmental contribution in real-time with advanced analytics.",
+      description:
+        "Monitor your recycling activities and see your environmental contribution in real-time with advanced analytics.",
     },
     {
       icon: <Award className="h-12 w-12 text-green-600" />,
       title: "Earn Blockchain Rewards",
-      description: "Convert your recycling efforts into blockchain tokens and unlock exclusive eco-friendly rewards.",
+      description:
+        "Convert your recycling efforts into blockchain tokens and unlock exclusive eco-friendly rewards.",
     },
     {
       icon: <Users className="h-12 w-12 text-green-800" />,
       title: "Global Community",
-      description: "Connect with eco-warriors worldwide and participate in sustainability challenges that matter.",
+      description:
+        "Connect with eco-warriors worldwide and participate in sustainability challenges that matter.",
     },
   ];
 
@@ -34,19 +38,22 @@ export default function Page() {
     {
       name: "Alex Johnson",
       role: "Environmental Activist",
-      content: "EcoCommerce has revolutionized my recycling habits. The rewards system creates genuine motivation for sustainable living.",
+      content:
+        "Eco_Chain has revolutionized my recycling habits. The rewards system creates genuine motivation for sustainable living.",
       rating: 5,
     },
     {
       name: "Sarah Williams",
       role: "Sustainability Blogger",
-      content: "The community features and leaderboards make environmental action engaging and social. It's brilliant!",
+      content:
+        "The community features and leaderboards make environmental action engaging and social. It's brilliant!",
       rating: 5,
     },
     {
       name: "Michael Chen",
       role: "Tech Entrepreneur",
-      content: "Combining blockchain technology with environmental impact is the future. This platform delivers on that promise.",
+      content:
+        "Combining blockchain technology with environmental impact is the future. This platform delivers on that promise.",
       rating: 5,
     },
   ];
@@ -56,21 +63,22 @@ export default function Page() {
       <AnimatedParticles />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 py-20 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
-        <div className="max-w-7xl w-full mx-auto text-center">
+      <section className="relative min-h-screen flex items-center justify-center px-6 py-10 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
+        <div className="max-w-6xl w-full mx-auto text-center">
           <motion.div
-            className="mb-16"
+            className="mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            {/* Main Heading */}
             <motion.h1
-              className="text-6xl md:text-7xl font-bold mb-8 font-display"
+              className="text-7xl md:text-8xl font-extrabold mb-6 font-display text-green-900"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-green-800">EcoCommerce</span>
+              Eco_Chain
               <motion.span
                 className="ml-4 text-green-700"
                 animate={{ rotate: [0, 10, -10, 0] }}
@@ -80,8 +88,9 @@ export default function Page() {
               </motion.span>
             </motion.h1>
 
+            {/* Caption */}
             <motion.p
-              className="text-xl md:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed text-green-900"
+              className="text-2xl md:text-3xl max-w-4xl mx-auto mb-10 leading-relaxed text-green-800 font-medium"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -90,32 +99,35 @@ export default function Page() {
               compete globally, and help build a sustainable future for our planet.
             </motion.p>
 
+            {/* CTA Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row gap-6 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <motion.button
-                className="btn-hero group bg-green-700 text-white hover:bg-green-800"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => console.log("Upload Waste clicked")}
-              >
-                <Recycle className="h-6 w-6 mr-2 group-hover:animate-spin" />
-                Upload Waste
-                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+              <Link href="/upload">
+                <motion.button
+                  className="btn-hero group bg-green-700 text-white hover:bg-green-800"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Recycle className="h-6 w-6 mr-2 group-hover:animate-spin" />
+                  Upload Waste
+                  <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </Link>
 
-              <motion.button
-                className="btn-secondary group bg-green-100 text-green-800 hover:bg-green-200"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => console.log("View Leaderboard clicked")}
-              >
-                <Target className="h-6 w-6 mr-2" />
-                View Leaderboard
-              </motion.button>
+              <Link href="/leaderboard">
+                <motion.button
+                  className="btn-secondary group bg-green-100 text-green-800 hover:bg-green-200"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Target className="h-6 w-6 mr-2" />
+                  View Leaderboard
+                </motion.button>
+              </Link>
             </motion.div>
           </motion.div>
 
@@ -219,8 +231,7 @@ export default function Page() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Join thousands of eco-warriors already making a difference.
-              Start your sustainable journey today.
+              Join thousands of eco-warriors already making a difference. Start your sustainable journey today.
             </motion.p>
             <motion.button
               className="btn-hero group bg-green-700 text-white hover:bg-green-800"
@@ -236,44 +247,6 @@ export default function Page() {
             </motion.button>
           </motion.div>
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="relative border-t border-green-200 py-12 px-6 bg-green-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <motion.div
-              className="mb-6 md:mb-0"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <p className="text-green-800">
-                © {new Date().getFullYear()} EcoCommerce. Building a sustainable future.
-              </p>
-            </motion.div>
-            <motion.div
-              className="flex flex-wrap gap-6 justify-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              {["Privacy", "Terms", "Contact", "Blog", "About"].map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="text-green-800 hover:text-green-700 transition-colors font-medium"
-                >
-                  {link}
-                </a>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </footer>
-    </div>
+      </section>   
   );
 }
-
