@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Leaf, Award, Users, ArrowRight, Recycle, Target } from "lucide-react";
+import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
 import dynamic from 'next/dynamic';
 
 // Dynamically import components with no SSR
@@ -286,4 +286,5 @@ const Index = () => {
 };
 
 export default Index;
+
 
