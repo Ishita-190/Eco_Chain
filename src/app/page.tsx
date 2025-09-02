@@ -61,14 +61,14 @@ export default function Page() {
       <section className="relative flex flex-col items-center justify-start px-6 py-12 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
         {/* Main Heading */}
         <motion.h1
-          className="text-5xl md:text-7xl font-extrabold mb-4 font-display text-green-900"
+          className="text-5xl md:text-7xl font-extrabold mb-4 font-display text-green-900 w-full text-center"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           Eco_Chain
           <motion.span
-            className="ml-2 text-green-700"
+            className="ml-2 text-green-700 w-full text-center"
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity, delay: 1 }}
           >
@@ -293,4 +293,5 @@ export default function Page() {
     </div>
   );
 }
+
 
