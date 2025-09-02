@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
-import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
-import AnimatedParticles from "@/src/components/AnimatedParticles";
-import StatCard from "@/src/components/StatCard";
-import FeatureCard from "@/src/components/FeatureCard";
-import TestimonialCard from "@/src/components/TestimonialCard";
-import WasteCounter from "@/src/components/WasteCounter";
+import { Leaf, Award, Users, ArrowRight, Recycle, Target } from "lucide-react";
+import dynamic from 'next/dynamic';
+
+// Dynamically import components with no SSR
+const AnimatedParticles = dynamic(() => import("@/components/AnimatedParticles"), { ssr: false });
+const StatCard = dynamic(() => import("@/components/StatCard"), { ssr: false });
+const FeatureCard = dynamic(() => import("@/components/FeatureCard"), { ssr: false });
+const TestimonialCard = dynamic(() => import("@/components/TestimonialCard"), { ssr: false });
+const WasteCounter = dynamic(() => import("@/components/WasteCounter"), { ssr: false });
 
 const Index = () => {
   const features = [
@@ -95,6 +98,10 @@ const Index = () => {
                 className="btn-hero group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  // TODO: Implement upload waste functionality
+                  console.log('Upload Waste clicked');
+                }}
               >
                 <Recycle className="h-6 w-6 mr-2 group-hover:animate-spin" />
                 Upload Waste
@@ -105,6 +112,10 @@ const Index = () => {
                 className="btn-secondary group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  // TODO: Implement leaderboard navigation
+                  console.log('View Leaderboard clicked');
+                }}
               >
                 <Target className="h-6 w-6 mr-2" />
                 View Leaderboard
@@ -191,10 +202,10 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative py-20 px-6 bg-gradient-to-b from-background to-muted/20">
+        <div className="max-w-4xl mx-auto text-center px-4">
           <motion.div
-            className="card-glass p-12 glow-effect"
+            className="card-glass p-8 md:p-12 glow-effect"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
