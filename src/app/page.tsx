@@ -64,12 +64,7 @@ export default function Page() {
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-start px-6 py-12 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
         <div className="max-w-6xl w-full mx-auto text-center">
-          <motion.div
-            className="mb-6" // reduced from mb-12
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          
             {/* Main Heading */}
             <motion.h1
               className="text-5xl md:text-7xl font-extrabold mb-4 font-display text-green-900"
@@ -127,7 +122,6 @@ export default function Page() {
                 </motion.button>
               </Link>
             </motion.div>
-          </motion.div>
           
           {/* Waste Counter */}
           <WasteCounter />
@@ -306,3 +300,4 @@ export default function Page() {
     </div>
   );
 }
+
