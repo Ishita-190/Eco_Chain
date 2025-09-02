@@ -2,33 +2,40 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between px-10 py-4 shadow-md bg-white">
-      {/* Left: Logo */}
-      <Link href="/" className="text-2xl font-bold text-gray-800 no-underline">
-        Eco_Chain
-      </Link>
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-border not-prose">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex h-16 items-center justify-between">
+          {/* Left: Brand (click goes home) */}
+          <Link
+            href="/"
+            className="text-2xl font-bold tracking-tight text-green-900 no-underline hover:opacity-85"
+          >
+            Eco_Chain
+          </Link>
 
-      {/* Right: Nav links */}
-      <nav className="flex gap-8">
-        <Link
-          href="/upload"
-          className="text-lg text-gray-700 hover:text-green-700 transition-colors no-underline"
-        >
-          Upload
-        </Link>
-        <Link
-          href="/leaderboard"
-          className="text-lg text-gray-700 hover:text-green-700 transition-colors no-underline"
-        >
-          Leaderboard
-        </Link>
-        <Link
-          href="/profile"
-          className="text-lg text-gray-700 hover:text-green-700 transition-colors no-underline"
-        >
-          Profile
-        </Link>
-      </nav>
+          {/* Right: Nav (horizontal) */}
+          <nav className="flex items-center gap-8">
+            <Link
+              href="/upload"
+              className="no-underline text-lg text-gray-800 hover:text-green-700 visited:text-gray-800"
+            >
+              Upload
+            </Link>
+            <Link
+              href="/leaderboard"
+              className="no-underline text-lg text-gray-800 hover:text-green-700 visited:text-gray-800"
+            >
+              Leaderboard
+            </Link>
+            <Link
+              href="/profile"
+              className="no-underline text-lg text-gray-800 hover:text-green-700 visited:text-gray-800"
+            >
+              Profile
+            </Link>
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }
