@@ -1,14 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
-import nextDynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
 // Dynamically import components with no SSR
-const StatCard = nextDynamic(() => import("@/src/components/StatCard"), { ssr: false });
-const FeatureCard = nextDynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
-const TestimonialCard = nextDynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
-const WasteCounter = nextDynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
+const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
+const TestimonialCard = dynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
+const WasteCounter = dynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
 
 export default function Page() {
   const features = [
@@ -31,7 +30,7 @@ export default function Page() {
         "Connect with eco-warriors worldwide and participate in sustainability challenges that matter.",
     },
   ];
-
+  
   const testimonials = [
     {
       name: "Alex Johnson",
@@ -60,68 +59,66 @@ export default function Page() {
     <div className="relative overflow-hidden bg-gradient-to-br from-green-100 to-green-300 text-gray-900">
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-start px-6 py-12 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
-      
-            {/* Main Heading */}
-            <motion.h1
-              className="text-5xl md:text-7xl font-extrabold mb-4 font-display text-green-900"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+        {/* Main Heading */}
+        <motion.h1
+          className="text-5xl md:text-7xl font-extrabold mb-4 font-display text-green-900"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Eco_Chain
+          <motion.span
+            className="ml-2 text-green-700"
+            animate={{ rotate: [0, 10, -10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+          >
+            🌱
+          </motion.span>
+        </motion.h1>
+        
+        {/* Caption */}
+        <motion.p
+          className="text-2xl md:text-3xl max-w-4xl mx-auto mb-10 leading-relaxed text-green-800 font-medium"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          Transform your waste into blockchain rewards. Track your environmental impact,
+          compete globally, and help build a sustainable future for our planet.
+        </motion.p>
+        
+        {/* CTA Buttons */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-6 justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <Link href="/upload">
+            <motion.button
+              className="flex items-center justify-center px-6 py-3 bg-green-700 text-white font-medium rounded-lg hover:bg-green-800 transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Eco_Chain
-              <motion.span
-                className="ml-2 text-green-700"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-              >
-                🌱
-              </motion.span>
-            </motion.h1>
-            
-            {/* Caption */}
-            <motion.p
-              className="text-2xl md:text-3xl max-w-4xl mx-auto mb-10 leading-relaxed text-green-800 font-medium"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              <Recycle className="h-6 w-6 mr-2 group-hover:animate-spin" />
+              Upload Waste
+              <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </motion.button>
+          </Link>
+          <Link href="/leaderboard">
+            <motion.button
+              className="flex items-center justify-center px-6 py-3 bg-green-100 text-green-800 font-medium rounded-lg hover:bg-green-200 transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Transform your waste into blockchain rewards. Track your environmental impact,
-              compete globally, and help build a sustainable future for our planet.
-            </motion.p>
-            
-            {/* CTA Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <Link href="/upload">
-                <motion.button
-                  className="btn-hero group bg-green-700 text-white hover:bg-green-800"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Recycle className="h-6 w-6 mr-2 group-hover:animate-spin" />
-                  Upload Waste
-                  <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
-              </Link>
-              <Link href="/leaderboard">
-                <motion.button
-                  className="btn-secondary group bg-green-100 text-green-800 hover:bg-green-200"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Target className="h-6 w-6 mr-2" />
-                  View Leaderboard
-                </motion.button>
-              </Link>
-            </motion.div>
-          </motion.div>
-          
-          {/* Waste Counter */}
-          <WasteCounter />
+              <Target className="h-6 w-6 mr-2" />
+              View Leaderboard
+            </motion.button>
+          </Link>
+        </motion.div>
+        
+        {/* Waste Counter */}
+        <WasteCounter />
       </section>
       
       {/* Global Impact */}
@@ -243,7 +240,7 @@ export default function Page() {
       <section className="relative py-28 px-6 bg-gradient-to-b from-green-200 to-green-50">
         <div className="max-w-4xl mx-auto text-center px-4">
           <motion.div
-            className="card-glass p-10 md:p-16 glow-effect"
+            className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -281,7 +278,7 @@ export default function Page() {
             >
               <Link href="/upload">
                 <motion.button
-                  className="btn-hero group bg-green-700 text-white hover:bg-green-800 px-8 py-4 text-xl font-semibold rounded-2xl shadow-lg"
+                  className="flex items-center justify-center px-8 py-4 bg-green-700 text-white text-xl font-semibold rounded-2xl shadow-lg hover:bg-green-800 transition-colors duration-300"
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
                 >
