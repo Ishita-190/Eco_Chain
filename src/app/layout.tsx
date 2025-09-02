@@ -2,7 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import Link from "next/link";
-import { Header } from "@/src/components/header"; // <-- import your Header
+import { Header } from "@/src/components/Header"; // <-- import your Header
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -51,3 +51,4 @@ export default function RootLayout({
     </html>
   );
 }
+
