@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic"; // 🚀 Force SSR, skip static build
 
 import { motion } from "framer-motion";
 import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
-import dynamic from "next/dynamic";
+import nextDynamic from "next/dynamic";
 
 // Dynamically import components with no SSR
 const AnimatedParticles = dynamic(() => import("@/src/components/AnimatedParticles"), { ssr: false });
@@ -278,3 +278,4 @@ export default function Page() {
     </div>
   );
 }
+
