@@ -78,7 +78,7 @@ export default function Page() {
         
         {/* Caption */}
         <motion.p
-          className="text-2xl md:text-3xl max-w-4xl mx-auto mb-10 leading-relaxed text-green-800 font-medium"
+          className="text-2xl md:text-3xl max-w-4xl mx-auto mb-10 leading-relaxed text-green-800 font-medium text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -118,7 +118,9 @@ export default function Page() {
         </motion.div>
         
         {/* Waste Counter */}
-        <WasteCounter />
+        <div className="w-full text-center mt-12">
+          <WasteCounter />
+        </div>
       </section>
       
       {/* Global Impact */}
@@ -126,7 +128,7 @@ export default function Page() {
         <div className="max-w-5xl mx-auto text-center px-6">
           {/* Heading */}
           <motion.h2
-            className="text-5xl md:text-6xl font-extrabold text-green-800 mb-16"
+            className="text-5xl md:text-6xl font-extrabold text-green-800 mb-16 text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -136,7 +138,7 @@ export default function Page() {
           </motion.h2>
           
           {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
             <motion.div
               className="flex flex-col items-center"
               initial={{ opacity: 0, y: 30 }}
@@ -144,10 +146,10 @@ export default function Page() {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
+              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2 text-center">
                 ♻️ 1.1M
               </p>
-              <p className="text-lg text-gray-600">Plastic Bottles Recycled</p>
+              <p className="text-lg text-gray-600 text-center">Plastic Bottles Recycled</p>
             </motion.div>
             
             <motion.div
@@ -157,10 +159,10 @@ export default function Page() {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
+              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2 text-center">
                 👥 45k
               </p>
-              <p className="text-lg text-gray-600">Active Users</p>
+              <p className="text-lg text-gray-600 text-center">Active Users</p>
             </motion.div>
             
             <motion.div
@@ -170,10 +172,10 @@ export default function Page() {
               transition={{ duration: 0.8, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
+              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2 text-center">
                 🌱 95%
               </p>
-              <p className="text-lg text-gray-600">Sustainable Practices</p>
+              <p className="text-lg text-gray-600 text-center">Sustainable Practices</p>
             </motion.div>
           </div>
         </div>
@@ -184,7 +186,7 @@ export default function Page() {
         <div className="max-w-7xl mx-auto text-center">
           {/* Heading */}
           <motion.h2
-            className="text-5xl md:text-6xl font-extrabold text-green-800 mb-20"
+            className="text-5xl md:text-6xl font-extrabold text-green-800 mb-20 text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -194,7 +196,7 @@ export default function Page() {
           </motion.h2>
           
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -217,7 +219,7 @@ export default function Page() {
       
       {/* Testimonials Section */}
       <section className="relative py-20 px-6 bg-green-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto text-center">
           <motion.h2
             className="text-4xl md:text-5xl font-bold text-center mb-16 font-display text-green-800"
             initial={{ opacity: 0, y: 20 }}
@@ -228,9 +230,11 @@ export default function Page() {
             Community Voices
           </motion.h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} {...testimonial} delay={index * 0.1} />
+              <div key={index} className="text-center">
+                <TestimonialCard {...testimonial} delay={index * 0.1} />
+              </div>
             ))}
           </div>
         </div>
@@ -240,7 +244,7 @@ export default function Page() {
       <section className="relative py-28 px-6 bg-gradient-to-b from-green-200 to-green-50">
         <div className="max-w-4xl mx-auto text-center px-4">
           <motion.div
-            className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50"
+            className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50 text-center"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -248,7 +252,7 @@ export default function Page() {
           >
             {/* Heading */}
             <motion.h3
-              className="text-5xl md:text-6xl font-extrabold mb-10 text-green-800"
+              className="text-5xl md:text-6xl font-extrabold mb-10 text-green-800 text-center"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -259,7 +263,7 @@ export default function Page() {
             
             {/* Subtext */}
             <motion.p
-              className="text-2xl text-green-900 mb-12 leading-relaxed"
+              className="text-2xl text-green-900 mb-12 leading-relaxed text-center"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -293,5 +297,3 @@ export default function Page() {
     </div>
   );
 }
-
-
