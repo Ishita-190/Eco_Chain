@@ -6,7 +6,7 @@ import { cn } from "@/src/lib/utils";
 
 export function Header() {
   return (
-    <header className="bg-background/80 border-b border-border/50 sticky top-0 z-50 backdrop-blur-xl shadow-lg shadow-primary/5">
+    <header className="bg-background/80 border-b border-border/50 backdrop-blur-xl shadow-lg shadow-primary/5">
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Left: Logo */}
@@ -17,7 +17,7 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Navigation (always horizontal) */}
+          {/* Navigation */}
           <nav className="flex items-center space-x-1">
             <Link
               href="/upload"
