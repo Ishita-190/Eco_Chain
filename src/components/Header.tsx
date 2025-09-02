@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { Menu, X, Leaf } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/src/components/ui/button";
+import { cn } from "@/src/lib/utils";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
