@@ -18,22 +18,34 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased bg-gradient-to-br from-green-100 to-green-300`}>
         <Providers>
           {/* Navbar */}
-          <header className="bg-white shadow-md sticky top-0 z-50">
+          <header className="bg-green-50 shadow-md sticky top-0 z-50">
             <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-              <Link href="/" className="text-2xl font-bold text-green-700 hover:text-green-600 transition-colors">
+              <Link
+                href="/"
+                className="text-2xl font-bold text-green-800 hover:text-green-700 transition-colors"
+              >
                 EcoCommerce 🌍
               </Link>
-              <nav className="flex gap-6 text-gray-700 font-medium">
-                <Link href="/upload" className="hover:text-green-600 transition-colors">
+              <nav className="flex gap-6 text-green-800 font-medium">
+                <Link
+                  href="/upload"
+                  className="hover:text-green-700 transition-colors"
+                >
                   Upload
                 </Link>
-                <Link href="/leaderboard" className="hover:text-green-600 transition-colors">
+                <Link
+                  href="/leaderboard"
+                  className="hover:text-green-700 transition-colors"
+                >
                   Leaderboard
                 </Link>
-                <Link href="/profile" className="hover:text-green-600 transition-colors">
+                <Link
+                  href="/profile"
+                  className="hover:text-green-700 transition-colors"
+                >
                   Profile
                 </Link>
               </nav>
@@ -41,9 +53,16 @@ export default function RootLayout({
           </header>
 
           {/* Main content */}
-          <main className="min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
+          <main className="min-h-screen">
             {children}
           </main>
+
+          {/* Footer */}
+          <footer className="bg-green-50 border-t border-green-200 py-8 mt-12">
+            <div className="max-w-6xl mx-auto text-center text-green-800">
+              © {new Date().getFullYear()} EcoCommerce. Building a sustainable future.
+            </div>
+          </footer>
         </Providers>
       </body>
     </html>
