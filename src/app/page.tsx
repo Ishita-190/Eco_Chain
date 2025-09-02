@@ -136,53 +136,101 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="relative py-20 px-6 bg-green-50">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold text-center mb-16 font-display text-green-800"
-            initial={{ opacity: 0, y: 20 }}
+     
+
+    {/* Global Impact */}
+    <section className="py-24 bg-white">
+      <div className="max-w-5xl mx-auto text-center px-6">
+        {/* Heading */}
+        <motion.h2
+          className="text-5xl md:text-6xl font-extrabold text-green-800 mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          Global Impact 🌍
+        </motion.h2>
+
+        {/* Stats */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
+          <motion.div
+            className="flex flex-col items-center"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
           >
-            Global Impact
-          </motion.h2>
+            <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
+              ♻️ 1.1M
+            </p>
+            <p className="text-lg text-gray-600">Plastic Bottles Recycled</p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <StatCard value="1.2M+" label="Users Worldwide" icon="👥" delay={0} />
-            <StatCard value="45K+" label="Tons Recycled" icon="♻️" delay={0.1} />
-            <StatCard value="95%" label="Waste Reduction" icon="📉" delay={0.2} />
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="relative py-20 px-6 bg-green-100">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold text-center mb-16 font-display text-green-800"
-            initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            className="flex flex-col items-center"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
           >
-            How It Works
-          </motion.h2>
+            <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
+              👥 45k
+            </p>
+            <p className="text-lg text-gray-600">Active Users</p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-                delay={index * 0.1}
-              />
-            ))}
-          </div>
+          <motion.div
+            className="flex flex-col items-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
+              🌱 95%
+            </p>
+            <p className="text-lg text-gray-600">Sustainable Practices</p>
+          </motion.div>
         </div>
-      </section>
+      </div>
+    </section>
+ 
+     {/* Features Section */}
+    <section className="relative py-24 px-6 bg-green-50">
+      <div className="max-w-7xl mx-auto text-center">
+    {/* Heading */}
+        <motion.h2
+          className="text-5xl md:text-6xl font-extrabold text-green-800 mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          >
+          How It Works ⚡
+        </motion.h2>
+
+    {/* Features Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      {features.map((feature, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: index * 0.2 }}
+          className="flex flex-col items-center"
+        >
+          <FeatureCard
+            icon={feature.icon}
+            title={feature.title}
+            description={feature.description}
+          />
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Testimonials Section */}
       <section className="relative py-20 px-6 bg-green-50">
@@ -206,47 +254,60 @@ export default function Page() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-6 bg-gradient-to-b from-green-200 to-green-50">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <motion.div
-            className="card-glass p-8 md:p-12 glow-effect"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+<section className="relative py-28 px-6 bg-gradient-to-b from-green-200 to-green-50">
+  <div className="max-w-4xl mx-auto text-center px-4">
+    <motion.div
+      className="card-glass p-10 md:p-16 glow-effect"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
+      {/* Heading */}
+      <motion.h3
+        className="text-5xl md:text-6xl font-extrabold mb-10 text-green-800"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+      >
+        Ready to Transform the World? 🌍
+      </motion.h3>
+
+      {/* Subtext */}
+      <motion.p
+        className="text-2xl text-green-900 mb-12 leading-relaxed"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: 0.4 }}
+      >
+        Join thousands of eco-warriors already making a difference.  
+        Start your sustainable journey today.
+      </motion.p>
+
+      {/* CTA Button (navigates to /upload) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+      >
+        <Link href="/upload">
+          <motion.button
+            className="btn-hero group bg-green-700 text-white hover:bg-green-800 px-8 py-4 text-xl font-semibold rounded-2xl shadow-lg"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <motion.h3
-              className="text-3xl md:text-4xl font-bold mb-6 font-display text-green-800"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Ready to Transform the World?
-            </motion.h3>
-            <motion.p
-              className="text-xl text-green-900 mb-8 leading-relaxed"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              Join thousands of eco-warriors already making a difference. Start your sustainable journey today.
-            </motion.p>
-            <motion.button
-              className="btn-hero group bg-green-700 text-white hover:bg-green-800"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Globe className="h-6 w-6 mr-2 group-hover:animate-spin" />
-              Start Recycling Now
-            </motion.button>
-          </motion.div>
-        </div>
-      </section>   
+            <Globe className="h-7 w-7 mr-2 group-hover:animate-spin" />
+            Start Recycling Now
+          </motion.button>
+        </Link>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
+
   );
 }
+
