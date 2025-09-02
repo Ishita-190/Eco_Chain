@@ -5,11 +5,11 @@ import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-r
 import nextDynamic from "next/dynamic";
 
 // Dynamically import components with no SSR
-const AnimatedParticles = nextDynamic(() => import("@/src/components/AnimatedParticles"), { ssr: false });
-const StatCard = nextDynamic(() => import("@/src/components/StatCard"), { ssr: false });
-const FeatureCard = nextDynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
-const TestimonialCard = nextDynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
-const WasteCounter = nextDynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
+const AnimatedParticles = nextDynamic(() => import("@/src/components/AnimatedParticles"), { ssr: true });
+const StatCard = nextDynamic(() => import("@/src/components/StatCard"), { ssr: true });
+const FeatureCard = nextDynamic(() => import("@/src/components/FeatureCard"), { ssr: true });
+const TestimonialCard = nextDynamic(() => import("@/src/components/TestimonialCard"), { ssr: true });
+const WasteCounter = nextDynamic(() => import("@/src/components/WasteCounter"), { ssr: true });
 
 export default function Page() {
   const features = [
@@ -276,3 +276,4 @@ export default function Page() {
     </div>
   );
 }
+
