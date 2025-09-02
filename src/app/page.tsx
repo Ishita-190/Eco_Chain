@@ -62,24 +62,24 @@ export default function Page() {
       <AnimatedParticles />
       
       {/* Hero Section */}
-      <section className="relative flex items-center justify-center px-6 py-6 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg mt-4">
+      <section className="relative flex flex-col items-center justify-start px-6 py-12 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
         <div className="max-w-6xl w-full mx-auto text-center">
           <motion.div
-            className="mb-12"
+            className="mb-6" // reduced from mb-12
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             {/* Main Heading */}
             <motion.h1
-              className="text-7xl md:text-8xl font-extrabold mb-6 font-display text-green-900"
+              className="text-5xl md:text-7xl font-extrabold mb-4 font-display text-green-900"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Eco_Chain
               <motion.span
-                className="ml-4 text-green-700"
+                className="ml-2 text-green-700"
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 1 }}
               >
@@ -306,4 +306,3 @@ export default function Page() {
     </div>
   );
 }
-
