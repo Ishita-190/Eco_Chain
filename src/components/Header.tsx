@@ -3,8 +3,13 @@ import Link from "next/link";
 export default function Header() {
   return (
     <header className="flex items-center justify-between px-8 py-4 shadow-md bg-background">
-      {/* Left: Logo */}
-      <h1 className="text-2xl font-bold text-gradient">EcoCommerce</h1>
+      {/* Left: Brand (clickable link to landing page) */}
+      <Link
+        href="/"
+        className="text-2xl font-bold text-gradient hover:opacity-80 transition"
+      >
+        Eco_Chain
+      </Link>
 
       {/* Right: Nav links */}
       <nav className="flex gap-8">
