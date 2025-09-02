@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
@@ -32,3 +34,4 @@ export default function FeatureCard({ icon, title, description, delay = 0 }: Fea
     </motion.div>
   );
 }
+
