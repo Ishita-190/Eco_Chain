@@ -5,7 +5,6 @@ import nextDynamic from "next/dynamic";
 import Link from "next/link";
 
 // Dynamically import components with no SSR
-const AnimatedParticles = nextDynamic(() => import("@/src/components/AnimatedParticles"), { ssr: false });
 const StatCard = nextDynamic(() => import("@/src/components/StatCard"), { ssr: false });
 const FeatureCard = nextDynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
 const TestimonialCard = nextDynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
@@ -59,12 +58,9 @@ export default function Page() {
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-green-100 to-green-300 text-gray-900">
-      <AnimatedParticles />
-      
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-start px-6 py-12 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
-        <div className="max-w-6xl w-full mx-auto text-center">
-          
+      
             {/* Main Heading */}
             <motion.h1
               className="text-5xl md:text-7xl font-extrabold mb-4 font-display text-green-900"
@@ -122,10 +118,10 @@ export default function Page() {
                 </motion.button>
               </Link>
             </motion.div>
+          </motion.div>
           
           {/* Waste Counter */}
           <WasteCounter />
-        </div>
       </section>
       
       {/* Global Impact */}
@@ -300,4 +296,3 @@ export default function Page() {
     </div>
   );
 }
-
