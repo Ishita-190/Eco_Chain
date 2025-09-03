@@ -1,11 +1,10 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function WasteCounter() {
   const [waste, setWaste] = useState(126693);
-
+  
   useEffect(() => {
     let count = waste;
     const interval = setInterval(() => {
@@ -17,7 +16,7 @@ export default function WasteCounter() {
 
   return (
     <motion.div
-      className="card-glass p-8 w-full max-w-md mx-auto glow-effect"
+      className="card-glass p-8 w-full max-w-md mx-auto glow-effect flex flex-col items-center"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -26,9 +25,9 @@ export default function WasteCounter() {
       <h2 className="text-2xl font-semibold mb-4 text-foreground font-display text-center">
         Total Waste Recycled
       </h2>
-      <div className="text-center">
+      <div className="text-center w-full">
         <motion.div
-          className="text-6xl md:text-7xl font-bold text-gradient mb-2 font-display"
+          className="text-6xl md:text-7xl font-bold text-gradient mb-2 font-display flex items-center justify-center"
           animate={{ scale: [1, 1.02, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
@@ -49,4 +48,3 @@ export default function WasteCounter() {
     </motion.div>
   );
 }
-
