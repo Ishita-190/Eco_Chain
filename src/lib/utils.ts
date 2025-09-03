@@ -1,5 +1,4 @@
-// lib/utils.ts
-"use client"
+
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import QRCode from "qrcode"
@@ -25,4 +24,5 @@ export async function generateQRCode(data: string): Promise<string> {
     },
   })
 }
+
 
