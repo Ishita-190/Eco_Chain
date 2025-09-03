@@ -1,13 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
-import Image from "next/image"; // Add this import
-import heroImage from "@/src/assets/eco-hero.jpg";
-
-// Dynamically import components with no SSR
+import Image from "next/image";
+import heroImage from "@/assets/eco-hero.jpg";
 import FeatureCard from "@/src/components/FeatureCard";
 import TestimonialCard from "@/src/components/TestimonialCard";
 import WasteCounter from "@/src/components/WasteCounter";
@@ -109,9 +106,9 @@ export default function Page() {
               src={heroImage} 
               alt="Eco-friendly planet with recycling symbols" 
               className="w-full max-w-4xl h-auto object-cover"
-              width={1200} // Add width and height for Next.js Image component
+              width={1200}
               height={600}
-              priority // Add priority for hero image
+              priority
             />
           </motion.div>
           
@@ -329,6 +326,3 @@ export default function Page() {
     </div>
   );
 }
-
-
-
