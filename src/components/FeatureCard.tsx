@@ -1,10 +1,11 @@
 "use client";
 
+import React from "react"; // <- ADD THIS
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/src/components/ui/card";
 
 interface FeatureCardProps {
-  icon: React.ReactNode; // must be a plain React element
+  icon: React.ReactNode;
   title: string;
   description: string;
 }
