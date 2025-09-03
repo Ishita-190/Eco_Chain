@@ -3,10 +3,12 @@ import { motion } from "framer-motion";
 import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+
 // Dynamically import components with no SSR
 const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
 const TestimonialCard = dynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
 const WasteCounter = dynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
+
 export default function Page() {
   const features = [
     {
@@ -52,14 +54,22 @@ export default function Page() {
       rating: 5,
     },
   ];
+
+  // Wrapper component to ensure center alignment
+  const CenterWrapper = ({ children }) => (
+    <div className="flex flex-col items-center justify-center text-center w-full">
+      {children}
+    </div>
+  );
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col items-center">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 px-6 bg-gradient-to-b from-green-50 to-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center mb-16">
+      <section className="relative py-20 md:py-32 px-6 bg-gradient-to-b from-green-50 to-white w-full flex flex-col items-center">
+        <div className="max-w-7xl w-full flex flex-col items-center">
+          <CenterWrapper>
             <motion.h1
-              className="text-5xl lg:text-7xl xl:text-8xl font-extrabold font-display text-primary leading-tight tracking-tight w-full text-center"
+              className="text-5xl lg:text-7xl xl:text-8xl font-extrabold font-display text-primary leading-tight tracking-tight"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -73,22 +83,24 @@ export default function Page() {
                 🌱
               </motion.span>
             </motion.h1>
-          </div>
+          </CenterWrapper>
           
           {/* Caption */}
-          <motion.p
-            className="text-2xl md:text-3xl max-w-4xl mx-auto mb-10 leading-relaxed text-green-800 font-medium text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Transform your waste into blockchain rewards. Track your environmental impact,
-            compete globally, and help build a sustainable future for our planet.
-          </motion.p>
+          <CenterWrapper>
+            <motion.p
+              className="text-2xl md:text-3xl max-w-4xl mb-10 leading-relaxed text-green-800 font-medium"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Transform your waste into blockchain rewards. Track your environmental impact,
+              compete globally, and help build a sustainable future for our planet.
+            </motion.p>
+          </CenterWrapper>
           
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-6 w-full max-w-2xl justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -117,182 +129,172 @@ export default function Page() {
           </motion.div>
           
           {/* Waste Counter */}
-          <div className="w-full flex justify-center mt-12">
-            <WasteCounter />
-          </div>
+          <CenterWrapper>
+            <div className="mt-12 w-full flex justify-center">
+              <WasteCounter />
+            </div>
+          </CenterWrapper>
         </div>
       </section>
       
       {/* Global Impact */}
-      <section className="py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="py-24 bg-white w-full flex flex-col items-center">
+        <div className="max-w-5xl w-full flex flex-col items-center px-6">
           {/* Heading */}
-          <motion.h2
-            className="text-5xl md:text-6xl font-extrabold text-green-800 mb-16 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            Global Impact 🌍
-          </motion.h2>
+          <CenterWrapper>
+            <motion.h2
+              className="text-5xl md:text-6xl font-extrabold text-green-800 mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              Global Impact 🌍
+            </motion.h2>
+          </CenterWrapper>
           
           {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
-            <motion.div
-              className="flex flex-col items-center justify-center text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
-                ♻️ 1.1M
-              </p>
-              <p className="text-lg text-gray-600">Plastic Bottles Recycled</p>
-            </motion.div>
-            
-            <motion.div
-              className="flex flex-col items-center justify-center text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
-                👥 45k
-              </p>
-              <p className="text-lg text-gray-600">Active Users</p>
-            </motion.div>
-            
-            <motion.div
-              className="flex flex-col items-center justify-center text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
-                🌱 95%
-              </p>
-              <p className="text-lg text-gray-600">Sustainable Practices</p>
-            </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 w-full">
+            {[
+              { emoji: "♻️", value: "1.1M", label: "Plastic Bottles Recycled" },
+              { emoji: "👥", value: "45k", label: "Active Users" },
+              { emoji: "🌱", value: "95%", label: "Sustainable Practices" }
+            ].map((stat, index) => (
+              <CenterWrapper key={index}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
+                    {stat.emoji} {stat.value}
+                  </p>
+                  <p className="text-lg text-gray-600">{stat.label}</p>
+                </motion.div>
+              </CenterWrapper>
+            ))}
           </div>
         </div>
       </section>
       
       {/* Features Section */}
-      <section className="relative py-24 px-6 bg-green-50">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative py-24 px-6 bg-green-50 w-full flex flex-col items-center">
+        <div className="max-w-7xl w-full flex flex-col items-center">
           {/* Heading */}
-          <motion.h2
-            className="text-5xl md:text-6xl font-extrabold text-green-800 mb-20 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            How It Works ⚡
-          </motion.h2>
+          <CenterWrapper>
+            <motion.h2
+              className="text-5xl md:text-6xl font-extrabold text-green-800 mb-20"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              How It Works ⚡
+            </motion.h2>
+          </CenterWrapper>
           
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
             {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: index * 0.2 }}
-                className="flex flex-col items-center justify-center text-center"
-              >
-                <FeatureCard
-                  icon={feature.icon}
-                  title={feature.title}
-                  description={feature.description}
-                />
-              </motion.div>
+              <CenterWrapper key={index}>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: index * 0.2 }}
+                >
+                  <FeatureCard
+                    icon={feature.icon}
+                    title={feature.title}
+                    description={feature.description}
+                  />
+                </motion.div>
+              </CenterWrapper>
             ))}
           </div>
         </div>
       </section>
       
       {/* Testimonials Section */}
-      <section className="relative py-20 px-6 bg-green-50">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-16 font-display text-green-800 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Community Voices
-          </motion.h2>
+      <section className="relative py-20 px-6 bg-green-50 w-full flex flex-col items-center">
+        <div className="max-w-7xl w-full flex flex-col items-center">
+          <CenterWrapper>
+            <motion.h2
+              className="text-4xl md:text-5xl font-bold mb-16 font-display text-green-800"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Community Voices
+            </motion.h2>
+          </CenterWrapper>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="flex justify-center">
+              <CenterWrapper key={index}>
                 <TestimonialCard {...testimonial} delay={index * 0.1} />
-              </div>
+              </CenterWrapper>
             ))}
           </div>
         </div>
       </section>
       
       {/* CTA Section */}
-      <section className="relative py-28 px-6 bg-gradient-to-b from-green-200 to-green-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            {/* Heading */}
-            <motion.h3
-              className="text-5xl md:text-6xl font-extrabold mb-10 text-green-800 text-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
-              Ready to Transform the World? 🌍
-            </motion.h3>
-            
-            {/* Subtext */}
-            <motion.p
-              className="text-2xl text-green-900 mb-12 leading-relaxed text-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-            >
-              Join thousands of eco-warriors already making a difference.  
-              Start your sustainable journey today.
-            </motion.p>
-            
-            {/* CTA Button (navigates to /upload) */}
+      <section className="relative py-28 px-6 bg-gradient-to-b from-green-200 to-green-50 w-full flex flex-col items-center">
+        <div className="max-w-4xl w-full flex flex-col items-center px-4">
+          <CenterWrapper>
             <motion.div
-              className="flex justify-center"
-              initial={{ opacity: 0, y: 20 }}
+              className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50 w-full"
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.8 }}
             >
-              <Link href="/upload">
-                <motion.button
-                  className="flex items-center justify-center px-8 py-4 bg-green-700 text-white text-xl font-semibold rounded-2xl shadow-lg hover:bg-green-800 transition-colors duration-300"
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Globe className="h-7 w-7 mr-2 group-hover:animate-spin" />
-                  Start Recycling Now
-                </motion.button>
-              </Link>
+              {/* Heading */}
+              <motion.h3
+                className="text-5xl md:text-6xl font-extrabold mb-10 text-green-800"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+              >
+                Ready to Transform the World? 🌍
+              </motion.h3>
+              
+              {/* Subtext */}
+              <motion.p
+                className="text-2xl text-green-900 mb-12 leading-relaxed"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+              >
+                Join thousands of eco-warriors already making a difference.  
+                Start your sustainable journey today.
+              </motion.p>
+              
+              {/* CTA Button (navigates to /upload) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <Link href="/upload">
+                  <motion.button
+                    className="flex items-center justify-center px-8 py-4 bg-green-700 text-white text-xl font-semibold rounded-2xl shadow-lg hover:bg-green-800 transition-colors duration-300"
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Globe className="h-7 w-7 mr-2 group-hover:animate-spin" />
+                    Start Recycling Now
+                  </motion.button>
+                </Link>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </CenterWrapper>
         </div>
       </section>
     </div>
