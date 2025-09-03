@@ -1,6 +1,7 @@
 'use client';
-import { Trophy } from 'lucide-react';
+import { Trophy, Medal } from 'lucide-react';
 import BackButton from '@/src/components/BackButton';
+import { motion } from 'framer-motion';
 
 export default function LeaderboardPage() {
   const leaderboardData = [
@@ -11,6 +12,12 @@ export default function LeaderboardPage() {
     { id: 5, name: 'EcoHero', score: 1480, avatar: '', level: 'Silver' },
   ];
 
+  const levelColors: Record<string, string> = {
+    Platinum: 'text-sky-300 border-sky-400',
+    Gold: 'text-yellow-300 border-yellow-400',
+    Silver: 'text-gray-300 border-gray-400',
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white relative">
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
@@ -20,7 +27,7 @@ export default function LeaderboardPage() {
         <div className="text-center mb-12">
           <BackButton />
 
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-900/50 border border-emerald-500/30 mb-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-900/50 border border-emerald-500/30 mb-6 shadow-lg">
             <Trophy className="w-8 h-8 text-yellow-400" />
           </div>
 
@@ -31,8 +38,8 @@ export default function LeaderboardPage() {
         </div>
 
         {/* Leaderboard */}
-        <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 shadow-2xl">
-          <div className="grid grid-cols-12 gap-4 p-4 bg-gray-800/80 border-b border-gray-700/50 text-sm font-medium">
+        <div className="bg-gray-900/60 backdrop-blur-md rounded-2xl overflow-hidden border border-gray-700/50 shadow-2xl">
+          <div className="grid grid-cols-12 gap-4 p-4 bg-gray-800/90 border-b border-gray-700/50 text-sm font-semibold uppercase tracking-wide text-gray-300">
             <div className="col-span-1 text-center">#</div>
             <div className="col-span-7">User</div>
             <div className="col-span-4 text-right">Eco Points</div>
@@ -40,48 +47,69 @@ export default function LeaderboardPage() {
 
           <div className="divide-y divide-gray-800/50">
             {leaderboardData.map((user, index) => (
-              <div
+              <motion.div
                 key={user.id}
-                className={`grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-800/30 transition-colors ${
-                  index < 3 ? 'bg-gradient-to-r from-gray-800/30 to-transparent' : ''
+                className={`grid grid-cols-12 gap-4 p-4 items-center transition-colors group hover:bg-gray-800/40 ${
+                  index < 3 ? 'bg-gradient-to-r from-gray-800/40 to-transparent' : ''
                 }`}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
+                {/* Rank / Medal */}
                 <div className="col-span-1 flex justify-center">
-                  <span
-                    className={`flex items-center justify-center w-8 h-8 rounded-full ${
-                      index === 0
-                        ? 'bg-yellow-400 text-yellow-900'
-                        : index === 1
-                        ? 'bg-gray-300 text-gray-700'
-                        : index === 2
-                        ? 'bg-amber-600 text-amber-100'
-                        : 'bg-gray-700 text-gray-300'
-                    } font-bold`}
-                  >
-                    {index + 1}
-                  </span>
+                  {index < 3 ? (
+                    <Medal
+                      className={`w-8 h-8 ${
+                        index === 0
+                          ? 'text-yellow-400'
+                          : index === 1
+                          ? 'text-gray-300'
+                          : 'text-amber-600'
+                      }`}
+                    />
+                  ) : (
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-700 text-gray-300 font-bold">
+                      {index + 1}
+                    </span>
+                  )}
                 </div>
+
+                {/* Avatar + Name */}
                 <div className="col-span-7 flex items-center">
-                  <span className="text-2xl mr-3">{user.avatar}</span>
+                  <div className="w-10 h-10 rounded-full bg-emerald-700/40 border border-emerald-400 flex items-center justify-center text-lg font-bold mr-3">
+                    {user.avatar || user.name[0]}
+                  </div>
                   <div>
-                    <div className="font-medium">{user.name}</div>
-                    <div className="text-xs text-gray-400">
-                      {user.level} • {user.score.toLocaleString()} points
+                    <div className="font-medium text-white group-hover:text-emerald-300 transition">
+                      {user.name}
+                    </div>
+                    <div className="text-xs text-gray-400 flex items-center gap-2">
+                      <span className={`px-2 py-0.5 rounded-full border text-xs ${levelColors[user.level]}`}>
+                        {user.level}
+                      </span>
+                      • {user.score.toLocaleString()} pts
                     </div>
                   </div>
                 </div>
+
+                {/* Score */}
                 <div className="col-span-4 text-right">
-                  <div className="font-bold text-emerald-400">
+                  <div className="font-bold text-emerald-400 text-lg">
                     {user.score.toLocaleString()}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Your Rank */}
-        <div className="mt-8 bg-gradient-to-r from-emerald-900/30 to-transparent p-6 rounded-2xl border border-emerald-500/20">
+        <motion.div
+          className="mt-8 bg-gradient-to-r from-emerald-900/30 to-transparent p-6 rounded-2xl border border-emerald-500/20 shadow-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-semibold">Your Rank</h3>
@@ -92,9 +120,8 @@ export default function LeaderboardPage() {
               <div className="text-sm text-emerald-400">720 points</div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
 }
-
