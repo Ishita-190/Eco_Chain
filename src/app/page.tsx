@@ -56,71 +56,73 @@ export default function Page() {
   ];
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-green-100 to-green-300 text-gray-900 w-full text-center">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-start px-6 py-12 bg-gradient-to-b from-green-200 to-green-100 rounded-b-3xl shadow-lg">
-        {/* Main Heading */}
-       <motion.h1
-         className="text-5xl lg:text-7xl xl:text-8xl font-extrabold font-display text-primary mb-8 leading-tight tracking-tight w-full text-center"
-         initial={{ opacity: 0, scale: 0.9 }}
-         animate={{ opacity: 1, scale: 1 }}
-         transition={{ duration: 0.8, delay: 0.2 }}
-         >
-         Eco_Chain
-         <motion.span
-           className="ml-2 text-primary inline-block"
-           animate={{ rotate: [0, 10, -10, 0] }}
-           transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-           >
-           🌱
-         </motion.span>
-       </motion.h1>
-
-        
-        {/* Caption */}
-        <motion.p
-          className="text-2xl md:text-3xl max-w-4xl mx-auto mb-10 leading-relaxed text-green-800 font-medium text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          Transform your waste into blockchain rewards. Track your environmental impact,
-          compete globally, and help build a sustainable future for our planet.
-        </motion.p>
-        
-        {/* CTA Buttons */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-6 justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <Link href="/upload">
-            <motion.button
-              className="flex items-center justify-center px-6 py-3 bg-green-700 text-white font-medium rounded-lg hover:bg-green-800 transition-colors duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+      <section className="relative py-20 md:py-32 px-6 bg-gradient-to-b from-green-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-center mb-16">
+            <motion.h1
+              className="text-5xl lg:text-7xl xl:text-8xl font-extrabold font-display text-primary leading-tight tracking-tight w-full text-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Recycle className="h-6 w-6 mr-2 group-hover:animate-spin" />
-              Upload Waste
-              <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-          </Link>
-          <Link href="/leaderboard">
-            <motion.button
-              className="flex items-center justify-center px-6 py-3 bg-green-100 text-green-800 font-medium rounded-lg hover:bg-green-200 transition-colors duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Target className="h-6 w-6 mr-2" />
-              View Leaderboard
-            </motion.button>
-          </Link>
-        </motion.div>
-        
-        {/* Waste Counter */}
-        <div className="w-full text-center mt-12">
-          <WasteCounter />
+              Eco_Chain
+              <motion.span
+                className="ml-2 text-primary inline-block"
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+              >
+                🌱
+              </motion.span>
+            </motion.h1>
+          </div>
+          
+          {/* Caption */}
+          <motion.p
+            className="text-2xl md:text-3xl max-w-4xl mx-auto mb-10 leading-relaxed text-green-800 font-medium text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Transform your waste into blockchain rewards. Track your environmental impact,
+            compete globally, and help build a sustainable future for our planet.
+          </motion.p>
+          
+          {/* CTA Buttons */}
+          <motion.div
+            className="flex flex-col sm:flex-row gap-6 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <Link href="/upload">
+              <motion.button
+                className="flex items-center justify-center px-6 py-3 bg-green-700 text-white font-medium rounded-lg hover:bg-green-800 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Recycle className="h-6 w-6 mr-2 group-hover:animate-spin" />
+                Upload Waste
+                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+            </Link>
+            <Link href="/leaderboard">
+              <motion.button
+                className="flex items-center justify-center px-6 py-3 bg-green-100 text-green-800 font-medium rounded-lg hover:bg-green-200 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Target className="h-6 w-6 mr-2" />
+                View Leaderboard
+              </motion.button>
+            </Link>
+          </motion.div>
+          
+          {/* Waste Counter */}
+          <div className="w-full text-center mt-12">
+            <WasteCounter />
+          </div>
         </div>
       </section>
       
@@ -298,4 +300,3 @@ export default function Page() {
     </div>
   );
 }
-
