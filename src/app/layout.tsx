@@ -1,10 +1,13 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { Providers } from "./providers";
 import { Footer } from "@/src/components/Footer";
 import { Header } from "@/src/components/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+// Body font
+const inter = Inter({ subsets: ["latin"], weight: ["400","600","700"] });
+// Heading font
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: "700" });
 
 export const metadata = {
   title: "EcoCommerce - Waste to Rewards",
@@ -19,17 +22,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${spaceGrotesk.className}`}>
         <Providers>
-          {/* Normal flow (no min-h-screen) */}
-          <div className="flex flex-col bg-gradient-to-br from-eco-50 to-blue-50">
+          {/* Full-page flex container to allow vertical alignment if needed */}
+          <div className="flex flex-col min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
             {/* Header */}
             <Header />
 
             {/* Main content */}
-            <main>{children}</main>
+            <main className="flex flex-col flex-1 items-center justify-center w-full">
+              {children}
+            </main>
 
-            {/* Footer appears just below content */}
+            {/* Footer */}
             <Footer />
           </div>
         </Providers>
