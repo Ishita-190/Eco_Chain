@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
 
-interface TestimonialProps {
+interface TestimonialCardProps {
   name: string;
   role: string;
   content: string;
@@ -10,35 +12,41 @@ interface TestimonialProps {
   delay?: number;
 }
 
-export default function TestimonialCard({ name, role, content, rating, delay = 0 }: TestimonialProps) {
+const TestimonialCard = ({ name, role, content, rating, delay = 0 }: TestimonialCardProps) => {
   return (
     <motion.div
-      className="card-glass p-8 hover:bg-card/90 transition-all duration-300 group h-full flex flex-col w-full"
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
-      whileHover={{ y: -10 }}
+      whileHover={{ y: -5 }}
+      className="h-full"
     >
-      <div className="flex items-center justify-center mb-6 w-full">
-        {[...Array(5)].map((_, i) => (
-          <Star
-            key={i}
-            className={`h-5 w-5 ${
-              i < rating
-                ? 'text-accent fill-accent'
-                : 'text-muted-foreground'
-            }`}
-          />
-        ))}
-      </div>
-      <blockquote className="text-muted-foreground mb-6 italic text-center flex-grow leading-relaxed">
-        "{content}"
-      </blockquote>
-      <div className="text-center w-full">
-        <p className="font-bold text-foreground font-display text-lg">{name}</p>
-        <p className="text-sm text-primary mt-1">{role}</p>
-      </div>
+      <Card className="bg-white/90 backdrop-blur-sm border-eco-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+        <CardContent className="p-8 h-full flex flex-col">
+          <div className="flex items-center justify-center mb-4">
+            {[...Array(rating)].map((_, i) => (
+              <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+            ))}
+          </div>
+          <blockquote className="text-lg text-gray-700 mb-6 leading-relaxed flex-grow italic text-center">
+            "{content}"
+          </blockquote>
+          <div className="flex items-center justify-center space-x-4">
+            <Avatar className="h-12 w-12">
+              <AvatarFallback className="bg-eco-primary text-white font-semibold">
+                {name.split(' ').map(n => n[0]).join('')}
+              </AvatarFallback>
+            </Avatar>
+            <div className="text-center">
+              <p className="font-semibold text-eco-dark">{name}</p>
+              <p className="text-sm text-muted-foreground">{role}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </motion.div>
   );
-}
+};
+
+export default TestimonialCard;
