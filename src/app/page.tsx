@@ -8,11 +8,10 @@ import Image from "next/image"; // Add this import
 import heroImage from "@/src/assets/eco-hero.jpg";
 
 // Dynamically import components with no SSR
-const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
-const TestimonialCard = dynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
-const WasteCounter = dynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
-// Add this import for Button component
-import { Button } from "@/src/components/ui/button";
+import FeatureCard from "@/src/components/FeatureCard";
+import TestimonialCard from "@/src/components/TestimonialCard";
+import WasteCounter from "@/src/components/WasteCounter";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const features = [
@@ -330,4 +329,5 @@ export default function Page() {
     </div>
   );
 }
+
 
