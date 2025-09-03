@@ -1,9 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-
-  // Standalone Node.js output for Vercel
-  output: 'standalone',
+  
+  // Disable server-side rendering
+  output: 'export',
+  trailingSlash: true,
+  
+  // Disable server-side rendering for all pages
+  experimental: {
+    serverComponentsExternalPackages: [],
+    esmExternals: 'loose',
+    outputFileTracingRoot: __dirname,
+  },
 
   // Image optimization for remote IPFS gateways
   images: {
