@@ -1,3 +1,4 @@
+"use client"
 import { useToast } from "@/src/hooks/use-toast"
 import {
   Toast,
