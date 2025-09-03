@@ -106,18 +106,18 @@ export default function LeaderboardPage() {
 
         {/* Your Rank */}
         <motion.div
-          className="mt-8 bg-gradient-to-r from-emerald-900/30 to-transparent p-6 rounded-2xl border border-emerald-500/20 shadow-lg"
+          className="mt-12 flex justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div className="flex items-center justify-between">
+          <div className="w-full max-w-md bg-gradient-to-r from-emerald-900/40 to-transparent p-8 rounded-2xl border border-emerald-500/30 shadow-xl text-center">
+            <h3 className="text-xl font-semibold mb-2">Your Rank</h3>
+            <p className="text-gray-400 mb-6">Keep going to climb the leaderboard!</p>
             <div>
-              <h3 className="text-lg font-semibold">Your Rank</h3>
-              <p className="text-gray-400">Keep going to climb the leaderboard!</p>
-            </div>
-            <div className="text-right">
-              <div className="text-2xl font-bold">#24</div>
-              <div className="text-sm text-emerald-400">720 points</div>
+              <div className="text-5xl md:text-6xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-cyan-300">
+                #24
+              </div>
+              <div className="text-lg text-emerald-400">720 points</div>
             </div>
           </div>
         </motion.div>
