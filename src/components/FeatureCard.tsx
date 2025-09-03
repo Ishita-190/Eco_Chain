@@ -1,5 +1,4 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
@@ -13,14 +12,14 @@ interface FeatureCardProps {
 export default function FeatureCard({ icon, title, description, delay = 0 }: FeatureCardProps) {
   return (
     <motion.div
-      className="card-glass p-8 hover:bg-card/90 transition-all duration-300 group h-full"
+      className="card-glass p-8 hover:bg-card/90 transition-all duration-300 group h-full w-full flex flex-col items-center"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
       whileHover={{ y: -10 }}
     >
-      <div className="text-center">
+      <div className="text-center w-full">
         <div className="mb-6 flex justify-center group-hover:animate-float">
           {icon}
         </div>
@@ -34,4 +33,3 @@ export default function FeatureCard({ icon, title, description, delay = 0 }: Fea
     </motion.div>
   );
 }
-
