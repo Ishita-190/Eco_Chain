@@ -56,21 +56,14 @@ export default function Page() {
     },
   ];
 
-  // Wrapper component to ensure center alignment with proper TypeScript typing
-  const CenterWrapper = ({ children }: { children: React.ReactNode }) => (
-    <div className="flex flex-col items-center justify-center text-center w-full">
-      {children}
-    </div>
-  );
-
   return (
     <div className="min-h-screen flex flex-col items-center">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 px-6 bg-gradient-to-b from-green-50 to-white w-full flex flex-col items-center">
         <div className="max-w-7xl w-full flex flex-col items-center">
-          <CenterWrapper>
+          <div className="flex flex-col items-center w-full">
             <motion.h1
-              className="text-5xl lg:text-7xl xl:text-8xl font-extrabold font-display text-primary leading-tight tracking-tight"
+              className="text-5xl lg:text-7xl xl:text-8xl font-extrabold font-display text-primary leading-tight tracking-tight text-center"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -84,12 +77,12 @@ export default function Page() {
                 🌱
               </motion.span>
             </motion.h1>
-          </CenterWrapper>
+          </div>
           
           {/* Caption */}
-          <CenterWrapper>
+          <div className="flex flex-col items-center w-full">
             <motion.p
-              className="text-2xl md:text-3xl max-w-4xl mb-10 leading-relaxed text-green-800 font-medium"
+              className="text-2xl md:text-3xl max-w-4xl mb-10 leading-relaxed text-green-800 font-medium text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -97,7 +90,7 @@ export default function Page() {
               Transform your waste into blockchain rewards. Track your environmental impact,
               compete globally, and help build a sustainable future for our planet.
             </motion.p>
-          </CenterWrapper>
+          </div>
           
           {/* CTA Buttons */}
           <motion.div
@@ -130,11 +123,9 @@ export default function Page() {
           </motion.div>
           
           {/* Waste Counter */}
-          <CenterWrapper>
-            <div className="mt-12 w-full flex justify-center">
-              <WasteCounter />
-            </div>
-          </CenterWrapper>
+          <div className="mt-12 w-full flex justify-center">
+            <WasteCounter />
+          </div>
         </div>
       </section>
       
@@ -142,9 +133,9 @@ export default function Page() {
       <section className="py-24 bg-white w-full flex flex-col items-center">
         <div className="max-w-5xl w-full flex flex-col items-center px-6">
           {/* Heading */}
-          <CenterWrapper>
+          <div className="flex flex-col items-center w-full">
             <motion.h2
-              className="text-5xl md:text-6xl font-extrabold text-green-800 mb-16"
+              className="text-5xl md:text-6xl font-extrabold text-green-800 mb-16 text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -152,7 +143,7 @@ export default function Page() {
             >
               Global Impact 🌍
             </motion.h2>
-          </CenterWrapper>
+          </div>
           
           {/* Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 w-full">
@@ -161,7 +152,7 @@ export default function Page() {
               { emoji: "👥", value: "45k", label: "Active Users" },
               { emoji: "🌱", value: "95%", label: "Sustainable Practices" }
             ].map((stat, index) => (
-              <CenterWrapper key={index}>
+              <div key={index} className="flex flex-col items-center justify-center text-center">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -173,7 +164,7 @@ export default function Page() {
                   </p>
                   <p className="text-lg text-gray-600">{stat.label}</p>
                 </motion.div>
-              </CenterWrapper>
+              </div>
             ))}
           </div>
         </div>
@@ -183,9 +174,9 @@ export default function Page() {
       <section className="relative py-24 px-6 bg-green-50 w-full flex flex-col items-center">
         <div className="max-w-7xl w-full flex flex-col items-center">
           {/* Heading */}
-          <CenterWrapper>
+          <div className="flex flex-col items-center w-full">
             <motion.h2
-              className="text-5xl md:text-6xl font-extrabold text-green-800 mb-20"
+              className="text-5xl md:text-6xl font-extrabold text-green-800 mb-20 text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -193,17 +184,18 @@ export default function Page() {
             >
               How It Works ⚡
             </motion.h2>
-          </CenterWrapper>
+          </div>
           
           {/* Features Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
             {features.map((feature, index) => (
-              <CenterWrapper key={index}>
+              <div key={index} className="flex justify-center">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: index * 0.2 }}
+                  className="w-full max-w-md"
                 >
                   <FeatureCard
                     icon={feature.icon}
@@ -211,7 +203,7 @@ export default function Page() {
                     description={feature.description}
                   />
                 </motion.div>
-              </CenterWrapper>
+              </div>
             ))}
           </div>
         </div>
@@ -220,9 +212,9 @@ export default function Page() {
       {/* Testimonials Section */}
       <section className="relative py-20 px-6 bg-green-50 w-full flex flex-col items-center">
         <div className="max-w-7xl w-full flex flex-col items-center">
-          <CenterWrapper>
+          <div className="flex flex-col items-center w-full">
             <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-16 font-display text-green-800"
+              className="text-4xl md:text-5xl font-bold mb-16 font-display text-green-800 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -230,13 +222,21 @@ export default function Page() {
             >
               Community Voices
             </motion.h2>
-          </CenterWrapper>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             {testimonials.map((testimonial, index) => (
-              <CenterWrapper key={index}>
-                <TestimonialCard {...testimonial} delay={index * 0.1} />
-              </CenterWrapper>
+              <div key={index} className="flex justify-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: index * 0.2 }}
+                  className="w-full max-w-md"
+                >
+                  <TestimonialCard {...testimonial} delay={index * 0.1} />
+                </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -245,9 +245,9 @@ export default function Page() {
       {/* CTA Section */}
       <section className="relative py-28 px-6 bg-gradient-to-b from-green-200 to-green-50 w-full flex flex-col items-center">
         <div className="max-w-4xl w-full flex flex-col items-center px-4">
-          <CenterWrapper>
+          <div className="flex flex-col items-center w-full">
             <motion.div
-              className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50 w-full"
+              className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50 w-full flex flex-col items-center"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -255,7 +255,7 @@ export default function Page() {
             >
               {/* Heading */}
               <motion.h3
-                className="text-5xl md:text-6xl font-extrabold mb-10 text-green-800"
+                className="text-5xl md:text-6xl font-extrabold mb-10 text-green-800 text-center"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -266,7 +266,7 @@ export default function Page() {
               
               {/* Subtext */}
               <motion.p
-                className="text-2xl text-green-900 mb-12 leading-relaxed"
+                className="text-2xl text-green-900 mb-12 leading-relaxed text-center"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -295,7 +295,7 @@ export default function Page() {
                 </Link>
               </motion.div>
             </motion.div>
-          </CenterWrapper>
+          </div>
         </div>
       </section>
     </div>
