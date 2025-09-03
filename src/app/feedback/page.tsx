@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/ca
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { Textarea } from "@/src/components/ui/textarea";
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/src/components/ui/select";
+import { Select } from "@/src/components/ui/select"; // ✅ using your simple Select
 
 export default function FeedbackPage() {
   const [form, setForm] = useState({
@@ -36,15 +36,13 @@ export default function FeedbackPage() {
             <div>
               <label className="text-sm text-gray-300">Type</label>
               <Select
-                onValueChange={(val) => setForm({ ...form, type: val })}
+                className="w-full mt-1 bg-gray-700 text-white border-gray-600 rounded-lg p-2"
+                value={form.type}
+                onChange={(e) => setForm({ ...form, type: e.target.value })}
               >
-                <SelectTrigger className="mt-1 bg-gray-700 text-white border-gray-600">
-                  <SelectValue placeholder="Select feedback type" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-700">
-                  <SelectItem value="feedback">General Feedback</SelectItem>
-                  <SelectItem value="issue">Report an Issue</SelectItem>
-                </SelectContent>
+                <option value="">Select feedback type</option>
+                <option value="feedback">General Feedback</option>
+                <option value="issue">Report an Issue</option>
               </Select>
             </div>
 
@@ -53,16 +51,14 @@ export default function FeedbackPage() {
               <div>
                 <label className="text-sm text-gray-300">Issue Type</label>
                 <Select
-                  onValueChange={(val) => setForm({ ...form, issueType: val })}
+                  className="w-full mt-1 bg-gray-700 text-white border-gray-600 rounded-lg p-2"
+                  value={form.issueType}
+                  onChange={(e) => setForm({ ...form, issueType: e.target.value })}
                 >
-                  <SelectTrigger className="mt-1 bg-gray-700 text-white border-gray-600">
-                    <SelectValue placeholder="Select issue type" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700">
-                    <SelectItem value="no-credits">Didn’t receive credits</SelectItem>
-                    <SelectItem value="delay">Credits taking too long</SelectItem>
-                    <SelectItem value="wrong-amount">Wrong amount credited</SelectItem>
-                  </SelectContent>
+                  <option value="">Select issue type</option>
+                  <option value="no-credits">Didn’t receive credits</option>
+                  <option value="delay">Credits taking too long</option>
+                  <option value="wrong-amount">Wrong amount credited</option>
                 </Select>
               </div>
             )}
@@ -71,18 +67,16 @@ export default function FeedbackPage() {
             <div>
               <label className="text-sm text-gray-300">Rate your experience</label>
               <Select
-                onValueChange={(val) => setForm({ ...form, rating: val })}
+                className="w-full mt-1 bg-gray-700 text-white border-gray-600 rounded-lg p-2"
+                value={form.rating}
+                onChange={(e) => setForm({ ...form, rating: e.target.value })}
               >
-                <SelectTrigger className="mt-1 bg-gray-700 text-white border-gray-600">
-                  <SelectValue placeholder="Choose rating" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-700">
-                  <SelectItem value="5">⭐️⭐️⭐️⭐️⭐️ Excellent</SelectItem>
-                  <SelectItem value="4">⭐️⭐️⭐️⭐️ Good</SelectItem>
-                  <SelectItem value="3">⭐️⭐️⭐️ Average</SelectItem>
-                  <SelectItem value="2">⭐️⭐️ Poor</SelectItem>
-                  <SelectItem value="1">⭐️ Terrible</SelectItem>
-                </SelectContent>
+                <option value="">Choose rating</option>
+                <option value="5">⭐️⭐️⭐️⭐️⭐️ Excellent</option>
+                <option value="4">⭐️⭐️⭐️⭐️ Good</option>
+                <option value="3">⭐️⭐️⭐️ Average</option>
+                <option value="2">⭐️⭐️ Poor</option>
+                <option value="1">⭐️ Terrible</option>
               </Select>
             </div>
 
