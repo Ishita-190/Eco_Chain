@@ -12,7 +12,7 @@ const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr:
 const TestimonialCard = dynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
 const WasteCounter = dynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
 // Add this import for Button component
-const Button = dynamic(() => import("@/src/components/ui/button"), { ssr: false });
+import { Button } from "@/src/components/ui/button";
 
 export default function Page() {
   const features = [
@@ -330,3 +330,4 @@ export default function Page() {
     </div>
   );
 }
+
