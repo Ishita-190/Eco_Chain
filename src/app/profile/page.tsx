@@ -1,11 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { User, Award, Leaf, Clock, Activity } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/src/components/ui/card';
 import { Button } from '@/src/components/ui/button';
 
 const ProfilePage: React.FC = () => {
+  const router = useRouter();
+
   // 🔹 Static user data
   const userData = {
     name: 'Eco Warrior',
@@ -167,7 +170,10 @@ const ProfilePage: React.FC = () => {
           transition={{ delay: 0.8 }}
           className="text-center"
         >
-          <Button className="px-6 py-3 text-lg rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 shadow-lg hover:opacity-90 transition">
+          <Button
+            onClick={() => router.push('/upload')}
+            className="px-6 py-3 text-lg rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 shadow-lg hover:opacity-90 transition"
+          >
             Upload Waste Now
           </Button>
         </motion.div>
