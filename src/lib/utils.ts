@@ -1,8 +1,9 @@
 // lib/utils.ts
-import { type ClassValue, clsx } from "clsx"
+import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import QRCode from "qrcode"
 
+// Merge Tailwind classes safely
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
