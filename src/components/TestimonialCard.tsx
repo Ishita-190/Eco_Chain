@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/src/components/ui/card";
+import { Avatar, AvatarFallback } from "@/src/components/ui/avatar";
 import { Star } from "lucide-react";
 
 interface TestimonialCardProps {
@@ -50,3 +50,4 @@ const TestimonialCard = ({ name, role, content, rating, delay = 0 }: Testimonial
 };
 
 export default TestimonialCard;
+
