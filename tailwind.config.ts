@@ -8,7 +8,6 @@ export default {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -31,7 +30,6 @@ export default {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
-          glow: 'hsl(var(--primary-glow))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -40,10 +38,6 @@ export default {
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
-        },
-        success: {
-          DEFAULT: 'hsl(var(--success))',
-          foreground: 'hsl(var(--success-foreground))',
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
@@ -61,15 +55,21 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        // Eco colors
+        'eco-primary': 'hsl(var(--eco-primary))',
+        'eco-primary-light': 'hsl(var(--eco-primary-light))',
+        'eco-secondary': 'hsl(var(--eco-secondary))',
+        'eco-accent': 'hsl(var(--eco-accent))',
+        'eco-light': 'hsl(var(--eco-light))',
+        'eco-dark': 'hsl(var(--eco-dark))',
       },
       backgroundImage: {
-        'gradient-primary': 'var(--gradient-primary)',
-        'gradient-secondary': 'var(--gradient-secondary)',
+        'gradient-eco': 'var(--gradient-eco)',
+        'gradient-light': 'var(--gradient-light)',
         'gradient-hero': 'var(--gradient-hero)',
-        'gradient-glow': 'var(--gradient-glow)',
       },
       boxShadow: {
-        primary: 'var(--shadow-primary)',
+        eco: 'var(--shadow-eco)',
         glow: 'var(--shadow-glow)',
         card: 'var(--shadow-card)',
       },
@@ -78,35 +78,18 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      transitionTimingFunction: {
+        smooth: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+      },
       keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
-        },
-        'fade-in': {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        'slide-up': {
-          '0%': { transform: 'translateY(100%)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        'scale-in': {
-          '0%': { transform: 'scale(0.9)', opacity: '0' },
-          '100%': { transform: 'scale(1)', opacity: '1' },
-        },
-        'glow-pulse': {
-          '0%, 100%': { boxShadow: '0 0 30px hsl(var(--primary) / 0.3)' },
-          '50%': { boxShadow: '0 0 60px hsl(var(--primary) / 0.6)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
+        'accordion-down': { from: { height: '0' }, to: { height: 'var(--radix-accordion-content-height)' } },
+        'accordion-up': { from: { height: 'var(--radix-accordion-content-height)' }, to: { height: '0' } },
+        'fade-in': { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+        'slide-up': { '0%': { transform: 'translateY(100%)', opacity: 0 }, '100%': { transform: 'translateY(0)', opacity: 1 } },
+        'scale-in': { '0%': { transform: 'scale(0.9)', opacity: 0 }, '100%': { transform: 'scale(1)', opacity: 1 } },
+        'glow-pulse': { '0%, 100%': { boxShadow: '0 0 30px hsl(var(--primary) / 0.3)' }, '50%': { boxShadow: '0 0 60px hsl(var(--primary) / 0.6)' } },
+        float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-10px)' } },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
