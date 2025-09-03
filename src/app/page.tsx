@@ -4,12 +4,15 @@ import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-r
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image"; // Add this import
 import heroImage from "@/src/assets/eco-hero.jpg";
 
 // Dynamically import components with no SSR
 const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
 const TestimonialCard = dynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
 const WasteCounter = dynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
+// Add this import for Button component
+const Button = dynamic(() => import("@/src/components/ui/button"), { ssr: false });
 
 export default function Page() {
   const features = [
@@ -103,10 +106,13 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            <img 
+            <Image 
               src={heroImage} 
               alt="Eco-friendly planet with recycling symbols" 
               className="w-full max-w-4xl h-auto object-cover"
+              width={1200} // Add width and height for Next.js Image component
+              height={600}
+              priority // Add priority for hero image
             />
           </motion.div>
           
@@ -324,4 +330,3 @@ export default function Page() {
     </div>
   );
 }
-
