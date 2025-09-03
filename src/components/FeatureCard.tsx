@@ -1,35 +1,39 @@
 "use client";
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface FeatureCardProps {
-  icon: ReactNode;
+  icon: React.ReactNode;
   title: string;
   description: string;
-  delay?: number;
 }
 
-export default function FeatureCard({ icon, title, description, delay = 0 }: FeatureCardProps) {
+const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
   return (
     <motion.div
-      className="card-glass p-8 hover:bg-card/90 transition-all duration-300 group h-full w-full flex flex-col items-center"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay }}
-      whileHover={{ y: -10 }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="h-full"
     >
-      <div className="text-center w-full">
-        <div className="mb-6 flex justify-center group-hover:animate-float">
-          {icon}
-        </div>
-        <h3 className="text-2xl font-bold mb-4 text-foreground font-display">
-          {title}
-        </h3>
-        <p className="text-muted-foreground leading-relaxed">
-          {description}
-        </p>
-      </div>
+      <Card className="bg-white/80 backdrop-blur-sm border-eco-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+        <CardContent className="p-8 text-center h-full flex flex-col justify-center">
+          <motion.div
+            className="mb-6 flex justify-center"
+            whileHover={{ rotate: 10, scale: 1.1 }}
+            transition={{ duration: 0.3 }}
+          >
+            {icon}
+          </motion.div>
+          <h3 className="text-2xl font-bold text-eco-dark mb-4 font-display">
+            {title}
+          </h3>
+          <p className="text-muted-foreground leading-relaxed text-lg">
+            {description}
+          </p>
+        </CardContent>
+      </Card>
     </motion.div>
   );
-}
+};
+
+export default FeatureCard;
