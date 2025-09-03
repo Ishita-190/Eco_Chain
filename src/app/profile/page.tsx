@@ -1,155 +1,54 @@
 'use client';
 
-import { useAccount, useConnect, Connector } from 'wagmi';
-import { useRouter } from 'next/navigation';
-import { User, Award, Leaf, Clock, Activity, ArrowLeft } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { WalletBadge } from '@/src/components/WalletBadge';
-import { Button } from '@/src/components/ui/button';
+import { User, Award, Leaf, Clock, Activity } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/src/components/ui/card';
-
-type ActivityType = 'recycle' | 'streak' | 'login' | 'challenge';
-
-interface ActivityItem {
-  id: string;
-  type: ActivityType;
-  amount: number;
-  date: string;
-  points: number;
-  title: string;
-  description?: string;
-}
-
-interface UserData {
-  name: string;
-  level: number;
-  points: number;
-  recycled: number;
-  streak: number;
-  rank: number;
-  nextLevelPoints: number;
-  recentActivity: ActivityItem[];
-}
-
-const getActivityIcon = (type: ActivityType) => {
-  switch (type) {
-    case 'recycle':
-      return <Leaf className="w-4 h-4 text-green-500" />;
-    case 'streak':
-      return <Award className="w-4 h-4 text-yellow-500" />;
-    case 'challenge':
-      return <Activity className="w-4 h-4 text-purple-500" />;
-    default:
-      return <Clock className="w-4 h-4 text-blue-500" />;
-  }
-};
+import { Button } from '@/src/components/ui/button';
 
 const ProfilePage: React.FC = () => {
-  const { address, isConnected } = useAccount();
-  const router = useRouter();
-  const { connect, connectors, error, isPending } = useConnect();
-  const [pendingConnector, setPendingConnector] = useState<Connector | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [userData, setUserData] = useState<UserData | null>(null);
+  // 🔹 Static user data
+  const userData = {
+    name: 'Eco Warrior',
+    level: 3,
+    points: 1250,
+    recycled: 1560,
+    streak: 7,
+    rank: 24,
+    nextLevelPoints: 2000,
+    recentActivity: [
+      {
+        id: '1',
+        type: 'recycle',
+        date: '2h ago',
+        points: 120,
+        title: 'Plastic Recycling',
+      },
+      {
+        id: '2',
+        type: 'streak',
+        date: '1d ago',
+        points: 30,
+        title: '3 Day Streak',
+      },
+      {
+        id: '3',
+        type: 'recycle',
+        date: '2d ago',
+        points: 85,
+        title: 'Glass Recycling',
+      },
+    ],
+    activityHeatmap: [
+      2, 5, 0, 3, 1, 4, 2,
+      3, 0, 1, 2, 4, 0, 1,
+      5, 3, 2, 1, 0, 4, 2,
+      1, 2, 3, 0, 5, 2, 4,
+    ], // Example 28 days activity
+  };
 
-  // Fetch user data
-  useEffect(() => {
-    if (!isConnected || !address) {
-      setIsLoading(false);
-      return;
-    }
-
-    setTimeout(() => {
-      setUserData({
-        name: 'Eco Warrior',
-        level: 3,
-        points: 1250,
-        recycled: 1560,
-        streak: 7,
-        rank: 24,
-        nextLevelPoints: 2000,
-        recentActivity: [
-          {
-            id: '1',
-            type: 'recycle',
-            amount: 120,
-            date: '2h ago',
-            points: 120,
-            title: 'Plastic Recycling',
-            description: 'Recycled 120kg of plastic waste',
-          },
-          {
-            id: '2',
-            type: 'streak',
-            amount: 3,
-            date: '1d ago',
-            points: 30,
-            title: '3 Day Streak',
-            description: 'Maintained recycling streak for 3 days',
-          },
-          {
-            id: '3',
-            type: 'recycle',
-            amount: 85,
-            date: '2d ago',
-            points: 85,
-            title: 'Glass Recycling',
-            description: 'Recycled 85kg of glass',
-          },
-        ],
-      });
-      setIsLoading(false);
-    }, 1000);
-  }, [isConnected, address]);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">Loading...</div>
-    );
-  }
-
-  if (!isConnected) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-full max-w-md">
-          <h1 className="text-xl font-bold mb-4">Connect Your Wallet</h1>
-          {connectors.map((connector) => (
-            <button
-              key={connector.id}
-              disabled={!connector.ready}
-              onClick={() => {
-                setPendingConnector(connector);
-                connect({ connector });
-              }}
-              className="block w-full p-3 border rounded mb-2"
-            >
-              {connector.name}
-            </button>
-          ))}
-          {error && <div className="text-red-500">{error.message}</div>}
-        </div>
-      </div>
-    );
-  }
-
-  if (!userData) {
-    return <div className="min-h-screen flex items-center justify-center">No user data</div>;
-  }
-
-  const shortenedAddress = `${address?.slice(0, 6)}...${address?.slice(-4)}`;
   const progress = Math.min((userData.points / userData.nextLevelPoints) * 100, 100);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
-      <header className="bg-white/80 backdrop-blur-sm border-b sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-          <Button variant="ghost" size="sm" onClick={() => router.back()}>
-            <ArrowLeft className="w-4 h-4 mr-1" /> Back
-          </Button>
-          <WalletBadge />
-        </div>
-      </header>
-
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-8">
         {/* Profile Header */}
         <Card>
@@ -160,7 +59,6 @@ const ProfilePage: React.FC = () => {
               </div>
               <div>
                 <h2 className="text-2xl font-bold">{userData.name}</h2>
-                <p className="text-sm text-gray-500">{shortenedAddress}</p>
                 <p className="text-sm mt-1">Level {userData.level}</p>
               </div>
             </div>
@@ -204,6 +102,33 @@ const ProfilePage: React.FC = () => {
           </Card>
         </div>
 
+        {/* Activity Heatmap */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Activity Heatmap</CardTitle>
+            <CardDescription>Last 28 days</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-7 gap-2">
+              {userData.activityHeatmap.map((val, i) => (
+                <div
+                  key={i}
+                  className={`w-8 h-8 rounded-md ${
+                    val === 0
+                      ? 'bg-gray-200'
+                      : val < 2
+                      ? 'bg-green-200'
+                      : val < 4
+                      ? 'bg-green-400'
+                      : 'bg-green-600'
+                  }`}
+                  title={`${val} actions`}
+                />
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Recent Activity */}
         <Card>
           <CardHeader>
@@ -214,7 +139,10 @@ const ProfilePage: React.FC = () => {
           </CardHeader>
           <CardContent>
             {userData.recentActivity.map((a) => (
-              <div key={a.id} className="flex justify-between items-center py-2 border-b last:border-0">
+              <div
+                key={a.id}
+                className="flex justify-between items-center py-2 border-b last:border-0"
+              >
                 <div>
                   <p className="font-medium">{a.title}</p>
                   <p className="text-xs text-gray-500">{a.date}</p>
@@ -227,7 +155,7 @@ const ProfilePage: React.FC = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <Button onClick={() => router.push('/upload')}>Upload Waste Now</Button>
+          <Button>Upload Waste Now</Button>
         </div>
       </main>
     </div>
