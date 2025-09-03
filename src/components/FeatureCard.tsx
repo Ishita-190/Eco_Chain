@@ -1,6 +1,5 @@
-"use client";
 
-import React from "react"; // <- ADD THIS
+"use client";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/src/components/ui/card";
 
@@ -24,10 +23,8 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
             whileHover={{ rotate: 10, scale: 1.1 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Ensure icon is a plain React element */}
-            {React.isValidElement(icon) ? icon : null}
+            {icon}
           </motion.div>
-
           <h3 className="text-2xl font-bold text-eco-dark mb-4 font-display">
             {title}
           </h3>
@@ -41,3 +38,4 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
 };
 
 export default FeatureCard;
+
