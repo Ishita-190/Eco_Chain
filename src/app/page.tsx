@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import React from "react";
 
 // Dynamically import components with no SSR
 const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
@@ -55,8 +56,8 @@ export default function Page() {
     },
   ];
 
-  // Wrapper component to ensure center alignment
-  const CenterWrapper = ({ children }) => (
+  // Wrapper component to ensure center alignment with proper TypeScript typing
+  const CenterWrapper = ({ children }: { children: React.ReactNode }) => (
     <div className="flex flex-col items-center justify-center text-center w-full">
       {children}
     </div>
