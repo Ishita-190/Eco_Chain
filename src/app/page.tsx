@@ -11,7 +11,7 @@ import heroImage from "@/src/assets/eco-hero.jpg";
 import FeatureCard from "@/src/components/FeatureCard";
 import TestimonialCard from "@/src/components/TestimonialCard";
 import WasteCounter from "@/src/components/WasteCounter";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 
 export default function Page() {
   const features = [
@@ -329,5 +329,6 @@ export default function Page() {
     </div>
   );
 }
+
 
 
