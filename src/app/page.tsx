@@ -3,12 +3,10 @@ import { motion } from "framer-motion";
 import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-
 // Dynamically import components with no SSR
 const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
 const TestimonialCard = dynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
 const WasteCounter = dynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
-
 export default function Page() {
   const features = [
     {
@@ -54,7 +52,6 @@ export default function Page() {
       rating: 5,
     },
   ];
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -91,12 +88,12 @@ export default function Page() {
           
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-6 justify-center"
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Link href="/upload">
+            <Link href="/upload" className="flex justify-center">
               <motion.button
                 className="flex items-center justify-center px-6 py-3 bg-green-700 text-white font-medium rounded-lg hover:bg-green-800 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
@@ -107,7 +104,7 @@ export default function Page() {
                 <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </motion.button>
             </Link>
-            <Link href="/leaderboard">
+            <Link href="/leaderboard" className="flex justify-center">
               <motion.button
                 className="flex items-center justify-center px-6 py-3 bg-green-100 text-green-800 font-medium rounded-lg hover:bg-green-200 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
@@ -120,7 +117,7 @@ export default function Page() {
           </motion.div>
           
           {/* Waste Counter */}
-          <div className="w-full text-center mt-12">
+          <div className="w-full flex justify-center mt-12">
             <WasteCounter />
           </div>
         </div>
@@ -128,7 +125,7 @@ export default function Page() {
       
       {/* Global Impact */}
       <section className="py-24 bg-white">
-        <div className="max-w-5xl mx-auto text-center px-6">
+        <div className="max-w-5xl mx-auto px-6">
           {/* Heading */}
           <motion.h2
             className="text-5xl md:text-6xl font-extrabold text-green-800 mb-16 text-center"
@@ -141,44 +138,44 @@ export default function Page() {
           </motion.h2>
           
           {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
             <motion.div
-              className="flex flex-col items-center"
+              className="flex flex-col items-center justify-center text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2 text-center">
+              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
                 ♻️ 1.1M
               </p>
-              <p className="text-lg text-gray-600 text-center">Plastic Bottles Recycled</p>
+              <p className="text-lg text-gray-600">Plastic Bottles Recycled</p>
             </motion.div>
             
             <motion.div
-              className="flex flex-col items-center"
+              className="flex flex-col items-center justify-center text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2 text-center">
+              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
                 👥 45k
               </p>
-              <p className="text-lg text-gray-600 text-center">Active Users</p>
+              <p className="text-lg text-gray-600">Active Users</p>
             </motion.div>
             
             <motion.div
-              className="flex flex-col items-center"
+              className="flex flex-col items-center justify-center text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2 text-center">
+              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
                 🌱 95%
               </p>
-              <p className="text-lg text-gray-600 text-center">Sustainable Practices</p>
+              <p className="text-lg text-gray-600">Sustainable Practices</p>
             </motion.div>
           </div>
         </div>
@@ -186,7 +183,7 @@ export default function Page() {
       
       {/* Features Section */}
       <section className="relative py-24 px-6 bg-green-50">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto">
           {/* Heading */}
           <motion.h2
             className="text-5xl md:text-6xl font-extrabold text-green-800 mb-20 text-center"
@@ -199,7 +196,7 @@ export default function Page() {
           </motion.h2>
           
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -207,7 +204,7 @@ export default function Page() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: index * 0.2 }}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center justify-center text-center"
               >
                 <FeatureCard
                   icon={feature.icon}
@@ -222,9 +219,9 @@ export default function Page() {
       
       {/* Testimonials Section */}
       <section className="relative py-20 px-6 bg-green-50">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-center mb-16 font-display text-green-800"
+            className="text-4xl md:text-5xl font-bold mb-16 font-display text-green-800 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -233,9 +230,9 @@ export default function Page() {
             Community Voices
           </motion.h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="flex justify-center">
                 <TestimonialCard {...testimonial} delay={index * 0.1} />
               </div>
             ))}
@@ -245,9 +242,9 @@ export default function Page() {
       
       {/* CTA Section */}
       <section className="relative py-28 px-6 bg-gradient-to-b from-green-200 to-green-50">
-        <div className="max-w-4xl mx-auto text-center px-4">
+        <div className="max-w-4xl mx-auto px-4">
           <motion.div
-            className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50 text-center"
+            className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -278,6 +275,7 @@ export default function Page() {
             
             {/* CTA Button (navigates to /upload) */}
             <motion.div
+              className="flex justify-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
