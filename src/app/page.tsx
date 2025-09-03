@@ -1,31 +1,31 @@
 "use client";
 import { motion } from "framer-motion";
 import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
-import Image from "next/image";
-import heroImage from "@/src/assets/eco-hero.jpg";
-import FeatureCard from "@/src/components/FeatureCard";
-import TestimonialCard from "@/src/components/TestimonialCard";
-import WasteCounter from "@/src/components/WasteCounter";
-import { Button } from "@/src/components/ui/button";
+
+// Dynamically import components with no SSR
+const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
+const TestimonialCard = dynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
+const WasteCounter = dynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
 
 export default function Page() {
   const features = [
     {
-      icon: <Leaf className="h-12 w-12 text-eco-primary" />,
+      icon: <Leaf className="h-12 w-12 text-green-700" />,
       title: "Track Your Impact",
       description:
         "Monitor your recycling activities and see your environmental contribution in real-time with advanced analytics.",
     },
     {
-      icon: <Award className="h-12 w-12 text-eco-accent" />,
+      icon: <Award className="h-12 w-12 text-green-600" />,
       title: "Earn Blockchain Rewards",
       description:
         "Convert your recycling efforts into blockchain tokens and unlock exclusive eco-friendly rewards.",
     },
     {
-      icon: <Users className="h-12 w-12 text-eco-primary-light" />,
+      icon: <Users className="h-12 w-12 text-green-800" />,
       title: "Global Community",
       description:
         "Connect with eco-warriors worldwide and participate in sustainability challenges that matter.",
@@ -55,37 +55,34 @@ export default function Page() {
       rating: 5,
     },
   ];
-  
+
   return (
     <div className="min-h-screen flex flex-col items-center">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 px-6 bg-gradient-to-b from-eco-light to-background w-full flex flex-col items-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-eco-primary/5 to-eco-accent/5"></div>
-        <div className="max-w-7xl w-full flex flex-col items-center relative z-10">
-          <div className="flex flex-col items-center w-full text-center">
+      <section className="relative py-20 md:py-32 px-6 bg-gradient-to-b from-green-50 to-white w-full flex flex-col items-center">
+        <div className="max-w-7xl w-full flex flex-col items-center">
+          <div className="flex flex-col items-center w-full">
             <motion.h1
-              className="text-5xl lg:text-7xl xl:text-8xl font-extrabold font-display text-eco-dark leading-tight tracking-tight mb-6 text-center w-full"
+              className="text-5xl lg:text-7xl xl:text-8xl font-extrabold font-display text-primary leading-tight tracking-tight text-center"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="text-center">
-                Eco_Chain
-                <motion.span
-                  className="ml-4 text-eco-primary inline-block text-6xl lg:text-8xl"
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                >
-                  🌱
-                </motion.span>
-              </div>
+              Eco_Chain
+              <motion.span
+                className="ml-2 text-primary inline-block"
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+              >
+                🌱
+              </motion.span>
             </motion.h1>
           </div>
           
           {/* Caption */}
-          <div className="flex flex-col items-center w-full max-w-5xl text-center">
+          <div className="flex flex-col items-center w-full">
             <motion.p
-              className="text-xl md:text-2xl lg:text-3xl mb-10 leading-relaxed text-eco-dark/80 font-medium text-center w-full"
+              className="text-2xl md:text-3xl max-w-4xl mb-10 leading-relaxed text-green-800 font-medium text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -95,71 +92,50 @@ export default function Page() {
             </motion.p>
           </div>
           
-          {/* Hero Image */}
-          <motion.div
-            className="mb-12 rounded-2xl overflow-hidden shadow-2xl"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-          >
-            <Image 
-              src={heroImage} 
-              alt="Eco-friendly planet with recycling symbols" 
-              className="w-full max-w-4xl h-auto object-cover"
-              width={1200}
-              height={600}
-              priority
-            />
-          </motion.div>
-          
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-6 w-full max-w-2xl justify-center items-center mb-12"
+            className="flex flex-col sm:flex-row gap-6 w-full max-w-2xl justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto flex justify-center"
-            >
-              <Link href="/upload" className="w-full sm:w-auto flex justify-center">
-                <Button variant="eco-gradient" size="xl" className="w-full sm:w-auto">
-                  <Recycle className="h-6 w-6 mr-2" />
-                  Upload Waste
-                  <ArrowRight className="h-5 w-5 ml-2" />
-                </Button>
-              </Link>
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto flex justify-center"
-            >
-              <Link href="/leaderboard" className="w-full sm:w-auto flex justify-center">
-                <Button variant="eco-outline" size="xl" className="w-full sm:w-auto">
-                  <Target className="h-6 w-6 mr-2" />
-                  View Leaderboard
-                </Button>
-              </Link>
-            </motion.div>
+            <Link href="/upload" className="flex justify-center">
+              <motion.button
+                className="flex items-center justify-center px-6 py-3 bg-green-700 text-white font-medium rounded-lg hover:bg-green-800 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Recycle className="h-6 w-6 mr-2 group-hover:animate-spin" />
+                Upload Waste
+                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+            </Link>
+            <Link href="/leaderboard" className="flex justify-center">
+              <motion.button
+                className="flex items-center justify-center px-6 py-3 bg-green-100 text-green-800 font-medium rounded-lg hover:bg-green-200 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Target className="h-6 w-6 mr-2" />
+                View Leaderboard
+              </motion.button>
+            </Link>
           </motion.div>
           
           {/* Waste Counter */}
-          <div className="w-full flex justify-center items-center text-center">
+          <div className="mt-12 w-full flex justify-center">
             <WasteCounter />
           </div>
         </div>
       </section>
       
       {/* Global Impact */}
-      <section className="py-24 bg-background w-full flex flex-col items-center">
+      <section className="py-24 bg-white w-full flex flex-col items-center">
         <div className="max-w-5xl w-full flex flex-col items-center px-6">
           {/* Heading */}
-          <div className="flex flex-col items-center w-full text-center">
+          <div className="flex flex-col items-center w-full">
             <motion.h2
-              className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-eco-dark mb-16 text-center w-full"
+              className="text-5xl md:text-6xl font-extrabold text-green-800 mb-16 text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -170,7 +146,7 @@ export default function Page() {
           </div>
           
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 w-full">
             {[
               { emoji: "♻️", value: "1.1M", label: "Plastic Bottles Recycled" },
               { emoji: "👥", value: "45k", label: "Active Users" },
@@ -182,13 +158,11 @@ export default function Page() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white rounded-2xl p-8 shadow-lg border border-eco-primary/10 w-full"
                 >
-                  <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-eco-primary mb-4">
+                  <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
                     {stat.emoji} {stat.value}
                   </p>
-                  <p className="text-lg md:text-xl text-muted-foreground font-medium">{stat.label}</p>
+                  <p className="text-lg text-gray-600">{stat.label}</p>
                 </motion.div>
               </div>
             ))}
@@ -197,12 +171,12 @@ export default function Page() {
       </section>
       
       {/* Features Section */}
-      <section className="relative py-24 px-6 bg-eco-light w-full flex flex-col items-center">
+      <section className="relative py-24 px-6 bg-green-50 w-full flex flex-col items-center">
         <div className="max-w-7xl w-full flex flex-col items-center">
           {/* Heading */}
-          <div className="flex flex-col items-center w-full text-center">
+          <div className="flex flex-col items-center w-full">
             <motion.h2
-              className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-eco-dark mb-20"
+              className="text-5xl md:text-6xl font-extrabold text-green-800 mb-20 text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -213,7 +187,7 @@ export default function Page() {
           </div>
           
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
             {features.map((feature, index) => (
               <div key={index} className="flex justify-center">
                 <motion.div
@@ -236,17 +210,17 @@ export default function Page() {
       </section>
       
       {/* Testimonials Section */}
-      <section className="relative py-24 px-6 bg-background w-full flex flex-col items-center">
+      <section className="relative py-20 px-6 bg-green-50 w-full flex flex-col items-center">
         <div className="max-w-7xl w-full flex flex-col items-center">
-          <div className="flex flex-col items-center w-full text-center">
+          <div className="flex flex-col items-center w-full">
             <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-16 font-display text-eco-dark"
+              className="text-4xl md:text-5xl font-bold mb-16 font-display text-green-800 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              Community Voices 💬
+              Community Voices
             </motion.h2>
           </div>
           
@@ -269,11 +243,11 @@ export default function Page() {
       </section>
       
       {/* CTA Section */}
-      <section className="relative py-28 px-6 bg-gradient-to-b from-eco-primary/10 to-eco-accent/10 w-full flex flex-col items-center">
+      <section className="relative py-28 px-6 bg-gradient-to-b from-green-200 to-green-50 w-full flex flex-col items-center">
         <div className="max-w-4xl w-full flex flex-col items-center px-4">
-          <div className="flex flex-col items-center w-full text-center">
+          <div className="flex flex-col items-center w-full">
             <motion.div
-              className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10 md:p-16 w-full flex flex-col items-center border border-eco-primary/20"
+              className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50 w-full flex flex-col items-center"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -281,7 +255,7 @@ export default function Page() {
             >
               {/* Heading */}
               <motion.h3
-                className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 text-eco-dark"
+                className="text-5xl md:text-6xl font-extrabold mb-10 text-green-800 text-center"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -292,7 +266,7 @@ export default function Page() {
               
               {/* Subtext */}
               <motion.p
-                className="text-xl md:text-2xl text-eco-dark/80 mb-12 leading-relaxed max-w-3xl"
+                className="text-2xl text-green-900 mb-12 leading-relaxed text-center"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -302,21 +276,22 @@ export default function Page() {
                 Start your sustainable journey today.
               </motion.p>
               
-              {/* CTA Button */}
+              {/* CTA Button (navigates to /upload) */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
                 <Link href="/upload">
-                  <Button variant="eco-gradient" size="xl" className="text-xl px-12 py-6">
-                    <Globe className="h-7 w-7 mr-3" />
+                  <motion.button
+                    className="flex items-center justify-center px-8 py-4 bg-green-700 text-white text-xl font-semibold rounded-2xl shadow-lg hover:bg-green-800 transition-colors duration-300"
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Globe className="h-7 w-7 mr-2 group-hover:animate-spin" />
                     Start Recycling Now
-                    <ArrowRight className="h-6 w-6 ml-3" />
-                  </Button>
+                  </motion.button>
                 </Link>
               </motion.div>
             </motion.div>
@@ -326,4 +301,3 @@ export default function Page() {
     </div>
   );
 }
-
