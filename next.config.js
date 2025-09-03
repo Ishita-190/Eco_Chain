@@ -1,19 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  
-  // Disable server-side rendering
-  output: 'export',
-  trailingSlash: true,
-  
-  // Disable server-side rendering for all pages
+  trailingSlash: true, // optional
+
   experimental: {
     serverComponentsExternalPackages: [],
     esmExternals: 'loose',
     outputFileTracingRoot: __dirname,
   },
 
-  // Image optimization for remote IPFS gateways
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'ipfs.io', pathname: '/ipfs/**' },
@@ -22,7 +17,6 @@ const nextConfig = {
     ],
   },
 
-  // CORS headers for API routes
   async headers() {
     return [
       {
@@ -41,7 +35,6 @@ const nextConfig = {
     ];
   },
 
-  // Simple rewrite for health check
   async rewrites() {
     return [
       {
@@ -51,16 +44,10 @@ const nextConfig = {
     ];
   },
 
-  // Webpack fallback for Node.js modules used on client
   webpack: (config) => {
     config.resolve.fallback ||= {};
     Object.assign(config.resolve.fallback, { fs: false, net: false, tls: false });
     return config;
-  },
-
-  // Optional: increase build output verbosity
-  experimental: {
-    outputFileTracingRoot: __dirname,
   },
 };
 
