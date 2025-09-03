@@ -1,92 +1,122 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Button } from "@/src/components/ui/button";
+import { Input } from "@/src/components/ui/input";
+import { Textarea } from "@/src/components/ui/textarea";
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/src/components/ui/select";
 
 export default function FeedbackPage() {
-  const [feedback, setFeedback] = useState('');
-  const [issue, setIssue] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({
+    type: "",
+    issueType: "",
+    rating: "",
+    message: "",
+    email: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: send feedback to backend or API
-    setSubmitted(true);
+    console.log("Feedback submitted:", form);
+    alert("Thank you for your feedback!");
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
-      <main className="max-w-3xl mx-auto px-6 py-16 space-y-12">
-        
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
-            Feedback & Report
-          </h1>
-          <p className="mt-4 text-lg text-gray-300 max-w-xl mx-auto">
-            Share your feedback about Eco_Chain 🌱 or let us know if you're facing issues with credits.
-          </p>
-        </motion.div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-6">
+      <Card className="w-full max-w-lg bg-gray-800/80 text-white border-gray-700 shadow-lg">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold">Feedback & Reports</CardTitle>
+          <p className="text-sm text-gray-400">Help us improve Eco_Chain 🌱</p>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            
+            {/* Type of Feedback */}
+            <div>
+              <label className="text-sm text-gray-300">Type</label>
+              <Select
+                onValueChange={(val) => setForm({ ...form, type: val })}
+              >
+                <SelectTrigger className="mt-1 bg-gray-700 text-white border-gray-600">
+                  <SelectValue placeholder="Select feedback type" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectItem value="feedback">General Feedback</SelectItem>
+                  <SelectItem value="issue">Report an Issue</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-        {/* Form */}
-        <motion.form
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="bg-gray-800/50 backdrop-blur-md p-8 rounded-2xl shadow-lg border border-gray-700 space-y-6"
-        >
-          {/* Feedback */}
-          <div>
-            <label className="block text-sm font-medium mb-2 text-gray-300">
-              General Feedback
-            </label>
-            <textarea
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              rows={4}
-              placeholder="Tell us what you love, what could be improved..."
-              className="w-full p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-emerald-400 outline-none text-gray-200"
-            />
-          </div>
+            {/* Issue Type (only if reporting issue) */}
+            {form.type === "issue" && (
+              <div>
+                <label className="text-sm text-gray-300">Issue Type</label>
+                <Select
+                  onValueChange={(val) => setForm({ ...form, issueType: val })}
+                >
+                  <SelectTrigger className="mt-1 bg-gray-700 text-white border-gray-600">
+                    <SelectValue placeholder="Select issue type" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 border-gray-700">
+                    <SelectItem value="no-credits">Didn’t receive credits</SelectItem>
+                    <SelectItem value="delay">Credits taking too long</SelectItem>
+                    <SelectItem value="wrong-amount">Wrong amount credited</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
 
-          {/* Report Issue */}
-          <div>
-            <label className="block text-sm font-medium mb-2 text-gray-300">
-              Report an Issue with Credits
-            </label>
-            <textarea
-              value={issue}
-              onChange={(e) => setIssue(e.target.value)}
-              rows={4}
-              placeholder="Didn’t receive credits? Took too long? Describe the issue..."
-              className="w-full p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-emerald-400 outline-none text-gray-200"
-            />
-          </div>
+            {/* Rating */}
+            <div>
+              <label className="text-sm text-gray-300">Rate your experience</label>
+              <Select
+                onValueChange={(val) => setForm({ ...form, rating: val })}
+              >
+                <SelectTrigger className="mt-1 bg-gray-700 text-white border-gray-600">
+                  <SelectValue placeholder="Choose rating" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectItem value="5">⭐️⭐️⭐️⭐️⭐️ Excellent</SelectItem>
+                  <SelectItem value="4">⭐️⭐️⭐️⭐️ Good</SelectItem>
+                  <SelectItem value="3">⭐️⭐️⭐️ Average</SelectItem>
+                  <SelectItem value="2">⭐️⭐️ Poor</SelectItem>
+                  <SelectItem value="1">⭐️ Terrible</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-          {/* Submit Button */}
-          <div className="text-center">
-            <button
-              type="submit"
-              className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-black font-semibold rounded-xl shadow-md hover:opacity-90 transition"
-            >
-              Submit
-            </button>
-          </div>
+            {/* Message */}
+            <div>
+              <label className="text-sm text-gray-300">Your Feedback</label>
+              <Textarea
+                className="mt-1 bg-gray-700 text-white border-gray-600"
+                rows={4}
+                placeholder="Write your feedback or describe the issue..."
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+              />
+            </div>
 
-          {/* Success Message */}
-          {submitted && (
-            <p className="text-center text-emerald-400 mt-4">
-              ✅ Thank you! Your feedback has been submitted.
-            </p>
-          )}
-        </motion.form>
-      </main>
+            {/* Email */}
+            <div>
+              <label className="text-sm text-gray-300">Email (optional)</label>
+              <Input
+                className="mt-1 bg-gray-700 text-white border-gray-600"
+                type="email"
+                placeholder="you@example.com"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
+            </div>
+
+            {/* Submit */}
+            <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-500">
+              Submit Feedback
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
