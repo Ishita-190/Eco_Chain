@@ -4,7 +4,7 @@ import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-r
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
-import heroImage from "@/assets/eco-hero.jpg";
+import heroImage from "@/src/assets/eco-hero.jpg";
 
 // Dynamically import components with no SSR
 const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
@@ -324,3 +324,4 @@ export default function Page() {
     </div>
   );
 }
+
