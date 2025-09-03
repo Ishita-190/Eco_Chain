@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/src/components/ui/card";
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -37,3 +37,4 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
 };
 
 export default FeatureCard;
+
