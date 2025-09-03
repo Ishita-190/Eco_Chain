@@ -4,7 +4,7 @@ import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-r
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import heroImage from "@/assets/eco-hero.jpg";
+import heroImage from "@/src/assets/eco-hero.jpg";
 import FeatureCard from "@/src/components/FeatureCard";
 import TestimonialCard from "@/src/components/TestimonialCard";
 import WasteCounter from "@/src/components/WasteCounter";
@@ -326,3 +326,4 @@ export default function Page() {
     </div>
   );
 }
+
