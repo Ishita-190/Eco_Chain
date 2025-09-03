@@ -1,20 +1,24 @@
-
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
-import QRCode from "qrcode"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+import QRCode from "qrcode";
 
 // Merge Tailwind classes safely
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 // Generate a 6-digit OTP
 export function generateOTP(): string {
-  return Math.random().toString().slice(2, 8).padStart(6, "0")
+  return Math.random().toString().slice(2, 8).padStart(6, "0");
 }
 
-// Generate a QR code as a data URL
+// Generate a QR code as a data URL (CSR-safe)
 export async function generateQRCode(data: string): Promise<string> {
+  // Only call this in a client component (useEffect / useState)
+  if (typeof window === "undefined") {
+    throw new Error("generateQRCode should only be called on the client");
+  }
+
   return QRCode.toDataURL(data, {
     width: 256,
     margin: 2,
@@ -22,7 +26,5 @@ export async function generateQRCode(data: string): Promise<string> {
       dark: "#000000",
       light: "#FFFFFF",
     },
-  })
+  });
 }
-
-
