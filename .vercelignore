@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+.next/
+
+# Build files
+/dist
+/out
+
+# Environment files
+.env*
+!.env.example
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local development
+.vercel
+
+# IDE
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing
+/coverage
+
+# Prisma
+/prisma/migrations/
+*.db
+*.sqlite
+
+# Hardhat
+/artifacts
+/cache
+/typechain-types
+
+# Other
+*.pem
+*.p12
+*.key
+*.csr
+*.crt
+*.cer
+*.der
+.prettierrc
+.eslintrc
+.gitignore
+*.md
+*.mdx
+*.log
