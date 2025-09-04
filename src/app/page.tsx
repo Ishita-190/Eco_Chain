@@ -217,7 +217,6 @@ const LeaderboardItem = ({
 );
 
 export default function EcoChainLanding() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [activeTab, setActiveTab] = useState("monthly");
   
@@ -237,69 +236,41 @@ export default function EcoChainLanding() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <div className="flex items-center gap-2">
-                <Recycle className="h-8 w-8 text-green-600" />
-                <span className="text-2xl font-bold text-gray-900">Eco_Chain</span>
-              </div>
+    <div className="flex flex-col gap-8 pb-12">
+      {/* Page sections will be organized with consistent spacing */}
+
+      {/* Hero Section */}
+      <section className="pt-8 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <WasteCounter />
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+              Turn Your <span className="text-primary">Waste</span> Into <span className="text-primary">Rewards</span>
+            </h1>
+            <p className="text-lg text-gray-600">
+              Join our blockchain-powered recycling platform and earn tokens for your sustainable actions.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button size="lg" className="rounded-full">
+                Get Started
+              </Button>
+              <Button size="lg" variant="outline" className="rounded-full">
+                Learn More
+              </Button>
             </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-gray-600 hover:text-green-600">Features</a>
-              <a href="#impact" className="text-gray-600 hover:text-green-600">Impact</a>
-              <a href="#testimonials" className="text-gray-600 hover:text-green-600">Testimonials</a>
-              <a href="#leaderboard" className="text-gray-600 hover:text-green-600">Leaderboard</a>
-              <a href="#faq" className="text-gray-600 hover:text-green-600">FAQ</a>
-              <Button variant="outline">Sign In</Button>
-              <Button>Get Started</Button>
-            </div>
-            
-            {/* Mobile menu button */}
-            <div className="md:hidden flex items-center">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-600 hover:text-green-600"
-              >
-                {isMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
-              </button>
+          </div>
+          
+          <div className="relative">
+            <div className="bg-gradient-to-br from-green-100 to-blue-50 p-8 rounded-2xl shadow-lg">
+              <img 
+                src="/placeholder.svg" 
+                alt="Eco_Chain App" 
+                className="w-full h-auto rounded-xl shadow-md"
+              />
             </div>
           </div>
         </div>
-        
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-200"
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <a href="#features" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-gray-50">Features</a>
-              <a href="#impact" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-gray-50">Impact</a>
-              <a href="#testimonials" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-gray-50">Testimonials</a>
-              <a href="#leaderboard" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-gray-50">Leaderboard</a>
-              <a href="#faq" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-gray-50">FAQ</a>
-              <div className="px-3 py-2 space-y-2">
-                <Button variant="outline" className="w-full">Sign In</Button>
-                <Button className="w-full">Get Started</Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </nav>
-
-      {/* Hero Section */}
+      </section>
       <section className="py-16 md:py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto">
@@ -374,9 +345,9 @@ export default function EcoChainLanding() {
       </section>
 
       {/* Global Impact Section */}
-      <section id="impact" className="py-16 bg-white px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+      <section id="impact" className="py-16 bg-white rounded-xl shadow-sm my-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
             <motion.h2 
               className="text-3xl md:text-4xl font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
@@ -397,7 +368,7 @@ export default function EcoChainLanding() {
             </motion.p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <StatCard icon={Globe} value="127+" label="Countries" />
             <StatCard icon={Users} value="50K+" label="Active Users" />
             <StatCard icon={Recycle} value="2.3M+" label="Items Recycled" />
@@ -407,9 +378,9 @@ export default function EcoChainLanding() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+      <section id="features" className="py-16 my-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
             <motion.h2 
               className="text-3xl md:text-4xl font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
@@ -451,9 +422,9 @@ export default function EcoChainLanding() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-16 bg-white px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+      <section id="testimonials" className="py-16 bg-white rounded-xl shadow-sm my-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
             <motion.h2 
               className="text-3xl md:text-4xl font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}

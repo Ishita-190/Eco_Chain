@@ -17,15 +17,14 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="font-sans relative">
+      <body className="font-sans relative antialiased">
         <Providers>
-
           <div className="flex flex-col min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
             {/* Header */}
             <Header />
 
             {/* Main content */}
-            <main className="flex flex-col flex-1 items-center justify-center w-full">
+            <main className="flex-1 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
               {children}
             </main>
 
