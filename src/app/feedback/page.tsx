@@ -6,7 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/ca
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { Textarea } from "@/src/components/ui/textarea";
-import { Select } from "@/src/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/src/components/ui/select";
 
 export default function FeedbackPage() {
   const [form, setForm] = useState({
@@ -47,13 +53,16 @@ export default function FeedbackPage() {
                   <div>
                     <label className="text-sm text-gray-300">Type</label>
                     <Select
-                      className="w-full mt-1 bg-gray-700 text-white border-gray-600 rounded-lg p-2 focus:ring-2 focus:ring-emerald-500"
                       value={form.type}
-                      onChange={(e) => setForm({ ...form, type: e.target.value })}
+                      onValueChange={(value) => setForm({ ...form, type: value })}
                     >
-                      <option value="">Select feedback type</option>
-                      <option value="feedback">General Feedback</option>
-                      <option value="issue">Report an Issue</option>
+                      <SelectTrigger className="w-full mt-1 bg-gray-700 text-white border-gray-600 rounded-lg p-2 focus:ring-2 focus:ring-emerald-500">
+                        <SelectValue placeholder="Select feedback type" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-gray-700 text-white rounded-lg">
+                        <SelectItem value="feedback">General Feedback</SelectItem>
+                        <SelectItem value="issue">Report an Issue</SelectItem>
+                      </SelectContent>
                     </Select>
                   </div>
 
@@ -62,14 +71,17 @@ export default function FeedbackPage() {
                     <div>
                       <label className="text-sm text-gray-300">Issue Type</label>
                       <Select
-                        className="w-full mt-1 bg-gray-700 text-white border-gray-600 rounded-lg p-2 focus:ring-2 focus:ring-emerald-500"
                         value={form.issueType}
-                        onChange={(e) => setForm({ ...form, issueType: e.target.value })}
+                        onValueChange={(value) => setForm({ ...form, issueType: value })}
                       >
-                        <option value="">Select issue type</option>
-                        <option value="no-credits">Didn’t receive credits</option>
-                        <option value="delay">Credits taking too long</option>
-                        <option value="wrong-amount">Wrong amount credited</option>
+                        <SelectTrigger className="w-full mt-1 bg-gray-700 text-white border-gray-600 rounded-lg p-2 focus:ring-2 focus:ring-emerald-500">
+                          <SelectValue placeholder="Select issue type" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-gray-700 text-white rounded-lg">
+                          <SelectItem value="no-credits">Didn’t receive credits</SelectItem>
+                          <SelectItem value="delay">Credits taking too long</SelectItem>
+                          <SelectItem value="wrong-amount">Wrong amount credited</SelectItem>
+                        </SelectContent>
                       </Select>
                     </div>
                   )}
@@ -78,16 +90,19 @@ export default function FeedbackPage() {
                   <div>
                     <label className="text-sm text-gray-300">Rate your experience</label>
                     <Select
-                      className="w-full mt-1 bg-gray-700 text-white border-gray-600 rounded-lg p-2 focus:ring-2 focus:ring-emerald-500"
                       value={form.rating}
-                      onChange={(e) => setForm({ ...form, rating: e.target.value })}
+                      onValueChange={(value) => setForm({ ...form, rating: value })}
                     >
-                      <option value="">Choose rating</option>
-                      <option value="5">⭐️⭐️⭐️⭐️⭐️ Excellent</option>
-                      <option value="4">⭐️⭐️⭐️⭐️ Good</option>
-                      <option value="3">⭐️⭐️⭐️ Average</option>
-                      <option value="2">⭐️⭐️ Poor</option>
-                      <option value="1">⭐️ Terrible</option>
+                      <SelectTrigger className="w-full mt-1 bg-gray-700 text-white border-gray-600 rounded-lg p-2 focus:ring-2 focus:ring-emerald-500">
+                        <SelectValue placeholder="Choose rating" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-gray-700 text-white rounded-lg">
+                        <SelectItem value="5">⭐️⭐️⭐️⭐️⭐️ Excellent</SelectItem>
+                        <SelectItem value="4">⭐️⭐️⭐️⭐️ Good</SelectItem>
+                        <SelectItem value="3">⭐️⭐️⭐️ Average</SelectItem>
+                        <SelectItem value="2">⭐️⭐️ Poor</SelectItem>
+                        <SelectItem value="1">⭐️ Terrible</SelectItem>
+                      </SelectContent>
                     </Select>
                   </div>
 
