@@ -11,12 +11,7 @@ export function Header() {
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
 
-  const marqueeItems = [
-    "♻️ Reduce Waste",
-    "🌱 Recycle",
-    "💡 Earn Rewards",
-    "🚀 Join Eco_Chain",
-  ];
+  const marqueeItems = ["♻️ Reduce Waste", "🌱 Recycle", "💡 Earn Rewards", "🚀 Join Eco_Chain"];
 
   const dockItems = [
     { label: "Eco_Chain", href: "/", isLogo: true },
@@ -29,18 +24,13 @@ export function Header() {
     <header className="bg-white/80 border-b border-border/50 backdrop-blur-xl shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-6">
         {/* Dock Navigation */}
-        <Dock
-          className="bg-white/50 shadow-md p-1 mt-2 flex-row items-center"
-          direction="middle"
-        >
+        <Dock orientation="horizontal" className="bg-white/50 shadow-md p-1 mt-2">
           {dockItems.map((item) => (
             <DockIcon key={item.href}>
               {item.isLogo ? (
                 <Link href={item.href} className="flex items-center space-x-2">
                   <Leaf className="h-8 w-8 text-primary" />
-                  <span className="text-lg font-bold text-primary">
-                    Eco_Chain
-                  </span>
+                  <span className="text-lg font-bold text-primary">Eco_Chain</span>
                 </Link>
               ) : (
                 <Link
@@ -63,8 +53,8 @@ export function Header() {
         <div className="mt-2">
           <Marquee
             pauseOnHover
-            repeat={5} // repeat content horizontally
-            style={{ "--duration": "20s" } as React.CSSProperties} // controls scroll speed
+            repeat={5}
+            style={{ "--duration": "20s" } as React.CSSProperties}
             className="w-full bg-green-50 rounded-md text-green-800 font-semibold px-4 py-2"
           >
             {marqueeItems.map((text, i) => (
