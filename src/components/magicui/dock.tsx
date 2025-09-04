@@ -73,7 +73,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
         {...props}
-        className={cn(dockVariants({ className }), {
+        className={cn(dockVariants({ className }), "flex flex-row items-center", {
           "items-start": direction === "top",
           "items-center": direction === "middle",
           "items-end": direction === "bottom",
