@@ -5,6 +5,46 @@
 /* 🌱 EcoCommerce Refined Light Theme */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 
+/* Dynamic Text Animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes gradient-x {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-gradient-x {
+  background-size: 200% 100%;
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-wave {
+  animation: wave 2s ease-in-out infinite;
+  display: inline-block;
+}
+
 @layer base {
   :root {
     /* Colors */
@@ -72,6 +112,7 @@
     font-size: 1rem;
     line-height: 1.7;
     font-weight: 300;
+    text-align: center;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -115,12 +156,44 @@
 
   /* Cards */
   .card {
-    @apply bg-card border border-border rounded-3xl shadow-sm p-6 hover:shadow-md transition-all;
+    @apply bg-card border border-border rounded-3xl shadow-sm p-6 hover:shadow-md transition-all duration-300 hover:-translate-y-1 text-center;
   }
 
   /* Gradient Text */
   .text-gradient {
     @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  /* Enhanced Card Styles */
+  .card-hover-effect {
+    @apply relative overflow-hidden;
+  }
+
+  .card-hover-effect::before {
+    content: '';
+    @apply absolute -top-2 -right-2 w-16 h-16 bg-green-100 rounded-full opacity-0 transition-opacity duration-300;
+  }
+
+  .card-hover-effect:hover::before {
+    @apply opacity-70;
+  }
+
+  /* Enhanced Button Styles */
+  .btn-eco {
+    @apply rounded-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium px-6 py-3 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-green-600 hover:to-emerald-700;
+  }
+
+  .btn-eco-outline {
+    @apply rounded-full border-2 border-green-500 text-green-600 font-medium px-6 py-3 hover:bg-green-50 transition-all duration-300 hover:-translate-y-1;
+  }
+  
+  /* Text Alignment */
+  .text-center-all {
+    @apply text-center;
+  }
+  
+  h1, h2, h3, h4, h5, h6, p {
+    @apply text-center;
   }
   
   /* Eco-themed utilities */
@@ -163,7 +236,7 @@
 }
 
 .eco-card {
-  @apply bg-white/90 backdrop-blur-sm rounded-3xl shadow-sm border border-green-100 hover:shadow-md transition-all p-6;
+  @apply bg-white/90 backdrop-blur-sm rounded-3xl shadow-sm border border-green-100 hover:shadow-md transition-all p-6 text-center flex flex-col items-center;
 }
   }
   

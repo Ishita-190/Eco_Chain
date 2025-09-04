@@ -33,6 +33,7 @@ import {
 } from "@/src/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
 import FeatureCard from "@/src/components/FeatureCard";
+import { CountUp, GradientText, Typewriter, ShimmerText, WavyText } from "@/src/components/ui/dynamic-text";
 
 const WasteCounter = () => {
   const [wasteCount, setWasteCount] = useState(12847);
@@ -49,7 +50,7 @@ const WasteCounter = () => {
     <div className="flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full">
       <Recycle className="text-green-600" />
       <span className="font-medium text-green-800">
-        {wasteCount.toLocaleString()} kg of waste recycled
+        <CountUp end={wasteCount} duration={2000} /> kg of waste recycled
       </span>
     </div>
   );
@@ -58,25 +59,40 @@ const WasteCounter = () => {
 const StatCard = ({ 
   icon: Icon, 
   value, 
-  label 
+  label,
+  useShimmer = false
 }: { 
   icon: React.ElementType; 
   value: string; 
-  label: string; 
+  label: string;
+  useShimmer?: boolean;
 }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
-    className="bg-white p-6 rounded-xl shadow-sm border border-gray-100"
+    className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
   >
     <div className="flex items-center gap-4">
       <div className="bg-green-100 p-3 rounded-full">
         <Icon className="text-green-600 h-6 w-6" />
       </div>
       <div>
-        <p className="text-2xl font-bold text-gray-900">{value}</p>
+        {useShimmer ? (
+          <p className="text-2xl font-bold text-gray-900">
+            <ShimmerText text={value} />
+          </p>
+        ) : (
+          <p className="text-2xl font-bold text-gray-900">
+            <GradientText 
+              text={value} 
+              gradientFrom="from-green-500" 
+              gradientTo="to-emerald-600" 
+              animate={true} 
+            />
+          </p>
+        )}
         <p className="text-gray-600">{label}</p>
       </div>
     </div>
@@ -98,13 +114,14 @@ const LocalFeatureCard = ({
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
     whileHover={{ y: -5 }}
-    className="eco-card relative overflow-hidden group h-full"
+    className="eco-card card-hover-effect h-full bg-white p-6 rounded-xl shadow-sm border border-gray-100"
   >
-    <div className="absolute top-0 right-0 w-24 h-24 bg-green-100 rounded-full -mr-12 -mt-12 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-    <div className="bg-green-100 p-4 rounded-full w-fit mb-5 relative z-10">
+    <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-4 rounded-full w-fit mx-auto mb-5 relative z-10">
       <Icon className="text-primary h-7 w-7" />
     </div>
-    <h3 className="text-xl font-semibold mb-3 relative z-10">{title}</h3>
+    <h3 className="text-xl font-semibold mb-3 relative z-10">
+      <GradientText text={title} animate={false} />
+    </h3>
     <p className="text-gray-700 relative z-10">{description}</p>
   </motion.div>
 );
@@ -125,27 +142,28 @@ const TestimonialCard = ({
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
-    className="eco-card relative overflow-hidden"
+    className="card-hover-effect bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300"
   >
-    <div className="absolute top-0 left-0 w-16 h-16 bg-green-100 rounded-full -ml-8 -mt-8 opacity-20"></div>
-    <div className="flex gap-1 mb-4 relative z-10">
+    <div className="flex gap-1 mb-4 justify-center">
       {[...Array(5)].map((_, i) => (
         <Star 
           key={i} 
-          className={`h-5 w-5 ${i < rating ? 'text-primary fill-primary' : 'text-gray-300'}`} 
+          className={`h-5 w-5 ${i < rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`} 
         />
       ))}
     </div>
-    <p className="text-gray-700 mb-5 italic relative z-10">"{content}"</p>
-    <div className="flex items-center gap-3 relative z-10">
-      <div className="bg-green-100 p-1 rounded-full">
+    <p className="text-gray-700 mb-5 italic relative z-10 bg-green-50/50 p-4 rounded-lg border border-green-100/50">"{content}"</p>
+    <div className="flex items-center gap-3 justify-center">
+      <div className="bg-gradient-to-r from-green-100 to-teal-100 p-1 rounded-full">
         <Avatar>
           <AvatarImage src={`https://i.pravatar.cc/150?u=${name}`} />
           <AvatarFallback className="bg-primary text-white">{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
         </Avatar>
       </div>
       <div>
-        <p className="font-semibold">{name}</p>
+        <p className="font-semibold">
+          <GradientText text={name} gradientFrom="from-green-600" gradientTo="to-teal-600" />
+        </p>
         <p className="text-sm text-gray-700">{role}</p>
       </div>
     </div>
@@ -162,28 +180,37 @@ const FAQItem = ({
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="border-b border-gray-200 py-4">
+    <div className="border-b border-green-200 py-4 hover:bg-green-50/30 transition-colors rounded-lg px-4">
       <button
         className="flex justify-between items-center w-full text-left"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="font-semibold text-lg">{question}</h3>
+        <h3 className="font-semibold text-lg">
+          <GradientText 
+            text={question} 
+            gradientFrom="from-green-700" 
+            gradientTo="to-teal-700" 
+            animate={false} 
+          />
+        </h3>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
+          className="bg-green-100 p-2 rounded-full"
         >
-          <ArrowRight className="h-5 w-5 text-gray-500" />
+          <ArrowRight className="h-5 w-5 text-green-700" />
         </motion.div>
       </button>
       {isOpen && (
-        <motion.p 
-          className="mt-2 text-gray-600"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
+        <motion.div 
+          className="mt-4 text-gray-700 bg-white p-4 rounded-lg border border-green-100 shadow-sm"
+          initial={{ opacity: 0, height: 0, y: -10 }}
+          animate={{ opacity: 1, height: 'auto', y: 0 }}
+          exit={{ opacity: 0, height: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
         >
           {answer}
-        </motion.p>
+        </motion.div>
       )}
     </div>
   );
@@ -252,24 +279,45 @@ export default function EcoChainLanding() {
             <div className="inline-block bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
               <WasteCounter />
             </div>
+            <div className="bg-green-50 p-3 rounded-lg border border-green-100 shadow-sm">
+              <p className="text-green-800 font-medium">
+                <Typewriter 
+                  texts={[
+                    "Recycling for a better tomorrow", 
+                    "Sustainable living starts with you", 
+                    "Small actions, big impact", 
+                    "Join our eco-friendly community"
+                  ]} 
+                  typingSpeed={80} 
+                  deletingSpeed={40} 
+                  delayBetweenTexts={3000}
+                />
+              </p>
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              Nurture <span className="text-gradient">Earth</span>, Harvest <span className="text-gradient">Rewards</span>
+              Nurture <span className="text-gradient">Earth</span>, Harvest <span className="text-gradient animate-gradient-x">Rewards</span>
             </h1>
             <p className="text-lg text-gray-700">
               Join our eco-conscious community and transform your sustainable actions into meaningful rewards through blockchain technology.
             </p>
+            <div className="mt-4 mb-2 bg-green-50/50 backdrop-blur-sm p-3 rounded-lg border border-green-100 shadow-sm">
+              <p className="text-sm font-medium text-green-800 flex items-center justify-center">
+                <span className="mr-2">🌟</span>
+                <span className="animate-wave inline-block">Making a difference, one recycled item at a time</span>
+              </p>
+            </div>
             <ul className="space-y-2 eco-leaf-bullet">
               <li>Track your environmental impact in real-time</li>
               <li>Earn tokens for every sustainable action</li>
               <li>Join a global community of eco-warriors</li>
             </ul>
             <div className="flex flex-wrap gap-4 pt-2">
-              <Button size="lg" className="rounded-full shadow-md transition-all hover:shadow-lg">
+              <button className="btn-eco">
                 Join the Movement
-              </Button>
-              <Button size="lg" variant="outline" className="rounded-full border-2 hover:bg-white/10">
+              </button>
+              <button className="btn-eco-outline">
                 Discover More
-              </Button>
+              </button>
             </div>
             <div className="flex items-center gap-3 mt-6 bg-white/50 backdrop-blur-sm p-3 rounded-full">
               <img src="/eco-recycle-icon.svg" alt="Recycling" className="w-10 h-10" />
@@ -755,67 +803,7 @@ export default function EcoChainLanding() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-4 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Recycle className="h-8 w-8 text-green-400" />
-                <span className="text-2xl font-bold">Eco_Chain</span>
-              </div>
-              <p className="text-gray-400 mb-4">
-                Making recycling rewarding for everyone through blockchain technology.
-              </p>
-              <div className="flex gap-3">
-                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                  <div className="bg-gray-200 border-2 border-dashed rounded-xl w-6 h-6" />
-                </Button>
-                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                  <div className="bg-gray-200 border-2 border-dashed rounded-xl w-6 h-6" />
-                </Button>
-                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                  <div className="bg-gray-200 border-2 border-dashed rounded-xl w-6 h-6" />
-                </Button>
-              </div>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Product</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">Features</a></li>
-                <li><a href="#" className="hover:text-white">Solutions</a></li>
-                <li><a href="#" className="hover:text-white">Pricing</a></li>
-                <li><a href="#" className="hover:text-white">Demo</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Resources</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">Blog</a></li>
-                <li><a href="#" className="hover:text-white">Help Center</a></li>
-                <li><a href="#" className="hover:text-white">Community</a></li>
-                <li><a href="#" className="hover:text-white">Partners</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Company</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">About Us</a></li>
-                <li><a href="#" className="hover:text-white">Careers</a></li>
-                <li><a href="#" className="hover:text-white">Contact</a></li>
-                <li><a href="#" className="hover:text-white">Partners</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>© 2023 Eco_Chain. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      {/* End of content */}
     </div>
   );
 }

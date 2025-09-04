@@ -26,14 +26,14 @@ export function Header() {
   ];
 
   return (
-    <header className="bg-white/90 border-b border-border/50 backdrop-blur-xl shadow-sm sticky top-0 z-50">
+    <header className="bg-gradient-to-br from-green-900 via-emerald-800 to-teal-900 text-white sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo and Navigation */}
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center">
-              <span className="text-xl font-bold text-primary">Eco_Chain</span>
-              <span className="ml-1 text-xl">🌱</span>
+            <Link href="/" className="flex items-center group">
+              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-300 to-teal-300 group-hover:from-white group-hover:to-green-200 transition-all duration-300">Eco_Chain</span>
+              <span className="ml-2 text-xl group-hover:scale-110 transition-transform duration-300">🌱</span>
             </Link>
           </div>
           
@@ -44,10 +44,10 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "px-4 py-2 rounded-md text-sm font-medium transition-colors",
+                  "px-4 py-2 rounded-full text-sm font-medium transition-colors",
                   isActive(item.href)
-                    ? "bg-primary/10 text-primary"
-                    : "text-gray-700 hover:text-primary hover:bg-primary/5"
+                    ? "bg-white/20 text-white"
+                    : "text-green-100 hover:text-white hover:bg-white/10"
                 )}
               >
                 {item.label}
@@ -57,7 +57,7 @@ export function Header() {
           
           {/* Mobile Navigation - Using Dock for mobile */}
           <div className="md:hidden">
-            <Dock orientation="horizontal" className="bg-white/50 shadow-sm p-1 flex gap-2 items-center rounded-full">
+            <Dock orientation="horizontal" className="bg-emerald-800/70 shadow-md p-1 flex gap-2 items-center rounded-full border border-emerald-700/50">
               {navItems.map((item) => (
                 <DockIcon key={item.href}>
                   <Link
@@ -65,8 +65,8 @@ export function Header() {
                     className={cn(
                       "text-xs font-medium px-3 py-1 rounded-full transition-colors",
                       isActive(item.href)
-                        ? "bg-primary/20 text-primary"
-                        : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                        ? "bg-white/20 text-white"
+                        : "text-green-100 hover:text-white hover:bg-white/10"
                     )}
                   >
                     {item.label}
@@ -83,7 +83,7 @@ export function Header() {
             pauseOnHover
             repeat={5}
             style={{ "--duration": "20s" } as React.CSSProperties}
-            className="w-full bg-green-50 rounded-md text-green-800 font-semibold px-4 py-1.5"
+            className="w-full bg-emerald-800/30 rounded-md text-green-100 font-semibold px-4 py-1.5 border border-emerald-700/30"
           >
             {marqueeItems.map((text, i) => (
               <span key={i} className="mx-6">
