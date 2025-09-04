@@ -16,7 +16,7 @@ export function Header() {
     "🌱 Recycle",
     "💡 Earn Rewards",
     "🚀 Join Eco_Chain",
-    "🌿 Eco_Chain", // Added Eco_Chain here
+    "🌿 Eco_Chain",
   ];
 
   const dockItems = [
@@ -30,9 +30,9 @@ export function Header() {
     <header className="bg-white/80 border-b border-border/50 backdrop-blur-xl shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-6">
         {/* Dock Navigation */}
-        <Dock orientation="horizontal" className="bg-white/50 shadow-md p-1 mt-2">
-          {dockItems.map((item, index) => (
-            <DockIcon key={item.href} className={index === 1 ? "ml-12" : ""}>
+        <Dock orientation="horizontal" className="bg-white/50 shadow-md p-2 mt-2 flex gap-6 items-center">
+          {dockItems.map((item) => (
+            <DockIcon key={item.href}>
               {item.isLogo ? (
                 <Link href={item.href} className="flex items-center space-x-2">
                   <Leaf className="h-8 w-8 text-primary" />
@@ -56,7 +56,7 @@ export function Header() {
         </Dock>
 
         {/* 🌟 Marquee Section */}
-        <div className="mt-2">
+        <div className="mt-4">
           <Marquee
             pauseOnHover
             repeat={5}
