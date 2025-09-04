@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 import { Leaf } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { Marquee } from "@/src/components/magicui/marquee";
-import React, { PropsWithChildren, useRef } from "react";
+import React, { useRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { motion, MotionValue, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, MotionValue, useMotionValue, useSpring, useTransform, HTMLMotionProps } from "framer-motion";
 
 export interface DockProps extends VariantProps<typeof dockVariants> {
   className?: string;
@@ -78,8 +78,7 @@ export const Dock = React.forwardRef<HTMLDivElement, DockProps>(
 
 Dock.displayName = "Dock";
 
-export interface DockIconProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
+export interface DockIconProps extends Omit<HTMLMotionProps<"div">, "ref"> {
   size?: number;
   magnification?: number;
   disableMagnification?: boolean;
@@ -87,7 +86,6 @@ export interface DockIconProps
   mouseX?: MotionValue<number>;
   className?: string;
   children?: React.ReactNode;
-  props?: PropsWithChildren<any>;
 }
 
 export const DockIcon = ({
@@ -110,7 +108,6 @@ export const DockIcon = ({
   });
 
   const targetSize = disableMagnification ? size : magnification;
-
   const sizeTransform = useTransform(distanceCalc, [-distance, 0, distance], [size, targetSize, size]);
   const scaleSize = useSpring(sizeTransform, { mass: 0.1, stiffness: 150, damping: 12 });
 
