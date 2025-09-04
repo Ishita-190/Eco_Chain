@@ -119,12 +119,10 @@ export function SmoothCursor({
       const currentPos = { x: e.clientX, y: e.clientY };
       updateVelocity(currentPos);
 
-      const speed = Math.sqrt(
-        velocity.current.x ** 2 + velocity.current.y ** 2
-      );
-
       cursorX.set(currentPos.x);
       cursorY.set(currentPos.y);
+
+      const speed = Math.sqrt(velocity.current.x ** 2 + velocity.current.y ** 2);
 
       if (speed > 0.1) {
         const currentAngle = Math.atan2(velocity.current.y, velocity.current.x) * (180 / Math.PI) + 90;
@@ -139,19 +137,16 @@ export function SmoothCursor({
         scale.set(0.95);
         setIsMoving(true);
 
-        const timeout = setTimeout(() => {
+        setTimeout(() => {
           scale.set(1);
           setIsMoving(false);
         }, 150);
-
-        return () => clearTimeout(timeout);
       }
     };
 
     let rafId: number;
     const throttledMouseMove = (e: MouseEvent) => {
       if (rafId) return;
-
       rafId = requestAnimationFrame(() => {
         smoothMouseMove(e);
         rafId = 0;
