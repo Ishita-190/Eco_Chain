@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Leaf } from "lucide-react";
 import { cn } from "@/src/lib/utils";
-import { Marquee } from "@/src/components/magicui/marquee"; // <-- import your Marquee
+import { Marquee } from "@/src/components/magicui/marquee"; // correct import
 
 export function Header() {
   const pathname = usePathname();
@@ -14,42 +14,24 @@ export function Header() {
   return (
     <header className="bg-white/80 border-b border-border/50 backdrop-blur-xl shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-6">
+        {/* Top Row: Navigation + Logo + Auth Buttons */}
         <div className="flex items-center justify-between h-16">
           {/* Left Navigation */}
           <nav className="flex items-center space-x-4">
-            <Link
-              href="/upload"
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-primary/5",
-                isActive("/upload")
-                  ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-primary"
-              )}
-            >
-              Upload
-            </Link>
-            <Link
-              href="/leaderboard"
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-primary/5",
-                isActive("/leaderboard")
-                  ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-primary"
-              )}
-            >
-              Leaderboard
-            </Link>
-            <Link
-              href="/profile"
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-primary/5",
-                isActive("/profile")
-                  ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-primary"
-              )}
-            >
-              Profile
-            </Link>
+            {["upload", "leaderboard", "profile"].map((p) => (
+              <Link
+                key={p}
+                href={`/${p}`}
+                className={cn(
+                  "px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-primary/5",
+                  isActive(`/${p}`)
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-primary"
+                )}
+              >
+                {p.charAt(0).toUpperCase() + p.slice(1)}
+              </Link>
+            ))}
           </nav>
 
           {/* Center Logo */}
@@ -78,16 +60,18 @@ export function Header() {
         </div>
 
         {/* 🌟 Marquee Section */}
-        <Marquee
-          className="mt-2 bg-green-50 rounded-md text-green-800 font-semibold px-2 py-1"
-          repeat={3}
-          pauseOnHover
-        >
-          <span>♻️ Reduce Waste</span>
-          <span>🌱 Recycle</span>
-          <span>💡 Earn Rewards</span>
-          <span>🚀 Join Eco_Chain</span>
-        </Marquee>
+        <div className="mt-2">
+          <Marquee
+            className="w-full bg-green-50 rounded-md text-green-800 font-semibold px-4 py-2"
+            repeat={1}          // only 1 row
+            pauseOnHover
+          >
+            <span className="mx-4">♻️ Reduce Waste</span>
+            <span className="mx-4">🌱 Recycle</span>
+            <span className="mx-4">💡 Earn Rewards</span>
+            <span className="mx-4">🚀 Join Eco_Chain</span>
+          </Marquee>
+        </div>
       </div>
     </header>
   );
