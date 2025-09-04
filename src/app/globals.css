@@ -28,6 +28,13 @@
     --card-foreground: 150 20% 15%;
 
     --border: 150 15% 85%;
+
+    /* 🌟 Marquee Animations */
+    --duration: 10s; /* default duration, can be overridden */
+    --gap: 2rem;
+
+    --animate-marquee: marquee var(--duration) infinite linear;
+    --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   }
 
   body {
@@ -47,18 +54,20 @@
     color: hsl(var(--foreground));
   }
 
-  h1 {
-    font-size: 2.5rem;
-    line-height: 1.2;
-  }
-  h2 {
-    font-size: 2rem;
-    line-height: 1.3;
-  }
-  h3 {
-    font-size: 1.5rem;
-    line-height: 1.4;
-  }
+  h1 { font-size: 2.5rem; line-height: 1.2; }
+  h2 { font-size: 2rem; line-height: 1.3; }
+  h3 { font-size: 1.5rem; line-height: 1.4; }
+}
+
+/* Keyframes for marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-100% - var(--gap))); }
 }
 
 @layer components {
@@ -81,4 +90,15 @@
   .text-gradient {
     @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
   }
+}
+
+/* Optional utility classes for marquee usage */
+.marquee {
+  animation: var(--animate-marquee);
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.marquee-vertical {
+  animation: var(--animate-marquee-vertical);
 }
