@@ -115,12 +115,21 @@
 
   /* 🌟 Dock utility classes */
   .dock {
-    @apply flex items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-md;
+    @apply flex flex-row items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-md;
+  }
+
+  .dock-vertical {
+    @apply flex flex-col items-center justify-center gap-2;
   }
 
   .dock-icon {
     @apply flex aspect-square items-center justify-center rounded-full cursor-pointer transition-all;
     width: var(--dock-icon-size);
     height: var(--dock-icon-size);
+  }
+
+  .dock-icon:hover {
+    /* optional hover effect */
+    transform: scale(calc(var(--dock-icon-magnification) / var(--dock-icon-size)));
   }
 }
