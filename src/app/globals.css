@@ -213,5 +213,4 @@
     /* optional hover effect */
     transform: scale(calc(var(--dock-icon-magnification) / var(--dock-icon-size)));
   }
-}
 

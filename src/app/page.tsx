@@ -32,6 +32,7 @@ import {
   SelectValue,
 } from "@/src/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
+import FeatureCard from "@/src/components/FeatureCard";
 
 const WasteCounter = () => {
   const [wasteCount, setWasteCount] = useState(12847);
@@ -82,7 +83,7 @@ const StatCard = ({
   </motion.div>
 );
 
-const FeatureCard = ({ 
+const LocalFeatureCard = ({ 
   icon: Icon, 
   title, 
   description 
