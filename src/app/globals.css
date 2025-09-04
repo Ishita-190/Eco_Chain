@@ -30,10 +30,10 @@
     --border: 150 15% 85%;
 
     /* 🌟 Marquee Animations */
-    --duration: 10s; /* default duration, can be overridden */
+    --duration: 10s; /* default duration */
     --gap: 2rem;
 
-    --animate-marquee: marquee var(--duration) infinite linear;
+    --animate-marquee: marquee var(--duration) linear infinite;
     --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   }
 
@@ -90,15 +90,22 @@
   .text-gradient {
     @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
   }
-}
 
-/* Optional utility classes for marquee usage */
-.marquee {
-  animation: var(--animate-marquee);
-  white-space: nowrap;
-  display: inline-block;
-}
+  /* 🌟 Marquee utility classes (required for magicui Marquee) */
+  .animate-marquee {
+    animation: marquee var(--duration) linear infinite;
+    display: inline-flex;
+    white-space: nowrap;
+  }
 
-.marquee-vertical {
-  animation: var(--animate-marquee-vertical);
+  .animate-marquee-vertical {
+    animation: marquee-vertical var(--duration) linear infinite;
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  /* Pause-on-hover for marquee */
+  .group-hover\:pause-animation:hover {
+    animation-play-state: paused;
+  }
 }
