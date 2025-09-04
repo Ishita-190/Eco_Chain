@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Leaf } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { Marquee } from "@/src/components/magicui/marquee";
 import { Dock, DockIcon } from "@/src/components/magicui/dock";
@@ -20,7 +19,7 @@ export function Header() {
   ];
 
   const dockItems = [
-    { label: "Eco_Chain", href: "/", isLogo: true },
+    { label: "Eco_Chain", href: "/" },
     { label: "Upload", href: "/upload" },
     { label: "Leaderboard", href: "/leaderboard" },
     { label: "Profile", href: "/profile" },
@@ -33,24 +32,17 @@ export function Header() {
         <Dock orientation="horizontal" className="bg-white/50 shadow-md p-2 mt-2 flex gap-6 items-center">
           {dockItems.map((item) => (
             <DockIcon key={item.href}>
-              {item.isLogo ? (
-                <Link href={item.href} className="flex items-center space-x-2">
-                  <Leaf className="h-8 w-8 text-primary" />
-                  <span className="text-lg font-bold text-primary">Eco_Chain</span>
-                </Link>
-              ) : (
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "text-sm font-medium px-4 py-2 rounded-full transition-colors",
-                    isActive(item.href)
-                      ? "bg-primary/20 text-primary"
-                      : "text-muted-foreground hover:text-primary hover:bg-primary/5"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              )}
+              <Link
+                href={item.href}
+                className={cn(
+                  "text-sm font-medium px-4 py-2 rounded-full transition-colors",
+                  isActive(item.href)
+                    ? "bg-primary/20 text-primary"
+                    : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                )}
+              >
+                {item.label}
+              </Link>
             </DockIcon>
           ))}
         </Dock>
