@@ -67,9 +67,16 @@ export function Header() {
 
         {/* 🌟 Marquee Section */}
         <div className="mt-2">
-          <Marquee className="w-full bg-green-50 rounded-md text-green-800 font-semibold px-4 py-2" pauseOnHover>
+          <Marquee
+            pauseOnHover
+            repeat={5} // repeat content 5 times horizontally
+            style={{ "--duration": "20s" } as React.CSSProperties} // controls scroll speed
+            className="w-full bg-green-50 rounded-md text-green-800 font-semibold px-4 py-2"
+          >
             {marqueeItems.map((text, i) => (
-              <span key={i} className="mx-8">{text}</span>
+              <span key={i} className="mx-8">
+                {text}
+              </span>
             ))}
           </Marquee>
         </div>
