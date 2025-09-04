@@ -60,12 +60,7 @@ export function Header() {
 
         {/* 🌟 Marquee */}
         <div className="mt-2">
-          <Marquee
-            className="w-full bg-green-50 rounded-md text-green-800 font-semibold px-4 py-2"
-            speed={50}         // adjust speed for smooth movement
-            pauseOnHover
-            repeat={Infinity}  // infinite scrolling
-          >
+          <Marquee pauseOnHover>
             <span className="mx-4">♻️ Reduce Waste</span>
             <span className="mx-4">🌱 Recycle</span>
             <span className="mx-4">💡 Earn Rewards</span>
