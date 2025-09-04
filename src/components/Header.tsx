@@ -28,7 +28,10 @@ export function Header() {
         <div className="flex justify-center mt-2">
           <Dock orientation="horizontal" className="flex-row bg-white/50 shadow-md p-1">
             {dockItems.map((item) => (
-              <DockIcon key={item.href}>
+              <DockIcon
+                key={item.href}
+                className={item.isLogo ? "" : "ml-6"} // ← extra space after logo
+              >
                 {item.isLogo ? (
                   <Link href={item.href} className="flex items-center space-x-2">
                     <Leaf className="h-8 w-8 text-primary" />
