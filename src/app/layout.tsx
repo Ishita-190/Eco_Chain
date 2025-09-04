@@ -3,7 +3,6 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { Providers } from "./providers";
 import { Footer } from "@/src/components/Footer";
 import { Header } from "@/src/components/Header";
-import { SmoothCursor } from "@/src/components/magicui/smooth-cursor";
 
 // Body font
 const inter = Inter({ subsets: ["latin"], weight: ["400", "600", "700"], variable: "--font-inter" });
@@ -20,8 +19,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="font-sans relative">
         <Providers>
-          {/* Global Smooth Cursor */}
-          <SmoothCursor />
 
           <div className="flex flex-col min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
             {/* Header */}
@@ -40,3 +37,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
