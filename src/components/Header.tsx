@@ -10,6 +10,13 @@ export function Header() {
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
 
+  const marqueeItems = [
+    "♻️ Reduce Waste",
+    "🌱 Recycle",
+    "💡 Earn Rewards",
+    "🚀 Join Eco_Chain",
+  ];
+
   return (
     <header className="bg-white/80 border-b border-border/50 backdrop-blur-xl shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-6">
@@ -58,13 +65,12 @@ export function Header() {
           </div>
         </div>
 
-        {/* 🌟 Marquee */}
+        {/* 🌟 Marquee Section */}
         <div className="mt-2">
-          <Marquee pauseOnHover>
-            <span className="mx-4">♻️ Reduce Waste</span>
-            <span className="mx-4">🌱 Recycle</span>
-            <span className="mx-4">💡 Earn Rewards</span>
-            <span className="mx-4">🚀 Join Eco_Chain</span>
+          <Marquee className="w-full bg-green-50 rounded-md text-green-800 font-semibold px-4 py-2" pauseOnHover>
+            {marqueeItems.map((text, i) => (
+              <span key={i} className="mx-8">{text}</span>
+            ))}
           </Marquee>
         </div>
       </div>
