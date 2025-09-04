@@ -19,16 +19,10 @@ export function Header() {
   ];
 
   const dockItems = [
-    {
-      label: "Eco_Chain",
-      href: "/",
-      isLogo: true,
-    },
+    { label: "Eco_Chain", href: "/", isLogo: true },
     { label: "Upload", href: "/upload" },
     { label: "Leaderboard", href: "/leaderboard" },
     { label: "Profile", href: "/profile" },
-    { label: "Sign In", href: "/login", isButton: true },
-    { label: "Get Started", href: "/signup", isButton: true, isGradient: true },
   ];
 
   return (
@@ -44,18 +38,6 @@ export function Header() {
                   <span className="text-lg font-bold text-primary">
                     Eco_Chain
                   </span>
-                </Link>
-              ) : item.isButton ? (
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "px-4 py-2 rounded-xl text-sm font-semibold shadow-md transition-all",
-                    item.isGradient
-                      ? "bg-gradient-to-r from-primary to-accent text-white hover:brightness-110"
-                      : "bg-primary/10 text-primary hover:bg-primary/20"
-                  )}
-                >
-                  {item.label}
                 </Link>
               ) : (
                 <Link
