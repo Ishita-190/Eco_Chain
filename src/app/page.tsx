@@ -1,300 +1,739 @@
 "use client";
+
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Leaf, Award, Users, ArrowRight, Recycle, Target, Globe } from "lucide-react";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-// Dynamically import components with no SSR
-const FeatureCard = dynamic(() => import("@/src/components/FeatureCard"), { ssr: false });
-const TestimonialCard = dynamic(() => import("@/src/components/TestimonialCard"), { ssr: false });
-const WasteCounter = dynamic(() => import("@/src/components/WasteCounter"), { ssr: false });
-export default function Page() {
-  const features = [
-    {
-      icon: <Leaf className="h-12 w-12 text-green-700" />,
-      title: "Track Your Impact",
-      description:
-        "Monitor your recycling activities and see your environmental contribution in real-time with advanced analytics.",
-    },
-    {
-      icon: <Award className="h-12 w-12 text-green-600" />,
-      title: "Earn Blockchain Rewards",
-      description:
-        "Convert your recycling efforts into blockchain tokens and unlock exclusive eco-friendly rewards.",
-    },
-    {
-      icon: <Users className="h-12 w-12 text-green-800" />,
-      title: "Global Community",
-      description:
-        "Connect with eco-warriors worldwide and participate in sustainability challenges that matter.",
-    },
-  ];
+import { 
+  Recycle, 
+  Globe, 
+  Users, 
+  Award, 
+  Star, 
+  ArrowRight,
+  CheckCircle,
+  Leaf,
+  TrendingUp,
+  Shield,
+  Menu,
+  X,
+  Trophy
+} from "lucide-react";
+import { Button } from "@/src/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar";
+import { Input } from "@/src/components/ui/input";
+import { Label } from "@/src/components/ui/label";
+import { Textarea } from "@/src/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/src/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
+
+const WasteCounter = () => {
+  const [wasteCount, setWasteCount] = useState(12847);
   
-  const testimonials = [
-    {
-      name: "Alex Johnson",
-      role: "Environmental Activist",
-      content:
-        "Eco_Chain has revolutionized my recycling habits. The rewards system creates genuine motivation for sustainable living.",
-      rating: 5,
-    },
-    {
-      name: "Sarah Williams",
-      role: "Sustainability Blogger",
-      content:
-        "The community features and leaderboards make environmental action engaging and social. It's brilliant!",
-      rating: 5,
-    },
-    {
-      name: "Michael Chen",
-      role: "Tech Entrepreneur",
-      content:
-        "Combining blockchain technology with environmental impact is the future. This platform delivers on that promise.",
-      rating: 5,
-    },
-  ];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWasteCount(prev => prev + Math.floor(Math.random() * 10) + 1);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, []);
+  
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 md:py-32 px-6 bg-gradient-to-b from-green-50 to-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center mb-16">
-            <motion.h1
-              className="text-5xl lg:text-7xl xl:text-8xl font-extrabold font-display text-primary leading-tight tracking-tight w-full text-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Eco_Chain
-              <motion.span
-                className="ml-2 text-primary inline-block"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-              >
-                🌱
-              </motion.span>
-            </motion.h1>
-          </div>
-          
-          {/* Caption */}
-          <motion.p
-            className="text-2xl md:text-3xl max-w-4xl mx-auto mb-10 leading-relaxed text-green-800 font-medium text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Transform your waste into blockchain rewards. Track your environmental impact,
-            compete globally, and help build a sustainable future for our planet.
-          </motion.p>
-          
-          {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <Link href="/upload" className="flex justify-center">
-              <motion.button
-                className="flex items-center justify-center px-6 py-3 bg-green-700 text-white font-medium rounded-lg hover:bg-green-800 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Recycle className="h-6 w-6 mr-2 group-hover:animate-spin" />
-                Upload Waste
-                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
-            </Link>
-            <Link href="/leaderboard" className="flex justify-center">
-              <motion.button
-                className="flex items-center justify-center px-6 py-3 bg-green-100 text-green-800 font-medium rounded-lg hover:bg-green-200 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Target className="h-6 w-6 mr-2" />
-                View Leaderboard
-              </motion.button>
-            </Link>
-          </motion.div>
-          
-          {/* Waste Counter */}
-          <div className="w-full flex justify-center mt-12">
-            <WasteCounter />
-          </div>
-        </div>
-      </section>
-      
-      {/* Global Impact */}
-      <section className="py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
-          {/* Heading */}
-          <motion.h2
-            className="text-5xl md:text-6xl font-extrabold text-green-800 mb-16 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            Global Impact 🌍
-          </motion.h2>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
-            <motion.div
-              className="flex flex-col items-center justify-center text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
-                ♻️ 1.1M
-              </p>
-              <p className="text-lg text-gray-600">Plastic Bottles Recycled</p>
-            </motion.div>
-            
-            <motion.div
-              className="flex flex-col items-center justify-center text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
-                👥 45k
-              </p>
-              <p className="text-lg text-gray-600">Active Users</p>
-            </motion.div>
-            
-            <motion.div
-              className="flex flex-col items-center justify-center text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-5xl md:text-6xl font-bold text-green-700 mb-2">
-                🌱 95%
-              </p>
-              <p className="text-lg text-gray-600">Sustainable Practices</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Features Section */}
-      <section className="relative py-24 px-6 bg-green-50">
-        <div className="max-w-7xl mx-auto">
-          {/* Heading */}
-          <motion.h2
-            className="text-5xl md:text-6xl font-extrabold text-green-800 mb-20 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            How It Works ⚡
-          </motion.h2>
-          
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: index * 0.2 }}
-                className="flex flex-col items-center justify-center text-center"
-              >
-                <FeatureCard
-                  icon={feature.icon}
-                  title={feature.title}
-                  description={feature.description}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* Testimonials Section */}
-      <section className="relative py-20 px-6 bg-green-50">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-16 font-display text-green-800 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Community Voices
-          </motion.h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="flex justify-center">
-                <TestimonialCard {...testimonial} delay={index * 0.1} />
+    <div className="flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full">
+      <Recycle className="text-green-600" />
+      <span className="font-medium text-green-800">
+        {wasteCount.toLocaleString()} kg of waste recycled
+      </span>
+    </div>
+  );
+};
+
+const StatCard = ({ 
+  icon: Icon, 
+  value, 
+  label 
+}: { 
+  icon: React.ElementType; 
+  value: string; 
+  label: string; 
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    className="bg-white p-6 rounded-xl shadow-sm border border-gray-100"
+  >
+    <div className="flex items-center gap-4">
+      <div className="bg-green-100 p-3 rounded-full">
+        <Icon className="text-green-600 h-6 w-6" />
+      </div>
+      <div>
+        <p className="text-2xl font-bold text-gray-900">{value}</p>
+        <p className="text-gray-600">{label}</p>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const FeatureCard = ({ 
+  icon: Icon, 
+  title, 
+  description 
+}: { 
+  icon: React.ElementType; 
+  title: string; 
+  description: string; 
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    whileHover={{ y: -5 }}
+    className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 h-full"
+  >
+    <div className="bg-green-100 p-3 rounded-full w-fit mb-4">
+      <Icon className="text-green-600 h-6 w-6" />
+    </div>
+    <h3 className="text-xl font-semibold mb-2">{title}</h3>
+    <p className="text-gray-600">{description}</p>
+  </motion.div>
+);
+
+const TestimonialCard = ({ 
+  name, 
+  role, 
+  content, 
+  rating 
+}: { 
+  name: string; 
+  role: string; 
+  content: string; 
+  rating: number; 
+}) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.95 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    className="bg-white p-6 rounded-xl shadow-sm border border-gray-100"
+  >
+    <div className="flex gap-1 mb-4">
+      {[...Array(5)].map((_, i) => (
+        <Star 
+          key={i} 
+          className={`h-5 w-5 ${i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
+        />
+      ))}
+    </div>
+    <p className="text-gray-700 mb-4 italic">"{content}"</p>
+    <div className="flex items-center gap-3">
+      <Avatar>
+        <AvatarImage src={`https://i.pravatar.cc/150?u=${name}`} />
+        <AvatarFallback>{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+      </Avatar>
+      <div>
+        <p className="font-semibold">{name}</p>
+        <p className="text-sm text-gray-600">{role}</p>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const FAQItem = ({ 
+  question, 
+  answer 
+}: { 
+  question: string; 
+  answer: string; 
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <div className="border-b border-gray-200 py-4">
+      <button
+        className="flex justify-between items-center w-full text-left"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <h3 className="font-semibold text-lg">{question}</h3>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <ArrowRight className="h-5 w-5 text-gray-500" />
+        </motion.div>
+      </button>
+      {isOpen && (
+        <motion.p 
+          className="mt-2 text-gray-600"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+        >
+          {answer}
+        </motion.p>
+      )}
+    </div>
+  );
+};
+
+const LeaderboardItem = ({ 
+  rank, 
+  name, 
+  points, 
+  isCurrentUser = false 
+}: { 
+  rank: number; 
+  name: string; 
+  points: number; 
+  isCurrentUser?: boolean; 
+}) => (
+  <div className={`flex items-center justify-between p-4 rounded-lg ${isCurrentUser ? 'bg-green-50 border border-green-200' : 'bg-white'}`}>
+    <div className="flex items-center gap-4">
+      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${rank <= 3 ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'}`}>
+        {rank}
+      </div>
+      <div className="flex items-center gap-3">
+        <Avatar>
+          <AvatarImage src={`https://i.pravatar.cc/150?u=${name}`} />
+          <AvatarFallback>{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+        </Avatar>
+        <span className={`font-medium ${isCurrentUser ? 'text-green-700' : 'text-gray-900'}`}>
+          {name}
+        </span>
+      </div>
+    </div>
+    <div className="flex items-center gap-2">
+      <Trophy className="h-5 w-5 text-yellow-500" />
+      <span className="font-semibold">{points.toLocaleString()}</span>
+    </div>
+  </div>
+);
+
+export default function EcoChainLanding() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [activeTab, setActiveTab] = useState("monthly");
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Thank you! We'll send updates to ${email}`);
+    setEmail("");
+  };
+
+  // Mock leaderboard data
+  const leaderboardData = [
+    { id: 1, name: "Green Warriors", points: 12500 },
+    { id: 2, name: "Eco Heroes", points: 11200 },
+    { id: 3, name: "Planet Protectors", points: 9800 },
+    { id: 4, name: "Recycle Rangers", points: 8750 },
+    { id: 5, name: "Sustainable Squad", points: 7600 },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <div className="flex items-center gap-2">
+                <Recycle className="h-8 w-8 text-green-600" />
+                <span className="text-2xl font-bold text-gray-900">Eco_Chain</span>
               </div>
-            ))}
+            </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#features" className="text-gray-600 hover:text-green-600">Features</a>
+              <a href="#impact" className="text-gray-600 hover:text-green-600">Impact</a>
+              <a href="#testimonials" className="text-gray-600 hover:text-green-600">Testimonials</a>
+              <a href="#leaderboard" className="text-gray-600 hover:text-green-600">Leaderboard</a>
+              <a href="#faq" className="text-gray-600 hover:text-green-600">FAQ</a>
+              <Button variant="outline">Sign In</Button>
+              <Button>Get Started</Button>
+            </div>
+            
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-600 hover:text-green-600"
+              >
+                {isMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </section>
-      
-      {/* CTA Section */}
-      <section className="relative py-28 px-6 bg-gradient-to-b from-green-200 to-green-50">
-        <div className="max-w-4xl mx-auto px-4">
+        
+        {/* Mobile Menu */}
+        {isMenuOpen && (
           <motion.div
-            className="bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-xl p-10 md:p-16 shadow-lg shadow-green-200/50"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-t border-gray-200"
           >
-            {/* Heading */}
-            <motion.h3
-              className="text-5xl md:text-6xl font-extrabold mb-10 text-green-800 text-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <a href="#features" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-gray-50">Features</a>
+              <a href="#impact" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-gray-50">Impact</a>
+              <a href="#testimonials" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-gray-50">Testimonials</a>
+              <a href="#leaderboard" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-gray-50">Leaderboard</a>
+              <a href="#faq" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-green-600 hover:bg-gray-50">FAQ</a>
+              <div className="px-3 py-2 space-y-2">
+                <Button variant="outline" className="w-full">Sign In</Button>
+                <Button className="w-full">Get Started</Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section className="py-16 md:py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              Ready to Transform the World? 🌍
-            </motion.h3>
+              <WasteCounter />
+            </motion.div>
             
-            {/* Subtext */}
-            <motion.p
-              className="text-2xl text-green-900 mb-12 leading-relaxed text-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.4 }}
+            <motion.h1 
+              className="text-4xl md:text-6xl font-bold mt-6 mb-6 text-gray-900"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Join thousands of eco-warriors already making a difference.  
-              Start your sustainable journey today.
+              Transform Waste into <span className="text-green-600">Value</span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl text-gray-600 mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Join the global movement to make recycling rewarding and transparent through blockchain technology.
             </motion.p>
             
-            {/* CTA Button (navigates to /upload) */}
             <motion.div
-              className="flex justify-center"
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg">
+                Start Recycling
+              </Button>
+              <Button size="lg" variant="outline" className="px-8 py-6 text-lg border-2 flex items-center gap-2">
+                <Trophy className="h-5 w-5" />
+                View Leaderboard
+              </Button>
+            </motion.div>
+            
+            {/* Leaderboard Preview */}
+            <motion.div
+              className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-bold text-gray-900">Top Recyclers This Month</h3>
+                <Button variant="ghost" size="sm">
+                  View Full Leaderboard
+                </Button>
+              </div>
+              
+              <div className="space-y-4">
+                {leaderboardData.slice(0, 3).map((user, index) => (
+                  <LeaderboardItem 
+                    key={user.id} 
+                    rank={index + 1} 
+                    name={user.name} 
+                    points={user.points} 
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Global Impact Section */}
+      <section id="impact" className="py-16 bg-white px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.5 }}
             >
-              <Link href="/upload">
-                <motion.button
-                  className="flex items-center justify-center px-8 py-4 bg-green-700 text-white text-xl font-semibold rounded-2xl shadow-lg hover:bg-green-800 transition-colors duration-300"
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Globe className="h-7 w-7 mr-2 group-hover:animate-spin" />
-                  Start Recycling Now
-                </motion.button>
-              </Link>
-            </motion.div>
-          </motion.div>
+              Our Global Impact
+            </motion.h2>
+            <motion.p 
+              className="text-gray-600 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Making a difference one recycled item at a time
+            </motion.p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <StatCard icon={Globe} value="127+" label="Countries" />
+            <StatCard icon={Users} value="50K+" label="Active Users" />
+            <StatCard icon={Recycle} value="2.3M+" label="Items Recycled" />
+            <StatCard icon={Award} value="89%" label="CO2 Reduction" />
+          </div>
         </div>
       </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              How Eco_Chain Works
+            </motion.h2>
+            <motion.p 
+              className="text-gray-600 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Simple steps to make a big impact on our planet
+            </motion.p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <FeatureCard 
+              icon={Leaf}
+              title="Scan & Sort"
+              description="Use our app to scan items and learn how to properly sort your recyclables."
+            />
+            <FeatureCard 
+              icon={TrendingUp}
+              title="Earn Rewards"
+              description="Get tokens for every item you recycle that can be exchanged for discounts and products."
+            />
+            <FeatureCard 
+              icon={Shield}
+              title="Track Impact"
+              description="See the environmental impact of your actions through our transparent blockchain ledger."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-16 bg-white px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              What Our Users Say
+            </motion.h2>
+            <motion.p 
+              className="text-gray-600 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Join thousands of satisfied users making a difference
+            </motion.p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <TestimonialCard 
+              name="Sarah Johnson"
+              role="Environmental Activist"
+              content="Eco_Chain has completely changed how I think about recycling. I love earning rewards for doing good!"
+              rating={5}
+            />
+            <TestimonialCard 
+              name="Michael Chen"
+              role="Sustainability Manager"
+              content="The transparency of the blockchain tracking gives us confidence that our recycling efforts are making a real impact."
+              rating={4}
+            />
+            <TestimonialCard 
+              name="Emma Rodriguez"
+              role="Community Leader"
+              content="Our neighborhood recycling rate has doubled since we started using Eco_Chain. It's incredibly user-friendly!"
+              rating={5}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Leaderboard Section */}
+      <section id="leaderboard" className="py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Community Leaderboard
+            </motion.h2>
+            <motion.p 
+              className="text-gray-600 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              See who's making the biggest impact in our community
+            </motion.p>
+          </div>
+          
+          <Card className="bg-white shadow-sm border border-gray-100">
+            <CardHeader>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <CardTitle>Top Recyclers</CardTitle>
+                  <CardDescription>Ranked by total points earned</CardDescription>
+                </div>
+                <div className="flex gap-2">
+                  <Button 
+                    variant={activeTab === "monthly" ? "default" : "outline"}
+                    onClick={() => setActiveTab("monthly")}
+                  >
+                    Monthly
+                  </Button>
+                  <Button 
+                    variant={activeTab === "alltime" ? "default" : "outline"}
+                    onClick={() => setActiveTab("alltime")}
+                  >
+                    All Time
+                  </Button>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {leaderboardData.map((user, index) => (
+                  <LeaderboardItem 
+                    key={user.id} 
+                    rank={index + 1} 
+                    name={user.name} 
+                    points={user.points} 
+                    isCurrentUser={index === 2}
+                  />
+                ))}
+              </div>
+              
+              <div className="mt-8 text-center">
+                <Button variant="outline">
+                  View Full Leaderboard
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Frequently Asked Questions
+            </motion.h2>
+            <motion.p 
+              className="text-gray-600 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Everything you need to know about Eco_Chain
+            </motion.p>
+          </div>
+          
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
+            <FAQItem 
+              question="How do I start using Eco_Chain?" 
+              answer="Download our mobile app from the App Store or Google Play, create an account, and follow the setup instructions. You'll receive a starter kit with QR codes for your recycling bins." 
+            />
+            <FAQItem 
+              question="What types of items can I recycle through Eco_Chain?" 
+              answer="We support all standard recyclables including plastic bottles, aluminum cans, paper, cardboard, glass, and electronics. Check our app for the complete list of accepted items in your area." 
+            />
+            <FAQItem 
+              question="How are rewards calculated?" 
+              answer="Rewards are based on the weight and type of items you recycle. Rarer materials and harder-to-recycle items earn more tokens. You can exchange tokens for discounts, products, or donate to environmental causes." 
+            />
+            <FAQItem 
+              question="Is my data secure?" 
+              answer="Yes, we use blockchain technology to ensure complete transparency and security of your recycling data. Your personal information is encrypted and never shared without your consent." 
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <Card className="bg-gradient-to-r from-green-500 to-emerald-600 border-0">
+            <CardContent className="p-12 text-center text-white">
+              <motion.h2 
+                className="text-3xl md:text-4xl font-bold mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                Ready to Make a Difference?
+              </motion.h2>
+              
+              <motion.p 
+                className="text-lg mb-8 max-w-2xl mx-auto text-green-100"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                Join thousands of users who are already turning waste into rewards and making our planet cleaner.
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="max-w-md mx-auto"
+              >
+                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex-grow">
+                    <Input 
+                      type="email" 
+                      placeholder="Enter your email" 
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="h-12 bg-white/90 text-gray-900 placeholder:text-gray-500"
+                    />
+                  </div>
+                  <Button 
+                    type="submit"
+                    size="lg" 
+                    variant="secondary" 
+                    className="bg-white text-green-600 hover:bg-gray-100 px-6 h-12"
+                  >
+                    Get Started
+                  </Button>
+                </form>
+                <p className="text-green-100 text-sm mt-3">
+                  Join our newsletter for updates and tips
+                </p>
+              </motion.div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-4 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Recycle className="h-8 w-8 text-green-400" />
+                <span className="text-2xl font-bold">Eco_Chain</span>
+              </div>
+              <p className="text-gray-400 mb-4">
+                Making recycling rewarding for everyone through blockchain technology.
+              </p>
+              <div className="flex gap-3">
+                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                  <div className="bg-gray-200 border-2 border-dashed rounded-xl w-6 h-6" />
+                </Button>
+                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                  <div className="bg-gray-200 border-2 border-dashed rounded-xl w-6 h-6" />
+                </Button>
+                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                  <div className="bg-gray-200 border-2 border-dashed rounded-xl w-6 h-6" />
+                </Button>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-lg mb-4">Product</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white">Features</a></li>
+                <li><a href="#" className="hover:text-white">Solutions</a></li>
+                <li><a href="#" className="hover:text-white">Pricing</a></li>
+                <li><a href="#" className="hover:text-white">Demo</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-lg mb-4">Resources</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white">Blog</a></li>
+                <li><a href="#" className="hover:text-white">Help Center</a></li>
+                <li><a href="#" className="hover:text-white">Community</a></li>
+                <li><a href="#" className="hover:text-white">Partners</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-lg mb-4">Company</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white">About Us</a></li>
+                <li><a href="#" className="hover:text-white">Careers</a></li>
+                <li><a href="#" className="hover:text-white">Contact</a></li>
+                <li><a href="#" className="hover:text-white">Partners</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="pt-8 border-t border-gray-800 text-center text-gray-400">
+            <p>© 2023 Eco_Chain. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
