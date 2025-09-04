@@ -2,15 +2,17 @@
 
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import Image from "next/image";
 
 interface FeatureCardProps {
-  icon: ReactNode;
+  icon?: ReactNode;
+  customIcon?: string;
   title: string;
   description: string;
   delay?: number;
 }
 
-export default function FeatureCard({ icon, title, description, delay = 0 }: FeatureCardProps) {
+export default function FeatureCard({ icon, customIcon, title, description, delay = 0 }: FeatureCardProps) {
   return (
     <motion.div
       className="card-glass p-8 hover:bg-card/90 transition-all duration-300 group h-full"
@@ -22,7 +24,11 @@ export default function FeatureCard({ icon, title, description, delay = 0 }: Fea
     >
       <div className="text-center">
         <div className="mb-6 flex justify-center group-hover:animate-float">
-          {icon}
+          {customIcon ? (
+            <Image src={customIcon} width={48} height={48} alt={title} className="h-12 w-12" />
+          ) : icon ? (
+            icon
+          ) : null}
         </div>
         <h3 className="text-2xl font-bold mb-4 text-foreground font-display">
           {title}

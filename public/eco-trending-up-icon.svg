@@ -1,0 +1,29 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="trendingGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#16a34a" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Elements -->
+  <circle cx="32" cy="32" r="24" fill="#4ade80" opacity="0.1"/>
+  
+  <!-- Trending Line -->
+  <path d="M12 40L24 28L36 36L52 20" stroke="url(#trendingGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Arrow Head -->
+  <path d="M40 20H52V32" stroke="url(#trendingGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Decorative Elements -->
+  <circle cx="24" cy="28" r="3" fill="#86efac"/>
+  <circle cx="36" cy="36" r="3" fill="#86efac"/>
+  
+  <!-- Small Leaf Decoration -->
+  <path d="M48 44C48 40 50 38 54 38C54 42 52 44 48 44Z" fill="#86efac" stroke="#16a34a" stroke-width="1" stroke-linejoin="round"/>
+  
+  <!-- Small Circles -->
+  <circle cx="16" cy="20" r="1.5" fill="#86efac" opacity="0.6"/>
+  <circle cx="48" cy="48" r="2" fill="#86efac" opacity="0.8"/>
+  <circle cx="12" cy="36" r="2" fill="#86efac" opacity="0.7"/>
+</svg>

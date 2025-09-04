@@ -1,0 +1,17 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Water Drop with Eco Theme -->
+  <path d="M100,30 C100,30 40,100 40,140 C40,175 70,190 100,190 C130,190 160,175 160,140 C160,100 100,30 100,30 Z" fill="#ECFDF5" stroke="#10B981" stroke-width="4"/>
+  
+  <!-- Ripple Effects -->
+  <path d="M85,140 C85,155 115,155 115,140" stroke="#10B981" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  <path d="M75,120 C75,145 125,145 125,120" stroke="#10B981" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <path d="M65,100 C65,135 135,135 135,100" stroke="#10B981" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+  
+  <!-- Leaf Decoration -->
+  <path d="M100,70 C100,50 120,50 120,70 C120,90 140,90 140,70" stroke="#10B981" stroke-width="2" fill="none" opacity="0.5"/>
+  
+  <!-- Small Decorative Elements -->
+  <circle cx="100" cy="100" r="3" fill="#10B981"/>
+  <circle cx="85" cy="85" r="2" fill="#10B981"/>
+  <circle cx="115" cy="85" r="2" fill="#10B981"/>
+</svg>

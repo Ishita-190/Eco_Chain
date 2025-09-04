@@ -1,0 +1,27 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Recycling Icon with Eco Theme -->
+  <circle cx="100" cy="100" r="90" fill="#ECFDF5" opacity="0.8"/>
+  
+  <!-- Recycling Arrows -->
+  <g stroke="#10B981" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Arrow 1 -->
+    <path d="M65,60 L100,40 L135,60" fill="none"/>
+    <path d="M100,40 L100,90" fill="none"/>
+    
+    <!-- Arrow 2 -->
+    <path d="M140,120 L120,155 L90,155" fill="none"/>
+    <path d="M120,155 L90,110" fill="none"/>
+    
+    <!-- Arrow 3 -->
+    <path d="M60,120 L45,85 L75,65" fill="none"/>
+    <path d="M45,85 L85,100" fill="none"/>
+  </g>
+  
+  <!-- Leaf Decoration -->
+  <path d="M100,100 C100,80 120,80 120,100 C120,120 140,120 140,100" stroke="#10B981" stroke-width="3" fill="none" opacity="0.6"/>
+  
+  <!-- Small Decorative Elements -->
+  <circle cx="100" cy="40" r="4" fill="#10B981"/>
+  <circle cx="120" cy="155" r="4" fill="#10B981"/>
+  <circle cx="45" cy="85" r="4" fill="#10B981"/>
+</svg>

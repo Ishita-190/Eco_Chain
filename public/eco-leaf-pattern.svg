@@ -1,0 +1,30 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Leaf Pattern -->
+  <g opacity="0.15">
+    <!-- Leaf 1 -->
+    <path d="M50,100 C50,50 100,50 100,100 C100,150 150,150 150,100" stroke="#10B981" stroke-width="3" fill="none"/>
+    
+    <!-- Leaf 2 -->
+    <path d="M200,50 C200,0 250,0 250,50 C250,100 300,100 300,50" stroke="#10B981" stroke-width="3" fill="none"/>
+    
+    <!-- Leaf 3 -->
+    <path d="M300,150 C300,100 350,100 350,150 C350,200 400,200 400,150" stroke="#10B981" stroke-width="3" fill="none"/>
+    
+    <!-- Leaf 4 -->
+    <path d="M250,250 C250,200 300,200 300,250 C300,300 350,300 350,250" stroke="#10B981" stroke-width="3" fill="none"/>
+    
+    <!-- Leaf 5 -->
+    <path d="M100,300 C100,250 150,250 150,300 C150,350 200,350 200,300" stroke="#10B981" stroke-width="3" fill="none"/>
+    
+    <!-- Leaf 6 -->
+    <path d="M0,200 C0,150 50,150 50,200 C50,250 100,250 100,200" stroke="#10B981" stroke-width="3" fill="none"/>
+    
+    <!-- Small decorative circles -->
+    <circle cx="100" cy="100" r="5" fill="#10B981"/>
+    <circle cx="250" cy="50" r="5" fill="#10B981"/>
+    <circle cx="350" cy="150" r="5" fill="#10B981"/>
+    <circle cx="300" cy="250" r="5" fill="#10B981"/>
+    <circle cx="150" cy="300" r="5" fill="#10B981"/>
+    <circle cx="50" cy="200" r="5" fill="#10B981"/>
+  </g>
+</svg>

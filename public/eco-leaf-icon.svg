@@ -1,0 +1,25 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#16a34a" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main Leaf Shape -->
+  <path d="M12 32C12 18.7452 22.7452 8 36 8C36 21.2548 25.2548 32 12 32ZM12 32C12 45.2548 22.7452 56 36 56C36 42.7452 25.2548 32 12 32Z" 
+        fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5" stroke-linejoin="round"/>
+  
+  <!-- Leaf Veins -->
+  <path d="M12 32H36" stroke="#dcfce7" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M18 24C22 26 28 28 36 24" stroke="#dcfce7" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M18 40C22 38 28 36 36 40" stroke="#dcfce7" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Decorative Elements -->
+  <circle cx="44" cy="20" r="2" fill="#86efac" opacity="0.8"/>
+  <circle cx="48" cy="32" r="1.5" fill="#86efac" opacity="0.6"/>
+  <circle cx="44" cy="44" r="2" fill="#86efac" opacity="0.8"/>
+  
+  <!-- Subtle Glow -->
+  <circle cx="36" cy="32" r="24" fill="#4ade80" opacity="0.1"/>
+</svg>
