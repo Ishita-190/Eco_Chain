@@ -32,7 +32,7 @@ export function Header() {
         {/* Dock Navigation */}
         <Dock orientation="horizontal" className="bg-white/50 shadow-md p-1 mt-2">
           {dockItems.map((item, index) => (
-            <DockIcon key={item.href} className={index === 1 ? "ml-4" : ""}>
+            <DockIcon key={item.href} className={index === 1 ? "ml-12" : ""}>
               {item.isLogo ? (
                 <Link href={item.href} className="flex items-center space-x-2">
                   <Leaf className="h-8 w-8 text-primary" />
