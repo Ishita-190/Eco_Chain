@@ -16,6 +16,7 @@ export function Header() {
     "🌱 Recycle",
     "💡 Earn Rewards",
     "🚀 Join Eco_Chain",
+    "🌿 Eco_Chain", // Added Eco_Chain here
   ];
 
   const dockItems = [
