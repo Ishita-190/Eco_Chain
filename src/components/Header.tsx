@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Leaf } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { Marquee } from "@/src/components/magicui/marquee";
+import { Dock, DockIcon } from "@/src/components/magicui/dock";
 
 export function Header() {
   const pathname = usePathname();
@@ -17,59 +18,67 @@ export function Header() {
     "🚀 Join Eco_Chain",
   ];
 
+  const dockItems = [
+    {
+      label: "Eco_Chain",
+      href: "/",
+      isLogo: true,
+    },
+    { label: "Upload", href: "/upload" },
+    { label: "Leaderboard", href: "/leaderboard" },
+    { label: "Profile", href: "/profile" },
+    { label: "Sign In", href: "/login", isButton: true },
+    { label: "Get Started", href: "/signup", isButton: true, isGradient: true },
+  ];
+
   return (
     <header className="bg-white/80 border-b border-border/50 backdrop-blur-xl shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-6">
-        {/* Top Row */}
-        <div className="flex items-center justify-between h-16">
-          {/* Left: Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <Leaf className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-200" />
-            <span className="text-2xl font-bold text-primary tracking-tight">
-              Eco_Chain
-            </span>
-          </Link>
-
-          {/* Center: Navigation */}
-          <nav className="flex items-center space-x-6">
-            {["upload", "leaderboard", "profile"].map((p) => (
-              <Link
-                key={p}
-                href={`/${p}`}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-primary/5",
-                  isActive(`/${p}`)
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-primary"
-                )}
-              >
-                {p.charAt(0).toUpperCase() + p.slice(1)}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Right: Auth Buttons */}
-          <div className="flex items-center space-x-3">
-            <Link
-              href="/login"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/signup"
-              className="px-4 py-2 rounded-xl bg-gradient-to-r from-primary to-accent text-white text-sm font-semibold shadow-md hover:brightness-110 transition-all"
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
+        {/* Dock Navigation */}
+        <Dock className="bg-white/50 shadow-md p-1 mt-2">
+          {dockItems.map((item) => (
+            <DockIcon key={item.href}>
+              {item.isLogo ? (
+                <Link href={item.href} className="flex items-center space-x-2">
+                  <Leaf className="h-8 w-8 text-primary" />
+                  <span className="text-lg font-bold text-primary">
+                    Eco_Chain
+                  </span>
+                </Link>
+              ) : item.isButton ? (
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "px-4 py-2 rounded-xl text-sm font-semibold shadow-md transition-all",
+                    item.isGradient
+                      ? "bg-gradient-to-r from-primary to-accent text-white hover:brightness-110"
+                      : "bg-primary/10 text-primary hover:bg-primary/20"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "text-sm font-medium px-4 py-2 rounded-full transition-colors",
+                    isActive(item.href)
+                      ? "bg-primary/20 text-primary"
+                      : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              )}
+            </DockIcon>
+          ))}
+        </Dock>
 
         {/* 🌟 Marquee Section */}
         <div className="mt-2">
           <Marquee
             pauseOnHover
-            repeat={5} // repeat content 5 times horizontally
+            repeat={5} // repeat content horizontally
             style={{ "--duration": "20s" } as React.CSSProperties} // controls scroll speed
             className="w-full bg-green-50 rounded-md text-green-800 font-semibold px-4 py-2"
           >
