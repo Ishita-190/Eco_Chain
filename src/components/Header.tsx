@@ -69,7 +69,7 @@ export function Header() {
         <div className="mt-2">
           <Marquee
             pauseOnHover
-            repeat={1} // repeat content 5 times horizontally
+            repeat={5} // repeat content 5 times horizontally
             style={{ "--duration": "20s" } as React.CSSProperties} // controls scroll speed
             className="w-full bg-green-50 rounded-md text-green-800 font-semibold px-4 py-2"
           >
