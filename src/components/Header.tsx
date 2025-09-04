@@ -4,20 +4,27 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Leaf } from "lucide-react";
 import { cn } from "@/src/lib/utils";
-import { Marquee } from "@/src/components/magicui/marquee"; // correct import
+import { Marquee } from "@/src/components/magicui/marquee";
 
 export function Header() {
   const pathname = usePathname();
-
   const isActive = (path: string) => pathname === path;
 
   return (
     <header className="bg-white/80 border-b border-border/50 backdrop-blur-xl shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-6">
-        {/* Top Row: Navigation + Logo + Auth Buttons */}
+        {/* Top Row */}
         <div className="flex items-center justify-between h-16">
-          {/* Left Navigation */}
-          <nav className="flex items-center space-x-4">
+          {/* Left: Logo */}
+          <Link href="/" className="flex items-center space-x-2 group">
+            <Leaf className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-200" />
+            <span className="text-2xl font-bold text-primary tracking-tight">
+              Eco_Chain
+            </span>
+          </Link>
+
+          {/* Center: Navigation */}
+          <nav className="flex items-center space-x-6">
             {["upload", "leaderboard", "profile"].map((p) => (
               <Link
                 key={p}
@@ -34,15 +41,7 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Center Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <Leaf className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-200" />
-            <span className="text-2xl font-bold text-primary tracking-tight">
-              Eco_Chain
-            </span>
-          </Link>
-
-          {/* Right Auth Buttons */}
+          {/* Right: Auth Buttons */}
           <div className="flex items-center space-x-3">
             <Link
               href="/login"
@@ -59,12 +58,13 @@ export function Header() {
           </div>
         </div>
 
-        {/* 🌟 Marquee Section */}
+        {/* 🌟 Marquee */}
         <div className="mt-2">
           <Marquee
             className="w-full bg-green-50 rounded-md text-green-800 font-semibold px-4 py-2"
-            repeat={1}          // only 1 row
+            speed={50}         // adjust speed for smooth movement
             pauseOnHover
+            repeat={Infinity}  // infinite scrolling
           >
             <span className="mx-4">♻️ Reduce Waste</span>
             <span className="mx-4">🌱 Recycle</span>
