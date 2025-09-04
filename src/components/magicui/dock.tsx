@@ -60,7 +60,7 @@ export const Dock = React.forwardRef<HTMLDivElement, DockProps>(
       });
     };
 
-    const orientationClass = orientation === "horizontal" ? "flex-row items-center" : "flex-col items-center";
+  const orientationClass = orientation === "horizontal" ? "flex-row items-center" : "flex-col items-center";
 
     return (
       <motion.div
