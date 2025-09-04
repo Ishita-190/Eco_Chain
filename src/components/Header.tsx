@@ -11,7 +11,12 @@ export function Header() {
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
 
-  const marqueeItems = ["♻️ Reduce Waste", "🌱 Recycle", "💡 Earn Rewards", "🚀 Join Eco_Chain"];
+  const marqueeItems = [
+    "♻️ Reduce Waste",
+    "🌱 Recycle",
+    "💡 Earn Rewards",
+    "🚀 Join Eco_Chain",
+  ];
 
   const dockItems = [
     { label: "Eco_Chain", href: "/", isLogo: true },
@@ -23,37 +28,31 @@ export function Header() {
   return (
     <header className="bg-white/80 border-b border-border/50 backdrop-blur-xl shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-6">
-
-        {/* Dock Navigation centered */}
-        <div className="flex justify-center mt-2">
-          <Dock orientation="horizontal" className="flex-row bg-white/50 shadow-md p-1">
-            {dockItems.map((item) => (
-              <DockIcon
-                key={item.href}
-                className={item.isLogo ? "" : "ml-6"} // ← extra space after logo
-              >
-                {item.isLogo ? (
-                  <Link href={item.href} className="flex items-center space-x-2">
-                    <Leaf className="h-8 w-8 text-primary" />
-                    <span className="text-lg font-bold text-primary">Eco_Chain</span>
-                  </Link>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "text-sm font-medium px-4 py-2 rounded-full transition-colors",
-                      isActive(item.href)
-                        ? "bg-primary/20 text-primary"
-                        : "text-muted-foreground hover:text-primary hover:bg-primary/5"
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                )}
-              </DockIcon>
-            ))}
-          </Dock>
-        </div>
+        {/* Dock Navigation */}
+        <Dock orientation="horizontal" className="bg-white/50 shadow-md p-1 mt-2">
+          {dockItems.map((item, index) => (
+            <DockIcon key={item.href} className={index === 1 ? "ml-4" : ""}>
+              {item.isLogo ? (
+                <Link href={item.href} className="flex items-center space-x-2">
+                  <Leaf className="h-8 w-8 text-primary" />
+                  <span className="text-lg font-bold text-primary">Eco_Chain</span>
+                </Link>
+              ) : (
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "text-sm font-medium px-4 py-2 rounded-full transition-colors",
+                    isActive(item.href)
+                      ? "bg-primary/20 text-primary"
+                      : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              )}
+            </DockIcon>
+          ))}
+        </Dock>
 
         {/* 🌟 Marquee Section */}
         <div className="mt-2">
