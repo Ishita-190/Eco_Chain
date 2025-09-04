@@ -5,9 +5,9 @@ import { Footer } from "@/src/components/Footer";
 import { Header } from "@/src/components/Header";
 
 // Body font
-const inter = Inter({ subsets: ["latin"], weight: ["400","600","700"] });
+const inter = Inter({ subsets: ["latin"], weight: ["400", "600", "700"], variable: "--font-inter" });
 // Heading font
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: "700" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: "700", variable: "--font-space-grotesk" });
 
 export const metadata = {
   title: "EcoCommerce - Waste to Rewards",
@@ -21,10 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} ${spaceGrotesk.className}`}>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className="font-sans">
         <Providers>
-          {/* Full-page flex container to allow vertical alignment if needed */}
           <div className="flex flex-col min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
             {/* Header */}
             <Header />
