@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Leaf } from "lucide-react";
 import { cn } from "@/src/lib/utils";
+import { Marquee } from "@/src/components/magicui/marquee"; // <-- import your Marquee
 
 export function Header() {
   const pathname = usePathname();
@@ -75,6 +76,18 @@ export function Header() {
             </Link>
           </div>
         </div>
+
+        {/* 🌟 Marquee Section */}
+        <Marquee
+          className="mt-2 bg-green-50 rounded-md text-green-800 font-semibold px-2 py-1"
+          repeat={3}
+          pauseOnHover
+        >
+          <span>♻️ Reduce Waste</span>
+          <span>🌱 Recycle</span>
+          <span>💡 Earn Rewards</span>
+          <span>🚀 Join Eco_Chain</span>
+        </Marquee>
       </div>
     </header>
   );
