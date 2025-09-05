@@ -384,7 +384,7 @@ export default function EcoChainLanding() {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 mt-4 bg-white/50 backdrop-blur-sm p-3 rounded-full">
+            <div className="flex items-center gap-3 mt-2 bg-white/50 backdrop-blur-sm p-3 rounded-full">
               <img src="/eco-recycle-icon.svg" alt="Recycling" className="w-10 h-10" />
               <img src="/eco-water-drop.svg" alt="Water Conservation" className="w-10 h-10" />
               <p className="text-sm text-gray-700">Sustainable solutions for a better tomorrow</p>
@@ -443,7 +443,7 @@ export default function EcoChainLanding() {
               <button 
                 onClick={() => window.location.href = '/upload'}
                 style={{
-                  backgroundColor: '#7c3aed',
+                  backgroundColor: '#059669',
                   color: 'white',
                   padding: '16px 32px',
                   borderRadius: '12px',
@@ -456,11 +456,11 @@ export default function EcoChainLanding() {
                   minWidth: '200px'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#6d28d9';
+                  e.currentTarget.style.backgroundColor = '#047857';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#7c3aed';
+                  e.currentTarget.style.backgroundColor = '#059669';
                   e.currentTarget.style.transform = 'translateY(0px)';
                 }}
               >
@@ -469,7 +469,7 @@ export default function EcoChainLanding() {
               <button 
                 onClick={() => window.location.href = '/leaderboard'}
                 style={{
-                  backgroundColor: '#dc2626',
+                  backgroundColor: '#059669',
                   color: 'white',
                   padding: '16px 32px',
                   borderRadius: '12px',
@@ -486,11 +486,11 @@ export default function EcoChainLanding() {
                   gap: '8px'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#b91c1c';
+                  e.currentTarget.style.backgroundColor = '#047857';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#dc2626';
+                  e.currentTarget.style.backgroundColor = '#059669';
                   e.currentTarget.style.transform = 'translateY(0px)';
                 }}
               >
