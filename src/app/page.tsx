@@ -47,9 +47,9 @@ const WasteCounter = () => {
   }, []);
   
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', backgroundColor: '#dcfce7', padding: '16px 24px', borderRadius: '9999px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
-      <Recycle style={{ color: '#16a34a', height: '24px', width: '24px' }} />
-      <span style={{ fontWeight: '600', color: '#166534', fontSize: '18px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', backgroundColor: 'rgba(255, 255, 255, 0.9)', padding: '12px 20px', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', border: '1px solid rgba(34, 197, 94, 0.2)', backdropFilter: 'blur(8px)' }}>
+      <Recycle style={{ color: '#059669', height: '20px', width: '20px' }} />
+      <span style={{ fontWeight: '500', color: '#065f46', fontSize: '16px' }}>
         <CountUp end={wasteCount} duration={1500} /> kg of waste recycled
       </span>
     </div>
@@ -379,7 +379,9 @@ export default function EcoChainLanding() {
               </div>
             </div>
             <div className="flex justify-center mb-6">
-              <WasteCounter />
+              <div className="w-full flex justify-center">
+                <WasteCounter />
+              </div>
             </div>
             <div className="flex flex-wrap gap-4 pt-2">
               <button className="btn-eco">
