@@ -600,7 +600,7 @@ export default function EcoChainLanding() {
             </motion.p>
           </div>
           
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
             <FAQItem 
               question="How do I start using Eco_Chain?" 
               answer="Download our mobile app from the App Store or Google Play, create an account, and follow the setup instructions. You'll receive a starter kit with QR codes for your recycling bins." 
