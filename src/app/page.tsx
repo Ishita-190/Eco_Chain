@@ -383,15 +383,8 @@ export default function EcoChainLanding() {
                 <WasteCounter />
               </div>
             </div>
-            <div className="flex flex-wrap gap-4 pt-2">
-              <button className="btn-eco">
-                Join the Movement
-              </button>
-              <button className="btn-eco-outline">
-                Discover More
-              </button>
-            </div>
-            <div className="flex items-center gap-3 mt-6 bg-white/50 backdrop-blur-sm p-3 rounded-full">
+
+            <div className="flex items-center gap-3 mt-4 bg-white/50 backdrop-blur-sm p-3 rounded-full">
               <img src="/eco-recycle-icon.svg" alt="Recycling" className="w-10 h-10" />
               <img src="/eco-water-drop.svg" alt="Water Conservation" className="w-10 h-10" />
               <p className="text-sm text-gray-700">Sustainable solutions for a better tomorrow</p>
@@ -447,13 +440,63 @@ export default function EcoChainLanding() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <Button size="lg" className="rounded-full shadow-md transition-all hover:shadow-lg px-8 py-6 text-lg">
+              <button 
+                onClick={() => window.location.href = '/upload'}
+                style={{
+                  backgroundColor: '#7c3aed',
+                  color: 'white',
+                  padding: '16px 32px',
+                  borderRadius: '12px',
+                  fontSize: '18px',
+                  fontWeight: '600',
+                  border: 'none',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.2s ease',
+                  minWidth: '200px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#6d28d9';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#7c3aed';
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                }}
+              >
                 Start Your Eco Journey
-              </Button>
-              <Button size="lg" variant="outline" className="rounded-full border-2 hover:bg-white/10 px-8 py-6 text-lg flex items-center gap-2">
-                <Trophy className="h-5 w-5" />
+              </button>
+              <button 
+                onClick={() => window.location.href = '/leaderboard'}
+                style={{
+                  backgroundColor: '#dc2626',
+                  color: 'white',
+                  padding: '16px 32px',
+                  borderRadius: '12px',
+                  fontSize: '18px',
+                  fontWeight: '600',
+                  border: 'none',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.2s ease',
+                  minWidth: '200px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#b91c1c';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#dc2626';
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                }}
+              >
+                <Trophy style={{ height: '20px', width: '20px' }} />
                 Join Eco Leaders
-              </Button>
+              </button>
             </motion.div>
             
 
