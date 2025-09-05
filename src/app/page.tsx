@@ -435,13 +435,13 @@ export default function EcoChainLanding() {
             </motion.p>
             
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <button 
-                onClick={() => window.location.href = '/upload'}
+                onClick={() => { console.log('Navigating to upload'); window.location.href = '/upload'; }}
                 style={{
                   backgroundColor: '#059669',
                   color: 'white',
@@ -453,7 +453,8 @@ export default function EcoChainLanding() {
                   cursor: 'pointer',
                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                   transition: 'all 0.2s ease',
-                  minWidth: '200px'
+                  minWidth: '200px',
+                  textAlign: 'center'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = '#047857';
@@ -467,7 +468,7 @@ export default function EcoChainLanding() {
                 Start Your Eco Journey
               </button>
               <button 
-                onClick={() => window.location.href = '/leaderboard'}
+                onClick={() => { console.log('Navigating to leaderboard'); window.location.href = '/leaderboard'; }}
                 style={{
                   backgroundColor: '#059669',
                   color: 'white',
@@ -484,7 +485,8 @@ export default function EcoChainLanding() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '8px',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  margin: '0 auto'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = '#047857';
