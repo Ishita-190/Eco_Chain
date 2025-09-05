@@ -180,24 +180,57 @@ const FAQItem = ({
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="mb-3">
+    <div style={{ marginBottom: '16px' }}>
       <button
-        className="flex justify-between items-center w-full text-left p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '100%',
+          textAlign: 'left',
+          padding: '16px',
+          backgroundColor: 'white',
+          borderRadius: '16px',
+          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+          border: '1px solid #f3f4f6',
+          transition: 'all 0.2s',
+          cursor: 'pointer'
+        }}
         onClick={() => setIsOpen(!isOpen)}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1)';
+        }}
       >
-        <h3 className="font-medium text-sm text-gray-900">
+        <h3 style={{
+          fontWeight: '500',
+          fontSize: '14px',
+          color: '#111827',
+          margin: 0
+        }}>
           {question}
         </h3>
         <motion.div
           animate={{ rotate: isOpen ? 90 : 0 }}
           transition={{ duration: 0.2 }}
-          className="flex-shrink-0 ml-3"
+          style={{ flexShrink: 0, marginLeft: '12px' }}
         >
-          <ArrowRight className="h-4 w-4 text-gray-400" />
+          <ArrowRight style={{ height: '16px', width: '16px', color: '#9ca3af' }} />
         </motion.div>
       </button>
       {isOpen && (
-        <div className="mt-2 p-4 bg-white rounded-2xl shadow-sm border border-gray-100 text-sm text-gray-600">
+        <div style={{
+          marginTop: '8px',
+          padding: '16px',
+          backgroundColor: 'white',
+          borderRadius: '16px',
+          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+          border: '1px solid #f3f4f6',
+          fontSize: '14px',
+          color: '#6b7280'
+        }}>
           {answer}
         </div>
       )}
@@ -595,7 +628,7 @@ export default function EcoChainLanding() {
             </motion.p>
           </div>
           
-          <div>
+          <div style={{ maxWidth: '100%' }}>
             <FAQItem 
               question="How do I start using Eco_Chain?" 
               answer="Download our mobile app from the App Store or Google Play, create an account, and follow the setup instructions. You'll receive a starter kit with QR codes for your recycling bins." 
