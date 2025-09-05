@@ -180,24 +180,20 @@ const FAQItem = ({
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <motion.div 
-      className="bg-white rounded-2xl border border-green-100 shadow-sm hover:shadow-md transition-all duration-300 mb-4 overflow-hidden"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
+    <div className="border-b border-gray-200 last:border-b-0">
       <button
-        className="flex justify-between items-center w-full text-left p-6 hover:bg-green-50/50 transition-colors"
+        className="flex justify-between items-center w-full text-left py-6 hover:bg-gray-50/50 transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="font-semibold text-lg text-gray-800">
+        <h3 className="font-semibold text-lg text-gray-900">
           {question}
         </h3>
         <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
-          className="bg-green-100 p-2 rounded-full flex-shrink-0 ml-4"
+          animate={{ rotate: isOpen ? 90 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="flex-shrink-0 ml-4"
         >
-          <ArrowRight className="h-5 w-5 text-green-700" />
+          <ArrowRight className="h-5 w-5 text-gray-400" />
         </motion.div>
       </button>
       <motion.div
@@ -206,11 +202,11 @@ const FAQItem = ({
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="overflow-hidden"
       >
-        <div className="px-6 pb-6 text-gray-700 bg-green-50/30">
+        <div className="pb-6 text-gray-600">
           {answer}
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -604,7 +600,7 @@ export default function EcoChainLanding() {
             </motion.p>
           </div>
           
-          <div className="space-y-4">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <FAQItem 
               question="How do I start using Eco_Chain?" 
               answer="Download our mobile app from the App Store or Google Play, create an account, and follow the setup instructions. You'll receive a starter kit with QR codes for your recycling bins." 
