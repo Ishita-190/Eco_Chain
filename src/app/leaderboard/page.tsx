@@ -77,7 +77,7 @@ export default function LeaderboardPage() {
 
                 {/* Avatar + Name */}
                 <div className="col-span-7 flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-emerald-700/40 border border-emerald-400 flex items-center justify-center text-lg font-bold mr-3">
+                  <div className="w-8 h-8 rounded-full bg-emerald-700/40 border border-emerald-400 flex items-center justify-center text-sm font-bold mr-3">
                     {user.avatar || user.name[0]}
                   </div>
                   <div>

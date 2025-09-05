@@ -61,13 +61,13 @@ export default function SchedulePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
-      <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
+      <header className="bg-white/90 backdrop-blur-md border-b border-green-100 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button
               onClick={() => router.back()}
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+              className="flex items-center space-x-2 text-gray-600 hover:text-green-600 transition-colors duration-200 px-3 py-2 rounded-full hover:bg-green-50">
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Back</span>
@@ -79,7 +79,7 @@ export default function SchedulePage() {
       </header>
 
       <main className="max-w-2xl mx-auto px-4 py-8">
-        <div className="card p-8">
+        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl border border-green-100 p-8 hover:shadow-2xl transition-all duration-300">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Pickup Type */}
             <div>
@@ -90,26 +90,26 @@ export default function SchedulePage() {
                 <button
                   type="button"
                   onClick={() => setPickupType('PICKUP')}
-                  className={`p-4 rounded-lg border-2 transition-colors ${
+                  className={`p-4 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-1 ${
                     pickupType === 'PICKUP'
-                      ? 'border-eco-500 bg-eco-50'
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? 'border-green-500 bg-green-50 shadow-md'
+                      : 'border-gray-200 hover:border-green-300 hover:bg-green-50/30'
                   }`}
                 >
-                  <Truck className="w-6 h-6 mx-auto mb-2 text-eco-600" />
+                  <Truck className="w-6 h-6 mx-auto mb-2 text-green-600" />
                   <div className="font-medium text-gray-800">Pickup</div>
                   <div className="text-sm text-gray-500">We collect from you</div>
                 </button>
                 <button
                   type="button"
                   onClick={() => setPickupType('DROP_OFF')}
-                  className={`p-4 rounded-lg border-2 transition-colors ${
+                  className={`p-4 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-1 ${
                     pickupType === 'DROP_OFF'
-                      ? 'border-eco-500 bg-eco-50'
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? 'border-green-500 bg-green-50 shadow-md'
+                      : 'border-gray-200 hover:border-green-300 hover:bg-green-50/30'
                   }`}
                 >
-                  <MapPin className="w-6 h-6 mx-auto mb-2 text-eco-600" />
+                  <MapPin className="w-6 h-6 mx-auto mb-2 text-green-600" />
                   <div className="font-medium text-gray-800">Drop-off</div>
                   <div className="text-sm text-gray-500">You bring to us</div>
                 </button>
@@ -128,7 +128,7 @@ export default function SchedulePage() {
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
                   min={new Date().toISOString().split('T')[0]}
-                  className="w-full input-field"
+                  className="w-full px-4 py-3 border border-green-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200"
                   required
                 />
               </div>
@@ -140,7 +140,7 @@ export default function SchedulePage() {
                 <select
                   value={selectedTime}
                   onChange={(e) => setSelectedTime(e.target.value)}
-                  className="w-full input-field"
+                  className="w-full px-4 py-3 border border-green-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200"
                   required
                 >
                   <option value="">Select time</option>
@@ -165,7 +165,7 @@ export default function SchedulePage() {
                 placeholder="e.g., 2.5"
                 step="0.1"
                 min="0.1"
-                className="w-full input-field"
+                className="w-full px-4 py-3 border border-green-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200"
               />
               <p className="text-xs text-gray-500 mt-1">
                 Optional: helps us prepare for collection
@@ -177,7 +177,7 @@ export default function SchedulePage() {
               <button
                 type="submit"
                 disabled={isSubmitting || !selectedDate || !selectedTime}
-                className="w-full btn-primary py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium py-4 px-6 rounded-full shadow-lg hover:from-green-600 hover:to-emerald-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none"
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center space-x-2">

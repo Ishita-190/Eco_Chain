@@ -34,7 +34,7 @@ const ProfilePage: React.FC = () => {
   const progress = Math.min((userData.points / userData.nextLevelPoints) * 100, 100);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+    <div className="min-h-screen bg-gradient-to-br from-green-900 via-emerald-800 to-teal-900 text-white">
       <main className="max-w-4xl mx-auto px-4 py-10 space-y-10">
         
         {/* Profile Header */}
@@ -43,7 +43,7 @@ const ProfilePage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Card className="bg-gray-800/60 backdrop-blur-lg border-gray-700 shadow-xl">
+          <Card className="bg-white/10 backdrop-blur-lg border-green-300/20 shadow-xl rounded-3xl">
             <CardContent className="p-6">
               <div className="flex items-center gap-6">
                 <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
@@ -84,7 +84,7 @@ const ProfilePage: React.FC = () => {
             { icon: <Award className="w-6 h-6 text-yellow-400" />, label: "Rank", value: `#${userData.rank}` },
             { icon: <Clock className="w-6 h-6 text-blue-400" />, label: "Streak", value: `${userData.streak} days` },
           ].map((stat, i) => (
-            <Card key={i} className="bg-gray-800/60 border-gray-700 hover:bg-gray-800 transition rounded-xl shadow-lg">
+            <Card key={i} className="bg-white/10 border-green-300/20 hover:bg-white/15 transition-all duration-300 hover:-translate-y-1 rounded-2xl shadow-lg">
               <CardContent className="p-6 text-center">
                 {stat.icon}
                 <p className="mt-2 text-xl font-bold">{stat.value}</p>
@@ -100,7 +100,7 @@ const ProfilePage: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          <Card className="bg-gray-800/60 border-gray-700 shadow-lg">
+          <Card className="bg-white/10 border-green-300/20 shadow-lg rounded-2xl">
             <CardHeader>
               <CardTitle className="text-lg">Activity Heatmap</CardTitle>
               <CardDescription className="text-gray-400">Last 28 days</CardDescription>
@@ -136,7 +136,7 @@ const ProfilePage: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <Card className="bg-gray-800/60 border-gray-700 shadow-lg">
+          <Card className="bg-white/10 border-green-300/20 shadow-lg rounded-2xl">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Activity className="w-5 h-5 text-emerald-400" /> Recent Activity
@@ -150,7 +150,7 @@ const ProfilePage: React.FC = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.2 }}
-                  className="flex justify-between items-center py-3 border-b border-gray-700 last:border-0"
+                  className="flex justify-between items-center py-3 border-b border-green-300/20 last:border-0"
                 >
                   <div>
                     <p className="font-medium">{a.title}</p>

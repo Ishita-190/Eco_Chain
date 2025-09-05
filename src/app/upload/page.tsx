@@ -71,7 +71,7 @@ export default function UploadPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
           <motion.h1
@@ -88,7 +88,7 @@ export default function UploadPage() {
         </div>
 
         <motion.div
-          className="bg-white rounded-2xl shadow-xl overflow-hidden"
+          className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl border border-green-100 overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -141,7 +141,7 @@ export default function UploadPage() {
                     />
                     <label
                       htmlFor="file-upload"
-                      className="cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+                      className="cursor-pointer inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-full shadow-md text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
                     >
                       Select Image
                     </label>
@@ -153,10 +153,10 @@ export default function UploadPage() {
                 <button
                   type="submit"
                   disabled={!file || isUploading}
-                  className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white ${
+                  className={`w-full flex justify-center py-4 px-6 border border-transparent rounded-full shadow-lg text-lg font-medium text-white transition-all duration-300 ${
                     !file || isUploading
                       ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500'
+                      : 'bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500'
                   }`}
                 >
                   {isUploading ? (
@@ -172,7 +172,7 @@ export default function UploadPage() {
             </form>
           </div>
 
-          <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 rounded-b-2xl">
+          <div className="bg-green-50/50 px-6 py-4 border-t border-green-100 rounded-b-3xl">
             <h3 className="text-sm font-medium text-gray-900 mb-2">Tips for best results:</h3>
             <ul className="text-sm text-gray-500 space-y-1">
               <li className="flex items-start">

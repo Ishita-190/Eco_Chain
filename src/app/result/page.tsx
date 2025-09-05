@@ -138,15 +138,15 @@ export default function ResultPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-eco-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200">
+      <header className="bg-white/90 backdrop-blur-md border-b border-green-100 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => router.back()}
-                className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+                className="flex items-center space-x-2 text-gray-600 hover:text-green-600 transition-colors duration-200 px-3 py-2 rounded-full hover:bg-green-50">
               >
                 <ArrowLeft className="w-5 h-5" />
                 <span>Back</span>
@@ -161,14 +161,14 @@ export default function ResultPage() {
       <main className="max-w-6xl mx-auto px-4 py-8">
         {/* Classification Summary */}
         {classification && (
-          <div className="card p-6 mb-8">
+          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-lg border border-green-100 p-8 mb-8 hover:shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-gray-800 capitalize mb-2">
                   {classification.label} Waste Classification
                 </h2>
                 <p className="text-gray-600">
-                  Confidence: <span className="font-semibold text-eco-600">
+                  Confidence: <span className="font-semibold text-green-600">
                     {Math.round(classification.confidence * 100)}%
                   </span>
                 </p>
@@ -212,15 +212,15 @@ export default function ResultPage() {
           {/* Selection Summary & Action */}
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              <div className="card p-6">
+              <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-lg border border-green-100 p-6 hover:shadow-xl transition-all duration-300">
                 <h4 className="text-lg font-semibold text-gray-800 mb-4">Schedule Pickup</h4>
                 
                 {selectedFacility ? (
                   <div className="space-y-4">
-                    <div className="p-4 bg-eco-50 rounded-lg border border-eco-200">
-                      <h5 className="font-medium text-eco-800 mb-2">Selected Facility</h5>
-                      <p className="text-sm text-eco-700">{selectedFacility.name}</p>
-                      <p className="text-xs text-eco-600 mt-1">{selectedFacility.address}</p>
+                    <div className="p-4 bg-green-50 rounded-2xl border border-green-200">
+                      <h5 className="font-medium text-green-800 mb-2">Selected Facility</h5>
+                      <p className="text-sm text-green-700">{selectedFacility.name}</p>
+                      <p className="text-xs text-green-600 mt-1">{selectedFacility.address}</p>
                     </div>
 
                     <div className="space-y-3 text-sm text-gray-600">
@@ -242,7 +242,7 @@ export default function ResultPage() {
 
                     <button
                       onClick={handleSchedule}
-                      className="w-full btn-primary py-3"
+                      className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium py-4 px-6 rounded-full shadow-lg hover:from-green-600 hover:to-emerald-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                     >
                       Schedule Pickup
                     </button>

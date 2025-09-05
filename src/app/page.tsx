@@ -155,9 +155,9 @@ const TestimonialCard = ({
     <p className="text-gray-700 mb-5 italic relative z-10 bg-green-50/50 p-4 rounded-lg border border-green-100/50">"{content}"</p>
     <div className="flex items-center gap-3 justify-center">
       <div className="bg-gradient-to-r from-green-100 to-teal-100 p-1 rounded-full">
-        <Avatar>
+        <Avatar className="h-8 w-8">
           <AvatarImage src={`https://i.pravatar.cc/150?u=${name}`} />
-          <AvatarFallback className="bg-primary text-white">{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+          <AvatarFallback className="bg-primary text-white text-xs">{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
         </Avatar>
       </div>
       <div>
@@ -180,39 +180,37 @@ const FAQItem = ({
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="border-b border-green-200 py-4 hover:bg-green-50/30 transition-colors rounded-lg px-4">
+    <motion.div 
+      className="bg-white rounded-2xl border border-green-100 shadow-sm hover:shadow-md transition-all duration-300 mb-4 overflow-hidden"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
       <button
-        className="flex justify-between items-center w-full text-left"
+        className="flex justify-between items-center w-full text-left p-6 hover:bg-green-50/50 transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="font-semibold text-lg">
-          <GradientText 
-            text={question} 
-            gradientFrom="from-green-700" 
-            gradientTo="to-teal-700" 
-            animate={false} 
-          />
+        <h3 className="font-semibold text-lg text-gray-800">
+          {question}
         </h3>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
-          className="bg-green-100 p-2 rounded-full"
+          className="bg-green-100 p-2 rounded-full flex-shrink-0 ml-4"
         >
           <ArrowRight className="h-5 w-5 text-green-700" />
         </motion.div>
       </button>
-      {isOpen && (
-        <motion.div 
-          className="mt-4 text-gray-700 bg-white p-4 rounded-lg border border-green-100 shadow-sm"
-          initial={{ opacity: 0, height: 0, y: -10 }}
-          animate={{ opacity: 1, height: 'auto', y: 0 }}
-          exit={{ opacity: 0, height: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-        >
+      <motion.div
+        initial={false}
+        animate={{ height: isOpen ? 'auto' : 0 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="overflow-hidden"
+      >
+        <div className="px-6 pb-6 text-gray-700 bg-green-50/30">
           {answer}
-        </motion.div>
-      )}
-    </div>
+        </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
@@ -233,9 +231,9 @@ const LeaderboardItem = ({
         {rank}
       </div>
       <div className="flex items-center gap-3">
-        <Avatar>
+        <Avatar className="h-8 w-8">
           <AvatarImage src={`https://i.pravatar.cc/150?u=${name}`} />
-          <AvatarFallback>{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+          <AvatarFallback className="text-xs">{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
         </Avatar>
         <span className={`font-medium ${isCurrentUser ? 'text-green-700' : 'text-gray-900'}`}>
           {name}
@@ -334,11 +332,11 @@ export default function EcoChainLanding() {
             </div>
             <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-3xl shadow-lg border border-green-100/50 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-green-200/30 rounded-full -mr-10 -mt-10 blur-2xl"></div>
-              <img 
-                src="/eco-app-mockup.svg" 
-                alt="Eco_Chain App" 
-                className="w-full h-auto rounded-2xl shadow-md relative z-10"
-              />
+              <div className="flex flex-col items-center justify-center h-64 relative z-10">
+                <div className="text-6xl mb-4">🌱</div>
+                <h3 className="text-2xl font-bold text-green-800 mb-2">Eco_Chain Platform</h3>
+                <p className="text-green-700">Sustainable rewards for a better tomorrow</p>
+              </div>
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-sm text-center">
                 <p className="text-sm font-medium text-green-800">Trusted by 50,000+ eco-conscious users</p>
               </div>
@@ -391,31 +389,7 @@ export default function EcoChainLanding() {
               </Button>
             </motion.div>
             
-            {/* Leaderboard Preview */}
-            <motion.div
-              className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 max-w-4xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-gray-900">Top Recyclers This Month</h3>
-                <Button variant="ghost" size="sm">
-                  View Full Leaderboard
-                </Button>
-              </div>
-              
-              <div className="space-y-4">
-                {leaderboardData.slice(0, 3).map((user, index) => (
-                  <LeaderboardItem 
-                    key={user.id} 
-                    rank={index + 1} 
-                    name={user.name} 
-                    points={user.points} 
-                  />
-                ))}
-              </div>
-            </motion.div>
+
           </div>
         </div>
       </section>
@@ -595,75 +569,7 @@ export default function EcoChainLanding() {
         </div>
       </section>
 
-      {/* Leaderboard Section */}
-      <section id="leaderboard" className="py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <motion.h2 
-              className="text-3xl md:text-4xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              Community Leaderboard
-            </motion.h2>
-            <motion.p 
-              className="text-gray-600 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              See who's making the biggest impact in our community
-            </motion.p>
-          </div>
-          
-          <Card className="bg-white shadow-sm border border-gray-100">
-            <CardHeader>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div>
-                  <CardTitle>Top Recyclers</CardTitle>
-                  <CardDescription>Ranked by total points earned</CardDescription>
-                </div>
-                <div className="flex gap-2">
-                  <Button 
-                    variant={activeTab === "monthly" ? "default" : "outline"}
-                    onClick={() => setActiveTab("monthly")}
-                  >
-                    Monthly
-                  </Button>
-                  <Button 
-                    variant={activeTab === "alltime" ? "default" : "outline"}
-                    onClick={() => setActiveTab("alltime")}
-                  >
-                    All Time
-                  </Button>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {leaderboardData.map((user, index) => (
-                  <LeaderboardItem 
-                    key={user.id} 
-                    rank={index + 1} 
-                    name={user.name} 
-                    points={user.points} 
-                    isCurrentUser={index === 2}
-                  />
-                ))}
-              </div>
-              
-              <div className="mt-8 text-center">
-                <Button variant="outline">
-                  View Full Leaderboard
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+
 
       {/* FAQ Section */}
       <section id="faq" className="py-16 px-4 my-12 eco-section">
@@ -698,7 +604,7 @@ export default function EcoChainLanding() {
             </motion.p>
           </div>
           
-          <div className="eco-card p-6 md:p-8">
+          <div className="space-y-4">
             <FAQItem 
               question="How do I start using Eco_Chain?" 
               answer="Download our mobile app from the App Store or Google Play, create an account, and follow the setup instructions. You'll receive a starter kit with QR codes for your recycling bins." 
