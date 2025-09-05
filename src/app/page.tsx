@@ -436,7 +436,7 @@ export default function EcoChainLanding() {
             
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '32px', marginBottom: '48px', width: '100%' }}>
               <button
-                onClick={() => { console.log('Navigating to upload'); window.location.href = '/upload'; }}
+                onClick={() => { window.open('/upload', '_self'); }}
                 style={{
                   backgroundColor: '#059669',
                   color: 'white',
@@ -463,7 +463,7 @@ export default function EcoChainLanding() {
                 Start Your Eco Journey
               </button>
               <button
-                onClick={() => { console.log('Navigating to leaderboard'); window.location.href = '/leaderboard'; }}
+                onClick={() => { window.open('/leaderboard', '_self'); }}
                 style={{
                   backgroundColor: '#059669',
                   color: 'white',
