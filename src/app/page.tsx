@@ -180,24 +180,24 @@ const FAQItem = ({
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="border-b border-gray-200 last:border-b-0">
+    <div className="mb-3">
       <button
-        className="flex justify-between items-start w-full text-left py-4 hover:bg-gray-50/50 transition-colors"
+        className="flex justify-between items-center w-full text-left p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="font-medium text-base text-gray-900 pr-4 leading-relaxed">
+        <h3 className="font-medium text-sm text-gray-900">
           {question}
         </h3>
         <motion.div
           animate={{ rotate: isOpen ? 90 : 0 }}
           transition={{ duration: 0.2 }}
-          className="flex-shrink-0 mt-1"
+          className="flex-shrink-0 ml-3"
         >
           <ArrowRight className="h-4 w-4 text-gray-400" />
         </motion.div>
       </button>
       {isOpen && (
-        <div className="pb-4 text-sm text-gray-600 leading-relaxed">
+        <div className="mt-2 p-4 bg-white rounded-2xl shadow-sm border border-gray-100 text-sm text-gray-600">
           {answer}
         </div>
       )}
@@ -595,7 +595,7 @@ export default function EcoChainLanding() {
             </motion.p>
           </div>
           
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <div>
             <FAQItem 
               question="How do I start using Eco_Chain?" 
               answer="Download our mobile app from the App Store or Google Play, create an account, and follow the setup instructions. You'll receive a starter kit with QR codes for your recycling bins." 
