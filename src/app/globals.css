@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* 🌱 EcoCommerce Refined Light Theme */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 /* Dynamic Text Animations */
 @keyframes blink {
@@ -105,20 +105,20 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     background: var(--gradient-hero);
     min-height: 100vh;
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
     font-size: 1rem;
-    line-height: 1.7;
-    font-weight: 300;
+    line-height: 1.6;
+    font-weight: 400;
     text-align: center;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: -0.015em;
-    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.025em;
+    font-weight: 600;
     color: hsl(var(--foreground));
   }
 

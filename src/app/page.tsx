@@ -182,18 +182,18 @@ const FAQItem = ({
   return (
     <div className="border-b border-gray-200 last:border-b-0">
       <button
-        className="flex justify-between items-center w-full text-left py-6 hover:bg-gray-50/50 transition-colors"
+        className="flex justify-between items-center w-full text-left py-4 hover:bg-gray-50/50 transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="font-semibold text-lg text-gray-900">
+        <h3 className="font-medium text-base text-gray-900 pr-4">
           {question}
         </h3>
         <motion.div
           animate={{ rotate: isOpen ? 90 : 0 }}
           transition={{ duration: 0.2 }}
-          className="flex-shrink-0 ml-4"
+          className="flex-shrink-0"
         >
-          <ArrowRight className="h-5 w-5 text-gray-400" />
+          <ArrowRight className="h-4 w-4 text-gray-400" />
         </motion.div>
       </button>
       <motion.div
@@ -202,7 +202,7 @@ const FAQItem = ({
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="overflow-hidden"
       >
-        <div className="pb-6 text-gray-600">
+        <div className="pb-4 text-sm text-gray-600 pr-8">
           {answer}
         </div>
       </motion.div>
@@ -227,7 +227,7 @@ const LeaderboardItem = ({
         {rank}
       </div>
       <div className="flex items-center gap-3">
-        <Avatar className="h-8 w-8">
+        <Avatar className="h-6 w-6">
           <AvatarImage src={`https://i.pravatar.cc/150?u=${name}`} />
           <AvatarFallback className="text-xs">{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
         </Avatar>
