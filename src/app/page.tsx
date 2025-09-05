@@ -309,9 +309,7 @@ export default function EcoChainLanding() {
       <section className="pt-8 pb-16 eco-section">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="flex justify-center">
-              <WasteCounter />
-            </div>
+
             <div className="bg-green-50 p-4 rounded-lg border border-green-100 shadow-sm">
               <p style={{ color: '#14532d', fontWeight: 'bold', fontSize: '40px' }}>
                 <Typewriter 
@@ -379,6 +377,9 @@ export default function EcoChainLanding() {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="flex justify-center mb-6">
+              <WasteCounter />
             </div>
             <div className="flex flex-wrap gap-4 pt-2">
               <button className="btn-eco">
