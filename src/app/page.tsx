@@ -191,17 +191,19 @@ const FAQItem = ({
           padding: '16px',
           backgroundColor: 'white',
           borderRadius: '16px',
-          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
           border: '1px solid #f3f4f6',
           transition: 'all 0.2s',
           cursor: 'pointer'
         }}
         onClick={() => setIsOpen(!isOpen)}
         onMouseEnter={(e) => {
-          e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+          e.currentTarget.style.boxShadow = '0 10px 25px -3px rgba(0, 0, 0, 0.15)';
+          e.currentTarget.style.transform = 'translateY(-2px)';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1)';
+          e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+          e.currentTarget.style.transform = 'translateY(0px)';
         }}
       >
         <h3 style={{
@@ -226,10 +228,11 @@ const FAQItem = ({
           padding: '16px',
           backgroundColor: 'white',
           borderRadius: '16px',
-          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
           border: '1px solid #f3f4f6',
           fontSize: '14px',
-          color: '#6b7280'
+          color: '#6b7280',
+          animation: 'fadeIn 0.3s ease-in-out'
         }}>
           {answer}
         </div>
