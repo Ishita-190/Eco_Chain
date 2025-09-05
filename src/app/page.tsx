@@ -222,21 +222,19 @@ const FAQItem = ({
           <ArrowRight style={{ height: '16px', width: '16px', color: '#9ca3af' }} />
         </motion.div>
       </button>
-      {isOpen && (
-        <div style={{
-          marginTop: '8px',
-          padding: '16px',
-          backgroundColor: 'white',
-          borderRadius: '16px',
-          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-          border: '1px solid #f3f4f6',
-          fontSize: '14px',
-          color: '#6b7280',
-          animation: 'fadeIn 0.3s ease-in-out'
-        }}>
-          {answer}
-        </div>
-      )}
+      <div style={{
+        marginTop: '8px',
+        padding: '16px',
+        backgroundColor: 'white',
+        borderRadius: '16px',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+        border: '1px solid #f3f4f6',
+        fontSize: '14px',
+        color: '#6b7280',
+        display: isOpen ? 'block' : 'none'
+      }}>
+        {answer}
+      </div>
     </div>
   );
 };
