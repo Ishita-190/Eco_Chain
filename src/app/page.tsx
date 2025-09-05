@@ -47,10 +47,10 @@ const WasteCounter = () => {
   }, []);
   
   return (
-    <div className="flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full">
-      <Recycle className="text-green-600" />
-      <span className="font-medium text-green-800">
-        <CountUp end={wasteCount} duration={2000} /> kg of waste recycled
+    <div className="flex items-center gap-3 bg-green-100 px-6 py-3 rounded-full shadow-md">
+      <Recycle className="text-green-600 h-6 w-6" />
+      <span className="font-semibold text-green-800 text-lg">
+        <CountUp end={wasteCount} duration={1500} /> kg of waste recycled
       </span>
     </div>
   );
@@ -312,8 +312,8 @@ export default function EcoChainLanding() {
             <div className="inline-block bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
               <WasteCounter />
             </div>
-            <div className="bg-green-50 p-3 rounded-lg border border-green-100 shadow-sm">
-              <p className="text-green-800 font-medium">
+            <div className="bg-green-50 p-4 rounded-lg border border-green-100 shadow-sm">
+              <p className="text-green-900 font-bold text-2xl">
                 <Typewriter 
                   texts={[
                     "Recycling for a better tomorrow", 
@@ -327,7 +327,7 @@ export default function EcoChainLanding() {
                 />
               </p>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            <h1 className="text-3xl md:text-4xl font-bold leading-tight">
               Nurture <span className="text-gradient">Earth</span>, Harvest <span className="text-gradient animate-gradient-x">Rewards</span>
             </h1>
             <p className="text-lg text-gray-700">
@@ -339,11 +339,47 @@ export default function EcoChainLanding() {
                 <span className="animate-wave inline-block">Making a difference, one recycled item at a time</span>
               </p>
             </div>
-            <ul className="space-y-2 eco-leaf-bullet">
-              <li>Track your environmental impact in real-time</li>
-              <li>Earn tokens for every sustainable action</li>
-              <li>Join a global community of eco-warriors</li>
-            </ul>
+            <div className="relative">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8 py-6">
+                <div className="flex flex-col items-center text-center relative">
+                  <div className="bg-green-100 p-4 rounded-full mb-3 shadow-md">
+                    <TrendingUp className="h-8 w-8 text-green-600" />
+                  </div>
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-green-100 max-w-xs">
+                    <h3 className="font-semibold text-green-800 mb-2">Step 1</h3>
+                    <p className="text-sm text-gray-700">Track your environmental impact in real-time</p>
+                  </div>
+                </div>
+                
+                <div className="hidden md:block flex-1 h-0.5 bg-gradient-to-r from-green-300 to-emerald-400 mx-4 relative">
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-emerald-400 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+                </div>
+                
+                <div className="flex flex-col items-center text-center relative">
+                  <div className="bg-green-100 p-4 rounded-full mb-3 shadow-md">
+                    <Award className="h-8 w-8 text-green-600" />
+                  </div>
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-green-100 max-w-xs">
+                    <h3 className="font-semibold text-green-800 mb-2">Step 2</h3>
+                    <p className="text-sm text-gray-700">Earn tokens for every sustainable action</p>
+                  </div>
+                </div>
+                
+                <div className="hidden md:block flex-1 h-0.5 bg-gradient-to-r from-green-300 to-emerald-400 mx-4 relative">
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-emerald-400 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+                </div>
+                
+                <div className="flex flex-col items-center text-center relative">
+                  <div className="bg-green-100 p-4 rounded-full mb-3 shadow-md">
+                    <Users className="h-8 w-8 text-green-600" />
+                  </div>
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-green-100 max-w-xs">
+                    <h3 className="font-semibold text-green-800 mb-2">Step 3</h3>
+                    <p className="text-sm text-gray-700">Join a global community of eco-warriors</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="flex flex-wrap gap-4 pt-2">
               <button className="btn-eco">
                 Join the Movement
