@@ -435,71 +435,72 @@ export default function EcoChainLanding() {
             </motion.p>
             
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+              className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <button 
-                onClick={() => { console.log('Navigating to upload'); window.location.href = '/upload'; }}
-                style={{
-                  backgroundColor: '#059669',
-                  color: 'white',
-                  padding: '16px 32px',
-                  borderRadius: '12px',
-                  fontSize: '18px',
-                  fontWeight: '600',
-                  border: 'none',
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.2s ease',
-                  minWidth: '200px',
-                  textAlign: 'center'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#047857';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#059669';
-                  e.currentTarget.style.transform = 'translateY(0px)';
-                }}
-              >
-                Start Your Eco Journey
-              </button>
-              <button 
-                onClick={() => { console.log('Navigating to leaderboard'); window.location.href = '/leaderboard'; }}
-                style={{
-                  backgroundColor: '#059669',
-                  color: 'white',
-                  padding: '16px 32px',
-                  borderRadius: '12px',
-                  fontSize: '18px',
-                  fontWeight: '600',
-                  border: 'none',
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.2s ease',
-                  minWidth: '200px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  textAlign: 'center',
-                  margin: '0 auto'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#047857';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#059669';
-                  e.currentTarget.style.transform = 'translateY(0px)';
-                }}
-              >
-                <Trophy style={{ height: '20px', width: '20px' }} />
-                Join Eco Leaders
-              </button>
+              <a href="/upload" style={{ textDecoration: 'none' }}>
+                <button 
+                  style={{
+                    backgroundColor: '#059669',
+                    color: 'white',
+                    padding: '16px 32px',
+                    borderRadius: '12px',
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    border: 'none',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                    transition: 'all 0.2s ease',
+                    minWidth: '200px',
+                    textAlign: 'center'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#047857';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#059669';
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                  }}
+                >
+                  Start Your Eco Journey
+                </button>
+              </a>
+              <a href="/leaderboard" style={{ textDecoration: 'none' }}>
+                <button 
+                  style={{
+                    backgroundColor: '#059669',
+                    color: 'white',
+                    padding: '16px 32px',
+                    borderRadius: '12px',
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    border: 'none',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                    transition: 'all 0.2s ease',
+                    minWidth: '200px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    textAlign: 'center'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#047857';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#059669';
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                  }}
+                >
+                  <Trophy style={{ height: '20px', width: '20px' }} />
+                  Join Eco Leaders
+                </button>
+              </a>
             </motion.div>
             
 
