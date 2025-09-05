@@ -179,62 +179,27 @@ const FAQItem = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   
+  const handleClick = () => {
+    console.log('FAQ clicked, current state:', isOpen);
+    setIsOpen(!isOpen);
+  };
+  
   return (
-    <div style={{ marginBottom: '16px' }}>
-      <button
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: '100%',
-          textAlign: 'left',
-          padding: '16px',
-          backgroundColor: 'white',
-          borderRadius: '16px',
-          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-          border: '1px solid #f3f4f6',
-          transition: 'all 0.2s',
-          cursor: 'pointer'
-        }}
-        onClick={() => setIsOpen(!isOpen)}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.boxShadow = '0 10px 25px -3px rgba(0, 0, 0, 0.15)';
-          e.currentTarget.style.transform = 'translateY(-2px)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-          e.currentTarget.style.transform = 'translateY(0px)';
-        }}
+    <div className="mb-4">
+      <div
+        className="flex justify-between items-center w-full text-left p-4 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all cursor-pointer border border-gray-200"
+        onClick={handleClick}
       >
-        <h3 style={{
-          fontWeight: '500',
-          fontSize: '14px',
-          color: '#111827',
-          margin: 0
-        }}>
+        <h3 className="font-medium text-base text-gray-900">
           {question}
         </h3>
-        <motion.div
-          animate={{ rotate: isOpen ? 90 : 0 }}
-          transition={{ duration: 0.2 }}
-          style={{ flexShrink: 0, marginLeft: '12px' }}
-        >
-          <ArrowRight style={{ height: '16px', width: '16px', color: '#9ca3af' }} />
-        </motion.div>
-      </button>
-      <div style={{
-        marginTop: '8px',
-        padding: '16px',
-        backgroundColor: 'white',
-        borderRadius: '16px',
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-        border: '1px solid #f3f4f6',
-        fontSize: '14px',
-        color: '#6b7280',
-        display: isOpen ? 'block' : 'none'
-      }}>
-        {answer}
+        <ArrowRight className={`h-4 w-4 text-gray-400 transition-transform ${isOpen ? 'rotate-90' : ''}`} />
       </div>
+      {isOpen && (
+        <div className="mt-3 p-4 bg-white rounded-2xl shadow-lg border border-gray-200 text-sm text-gray-600">
+          {answer}
+        </div>
+      )}
     </div>
   );
 };
@@ -629,7 +594,7 @@ export default function EcoChainLanding() {
             </motion.p>
           </div>
           
-          <div style={{ maxWidth: '100%' }}>
+          <div>
             <FAQItem 
               question="How do I start using Eco_Chain?" 
               answer="Download our mobile app from the App Store or Google Play, create an account, and follow the setup instructions. You'll receive a starter kit with QR codes for your recycling bins." 
