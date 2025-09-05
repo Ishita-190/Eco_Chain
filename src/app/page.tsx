@@ -182,30 +182,25 @@ const FAQItem = ({
   return (
     <div className="border-b border-gray-200 last:border-b-0">
       <button
-        className="flex justify-between items-center w-full text-left py-4 hover:bg-gray-50/50 transition-colors"
+        className="flex justify-between items-start w-full text-left py-4 hover:bg-gray-50/50 transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="font-medium text-base text-gray-900 pr-4">
+        <h3 className="font-medium text-base text-gray-900 pr-4 leading-relaxed">
           {question}
         </h3>
         <motion.div
           animate={{ rotate: isOpen ? 90 : 0 }}
           transition={{ duration: 0.2 }}
-          className="flex-shrink-0"
+          className="flex-shrink-0 mt-1"
         >
           <ArrowRight className="h-4 w-4 text-gray-400" />
         </motion.div>
       </button>
-      <motion.div
-        initial={false}
-        animate={{ height: isOpen ? 'auto' : 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="overflow-hidden"
-      >
-        <div className="pb-4 text-sm text-gray-600 pr-8">
+      {isOpen && (
+        <div className="pb-4 text-sm text-gray-600 leading-relaxed">
           {answer}
         </div>
-      </motion.div>
+      )}
     </div>
   );
 };
