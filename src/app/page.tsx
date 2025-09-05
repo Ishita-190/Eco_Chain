@@ -309,11 +309,11 @@ export default function EcoChainLanding() {
       <section className="pt-8 pb-16 eco-section">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="inline-block bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
+            <div className="flex justify-center">
               <WasteCounter />
             </div>
             <div className="bg-green-50 p-4 rounded-lg border border-green-100 shadow-sm">
-              <p style={{ color: '#14532d', fontWeight: 'bold', fontSize: '24px' }}>
+              <p style={{ color: '#14532d', fontWeight: 'bold', fontSize: '40px' }}>
                 <Typewriter 
                   texts={[
                     "Recycling for a better tomorrow", 
@@ -327,8 +327,8 @@ export default function EcoChainLanding() {
                 />
               </p>
             </div>
-            <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', lineHeight: '1.2' }}>
-              Nurture <span className="text-gradient">Earth</span>, Harvest <span className="text-gradient animate-gradient-x">Rewards</span>
+            <h1 style={{ fontSize: '1.8rem', fontWeight: 'bold', lineHeight: '1.2', color: '#14532d' }}>
+              Nurture <span style={{ color: '#14532d' }}>Earth</span>, Harvest <span style={{ color: '#14532d' }}>Rewards</span>
             </h1>
             <p className="text-lg text-gray-700">
               Join our eco-conscious community and transform your sustainable actions into meaningful rewards through blockchain technology.
@@ -418,14 +418,7 @@ export default function EcoChainLanding() {
       <section className="py-16 md:py-24 px-4 eco-section">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-block bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm mb-4"
-            >
-              <WasteCounter />
-            </motion.div>
+
             
             <motion.h1 
               className="text-4xl md:text-6xl font-bold mt-6 mb-6"
