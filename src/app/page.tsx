@@ -440,7 +440,7 @@ export default function EcoChainLanding() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <a href="/upload" style={{ textDecoration: 'none' }}>
+              <a href="/upload" style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>
                 <button 
                   style={{
                     backgroundColor: '#059669',
@@ -453,7 +453,7 @@ export default function EcoChainLanding() {
                     cursor: 'pointer',
                     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                     transition: 'all 0.2s ease',
-                    minWidth: '200px',
+                    width: '200px',
                     textAlign: 'center'
                   }}
                   onMouseEnter={(e) => {
@@ -468,7 +468,7 @@ export default function EcoChainLanding() {
                   Start Your Eco Journey
                 </button>
               </a>
-              <a href="/leaderboard" style={{ textDecoration: 'none' }}>
+              <a href="/leaderboard" style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>
                 <button 
                   style={{
                     backgroundColor: '#059669',
@@ -481,7 +481,7 @@ export default function EcoChainLanding() {
                     cursor: 'pointer',
                     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                     transition: 'all 0.2s ease',
-                    minWidth: '200px',
+                    width: '200px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
