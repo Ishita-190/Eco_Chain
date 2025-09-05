@@ -146,7 +146,7 @@ export default function ResultPage() {
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => router.back()}
-                className="flex items-center space-x-2 text-gray-600 hover:text-green-600 transition-colors duration-200 px-3 py-2 rounded-full hover:bg-green-50">
+                className="flex items-center space-x-2 text-gray-600 hover:text-green-600 transition-colors duration-200 px-3 py-2 rounded-full hover:bg-green-50"
               >
                 <ArrowLeft className="w-5 h-5" />
                 <span>Back</span>
