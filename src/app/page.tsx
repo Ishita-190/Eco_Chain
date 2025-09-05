@@ -47,9 +47,9 @@ const WasteCounter = () => {
   }, []);
   
   return (
-    <div className="flex items-center gap-3 bg-green-100 px-6 py-3 rounded-full shadow-md">
-      <Recycle className="text-green-600 h-6 w-6" />
-      <span className="font-semibold text-green-800 text-lg">
+    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', backgroundColor: '#dcfce7', padding: '16px 24px', borderRadius: '9999px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
+      <Recycle style={{ color: '#16a34a', height: '24px', width: '24px' }} />
+      <span style={{ fontWeight: '600', color: '#166534', fontSize: '18px' }}>
         <CountUp end={wasteCount} duration={1500} /> kg of waste recycled
       </span>
     </div>
@@ -313,7 +313,7 @@ export default function EcoChainLanding() {
               <WasteCounter />
             </div>
             <div className="bg-green-50 p-4 rounded-lg border border-green-100 shadow-sm">
-              <p className="text-green-900 font-bold text-2xl">
+              <p style={{ color: '#14532d', fontWeight: 'bold', fontSize: '24px' }}>
                 <Typewriter 
                   texts={[
                     "Recycling for a better tomorrow", 
@@ -327,7 +327,7 @@ export default function EcoChainLanding() {
                 />
               </p>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold leading-tight">
+            <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', lineHeight: '1.2' }}>
               Nurture <span className="text-gradient">Earth</span>, Harvest <span className="text-gradient animate-gradient-x">Rewards</span>
             </h1>
             <p className="text-lg text-gray-700">
