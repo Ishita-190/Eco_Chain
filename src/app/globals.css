@@ -284,8 +284,5 @@
     height: var(--dock-icon-size);
   }
 
-  .dock-icon:hover {
-    /* optional hover effect */
-    transform: scale(calc(var(--dock-icon-magnification) / var(--dock-icon-size)));
-  }
+
 
