@@ -67,8 +67,7 @@ export default function SchedulePage() {
       }
       
       const { orderId } = await response.json();
-      alert(`Pickup scheduled successfully! Order ID: ${orderId}`);
-      router.push('/');
+      router.push(`/track/${orderId}`);
     } catch (err) {
       console.error('Schedule error:', err);
       alert(`Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
