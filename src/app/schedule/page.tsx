@@ -44,7 +44,7 @@ export default function SchedulePage() {
         localStorage.setItem('ecocommerce_token', token);
       }
 
-      const scheduledAt = new Date(`${selectedDate}T${selectedTime}`).toISOString();
+      const scheduledAt = new Date(`${selectedDate}T${selectedTime}:00`).toISOString();
 
       const response = await fetch('/api/orders', {
         method: 'POST',
