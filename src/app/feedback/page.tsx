@@ -1,9 +1,10 @@
 'use client';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, Star, Send, CheckCircle } from 'lucide-react';
+import { MessageSquare, Star, Send, CheckCircle, AlertTriangle } from 'lucide-react';
 
 export default function FeedbackPage() {
+  const [feedbackType, setFeedbackType] = useState('feedback');
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState('');
   const [email, setEmail] = useState('');
@@ -95,6 +96,55 @@ export default function FeedbackPage() {
               <form onSubmit={handleSubmit}>
                 <div style={{ marginBottom: '32px' }}>
                   <label style={{ display: 'block', fontSize: '18px', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>
+                    Type
+                  </label>
+                  <div style={{ display: 'flex', gap: '16px' }}>
+                    <button
+                      type="button"
+                      onClick={() => setFeedbackType('feedback')}
+                      style={{
+                        flex: 1,
+                        padding: '16px',
+                        borderRadius: '16px',
+                        border: `2px solid ${feedbackType === 'feedback' ? '#059669' : 'rgba(5, 150, 105, 0.2)'}`,
+                        background: feedbackType === 'feedback' ? 'rgba(5, 150, 105, 0.1)' : 'transparent',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '8px'
+                      }}
+                    >
+                      <MessageSquare style={{ width: '20px', height: '20px', color: '#059669' }} />
+                      <span style={{ fontWeight: '600', color: '#059669' }}>Feedback</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFeedbackType('report')}
+                      style={{
+                        flex: 1,
+                        padding: '16px',
+                        borderRadius: '16px',
+                        border: `2px solid ${feedbackType === 'report' ? '#dc2626' : 'rgba(220, 38, 38, 0.2)'}`,
+                        background: feedbackType === 'report' ? 'rgba(220, 38, 38, 0.1)' : 'transparent',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '8px'
+                      }}
+                    >
+                      <AlertTriangle style={{ width: '20px', height: '20px', color: '#dc2626' }} />
+                      <span style={{ fontWeight: '600', color: '#dc2626' }}>Report Issue</span>
+                    </button>
+                  </div>
+                </div>
+
+                {feedbackType === 'feedback' && (
+                <div style={{ marginBottom: '32px' }}>
+                  <label style={{ display: 'block', fontSize: '18px', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>
                     Rate Your Experience
                   </label>
                   <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
@@ -130,6 +180,7 @@ export default function FeedbackPage() {
                     ))}
                   </div>
                 </div>
+                )}
 
                 <div style={{ marginBottom: '32px' }}>
                   <label style={{ display: 'block', fontSize: '18px', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>
@@ -138,7 +189,7 @@ export default function FeedbackPage() {
                   <textarea
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
-                    placeholder="Tell us about your experience with Eco_Chain..."
+                    placeholder={feedbackType === 'feedback' ? "Tell us about your experience with Eco_Chain..." : "Describe the issue you encountered..."}
                     required
                     style={{
                       width: '100%',
@@ -195,7 +246,7 @@ export default function FeedbackPage() {
 
                 <button
                   type="submit"
-                  disabled={!feedback || rating === 0}
+                  disabled={!feedback || (feedbackType === 'feedback' && rating === 0)}
                   style={{
                     width: '100%',
                     display: 'flex',
@@ -208,10 +259,12 @@ export default function FeedbackPage() {
                     fontSize: '18px',
                     fontWeight: '600',
                     color: 'white',
-                    background: (!feedback || rating === 0) 
+                    background: (!feedback || (feedbackType === 'feedback' && rating === 0)) 
                       ? 'linear-gradient(135deg, #9ca3af, #6b7280)'
-                      : 'linear-gradient(135deg, #059669, #047857)',
-                    cursor: (!feedback || rating === 0) ? 'not-allowed' : 'pointer',
+                      : feedbackType === 'report' 
+                        ? 'linear-gradient(135deg, #dc2626, #b91c1c)'
+                        : 'linear-gradient(135deg, #059669, #047857)',
+                    cursor: (!feedback || (feedbackType === 'feedback' && rating === 0)) ? 'not-allowed' : 'pointer',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     boxShadow: (!feedback || rating === 0) 
                       ? '0 8px 25px rgba(156, 163, 175, 0.3)'
@@ -232,7 +285,7 @@ export default function FeedbackPage() {
                   }}
                 >
                   <Send style={{ width: '20px', height: '20px' }} />
-                  Submit Feedback
+                  {feedbackType === 'feedback' ? 'Submit Feedback' : 'Submit Report'}
                 </button>
               </form>
             )}
