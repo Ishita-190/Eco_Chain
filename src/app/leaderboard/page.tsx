@@ -2,6 +2,8 @@
 import { Trophy, Medal, Crown, Star, Award, TrendingUp, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+// Leaderboard page component
+
 export default function LeaderboardPage() {
   const leaderboardData = [
     { id: 1, name: 'EcoWarrior42', score: 2450, avatar: '🌟', level: 'Platinum', wasteProcessed: '145kg', co2Saved: '89kg' },
