@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { usePageTransition } from '@/src/hooks/usePageTransition';
 import { 
   Recycle, 
   Globe, 
@@ -16,7 +17,8 @@ import {
   Shield,
   Menu,
   X,
-  Trophy
+  Trophy,
+  Sparkles
 } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/card";
@@ -283,6 +285,7 @@ const LeaderboardItem = ({
 );
 
 export default function EcoChainLanding() {
+  const { navigateTo, isTransitioning } = usePageTransition();
   const [email, setEmail] = useState("");
   const [activeTab, setActiveTab] = useState("monthly");
   
@@ -436,62 +439,80 @@ export default function EcoChainLanding() {
             
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '32px', marginBottom: '48px', width: '100%' }}>
               <button
-                onClick={() => { window.open('/upload', '_self'); }}
+                onClick={() => navigateTo('/upload')}
+                disabled={isTransitioning}
                 style={{
-                  backgroundColor: '#059669',
+                  background: 'linear-gradient(135deg, #059669, #047857)',
                   color: 'white',
-                  padding: '16px 32px',
-                  borderRadius: '12px',
+                  padding: '20px 40px',
+                  borderRadius: '20px',
                   fontSize: '18px',
                   fontWeight: '600',
                   border: 'none',
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.2s ease',
-                  width: '220px',
-                  textAlign: 'center'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#047857';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#059669';
-                  e.currentTarget.style.transform = 'translateY(0px)';
-                }}
-              >
-                Start Your Eco Journey
-              </button>
-              <button
-                onClick={() => { window.open('/leaderboard', '_self'); }}
-                style={{
-                  backgroundColor: '#059669',
-                  color: 'white',
-                  padding: '16px 32px',
-                  borderRadius: '12px',
-                  fontSize: '18px',
-                  fontWeight: '600',
-                  border: 'none',
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.2s ease',
-                  width: '220px',
+                  cursor: isTransitioning ? 'not-allowed' : 'pointer',
+                  boxShadow: '0 10px 30px rgba(5, 150, 105, 0.3)',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  minWidth: '240px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
-                  textAlign: 'center'
+                  gap: '12px',
+                  opacity: isTransitioning ? 0.7 : 1
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#047857';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  if (!isTransitioning) {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
+                    e.currentTarget.style.boxShadow = '0 15px 40px rgba(5, 150, 105, 0.4)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#059669';
-                  e.currentTarget.style.transform = 'translateY(0px)';
+                  if (!isTransitioning) {
+                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(5, 150, 105, 0.3)';
+                  }
                 }}
               >
-                <Trophy style={{ height: '20px', width: '20px' }} />
+                <Sparkles style={{ height: '24px', width: '24px' }} />
+                Start Your Eco Journey
+              </button>
+              <button
+                onClick={() => navigateTo('/leaderboard')}
+                disabled={isTransitioning}
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
+                  backdropFilter: 'blur(20px)',
+                  color: '#059669',
+                  padding: '20px 40px',
+                  borderRadius: '20px',
+                  fontSize: '18px',
+                  fontWeight: '600',
+                  border: '2px solid rgba(5, 150, 105, 0.2)',
+                  cursor: isTransitioning ? 'not-allowed' : 'pointer',
+                  boxShadow: '0 10px 30px rgba(5, 150, 105, 0.1)',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  minWidth: '240px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '12px',
+                  opacity: isTransitioning ? 0.7 : 1
+                }}
+                onMouseEnter={(e) => {
+                  if (!isTransitioning) {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
+                    e.currentTarget.style.boxShadow = '0 15px 40px rgba(5, 150, 105, 0.2)';
+                    e.currentTarget.style.borderColor = 'rgba(5, 150, 105, 0.4)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isTransitioning) {
+                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(5, 150, 105, 0.1)';
+                    e.currentTarget.style.borderColor = 'rgba(5, 150, 105, 0.2)';
+                  }
+                }}
+              >
+                <Trophy style={{ height: '24px', width: '24px' }} />
                 Join Eco Leaders
               </button>
             </div>
