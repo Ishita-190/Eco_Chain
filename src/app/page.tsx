@@ -437,9 +437,9 @@ export default function EcoChainLanding() {
               Our blockchain-powered platform makes sustainable living rewarding, transparent, and accessible for everyone.
             </motion.p>
             
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '32px', marginBottom: '48px', width: '100%' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '48px', width: '100%' }}>
               <button
-                onClick={() => navigateTo('/upload')}
+                onClick={() => navigateTo('/leaderboard')}
                 disabled={isTransitioning}
                 style={{
                   background: 'linear-gradient(135deg, #059669, #047857)',
@@ -469,46 +469,6 @@ export default function EcoChainLanding() {
                   if (!isTransitioning) {
                     e.currentTarget.style.transform = 'translateY(0) scale(1)';
                     e.currentTarget.style.boxShadow = '0 10px 30px rgba(5, 150, 105, 0.3)';
-                  }
-                }}
-              >
-                <Sparkles style={{ height: '24px', width: '24px' }} />
-                Start Your Eco Journey
-              </button>
-              <button
-                onClick={() => navigateTo('/leaderboard')}
-                disabled={isTransitioning}
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
-                  backdropFilter: 'blur(20px)',
-                  color: '#059669',
-                  padding: '20px 40px',
-                  borderRadius: '20px',
-                  fontSize: '18px',
-                  fontWeight: '600',
-                  border: '2px solid rgba(5, 150, 105, 0.2)',
-                  cursor: isTransitioning ? 'not-allowed' : 'pointer',
-                  boxShadow: '0 10px 30px rgba(5, 150, 105, 0.1)',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  minWidth: '240px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '12px',
-                  opacity: isTransitioning ? 0.7 : 1
-                }}
-                onMouseEnter={(e) => {
-                  if (!isTransitioning) {
-                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
-                    e.currentTarget.style.boxShadow = '0 15px 40px rgba(5, 150, 105, 0.2)';
-                    e.currentTarget.style.borderColor = 'rgba(5, 150, 105, 0.4)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isTransitioning) {
-                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(5, 150, 105, 0.1)';
-                    e.currentTarget.style.borderColor = 'rgba(5, 150, 105, 0.2)';
                   }
                 }}
               >
