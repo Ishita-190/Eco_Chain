@@ -52,14 +52,14 @@ export function FacilityCard({
       onClick={() => onSelect(facility)}
       onMouseEnter={(e) => {
         if (!isSelected) {
-          e.currentTarget.style.transform = 'translateY(-4px)';
-          e.currentTarget.style.boxShadow = '0 10px 25px -3px rgba(0, 0, 0, 0.1)';
+          e.currentTarget.style.transform = 'translateY(-6px)';
+          e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.15)';
         }
       }}
       onMouseLeave={(e) => {
         if (!isSelected) {
           e.currentTarget.style.transform = 'translateY(0)';
-          e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+          e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
         }
       }}
     >

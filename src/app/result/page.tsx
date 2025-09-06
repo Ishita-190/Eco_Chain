@@ -26,7 +26,7 @@ interface Classification {
   imageUrl?: string;
 }
 
-export default function ResultPage() {
+
   const searchParams = useSearchParams();
   const router = useRouter();
   const classificationId = searchParams.get('classificationId');
@@ -138,47 +138,103 @@ export default function ResultPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #d1fae5 100%)'
+    }}>
       {/* Header */}
-      <header className="bg-white/90 backdrop-blur-md border-b border-green-100 shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+      <header style={{
+        background: 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(16, 185, 129, 0.1)',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+      }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '80px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
               <button
                 onClick={() => router.back()}
-                className="flex items-center space-x-2 text-gray-600 hover:text-green-600 transition-colors duration-200 px-3 py-2 rounded-full hover:bg-green-50"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  color: '#6b7280',
+                  background: 'none',
+                  border: 'none',
+                  padding: '12px 16px',
+                  borderRadius: '16px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  fontSize: '16px',
+                  fontWeight: '500'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f0fdf4';
+                  e.currentTarget.style.color = '#059669';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#6b7280';
+                }}
               >
-                <ArrowLeft className="w-5 h-5" />
+                <ArrowLeft style={{ width: '20px', height: '20px' }} />
                 <span>Back</span>
               </button>
-              <h1 className="text-xl font-semibold text-gray-800">Available Facilities</h1>
+              <h1 style={{ fontSize: '28px', fontWeight: '700', color: '#1f2937', margin: 0 }}>Available Facilities</h1>
             </div>
             <WalletBadge />
           </div>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 py-8">
+      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px 24px' }}>
         {/* Classification Summary */}
         {classification && (
-          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-lg border border-green-100 p-8 mb-8 hover:shadow-xl transition-all duration-300">
-            <div className="flex items-center justify-between">
+          <div style={{
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '24px',
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+            border: '1px solid rgba(16, 185, 129, 0.1)',
+            padding: '32px',
+            marginBottom: '32px',
+            transition: 'all 0.3s ease'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div>
-                <h2 className="text-2xl font-bold text-gray-800 capitalize mb-2">
+                <h2 style={{
+                  fontSize: '32px',
+                  fontWeight: '700',
+                  color: '#1f2937',
+                  textTransform: 'capitalize',
+                  marginBottom: '8px',
+                  margin: 0
+                }}>
                   {classification.label} Waste Classification
                 </h2>
-                <p className="text-gray-600">
-                  Confidence: <span className="font-semibold text-green-600">
+                <p style={{
+                  fontSize: '18px',
+                  color: '#6b7280',
+                  margin: 0
+                }}>
+                  Confidence: <span style={{ fontWeight: '600', color: '#059669' }}>
                     {Math.round(classification.confidence * 100)}%
                   </span>
                 </p>
               </div>
               {classification.imageUrl && (
-                <div className="w-20 h-20 rounded-lg overflow-hidden bg-gray-100">
+                <div style={{
+                  width: '80px',
+                  height: '80px',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  backgroundColor: '#f3f4f6',
+                  border: '2px solid rgba(16, 185, 129, 0.2)'
+                }}>
                   <img
                     src={classification.imageUrl}
                     alt="Waste classification"
-                    className="w-full h-full object-cover"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
               )}
@@ -186,17 +242,22 @@ export default function ResultPage() {
           </div>
         )}
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '32px' }}>
           {/* Facilities List */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-6">
-              <MapPin className="w-5 h-5 text-gray-600" />
-              <h3 className="text-lg font-semibold text-gray-800">
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+              <MapPin style={{ width: '24px', height: '24px', color: '#059669' }} />
+              <h3 style={{
+                fontSize: '24px',
+                fontWeight: '600',
+                color: '#1f2937',
+                margin: 0
+              }}>
                 Nearby Facilities ({facilities.length})
               </h3>
             </div>
 
-            <div className="space-y-4">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               {facilities.map((facility) => (
                 <FacilityCard
                   key={facility.id}
@@ -210,47 +271,94 @@ export default function ResultPage() {
           </div>
 
           {/* Selection Summary & Action */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-lg border border-green-100 p-6 hover:shadow-xl transition-all duration-300">
-                <h4 className="text-lg font-semibold text-gray-800 mb-4">Schedule Pickup</h4>
+          <div>
+            <div style={{ position: 'sticky', top: '120px' }}>
+              <div style={{
+                background: selectedFacility 
+                  ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.02))'
+                  : 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '24px',
+                boxShadow: selectedFacility 
+                  ? '0 25px 50px -12px rgba(16, 185, 129, 0.15)'
+                  : '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                border: selectedFacility 
+                  ? '2px solid rgba(16, 185, 129, 0.2)'
+                  : '1px solid rgba(229, 231, 235, 0.8)',
+                padding: '32px',
+                transition: 'all 0.3s ease'
+              }}>
+                <h4 style={{
+                  fontSize: '24px',
+                  fontWeight: '600',
+                  color: '#1f2937',
+                  marginBottom: '24px',
+                  margin: 0
+                }}>Schedule Pickup</h4>
                 
                 {selectedFacility ? (
-                  <div className="space-y-4">
-                    <div className="p-4 bg-green-50 rounded-2xl border border-green-200">
-                      <h5 className="font-medium text-green-800 mb-2">Selected Facility</h5>
-                      <p className="text-sm text-green-700">{selectedFacility.name}</p>
-                      <p className="text-xs text-green-600 mt-1">{selectedFacility.address}</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div style={{
+                      padding: '20px',
+                      background: 'linear-gradient(135deg, #dcfce7, #bbf7d0)',
+                      borderRadius: '20px',
+                      border: '1px solid rgba(16, 185, 129, 0.3)'
+                    }}>
+                      <h5 style={{ fontWeight: '600', color: '#065f46', marginBottom: '8px', fontSize: '16px', margin: 0 }}>Selected Facility</h5>
+                      <p style={{ fontSize: '16px', color: '#047857', fontWeight: '500', margin: 0 }}>{selectedFacility.name}</p>
+                      <p style={{ fontSize: '14px', color: '#059669', marginTop: '4px', margin: 0 }}>{selectedFacility.address}</p>
                     </div>
 
-                    <div className="space-y-3 text-sm text-gray-600">
-                      <div className="flex justify-between">
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '16px', color: '#4b5563' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>Waste Type:</span>
-                        <span className="font-medium capitalize">{classification?.label}</span>
+                        <span style={{ fontWeight: '600', textTransform: 'capitalize', color: '#1f2937' }}>{classification?.label}</span>
                       </div>
-                      <div className="flex justify-between">
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>Distance:</span>
-                        <span className="font-medium">
+                        <span style={{ fontWeight: '600', color: '#1f2937' }}>
                           {calculateDistance(selectedFacility.lat, selectedFacility.lng).toFixed(1)} km
                         </span>
                       </div>
-                      <div className="flex justify-between">
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>Phone:</span>
-                        <span className="font-medium">{selectedFacility.phone || 'N/A'}</span>
+                        <span style={{ fontWeight: '600', color: '#1f2937' }}>{selectedFacility.phone || 'N/A'}</span>
                       </div>
                     </div>
 
                     <button
                       onClick={handleSchedule}
-                      className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium py-4 px-6 rounded-full shadow-lg hover:from-green-600 hover:to-emerald-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                      style={{
+                        width: '100%',
+                        background: 'linear-gradient(135deg, #10b981, #059669)',
+                        color: 'white',
+                        fontWeight: '600',
+                        fontSize: '18px',
+                        padding: '20px 24px',
+                        borderRadius: '20px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        boxShadow: '0 10px 25px -5px rgba(16, 185, 129, 0.4)',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        position: 'relative',
+                        overflow: 'hidden'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-3px)';
+                        e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(16, 185, 129, 0.5)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(16, 185, 129, 0.4)';
+                      }}
                     >
-                      Schedule Pickup
+                      🚛 Schedule Pickup Now
                     </button>
                   </div>
                 ) : (
-                  <div className="text-center py-8">
-                    <MapPin className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                    <p className="text-gray-500">Select a facility to continue</p>
+                  <div style={{ textAlign: 'center', padding: '40px 0' }}>
+                    <MapPin style={{ width: '48px', height: '48px', color: '#d1d5db', margin: '0 auto 16px' }} />
+                    <p style={{ fontSize: '18px', color: '#6b7280', margin: 0 }}>Select a facility to continue</p>
                   </div>
                 )}
               </div>
