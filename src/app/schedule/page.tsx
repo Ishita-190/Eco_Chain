@@ -31,16 +31,46 @@ export default function SchedulePage() {
 
     setIsSubmitting(true);
     try {
-      // Mock successful scheduling for now
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Get or create auth token
+      let token = getLocalStorage('ecocommerce_token');
+      if (!token) {
+        const authResponse = await fetch('/api/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ address: '0x1234567890abcdef' })
+        });
+        const authData = await authResponse.json();
+        token = authData.token;
+        localStorage.setItem('ecocommerce_token', token);
+      }
+
+      const scheduledAt = new Date(`${selectedDate}T${selectedTime}`).toISOString();
+
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          facilityId,
+          classificationId,
+          pickupType,
+          scheduledAt,
+          estimatedWeight: estimatedWeight ? parseFloat(estimatedWeight) : undefined,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to create order');
+      }
       
-      // Generate mock order ID
-      const mockOrderId = 'order_' + Math.random().toString(36).substr(2, 9);
-      
-      alert(`Pickup scheduled successfully! Order ID: ${mockOrderId}`);
+      const { orderId } = await response.json();
+      alert(`Pickup scheduled successfully! Order ID: ${orderId}`);
       router.push('/');
     } catch (err) {
-      console.error(err);
+      console.error('Schedule error:', err);
       alert('Failed to schedule pickup. Please try again.');
     } finally {
       setIsSubmitting(false);
