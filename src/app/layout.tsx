@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"], weight: ["400", "600", "700"], variabl
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: "700", variable: "--font-space-grotesk" });
 
 export const metadata = {
-  title: "EcoCommerce - Waste to Rewards",
+  title: "Eco_Chain",
   description: "Turn your waste into blockchain rewards",
   manifest: "/manifest.json",
 };
