@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ArrowLeft, Package, MapPin, Calendar, Truck, CheckCircle, Clock, Sparkles } from 'lucide-react';
+import { ArrowLeft, Package, MapPin, Calendar, Truck, CheckCircle, Clock, Sparkles, ArrowRight } from 'lucide-react';
 
 interface Collection {
   id: string;
@@ -73,19 +73,11 @@ export default function TrackCollectionPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 flex items-center justify-center">
-        <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-12 shadow-2xl border border-white/20">
-          <div className="flex flex-col items-center space-y-6">
-            <div className="relative">
-              <div className="w-20 h-20 border-4 border-emerald-200 rounded-full animate-spin border-t-emerald-600"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Truck className="w-8 h-8 text-emerald-600" />
-              </div>
-            </div>
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">Loading Collection</h3>
-              <p className="text-gray-600">Fetching your tracking details...</p>
-            </div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="relative">
+          <div className="w-32 h-32 border-8 border-blue-100 rounded-full animate-spin border-t-blue-500"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Truck className="w-12 h-12 text-blue-500 animate-bounce" />
           </div>
         </div>
       </div>
@@ -94,14 +86,13 @@ export default function TrackCollectionPage() {
 
   if (!collection) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 flex items-center justify-center">
-        <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-12 shadow-2xl border border-white/20 text-center">
-          <Package className="w-24 h-24 text-gray-400 mx-auto mb-6" />
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Collection Not Found</h2>
-          <p className="text-gray-600 mb-8 text-lg">The collection you're looking for doesn't exist.</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="text-center">
+          <Package className="w-32 h-32 text-gray-300 mx-auto mb-8" />
+          <h2 className="text-4xl font-bold text-gray-700 mb-4">Collection Not Found</h2>
           <button 
             onClick={() => router.push('/')} 
-            className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-2xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="px-8 py-4 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             Go Home
           </button>
@@ -116,227 +107,249 @@ export default function TrackCollectionPage() {
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'CREATED': return <Package className="w-6 h-6" />;
-      case 'SCHEDULED': return <Calendar className="w-6 h-6" />;
-      case 'PICKED_UP': return <Truck className="w-6 h-6" />;
-      case 'VERIFIED': return <CheckCircle className="w-6 h-6" />;
-      case 'COMPLETED': return <Sparkles className="w-6 h-6" />;
-      default: return <Clock className="w-6 h-6" />;
+      case 'CREATED': return Package;
+      case 'SCHEDULED': return Calendar;
+      case 'PICKED_UP': return Truck;
+      case 'VERIFIED': return CheckCircle;
+      case 'COMPLETED': return Sparkles;
+      default: return Clock;
     }
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusLabel = (status: string) => {
     switch (status) {
-      case 'COMPLETED': return 'from-green-500 to-emerald-600';
-      case 'VERIFIED': return 'from-blue-500 to-cyan-600';
-      case 'PICKED_UP': return 'from-yellow-500 to-orange-600';
-      case 'SCHEDULED': return 'from-purple-500 to-pink-600';
-      default: return 'from-gray-400 to-gray-600';
+      case 'CREATED': return 'Created';
+      case 'SCHEDULED': return 'Scheduled';
+      case 'PICKED_UP': return 'Collected';
+      case 'VERIFIED': return 'Verified';
+      case 'COMPLETED': return 'Completed';
+      default: return status;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
-      {/* Header */}
-      <div className="bg-white/80 backdrop-blur-xl border-b border-emerald-200/50 shadow-lg">
-        <div className="max-w-7xl mx-auto px-6 py-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      {/* Floating Header */}
+      <div className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <button
-                onClick={() => router.push('/')}
-                className="flex items-center space-x-3 px-6 py-3 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 rounded-2xl transition-all duration-300 font-medium"
-              >
-                <ArrowLeft className="w-5 h-5" />
-                <span>Back to Home</span>
-              </button>
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  {collection.pickupType === 'PICKUP' ? 
-                    <Truck className="w-8 h-8 text-white" /> : 
-                    <MapPin className="w-8 h-8 text-white" />
-                  }
-                </div>
-                <div>
-                  <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                    {collectionType} Tracking
-                  </h1>
-                  <p className="text-lg text-gray-600 font-medium">ID: {collectionId}</p>
-                </div>
+            <button
+              onClick={() => router.push('/')}
+              className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-300"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              <span className="font-medium">Back</span>
+            </button>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
+                {collection.pickupType === 'PICKUP' ? 
+                  <Truck className="w-5 h-5 text-white" /> : 
+                  <MapPin className="w-5 h-5 text-white" />
+                }
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-gray-800">{collectionType} Tracking</h1>
+                <p className="text-sm text-gray-500">#{collectionId}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Status Progress Bar */}
-        <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white/20 mb-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 flex items-center space-x-3">
-              <div className={`w-10 h-10 bg-gradient-to-r ${getStatusColor(collection.status)} rounded-xl flex items-center justify-center text-white`}>
-                {getStatusIcon(collection.status)}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Flow Map Status */}
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/30 mb-8 overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-indigo-500/5"></div>
+          <div className="relative z-10">
+            <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">Collection Progress</h2>
+            
+            {/* Flow Map */}
+            <div className="relative">
+              <div className="flex items-center justify-between mb-4">
+                {statusOrder.map((status, index) => {
+                  const Icon = getStatusIcon(status);
+                  const isCompleted = index < currentIndex;
+                  const isCurrent = index === currentIndex;
+                  const isActive = isCompleted || isCurrent;
+
+                  return (
+                    <div key={status} className="flex flex-col items-center relative z-10">
+                      {/* Status Node */}
+                      <div className={`relative transition-all duration-700 ${isCurrent ? 'animate-pulse' : ''}`}>
+                        <div className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
+                          isCurrent 
+                            ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-2xl scale-110 ring-4 ring-blue-200' 
+                            : isCompleted 
+                            ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-xl'
+                            : 'bg-gray-200 text-gray-400 shadow-md'
+                        }`}>
+                          <Icon className="w-8 h-8" />
+                        </div>
+                        
+                        {/* Pulse Animation for Current */}
+                        {isCurrent && (
+                          <div className="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-20"></div>
+                        )}
+                        
+                        {/* Checkmark for Completed */}
+                        {isCompleted && (
+                          <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <CheckCircle className="w-5 h-5 text-white" />
+                          </div>
+                        )}
+                      </div>
+                      
+                      {/* Status Label */}
+                      <div className="mt-4 text-center">
+                        <div className={`font-bold text-sm ${isActive ? 'text-gray-800' : 'text-gray-400'}`}>
+                          {getStatusLabel(status)}
+                        </div>
+                        {isCurrent && (
+                          <div className="text-xs text-blue-600 font-medium mt-1 animate-pulse">
+                            In Progress
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-              <span>{collectionType} Status</span>
-            </h2>
-            <div className={`px-6 py-3 bg-gradient-to-r ${getStatusColor(collection.status)} text-white rounded-2xl font-bold text-lg shadow-lg`}>
-              {collection.status.replace('_', ' ')}
-            </div>
-          </div>
-
-          {/* Progress Steps */}
-          <div className="flex items-center justify-between mb-8">
-            {statusOrder.map((status, index) => {
-              const isCompleted = index < currentIndex;
-              const isCurrent = index === currentIndex;
-              const isActive = isCompleted || isCurrent;
-
-              return (
-                <div key={status} className="flex flex-col items-center flex-1">
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 ${
-                    isActive 
-                      ? `bg-gradient-to-br ${getStatusColor(status)} text-white shadow-lg transform scale-110` 
-                      : 'bg-gray-200 text-gray-400'
-                  } ${isCurrent ? 'animate-pulse' : ''}`}>
-                    {getStatusIcon(status)}
-                  </div>
-                  <div className="mt-3 text-center">
-                    <div className={`font-semibold ${isActive ? 'text-gray-800' : 'text-gray-400'}`}>
-                      {status.replace('_', ' ')}
-                    </div>
-                  </div>
-                  {index < statusOrder.length - 1 && (
-                    <div className="absolute top-8 left-1/2 w-full h-1 bg-gray-200 -z-10">
-                      <div 
-                        className={`h-full bg-gradient-to-r from-emerald-500 to-teal-600 transition-all duration-1000 ${
-                          isCompleted ? 'w-full' : 'w-0'
-                        }`}
-                      />
-                    </div>
-                  )}
+              
+              {/* Connecting Lines */}
+              <div className="absolute top-10 left-10 right-10 h-1 bg-gray-200 rounded-full -z-10">
+                <div 
+                  className="h-full bg-gradient-to-r from-green-500 to-blue-500 rounded-full transition-all duration-1000 ease-out"
+                  style={{ width: `${(currentIndex / (statusOrder.length - 1)) * 100}%` }}
+                ></div>
+              </div>
+              
+              {/* Flow Arrows */}
+              {statusOrder.slice(0, -1).map((_, index) => (
+                <div 
+                  key={index}
+                  className={`absolute top-8 transition-all duration-500 ${
+                    index < currentIndex ? 'text-green-500' : 'text-gray-300'
+                  }`}
+                  style={{ left: `${20 + (index * 20)}%` }}
+                >
+                  <ArrowRight className="w-6 h-6" />
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Collection Details */}
-          <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white/20">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center space-x-3">
-                <Package className="w-7 h-7 text-emerald-600" />
-                <span>Collection Details</span>
-              </h3>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-6 border border-emerald-200">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-600 font-medium">Waste Type</span>
-                      <span className="font-bold text-emerald-700 bg-emerald-100 px-4 py-2 rounded-xl capitalize">
-                        {collection.wasteType}
-                      </span>
+          {/* Details Cards */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Collection Info */}
+            <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30">
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
+                  <div className="flex items-center space-x-3">
+                    <Package className="w-8 h-8 text-blue-600" />
+                    <div>
+                      <div className="text-sm text-gray-600">Waste Type</div>
+                      <div className="font-bold text-gray-800 capitalize">{collection.wasteType}</div>
                     </div>
                   </div>
-                  
-                  <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-200">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-600 font-medium">Collection Type</span>
-                      <span className="font-bold text-blue-700">{collectionType}</span>
+                </div>
+                
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100">
+                  <div className="flex items-center space-x-3">
+                    <Truck className="w-8 h-8 text-green-600" />
+                    <div>
+                      <div className="text-sm text-gray-600">Type</div>
+                      <div className="font-bold text-gray-800">{collectionType}</div>
                     </div>
                   </div>
-
-                  {collection.estimatedWeight && (
-                    <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-200">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-gray-600 font-medium">Est. Weight</span>
-                        <span className="font-bold text-purple-700">{collection.estimatedWeight}kg</span>
+                </div>
+                
+                {collection.estimatedWeight && (
+                  <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-100">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                        <span className="text-purple-600 font-bold text-sm">kg</span>
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-600">Weight</div>
+                        <div className="font-bold text-gray-800">{collection.estimatedWeight}kg</div>
                       </div>
                     </div>
-                  )}
-                </div>
-
-                <div className="space-y-4">
-                  <div className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-2xl p-6 border border-gray-200">
-                    <h4 className="font-bold text-gray-800 mb-4 flex items-center space-x-2">
-                      <MapPin className="w-5 h-5 text-blue-600" />
-                      <span>Facility Information</span>
-                    </h4>
-                    <div className="space-y-3">
-                      <div className="font-semibold text-gray-800">{collection.facility.name}</div>
-                      <div className="text-gray-600">{collection.facility.address}</div>
-                      {collection.facility.phone && (
-                        <div className="text-gray-600 flex items-center space-x-2">
-                          <span>📞</span>
-                          <span>{collection.facility.phone}</span>
-                        </div>
-                      )}
-                      {collection.scheduledAt && (
-                        <div className="flex items-center space-x-2 text-gray-700 bg-white rounded-lg p-3">
-                          <Calendar className="w-4 h-4 text-blue-600" />
-                          <span className="font-medium">
-                            {new Date(collection.scheduledAt).toLocaleString()}
-                          </span>
-                        </div>
-                      )}
-                    </div>
                   </div>
-                </div>
+                )}
+              </div>
+            </div>
+
+            {/* Facility Info */}
+            <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30">
+              <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center space-x-2">
+                <MapPin className="w-5 h-5 text-blue-600" />
+                <span>Facility Details</span>
+              </h3>
+              <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-4 border border-gray-100">
+                <div className="font-semibold text-gray-800 mb-2">{collection.facility.name}</div>
+                <div className="text-gray-600 mb-3">{collection.facility.address}</div>
+                {collection.facility.phone && (
+                  <div className="text-gray-600 mb-3">📞 {collection.facility.phone}</div>
+                )}
+                {collection.scheduledAt && (
+                  <div className="flex items-center space-x-2 text-gray-700 bg-white rounded-lg p-2">
+                    <Calendar className="w-4 h-4 text-blue-600" />
+                    <span className="text-sm font-medium">
+                      {new Date(collection.scheduledAt).toLocaleString()}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 
             {/* Timeline */}
-            <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white/20">
-              <h3 className="text-2xl font-bold text-gray-800 mb-8 flex items-center space-x-3">
-                <Clock className="w-7 h-7 text-emerald-600" />
-                <span>Collection Timeline</span>
+            <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30">
+              <h3 className="text-lg font-bold text-gray-800 mb-6 flex items-center space-x-2">
+                <Clock className="w-5 h-5 text-blue-600" />
+                <span>Activity Timeline</span>
               </h3>
               
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {timeline.map((event, index) => {
                   const eventIndex = statusOrder.indexOf(event.type);
                   const isCompleted = eventIndex < currentIndex;
                   const isCurrent = eventIndex === currentIndex;
+                  const Icon = getStatusIcon(event.type);
                   
                   return (
-                    <div key={event.id} className="flex items-start space-x-6">
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 ${
+                    <div key={event.id} className="flex items-start space-x-4">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
                         isCurrent 
-                          ? 'bg-gradient-to-br from-blue-500 to-cyan-600 text-white shadow-lg animate-pulse' 
+                          ? 'bg-blue-500 text-white animate-pulse' 
                           : isCompleted 
-                          ? 'bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg'
+                          ? 'bg-green-500 text-white'
                           : 'bg-gray-200 text-gray-400'
                       }`}>
-                        {getStatusIcon(event.type)}
+                        <Icon className="w-5 h-5" />
                       </div>
                       
-                      <div className="flex-1 bg-gradient-to-r from-gray-50 to-slate-50 rounded-2xl p-6 border border-gray-200">
-                        <div className="flex justify-between items-start mb-3">
-                          <h4 className={`text-xl font-bold ${
-                            isCurrent ? 'text-blue-700' : isCompleted ? 'text-emerald-700' : 'text-gray-600'
+                      <div className="flex-1 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg p-4 border border-gray-100">
+                        <div className="flex justify-between items-start mb-2">
+                          <h4 className={`font-semibold ${
+                            isCurrent ? 'text-blue-700' : isCompleted ? 'text-green-700' : 'text-gray-600'
                           }`}>
                             {event.title}
                           </h4>
-                          <div className="text-right">
-                            <div className="text-sm font-medium text-gray-500 bg-white px-3 py-1 rounded-lg">
-                              {new Date(event.createdAt).toLocaleDateString()}
-                            </div>
-                            <div className="text-xs text-gray-400 mt-1">
-                              {new Date(event.createdAt).toLocaleTimeString()}
-                            </div>
-                          </div>
+                          <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded">
+                            {new Date(event.createdAt).toLocaleString()}
+                          </span>
                         </div>
                         
                         {event.message && (
-                          <p className="text-gray-700 text-lg leading-relaxed">{event.message}</p>
+                          <p className="text-gray-600 text-sm">{event.message}</p>
                         )}
                         
                         {isCurrent && (
-                          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-4">
-                            <p className="text-blue-700 font-medium flex items-center space-x-3">
-                              <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                              <span>Currently in progress...</span>
-                            </p>
+                          <div className="mt-2 text-xs text-blue-600 font-medium flex items-center space-x-1">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                            <span>Active</span>
                           </div>
                         )}
                       </div>
@@ -348,39 +361,36 @@ export default function TrackCollectionPage() {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {collection.status === 'COMPLETED' && collection.actualWeight && (
-              <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white/20">
-                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center space-x-3">
-                  <Sparkles className="w-7 h-7 text-emerald-600" />
-                  <span>Environmental Impact</span>
+              <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30">
+                <h3 className="text-lg font-bold text-gray-800 mb-6 flex items-center space-x-2">
+                  <Sparkles className="w-5 h-5 text-green-600" />
+                  <span>Impact</span>
                 </h3>
                 
-                <div className="space-y-6">
-                  <div className="bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl p-6 border border-emerald-200">
-                    <div className="text-4xl font-bold text-emerald-700 mb-2">{collection.actualWeight}kg</div>
-                    <div className="text-emerald-600 font-semibold">Waste Diverted from Landfill</div>
+                <div className="space-y-4">
+                  <div className="bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl p-4 text-center border border-green-200">
+                    <div className="text-3xl font-bold text-green-700">{collection.actualWeight}kg</div>
+                    <div className="text-green-600 text-sm font-medium">Waste Diverted</div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl p-6 border border-blue-200">
-                    <div className="text-4xl font-bold text-blue-700 mb-2">{collection.creditsMinted}</div>
-                    <div className="text-blue-600 font-semibold">ECO Credits Earned</div>
+                  <div className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl p-4 text-center border border-blue-200">
+                    <div className="text-3xl font-bold text-blue-700">{collection.creditsMinted}</div>
+                    <div className="text-blue-600 text-sm font-medium">ECO Credits</div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-gray-100 to-slate-100 rounded-2xl p-6 border border-gray-200">
-                    <div className="space-y-3 text-gray-700 font-medium">
-                      <p className="flex items-center space-x-3">
-                        <span className="text-2xl">🌱</span>
-                        <span>Reduced methane emissions</span>
-                      </p>
-                      <p className="flex items-center space-x-3">
-                        <span className="text-2xl">♻️</span>
-                        <span>Conserved natural resources</span>
-                      </p>
-                      <p className="flex items-center space-x-3">
-                        <span className="text-2xl">🔄</span>
-                        <span>Supported circular economy</span>
-                      </p>
+                  <div className="bg-gradient-to-br from-gray-100 to-slate-100 rounded-xl p-4 border border-gray-200">
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <div className="flex items-center space-x-2">
+                        <span>🌱</span><span>Reduced emissions</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <span>♻️</span><span>Resources saved</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <span>🔄</span><span>Circular economy</span>
+                      </div>
                     </div>
                   </div>
                 </div>
