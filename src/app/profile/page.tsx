@@ -2,14 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { User, Award, Leaf, Clock, Activity } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/src/components/ui/card';
-import { Button } from '@/src/components/ui/button';
+import { User, Award, Leaf, Clock, Activity, TrendingUp, Target, Calendar, Zap } from 'lucide-react';
+import { useState } from 'react';
 
-const ProfilePage: React.FC = () => {
+export default function ProfilePage() {
   const router = useRouter();
+  const [selectedPeriod, setSelectedPeriod] = useState('week');
 
-  // 🔹 Static user data
   const userData = {
     name: 'Eco Warrior',
     level: 3,
@@ -18,168 +17,367 @@ const ProfilePage: React.FC = () => {
     streak: 7,
     rank: 24,
     nextLevelPoints: 2000,
+    co2Saved: 89,
+    treesEquivalent: 12,
     recentActivity: [
-      { id: '1', type: 'recycle', date: '2h ago', points: 120, title: 'Plastic Recycling' },
-      { id: '2', type: 'streak', date: '1d ago', points: 30, title: '3 Day Streak' },
-      { id: '3', type: 'recycle', date: '2d ago', points: 85, title: 'Glass Recycling' },
+      { id: '1', type: 'recycle', date: '2h ago', points: 120, title: 'Plastic Recycling', icon: '♻️' },
+      { id: '2', type: 'streak', date: '1d ago', points: 30, title: '3 Day Streak', icon: '🔥' },
+      { id: '3', type: 'recycle', date: '2d ago', points: 85, title: 'Glass Recycling', icon: '🥃' },
+      { id: '4', type: 'achievement', date: '3d ago', points: 200, title: 'Level Up!', icon: '🏆' },
     ],
-    activityHeatmap: [
-      2, 5, 0, 3, 1, 4, 2,
-      3, 0, 1, 2, 4, 0, 1,
-      5, 3, 2, 1, 0, 4, 2,
-      1, 2, 3, 0, 5, 2, 4,
-    ], // Example 28 days activity
+    progressData: {
+      week: [65, 78, 45, 89, 92, 67, 85],
+      month: [450, 520, 380, 670, 590, 720, 650, 580, 490, 630, 720, 680, 590, 640, 710, 580, 490, 630, 720, 680, 590, 640, 710, 580, 490, 630, 720, 680, 590, 640],
+      year: [2400, 2800, 2200, 3100, 2900, 3400, 3200, 2800, 2600, 3000, 3400, 3200]
+    }
   };
 
   const progress = Math.min((userData.points / userData.nextLevelPoints) * 100, 100);
+  const currentData = userData.progressData[selectedPeriod as keyof typeof userData.progressData];
+  const maxValue = Math.max(...currentData);
+
+  const ProgressChart = () => (
+    <div style={{ padding: '24px 0' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px' }}>
+        {['week', 'month', 'year'].map((period) => (
+          <button
+            key={period}
+            onClick={() => setSelectedPeriod(period)}
+            style={{
+              padding: '8px 16px',
+              borderRadius: '12px',
+              border: 'none',
+              background: selectedPeriod === period 
+                ? 'linear-gradient(135deg, #059669, #047857)' 
+                : 'rgba(5, 150, 105, 0.1)',
+              color: selectedPeriod === period ? 'white' : '#059669',
+              cursor: 'pointer',
+              fontWeight: '600',
+              fontSize: '14px',
+              transition: 'all 0.3s ease',
+              textTransform: 'capitalize'
+            }}
+          >
+            {period}
+          </button>
+        ))}
+      </div>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'end', 
+        gap: selectedPeriod === 'week' ? '12px' : selectedPeriod === 'month' ? '4px' : '8px',
+        height: '200px',
+        padding: '0 8px'
+      }}>
+        {currentData.map((value, index) => (
+          <motion.div
+            key={index}
+            initial={{ height: 0 }}
+            animate={{ height: `${(value / maxValue) * 180}px` }}
+            transition={{ delay: index * 0.05, duration: 0.6 }}
+            style={{
+              flex: 1,
+              background: `linear-gradient(to top, #059669, #10b981)`,
+              borderRadius: '4px 4px 0 0',
+              minHeight: '8px',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(to top, #047857, #059669)';
+              e.currentTarget.style.transform = 'scaleY(1.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(to top, #059669, #10b981)';
+              e.currentTarget.style.transform = 'scaleY(1)';
+            }}
+            title={`${value} points`}
+          />
+        ))}
+      </div>
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        marginTop: '12px',
+        fontSize: '12px',
+        color: '#6b7280'
+      }}>
+        <span>{selectedPeriod === 'week' ? 'Mon' : selectedPeriod === 'month' ? '1' : 'Jan'}</span>
+        <span>{selectedPeriod === 'week' ? 'Sun' : selectedPeriod === 'month' ? '30' : 'Dec'}</span>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-900 via-emerald-800 to-teal-900 text-white">
-      <main className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%)'
+    }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 24px' }}>
         
         {/* Profile Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '48px' }}
         >
-          <Card className="bg-white/10 backdrop-blur-lg border-green-300/20 shadow-xl rounded-3xl">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-6">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
-                  <User className="w-10 h-10" />
-                </div>
-                <div>
-                  <h2 className="text-3xl font-bold">{userData.name}</h2>
-                  <p className="text-gray-400 text-sm mt-1">Level {userData.level}</p>
-                </div>
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '32px',
+            padding: '48px',
+            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.1)',
+            border: '1px solid rgba(5, 150, 105, 0.1)'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '32px', marginBottom: '32px' }}>
+              <div style={{
+                width: '120px',
+                height: '120px',
+                borderRadius: '32px',
+                background: 'linear-gradient(135deg, #059669, #047857)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 20px 40px rgba(5, 150, 105, 0.3)',
+                fontSize: '48px'
+              }}>
+                🌱
               </div>
-
-              <div className="mt-6">
-                <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${progress}%` }}
-                    transition={{ duration: 1, ease: 'easeOut' }}
-                    className="h-3 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full"
-                  />
-                </div>
-                <p className="text-xs text-gray-400 mt-2">
-                  {userData.points} / {userData.nextLevelPoints} points
+              <div>
+                <h1 style={{
+                  fontSize: '48px',
+                  fontWeight: '700',
+                  background: 'linear-gradient(135deg, #065f46, #059669)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  marginBottom: '8px',
+                  margin: 0
+                }}>
+                  {userData.name}
+                </h1>
+                <p style={{ fontSize: '20px', color: '#6b7280', margin: 0 }}>
+                  Level {userData.level} • Rank #{userData.rank}
                 </p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+
+            <div style={{ marginBottom: '24px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <span style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>
+                  Progress to Level {userData.level + 1}
+                </span>
+                <span style={{ fontSize: '16px', fontWeight: '600', color: '#059669' }}>
+                  {userData.points} / {userData.nextLevelPoints}
+                </span>
+              </div>
+              <div style={{
+                height: '12px',
+                background: 'rgba(5, 150, 105, 0.1)',
+                borderRadius: '12px',
+                overflow: 'hidden'
+              }}>
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 1.5, ease: 'easeOut' }}
+                  style={{
+                    height: '100%',
+                    background: 'linear-gradient(135deg, #059669, #10b981)',
+                    borderRadius: '12px'
+                  }}
+                />
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Stats Grid */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '48px' }}
         >
           {[
-            { icon: <Leaf className="w-6 h-6 text-emerald-400" />, label: "Total Recycled", value: `${userData.recycled} kg` },
-            { icon: <Award className="w-6 h-6 text-yellow-400" />, label: "Rank", value: `#${userData.rank}` },
-            { icon: <Clock className="w-6 h-6 text-blue-400" />, label: "Streak", value: `${userData.streak} days` },
-          ].map((stat, i) => (
-            <Card key={i} className="bg-white/10 border-green-300/20 hover:bg-white/15 transition-all duration-300 hover:-translate-y-1 rounded-2xl shadow-lg">
-              <CardContent className="p-6 text-center">
-                {stat.icon}
-                <p className="mt-2 text-xl font-bold">{stat.value}</p>
-                <p className="text-sm text-gray-400">{stat.label}</p>
-              </CardContent>
-            </Card>
+            { icon: <Leaf style={{ width: '32px', height: '32px', color: '#059669' }} />, label: 'Total Recycled', value: `${userData.recycled} kg`, desc: 'Waste processed' },
+            { icon: <Zap style={{ width: '32px', height: '32px', color: '#f59e0b' }} />, label: 'Current Streak', value: `${userData.streak} days`, desc: 'Keep it going!' },
+            { icon: <TrendingUp style={{ width: '32px', height: '32px', color: '#3b82f6' }} />, label: 'CO₂ Saved', value: `${userData.co2Saved} kg`, desc: 'Environmental impact' },
+            { icon: <Target style={{ width: '32px', height: '32px', color: '#8b5cf6' }} />, label: 'Trees Equivalent', value: `${userData.treesEquivalent}`, desc: 'Trees saved' }
+          ].map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + index * 0.1 }}
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '24px',
+                padding: '32px',
+                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                border: '1px solid rgba(5, 150, 105, 0.1)',
+                textAlign: 'center',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1)';
+              }}
+            >
+              <div style={{ marginBottom: '16px' }}>{stat.icon}</div>
+              <h3 style={{ fontSize: '32px', fontWeight: '700', color: '#111827', marginBottom: '8px', margin: 0 }}>{stat.value}</h3>
+              <p style={{ fontSize: '16px', fontWeight: '600', color: '#374151', marginBottom: '4px', margin: 0 }}>{stat.label}</p>
+              <p style={{ fontSize: '14px', color: '#6b7280', margin: 0 }}>{stat.desc}</p>
+            </motion.div>
           ))}
         </motion.div>
 
-        {/* Activity Heatmap */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
-          <Card className="bg-white/10 border-green-300/20 shadow-lg rounded-2xl">
-            <CardHeader>
-              <CardTitle className="text-lg">Activity Heatmap</CardTitle>
-              <CardDescription className="text-gray-400">Last 28 days</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-7 gap-2">
-                {userData.activityHeatmap.map((val, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: i * 0.02 }}
-                    className={`w-6 h-6 rounded-sm border ${
-                      val === 0
-                        ? 'bg-gray-700 border-gray-600'
-                        : val < 2
-                        ? 'bg-emerald-200 border-emerald-300'
-                        : val < 4
-                        ? 'bg-emerald-400 border-emerald-500'
-                        : 'bg-emerald-600 border-emerald-700'
-                    }`}
-                    title={`${val} actions`}
-                  />
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '32px' }}>
+          
+          {/* Progress Chart */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
+              backdropFilter: 'blur(20px)',
+              borderRadius: '32px',
+              padding: '32px',
+              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.1)',
+              border: '1px solid rgba(5, 150, 105, 0.1)'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+              <Activity style={{ width: '28px', height: '28px', color: '#059669' }} />
+              <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#111827', margin: 0 }}>Activity Progress</h2>
+            </div>
+            <p style={{ fontSize: '16px', color: '#6b7280', marginBottom: '24px', margin: 0 }}>
+              Track your eco-friendly activities over time
+            </p>
+            <ProgressChart />
+          </motion.div>
 
-        {/* Recent Activity */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
-          <Card className="bg-white/10 border-green-300/20 shadow-lg rounded-2xl">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Activity className="w-5 h-5 text-emerald-400" /> Recent Activity
-              </CardTitle>
-              <CardDescription className="text-gray-400">Your eco actions</CardDescription>
-            </CardHeader>
-            <CardContent>
-              {userData.recentActivity.map((a, i) => (
+          {/* Recent Activity */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
+              backdropFilter: 'blur(20px)',
+              borderRadius: '32px',
+              padding: '32px',
+              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.1)',
+              border: '1px solid rgba(5, 150, 105, 0.1)'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+              <Calendar style={{ width: '28px', height: '28px', color: '#059669' }} />
+              <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#111827', margin: 0 }}>Recent Activity</h2>
+            </div>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {userData.recentActivity.map((activity, index) => (
                 <motion.div
-                  key={a.id}
+                  key={activity.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.2 }}
-                  className="flex justify-between items-center py-3 border-b border-green-300/20 last:border-0"
+                  transition={{ delay: 0.7 + index * 0.1 }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '16px',
+                    padding: '16px',
+                    background: 'rgba(5, 150, 105, 0.05)',
+                    borderRadius: '16px',
+                    border: '1px solid rgba(5, 150, 105, 0.1)',
+                    transition: 'all 0.2s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(5, 150, 105, 0.1)';
+                    e.currentTarget.style.transform = 'translateX(4px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(5, 150, 105, 0.05)';
+                    e.currentTarget.style.transform = 'translateX(0)';
+                  }}
                 >
-                  <div>
-                    <p className="font-medium">{a.title}</p>
-                    <p className="text-xs text-gray-400">{a.date}</p>
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
+                    background: 'linear-gradient(135deg, #059669, #047857)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '20px'
+                  }}>
+                    {activity.icon}
                   </div>
-                  <span className="text-emerald-400 font-bold">+{a.points} pts</span>
+                  <div style={{ flex: 1 }}>
+                    <h4 style={{ fontSize: '16px', fontWeight: '600', color: '#111827', marginBottom: '4px', margin: 0 }}>
+                      {activity.title}
+                    </h4>
+                    <p style={{ fontSize: '14px', color: '#6b7280', margin: 0 }}>{activity.date}</p>
+                  </div>
+                  <div style={{
+                    padding: '4px 12px',
+                    background: 'linear-gradient(135deg, #059669, #047857)',
+                    color: 'white',
+                    borderRadius: '12px',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}>
+                    +{activity.points}
+                  </div>
                 </motion.div>
               ))}
-            </CardContent>
-          </Card>
-        </motion.div>
+            </div>
+          </motion.div>
+        </div>
 
-        {/* CTA */}
+        {/* CTA Button */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          style={{ textAlign: 'center', marginTop: '48px' }}
         >
-          <Button
+          <button
             onClick={() => router.push('/upload')}
-            className="px-6 py-3 text-lg rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 shadow-lg hover:opacity-90 transition"
+            style={{
+              padding: '20px 48px',
+              background: 'linear-gradient(135deg, #059669, #047857)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '20px',
+              fontSize: '18px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 10px 30px rgba(5, 150, 105, 0.3)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-3px)';
+              e.currentTarget.style.boxShadow = '0 15px 40px rgba(5, 150, 105, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 10px 30px rgba(5, 150, 105, 0.3)';
+            }}
           >
-            Upload Waste Now
-          </Button>
+            🌱 Continue Your Eco Journey
+          </button>
         </motion.div>
-      </main>
+      </div>
     </div>
   );
-};
-
-export default ProfilePage;
+}
