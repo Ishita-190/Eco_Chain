@@ -39,6 +39,12 @@ export default function TrackCollectionPage() {
   const [collection, setCollection] = useState<Collection | null>(null);
   const [timeline, setTimeline] = useState<TimelineEvent[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!collectionId) {
@@ -185,7 +191,10 @@ export default function TrackCollectionPage() {
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 50%, #a7f3d0 100%)',
-      position: 'relative'
+      position: 'relative',
+      opacity: isVisible ? 1 : 0,
+      transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+      transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
     }}>
       {/* Floating particles background */}
       <div style={{
