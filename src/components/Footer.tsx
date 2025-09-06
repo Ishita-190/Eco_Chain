@@ -14,8 +14,7 @@ export function Footer() {
   const resources = [
     { label: "Privacy", href: "/privacy" },
     { label: "Contact", href: "/contact" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Support", href: "/support" }
+    { label: "Feedback", href: "/feedback" }
   ];
 
   return (
