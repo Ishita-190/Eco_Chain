@@ -20,10 +20,32 @@ export function WalletBadge() {
         {({ show }) => (
           <button
             onClick={show}
-            className="flex items-center space-x-2 bg-white border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-50 transition-colors"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              background: 'linear-gradient(135deg, #059669, #047857)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '16px',
+              padding: '12px 20px',
+              cursor: 'pointer',
+              fontSize: '16px',
+              fontWeight: '600',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              boxShadow: '0 4px 15px rgba(5, 150, 105, 0.3)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(5, 150, 105, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 15px rgba(5, 150, 105, 0.3)';
+            }}
           >
-            <Wallet className="w-4 h-4 text-gray-600" />
-            <span className="text-sm font-medium text-gray-700">Connect Wallet</span>
+            <Wallet style={{ width: '20px', height: '20px' }} />
+            <span>Connect Wallet</span>
           </button>
         )}
       </ConnectKitButton.Custom>
@@ -35,16 +57,60 @@ export function WalletBadge() {
       {({ show }) => (
         <button
           onClick={show}
-          className="flex items-center space-x-3 bg-white border border-eco-300 rounded-lg px-4 py-2 hover:bg-eco-50 transition-colors"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px',
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
+            backdropFilter: 'blur(10px)',
+            border: '2px solid rgba(5, 150, 105, 0.2)',
+            borderRadius: '20px',
+            padding: '12px 20px',
+            cursor: 'pointer',
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            boxShadow: '0 4px 15px rgba(5, 150, 105, 0.1)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 8px 25px rgba(5, 150, 105, 0.2)';
+            e.currentTarget.style.borderColor = 'rgba(5, 150, 105, 0.4)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 15px rgba(5, 150, 105, 0.1)';
+            e.currentTarget.style.borderColor = 'rgba(5, 150, 105, 0.2)';
+          }}
         >
-          <div className="flex items-center space-x-1">
-            <Leaf className="w-4 h-4 text-eco-600" />
-            <span className="text-sm font-bold text-eco-600">
-              {balance ? formatEther(balance.value) : '0'} ECO
-            </span>
-          </div>
-          <div className="text-xs text-gray-500">
-            {address?.slice(0, 6)}...{address?.slice(-4)}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{
+              width: '32px',
+              height: '32px',
+              background: 'linear-gradient(135deg, #059669, #047857)',
+              borderRadius: '10px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <Leaf style={{ width: '18px', height: '18px', color: 'white' }} />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+              <span style={{
+                fontSize: '16px',
+                fontWeight: '700',
+                color: '#059669',
+                lineHeight: '1.2'
+              }}>
+                {balance ? parseFloat(formatEther(balance.value)).toFixed(2) : '0.00'} ECO
+              </span>
+              <span style={{
+                fontSize: '12px',
+                color: '#6b7280',
+                fontWeight: '500',
+                lineHeight: '1.2'
+              }}>
+                {address?.slice(0, 6)}...{address?.slice(-4)}
+              </span>
+            </div>
           </div>
         </button>
       )}
