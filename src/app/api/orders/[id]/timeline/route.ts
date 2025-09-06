@@ -1,31 +1,55 @@
-// app/api/orders/[id]/timeline/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/src/lib/prisma';
-import { verifyAuth } from '@/src/lib/auth';
 
 export async function GET(
-	request: NextRequest,
-	{ params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: { id: string } }
 ) {
-	try {
-		const auth = await verifyAuth(request);
-		if (!auth) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  try {
+    const orderId = params.id;
+    
+    const mockOrder = {
+      id: orderId,
+      status: 'SCHEDULED',
+      wasteType: 'plastic',
+      estimatedWeight: 2.5,
+      scheduledAt: new Date().toISOString(),
+      pickupType: 'PICKUP',
+      qrCode: 'data:image/png;base64,mock-qr-code',
+      otpHint: '1234',
+      facility: {
+        name: 'Green Recycling Center',
+        address: '123 Eco Street, Green City',
+        phone: '+1-555-0123'
+      }
+    };
 
-		const order = await prisma.order.findUnique({
-			where: { id: params.id },
-			include: { facility: true },
-		});
-		if (!order) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+    const mockTimeline = [
+      {
+        id: '1',
+        type: 'CREATED',
+        title: 'Order Created',
+        message: 'Your waste disposal order has been created.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '2',
+        type: 'SCHEDULED',
+        title: 'Pickup Scheduled',
+        message: 'Pickup has been scheduled for your convenience.',
+        createdAt: new Date().toISOString()
+      }
+    ];
 
-		const timeline = await prisma.timelineEvent.findMany({
-			where: { orderId: params.id },
-			orderBy: { createdAt: 'asc' },
-		});
-
-		return NextResponse.json({ order, timeline });
-	} catch (e) {
-		return NextResponse.json({ error: 'Failed' }, { status: 500 });
-	}
+    return NextResponse.json({
+      order: mockOrder,
+      timeline: mockTimeline
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Failed to fetch order timeline' },
+      { status: 500 }
+    );
+  }
 }
 
 
