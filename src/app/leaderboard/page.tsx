@@ -21,7 +21,7 @@ export default function LeaderboardPage() {
     Bronze: { color: '#fed7aa', bgColor: 'rgba(254, 215, 170, 0.1)', borderColor: '#fb923c' },
   };
 
-  const getRankIcon = (index) => {
+  const getRankIcon = (index: number) => {
     if (index === 0) return <Crown style={{ width: '28px', height: '28px', color: '#fbbf24' }} />;
     if (index === 1) return <Medal style={{ width: '28px', height: '28px', color: '#9ca3af' }} />;
     if (index === 2) return <Award style={{ width: '28px', height: '28px', color: '#fb923c' }} />;
