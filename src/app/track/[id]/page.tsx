@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ArrowLeft, Package, MapPin, Calendar, Truck, CheckCircle, Clock, Sparkles, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Package, MapPin, Calendar, Truck, CheckCircle, Clock, Sparkles } from 'lucide-react';
 
 interface Collection {
   id: string;
@@ -73,12 +73,33 @@ export default function TrackCollectionPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="relative">
-          <div className="w-32 h-32 border-8 border-blue-100 rounded-full animate-spin border-t-blue-500"></div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Truck className="w-12 h-12 text-blue-500 animate-bounce" />
-          </div>
+      <div style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <div style={{
+          background: 'rgba(255, 255, 255, 0.95)',
+          borderRadius: '30px',
+          padding: '60px',
+          boxShadow: '0 30px 60px rgba(0, 0, 0, 0.3)',
+          textAlign: 'center'
+        }}>
+          <div style={{
+            width: '80px',
+            height: '80px',
+            border: '6px solid #e0e7ff',
+            borderTop: '6px solid #4f46e5',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+            margin: '0 auto 30px'
+          }}></div>
+          <h3 style={{ fontSize: '28px', fontWeight: 'bold', color: '#1f2937', marginBottom: '10px' }}>
+            Loading Collection
+          </h3>
+          <p style={{ color: '#6b7280', fontSize: '16px' }}>Fetching your tracking details...</p>
         </div>
       </div>
     );
@@ -86,13 +107,46 @@ export default function TrackCollectionPage() {
 
   if (!collection) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="text-center">
-          <Package className="w-32 h-32 text-gray-300 mx-auto mb-8" />
-          <h2 className="text-4xl font-bold text-gray-700 mb-4">Collection Not Found</h2>
+      <div style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <div style={{
+          background: 'rgba(255, 255, 255, 0.95)',
+          borderRadius: '30px',
+          padding: '60px',
+          boxShadow: '0 30px 60px rgba(0, 0, 0, 0.3)',
+          textAlign: 'center'
+        }}>
+          <Package style={{ width: '80px', height: '80px', color: '#9ca3af', margin: '0 auto 30px' }} />
+          <h2 style={{ fontSize: '32px', fontWeight: 'bold', color: '#1f2937', marginBottom: '20px' }}>
+            Collection Not Found
+          </h2>
           <button 
-            onClick={() => router.push('/')} 
-            className="px-8 py-4 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+            onClick={() => router.push('/')}
+            style={{
+              padding: '15px 40px',
+              background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '25px',
+              fontSize: '16px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              boxShadow: '0 10px 25px rgba(79, 70, 229, 0.3)',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-3px)';
+              e.currentTarget.style.boxShadow = '0 15px 35px rgba(79, 70, 229, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 10px 25px rgba(79, 70, 229, 0.3)';
+            }}
           >
             Go Home
           </button>
@@ -128,152 +182,314 @@ export default function TrackCollectionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Floating Header */}
-      <div className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      position: 'relative'
+    }}>
+      {/* Floating particles background */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: `
+          radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%)
+        `,
+        pointerEvents: 'none'
+      }}></div>
+
+      {/* Header */}
+      <div style={{
+        background: 'rgba(255, 255, 255, 0.1)',
+        backdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50
+      }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <button
               onClick={() => router.push('/')}
-              className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-300"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                padding: '12px 20px',
+                background: 'rgba(255, 255, 255, 0.2)',
+                border: 'none',
+                borderRadius: '20px',
+                color: 'white',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                fontWeight: '500'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+              }}
             >
-              <ArrowLeft className="w-5 h-5" />
-              <span className="font-medium">Back</span>
+              <ArrowLeft style={{ width: '20px', height: '20px' }} />
+              <span>Back</span>
             </button>
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+              <div style={{
+                width: '50px',
+                height: '50px',
+                background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+                borderRadius: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 10px 25px rgba(79, 70, 229, 0.3)'
+              }}>
                 {collection.pickupType === 'PICKUP' ? 
-                  <Truck className="w-5 h-5 text-white" /> : 
-                  <MapPin className="w-5 h-5 text-white" />
+                  <Truck style={{ width: '24px', height: '24px', color: 'white' }} /> : 
+                  <MapPin style={{ width: '24px', height: '24px', color: 'white' }} />
                 }
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-800">{collectionType} Tracking</h1>
-                <p className="text-sm text-gray-500">#{collectionId}</p>
+                <h1 style={{ fontSize: '28px', fontWeight: 'bold', color: 'white', margin: 0 }}>
+                  {collectionType} Tracking
+                </h1>
+                <p style={{ color: 'rgba(255, 255, 255, 0.8)', margin: 0 }}>#{collectionId}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        {/* Flow Map Status */}
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/30 mb-8 overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-indigo-500/5"></div>
-          <div className="relative z-10">
-            <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">Collection Progress</h2>
-            
-            {/* Flow Map */}
-            <div className="relative">
-              <div className="flex items-center justify-between mb-4">
-                {statusOrder.map((status, index) => {
-                  const Icon = getStatusIcon(status);
-                  const isCompleted = index < currentIndex;
-                  const isCurrent = index === currentIndex;
-                  const isActive = isCompleted || isCurrent;
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
+        {/* Visual Flow Map */}
+        <div style={{
+          background: 'rgba(255, 255, 255, 0.95)',
+          borderRadius: '30px',
+          padding: '50px',
+          marginBottom: '40px',
+          boxShadow: '0 30px 60px rgba(0, 0, 0, 0.2)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '5px',
+            background: 'linear-gradient(90deg, #4f46e5, #7c3aed, #ec4899, #f59e0b)'
+          }}></div>
+          
+          <h2 style={{
+            fontSize: '32px',
+            fontWeight: 'bold',
+            textAlign: 'center',
+            marginBottom: '50px',
+            background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>
+            Collection Progress
+          </h2>
+          
+          {/* Flow Visualization */}
+          <div style={{ position: 'relative', marginBottom: '30px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {statusOrder.map((status, index) => {
+                const Icon = getStatusIcon(status);
+                const isCompleted = index < currentIndex;
+                const isCurrent = index === currentIndex;
+                const isActive = isCompleted || isCurrent;
 
-                  return (
-                    <div key={status} className="flex flex-col items-center relative z-10">
-                      {/* Status Node */}
-                      <div className={`relative transition-all duration-700 ${isCurrent ? 'animate-pulse' : ''}`}>
-                        <div className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
-                          isCurrent 
-                            ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-2xl scale-110 ring-4 ring-blue-200' 
-                            : isCompleted 
-                            ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-xl'
-                            : 'bg-gray-200 text-gray-400 shadow-md'
-                        }`}>
-                          <Icon className="w-8 h-8" />
-                        </div>
-                        
-                        {/* Pulse Animation for Current */}
-                        {isCurrent && (
-                          <div className="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-20"></div>
-                        )}
-                        
-                        {/* Checkmark for Completed */}
-                        {isCompleted && (
-                          <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                            <CheckCircle className="w-5 h-5 text-white" />
-                          </div>
-                        )}
-                      </div>
+                return (
+                  <div key={status} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 10 }}>
+                    {/* Status Circle */}
+                    <div style={{
+                      width: '100px',
+                      height: '100px',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      background: isCurrent 
+                        ? 'linear-gradient(135deg, #4f46e5, #7c3aed)' 
+                        : isCompleted 
+                        ? 'linear-gradient(135deg, #10b981, #059669)'
+                        : 'linear-gradient(135deg, #e5e7eb, #d1d5db)',
+                      boxShadow: isActive ? '0 20px 40px rgba(79, 70, 229, 0.3)' : '0 10px 20px rgba(0, 0, 0, 0.1)',
+                      transform: isCurrent ? 'scale(1.1)' : 'scale(1)',
+                      transition: 'all 0.5s ease',
+                      animation: isCurrent ? 'pulse 2s infinite' : 'none',
+                      border: isCurrent ? '4px solid rgba(79, 70, 229, 0.3)' : 'none'
+                    }}>
+                      <Icon style={{
+                        width: '40px',
+                        height: '40px',
+                        color: isActive ? 'white' : '#9ca3af'
+                      }} />
                       
-                      {/* Status Label */}
-                      <div className="mt-4 text-center">
-                        <div className={`font-bold text-sm ${isActive ? 'text-gray-800' : 'text-gray-400'}`}>
-                          {getStatusLabel(status)}
+                      {/* Success checkmark */}
+                      {isCompleted && (
+                        <div style={{
+                          position: 'absolute',
+                          top: '-10px',
+                          right: '-10px',
+                          width: '30px',
+                          height: '30px',
+                          background: '#10b981',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          boxShadow: '0 5px 15px rgba(16, 185, 129, 0.4)'
+                        }}>
+                          <CheckCircle style={{ width: '18px', height: '18px', color: 'white' }} />
                         </div>
-                        {isCurrent && (
-                          <div className="text-xs text-blue-600 font-medium mt-1 animate-pulse">
-                            In Progress
-                          </div>
-                        )}
-                      </div>
+                      )}
                     </div>
-                  );
-                })}
-              </div>
-              
-              {/* Connecting Lines */}
-              <div className="absolute top-10 left-10 right-10 h-1 bg-gray-200 rounded-full -z-10">
-                <div 
-                  className="h-full bg-gradient-to-r from-green-500 to-blue-500 rounded-full transition-all duration-1000 ease-out"
-                  style={{ width: `${(currentIndex / (statusOrder.length - 1)) * 100}%` }}
-                ></div>
-              </div>
-              
-              {/* Flow Arrows */}
-              {statusOrder.slice(0, -1).map((_, index) => (
-                <div 
-                  key={index}
-                  className={`absolute top-8 transition-all duration-500 ${
-                    index < currentIndex ? 'text-green-500' : 'text-gray-300'
-                  }`}
-                  style={{ left: `${20 + (index * 20)}%` }}
-                >
-                  <ArrowRight className="w-6 h-6" />
-                </div>
-              ))}
+                    
+                    {/* Status Label */}
+                    <div style={{ marginTop: '20px', textAlign: 'center' }}>
+                      <div style={{
+                        fontWeight: 'bold',
+                        fontSize: '16px',
+                        color: isActive ? '#1f2937' : '#9ca3af',
+                        marginBottom: '5px'
+                      }}>
+                        {getStatusLabel(status)}
+                      </div>
+                      {isCurrent && (
+                        <div style={{
+                          fontSize: '12px',
+                          color: '#4f46e5',
+                          fontWeight: '600',
+                          animation: 'pulse 2s infinite'
+                        }}>
+                          In Progress
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            
+            {/* Progress Line */}
+            <div style={{
+              position: 'absolute',
+              top: '50px',
+              left: '50px',
+              right: '50px',
+              height: '6px',
+              background: '#e5e7eb',
+              borderRadius: '3px',
+              zIndex: 1
+            }}>
+              <div style={{
+                height: '100%',
+                background: 'linear-gradient(90deg, #10b981, #4f46e5)',
+                borderRadius: '3px',
+                width: `${(currentIndex / (statusOrder.length - 1)) * 100}%`,
+                transition: 'width 1s ease-out'
+              }}></div>
             </div>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Details Cards */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Collection Info */}
-            <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30">
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
-                  <div className="flex items-center space-x-3">
-                    <Package className="w-8 h-8 text-blue-600" />
+        {/* Content Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '40px' }}>
+          {/* Left Column */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+            {/* Collection Details */}
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.95)',
+              borderRadius: '25px',
+              padding: '40px',
+              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
+              border: '1px solid rgba(255, 255, 255, 0.3)'
+            }}>
+              <h3 style={{
+                fontSize: '24px',
+                fontWeight: 'bold',
+                marginBottom: '30px',
+                color: '#1f2937',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
+              }}>
+                <Package style={{ width: '28px', height: '28px', color: '#4f46e5' }} />
+                Collection Details
+              </h3>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+                <div style={{
+                  background: 'linear-gradient(135deg, #ddd6fe, #e0e7ff)',
+                  borderRadius: '20px',
+                  padding: '25px',
+                  border: '1px solid #c4b5fd'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                    <Package style={{ width: '32px', height: '32px', color: '#7c3aed' }} />
                     <div>
-                      <div className="text-sm text-gray-600">Waste Type</div>
-                      <div className="font-bold text-gray-800 capitalize">{collection.wasteType}</div>
+                      <div style={{ fontSize: '14px', color: '#6b7280', marginBottom: '5px' }}>Waste Type</div>
+                      <div style={{ fontWeight: 'bold', fontSize: '18px', color: '#1f2937', textTransform: 'capitalize' }}>
+                        {collection.wasteType}
+                      </div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100">
-                  <div className="flex items-center space-x-3">
-                    <Truck className="w-8 h-8 text-green-600" />
+                <div style={{
+                  background: 'linear-gradient(135deg, #dcfce7, #bbf7d0)',
+                  borderRadius: '20px',
+                  padding: '25px',
+                  border: '1px solid #86efac'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                    <Truck style={{ width: '32px', height: '32px', color: '#059669' }} />
                     <div>
-                      <div className="text-sm text-gray-600">Type</div>
-                      <div className="font-bold text-gray-800">{collectionType}</div>
+                      <div style={{ fontSize: '14px', color: '#6b7280', marginBottom: '5px' }}>Type</div>
+                      <div style={{ fontWeight: 'bold', fontSize: '18px', color: '#1f2937' }}>
+                        {collectionType}
+                      </div>
                     </div>
                   </div>
                 </div>
                 
                 {collection.estimatedWeight && (
-                  <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-100">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                        <span className="text-purple-600 font-bold text-sm">kg</span>
+                  <div style={{
+                    background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
+                    borderRadius: '20px',
+                    padding: '25px',
+                    border: '1px solid #fcd34d'
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                      <div style={{
+                        width: '32px',
+                        height: '32px',
+                        background: '#f59e0b',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: '14px'
+                      }}>
+                        kg
                       </div>
                       <div>
-                        <div className="text-sm text-gray-600">Weight</div>
-                        <div className="font-bold text-gray-800">{collection.estimatedWeight}kg</div>
+                        <div style={{ fontSize: '14px', color: '#6b7280', marginBottom: '5px' }}>Weight</div>
+                        <div style={{ fontWeight: 'bold', fontSize: '18px', color: '#1f2937' }}>
+                          {collection.estimatedWeight}kg
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -282,123 +498,150 @@ export default function TrackCollectionPage() {
             </div>
 
             {/* Facility Info */}
-            <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30">
-              <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center space-x-2">
-                <MapPin className="w-5 h-5 text-blue-600" />
-                <span>Facility Details</span>
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.95)',
+              borderRadius: '25px',
+              padding: '40px',
+              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
+              border: '1px solid rgba(255, 255, 255, 0.3)'
+            }}>
+              <h3 style={{
+                fontSize: '24px',
+                fontWeight: 'bold',
+                marginBottom: '25px',
+                color: '#1f2937',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
+              }}>
+                <MapPin style={{ width: '28px', height: '28px', color: '#4f46e5' }} />
+                Facility Details
               </h3>
-              <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-4 border border-gray-100">
-                <div className="font-semibold text-gray-800 mb-2">{collection.facility.name}</div>
-                <div className="text-gray-600 mb-3">{collection.facility.address}</div>
+              
+              <div style={{
+                background: 'linear-gradient(135deg, #f8fafc, #e2e8f0)',
+                borderRadius: '20px',
+                padding: '30px',
+                border: '1px solid #cbd5e1'
+              }}>
+                <div style={{ fontWeight: 'bold', fontSize: '20px', color: '#1f2937', marginBottom: '15px' }}>
+                  {collection.facility.name}
+                </div>
+                <div style={{ color: '#6b7280', fontSize: '16px', marginBottom: '15px' }}>
+                  {collection.facility.address}
+                </div>
                 {collection.facility.phone && (
-                  <div className="text-gray-600 mb-3">📞 {collection.facility.phone}</div>
+                  <div style={{ color: '#6b7280', fontSize: '16px', marginBottom: '15px' }}>
+                    📞 {collection.facility.phone}
+                  </div>
                 )}
                 {collection.scheduledAt && (
-                  <div className="flex items-center space-x-2 text-gray-700 bg-white rounded-lg p-2">
-                    <Calendar className="w-4 h-4 text-blue-600" />
-                    <span className="text-sm font-medium">
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    background: 'white',
+                    padding: '15px',
+                    borderRadius: '15px',
+                    border: '1px solid #e5e7eb'
+                  }}>
+                    <Calendar style={{ width: '20px', height: '20px', color: '#4f46e5' }} />
+                    <span style={{ fontWeight: '600', color: '#1f2937' }}>
                       {new Date(collection.scheduledAt).toLocaleString()}
                     </span>
                   </div>
                 )}
               </div>
             </div>
-
-            {/* Timeline */}
-            <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30">
-              <h3 className="text-lg font-bold text-gray-800 mb-6 flex items-center space-x-2">
-                <Clock className="w-5 h-5 text-blue-600" />
-                <span>Activity Timeline</span>
-              </h3>
-              
-              <div className="space-y-4">
-                {timeline.map((event, index) => {
-                  const eventIndex = statusOrder.indexOf(event.type);
-                  const isCompleted = eventIndex < currentIndex;
-                  const isCurrent = eventIndex === currentIndex;
-                  const Icon = getStatusIcon(event.type);
-                  
-                  return (
-                    <div key={event.id} className="flex items-start space-x-4">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
-                        isCurrent 
-                          ? 'bg-blue-500 text-white animate-pulse' 
-                          : isCompleted 
-                          ? 'bg-green-500 text-white'
-                          : 'bg-gray-200 text-gray-400'
-                      }`}>
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      
-                      <div className="flex-1 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg p-4 border border-gray-100">
-                        <div className="flex justify-between items-start mb-2">
-                          <h4 className={`font-semibold ${
-                            isCurrent ? 'text-blue-700' : isCompleted ? 'text-green-700' : 'text-gray-600'
-                          }`}>
-                            {event.title}
-                          </h4>
-                          <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded">
-                            {new Date(event.createdAt).toLocaleString()}
-                          </span>
-                        </div>
-                        
-                        {event.message && (
-                          <p className="text-gray-600 text-sm">{event.message}</p>
-                        )}
-                        
-                        {isCurrent && (
-                          <div className="mt-2 text-xs text-blue-600 font-medium flex items-center space-x-1">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                            <span>Active</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {collection.status === 'COMPLETED' && collection.actualWeight && (
-              <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30">
-                <h3 className="text-lg font-bold text-gray-800 mb-6 flex items-center space-x-2">
-                  <Sparkles className="w-5 h-5 text-green-600" />
-                  <span>Impact</span>
-                </h3>
-                
-                <div className="space-y-4">
-                  <div className="bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl p-4 text-center border border-green-200">
-                    <div className="text-3xl font-bold text-green-700">{collection.actualWeight}kg</div>
-                    <div className="text-green-600 text-sm font-medium">Waste Diverted</div>
+          {/* Right Column - Impact */}
+          {collection.status === 'COMPLETED' && collection.actualWeight && (
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.95)',
+              borderRadius: '25px',
+              padding: '40px',
+              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              height: 'fit-content'
+            }}>
+              <h3 style={{
+                fontSize: '24px',
+                fontWeight: 'bold',
+                marginBottom: '30px',
+                color: '#1f2937',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
+              }}>
+                <Sparkles style={{ width: '28px', height: '28px', color: '#10b981' }} />
+                Environmental Impact
+              </h3>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
+                <div style={{
+                  background: 'linear-gradient(135deg, #dcfce7, #bbf7d0)',
+                  borderRadius: '20px',
+                  padding: '30px',
+                  textAlign: 'center',
+                  border: '1px solid #86efac'
+                }}>
+                  <div style={{ fontSize: '48px', fontWeight: 'bold', color: '#059669', marginBottom: '10px' }}>
+                    {collection.actualWeight}kg
                   </div>
+                  <div style={{ color: '#047857', fontWeight: '600' }}>Waste Diverted</div>
+                </div>
 
-                  <div className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl p-4 text-center border border-blue-200">
-                    <div className="text-3xl font-bold text-blue-700">{collection.creditsMinted}</div>
-                    <div className="text-blue-600 text-sm font-medium">ECO Credits</div>
+                <div style={{
+                  background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)',
+                  borderRadius: '20px',
+                  padding: '30px',
+                  textAlign: 'center',
+                  border: '1px solid #93c5fd'
+                }}>
+                  <div style={{ fontSize: '48px', fontWeight: 'bold', color: '#1d4ed8', marginBottom: '10px' }}>
+                    {collection.creditsMinted}
                   </div>
+                  <div style={{ color: '#1e40af', fontWeight: '600' }}>ECO Credits</div>
+                </div>
 
-                  <div className="bg-gradient-to-br from-gray-100 to-slate-100 rounded-xl p-4 border border-gray-200">
-                    <div className="space-y-2 text-sm text-gray-600">
-                      <div className="flex items-center space-x-2">
-                        <span>🌱</span><span>Reduced emissions</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span>♻️</span><span>Resources saved</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span>🔄</span><span>Circular economy</span>
-                      </div>
+                <div style={{
+                  background: 'linear-gradient(135deg, #f1f5f9, #e2e8f0)',
+                  borderRadius: '20px',
+                  padding: '25px',
+                  border: '1px solid #cbd5e1'
+                }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', fontSize: '16px', color: '#475569' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '24px' }}>🌱</span>
+                      <span>Reduced emissions</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '24px' }}>♻️</span>
+                      <span>Resources saved</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '24px' }}>🔄</span>
+                      <span>Circular economy</span>
                     </div>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+      `}</style>
     </div>
   );
 }
