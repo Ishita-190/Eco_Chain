@@ -254,8 +254,8 @@ export default function LeaderboardPage() {
                     width: '48px',
                     height: '48px',
                     borderRadius: '16px',
-                    background: levelConfig[user.level].bgColor,
-                    border: `2px solid ${levelConfig[user.level].borderColor}`,
+                    background: levelConfig[user.level as keyof typeof levelConfig].bgColor,
+                    border: `2px solid ${levelConfig[user.level as keyof typeof levelConfig].borderColor}`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -271,9 +271,9 @@ export default function LeaderboardPage() {
                     <span style={{
                       padding: '4px 12px',
                       borderRadius: '12px',
-                      background: levelConfig[user.level].bgColor,
-                      color: levelConfig[user.level].color,
-                      border: `1px solid ${levelConfig[user.level].borderColor}`,
+                      background: levelConfig[user.level as keyof typeof levelConfig].bgColor,
+                      color: levelConfig[user.level as keyof typeof levelConfig].color,
+                      border: `1px solid ${levelConfig[user.level as keyof typeof levelConfig].borderColor}`,
                       fontWeight: '500'
                     }}>
                       {user.level}
