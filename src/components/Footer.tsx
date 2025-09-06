@@ -1,63 +1,103 @@
 import Link from "next/link";
-import { Mail, Globe, Heart, Shield, Twitter, Facebook, Instagram } from "lucide-react";
+import { Shield } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer 
+      style={{
+        backgroundColor: '#1a1a1a',
+        color: '#d1d5db',
+        borderTop: '1px solid #374151',
+        padding: '48px 0'
+      }}
+    >
+      <div 
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 24px'
+        }}
+      >
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '32px',
+            marginBottom: '32px'
+          }}
+        >
           {/* Brand Section */}
-          <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center mb-4">
-              <div className="text-2xl font-bold text-white">
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+              <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>
                 Eco_Chain
               </div>
-              <span className="ml-2 text-2xl">🌱</span>
+              <span style={{ marginLeft: '8px', fontSize: '24px' }}>🌱</span>
             </div>
-            <p className="text-gray-400 mb-6 leading-relaxed">
-              Making our planet greener, one recycled item at a time. Join the sustainable revolution with blockchain-powered rewards.
+            <p style={{ color: '#9ca3af', marginBottom: '24px', lineHeight: '1.6' }}>
+              Making our planet greener, one recycled item at a time. Join the sustainable revolution.
             </p>
-            <div className="flex space-x-3">
-              <Link href="#" className="text-gray-400 hover:text-green-400 transition-colors duration-200">
-                <Twitter className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-green-400 transition-colors duration-200">
-                <Facebook className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-green-400 transition-colors duration-200">
-                <Instagram className="h-5 w-5" />
-              </Link>
-            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/" className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">
+            <h3 style={{ color: 'white', fontWeight: '600', marginBottom: '16px' }}>Quick Links</h3>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              <li style={{ marginBottom: '12px' }}>
+                <Link 
+                  href="/" 
+                  style={{ 
+                    color: '#9ca3af', 
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+                >
                   Home
                 </Link>
               </li>
-              <li>
-                <Link href="/about" className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">
+              <li style={{ marginBottom: '12px' }}>
+                <Link 
+                  href="/about" 
+                  style={{ 
+                    color: '#9ca3af', 
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+                >
                   About Us
                 </Link>
               </li>
-              <li>
-                <Link href="/upload" className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">
+              <li style={{ marginBottom: '12px' }}>
+                <Link 
+                  href="/upload" 
+                  style={{ 
+                    color: '#9ca3af', 
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+                >
                   Upload Waste
                 </Link>
               </li>
-              <li>
-                <Link href="/leaderboard" className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">
+              <li style={{ marginBottom: '12px' }}>
+                <Link 
+                  href="/leaderboard" 
+                  style={{ 
+                    color: '#9ca3af', 
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+                >
                   Leaderboard
-                </Link>
-              </li>
-              <li>
-                <Link href="/track" className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">
-                  Track Order
                 </Link>
               </li>
             </ul>
@@ -65,31 +105,48 @@ export function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Resources</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">
+            <h3 style={{ color: 'white', fontWeight: '600', marginBottom: '16px' }}>Resources</h3>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              <li style={{ marginBottom: '12px' }}>
+                <Link 
+                  href="/privacy" 
+                  style={{ 
+                    color: '#9ca3af', 
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+                >
                   Privacy Policy
                 </Link>
               </li>
-              <li>
-                <Link href="/terms" className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">
+              <li style={{ marginBottom: '12px' }}>
+                <Link 
+                  href="/contact" 
+                  style={{ 
+                    color: '#9ca3af', 
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+                >
                   Contact Us
                 </Link>
               </li>
-              <li>
-                <Link href="/faq" className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">
+              <li style={{ marginBottom: '12px' }}>
+                <Link 
+                  href="/faq" 
+                  style={{ 
+                    color: '#9ca3af', 
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+                >
                   FAQ
-                </Link>
-              </li>
-              <li>
-                <Link href="/support" className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">
-                  Support
                 </Link>
               </li>
             </ul>
@@ -97,17 +154,36 @@ export function Footer() {
 
           {/* Stay Updated */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Stay Updated</h3>
-            <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-              Subscribe to our newsletter for the latest eco-tips, platform updates, and sustainability insights.
+            <h3 style={{ color: 'white', fontWeight: '600', marginBottom: '16px' }}>Stay Updated</h3>
+            <p style={{ color: '#9ca3af', marginBottom: '16px', fontSize: '14px', lineHeight: '1.5' }}>
+              Subscribe for eco-tips and updates
             </p>
-            <div className="flex flex-col space-y-3">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="bg-gray-800 text-white placeholder-gray-500 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
+                style={{
+                  backgroundColor: '#374151',
+                  color: 'white',
+                  border: '1px solid #4b5563',
+                  borderRadius: '8px',
+                  padding: '8px 12px',
+                  outline: 'none'
+                }}
               />
-              <button className="bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg px-4 py-2 transition-colors duration-200">
+              <button 
+                style={{
+                  backgroundColor: '#16a34a',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '8px 16px',
+                  cursor: 'pointer',
+                  fontWeight: '500'
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#15803d'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = '#16a34a'}
+              >
                 Subscribe
               </button>
             </div>
@@ -115,21 +191,34 @@ export function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="pt-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center text-gray-400">
-              <Shield className="h-4 w-4 mr-2" />
-              <span className="text-sm">Secured by blockchain technology</span>
-            </div>
-            <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <Link href="/privacy" className="hover:text-white transition-colors duration-200">
-                Privacy
-              </Link>
-              <Link href="/terms" className="hover:text-white transition-colors duration-200">
-                Terms
-              </Link>
-              <span>© {new Date().getFullYear()} Eco_Chain. All rights reserved.</span>
-            </div>
+        <div 
+          style={{
+            paddingTop: '32px',
+            borderTop: '1px solid #374151',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '16px'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', color: '#9ca3af' }}>
+            <Shield style={{ height: '16px', width: '16px', marginRight: '8px' }} />
+            <span style={{ fontSize: '14px' }}>Secured by blockchain</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px', fontSize: '14px', color: '#9ca3af' }}>
+            <Link 
+              href="/privacy" 
+              style={{ 
+                color: '#9ca3af', 
+                textDecoration: 'none'
+              }}
+              onMouseEnter={(e) => e.target.style.color = 'white'}
+              onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+            >
+              Privacy
+            </Link>
+            <span>© {new Date().getFullYear()} Eco_Chain. All rights reserved.</span>
           </div>
         </div>
       </div>
