@@ -1,4 +1,6 @@
+"use client";
 
+export function Footer() {
   const quickLinks = [
     { label: "Home", href: "/" },
     { label: "Upload", href: "/upload" },
