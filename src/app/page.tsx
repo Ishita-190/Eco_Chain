@@ -439,7 +439,11 @@ export default function EcoChainLanding() {
             
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '48px', width: '100%' }}>
               <button
-                onClick={() => router.push('/leaderboard')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.location.href = '/leaderboard';
+                }}
                 style={{
                   background: 'linear-gradient(135deg, #059669, #047857)',
                   color: 'white',
@@ -449,6 +453,7 @@ export default function EcoChainLanding() {
                   fontWeight: '600',
                   border: 'none',
                   cursor: 'pointer',
+                  pointerEvents: 'auto',
                   boxShadow: '0 10px 30px rgba(5, 150, 105, 0.3)',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   minWidth: '240px',
