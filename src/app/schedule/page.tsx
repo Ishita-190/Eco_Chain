@@ -44,7 +44,7 @@ export default function SchedulePage() {
         localStorage.setItem('ecocommerce_token', token);
       }
 
-      const scheduledAt = new Date(`${selectedDate}T${selectedTime}:00`).toISOString();
+      const scheduledAt = `${selectedDate}T${selectedTime}:00.000Z`;
 
       const response = await fetch('/api/orders', {
         method: 'POST',
@@ -67,6 +67,7 @@ export default function SchedulePage() {
       }
       
       const { orderId } = await response.json();
+      alert(`Pickup scheduled! Order ID: ${orderId}`);
       router.push(`/track/${orderId}`);
     } catch (err) {
       console.error('Schedule error:', err);
