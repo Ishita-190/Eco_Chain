@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
     const data = createOrderSchema.parse(body);
     console.log('Parsed data:', data);
     
-    // Return mock response for testing
-    const mockOrderId = 'order_' + Math.random().toString(36).substr(2, 9);
+    // Return mock response for testing - same format as shown in alert
+    const mockOrderId = 'ECO' + Math.random().toString(36).substr(2, 6).toUpperCase();
     console.log('Generated mock order ID:', mockOrderId);
     
     return NextResponse.json({

@@ -23,19 +23,22 @@ export async function GET(
       }
     };
 
+    const isPickup = mockOrder.pickupType === 'PICKUP';
+    const collectionType = isPickup ? 'Pickup' : 'Drop-off';
+    
     const mockTimeline = [
       {
         id: '1',
         type: 'CREATED',
-        title: 'Order Created',
-        message: 'Your waste disposal order has been created.',
-        createdAt: new Date().toISOString()
+        title: 'Collection Request Created',
+        message: `Your ${collectionType.toLowerCase()} request has been created successfully.`,
+        createdAt: new Date(Date.now() - 3600000).toISOString() // 1 hour ago
       },
       {
         id: '2',
         type: 'SCHEDULED',
-        title: 'Pickup Scheduled',
-        message: 'Pickup has been scheduled for your convenience.',
+        title: `${collectionType} Scheduled`,
+        message: `${collectionType} has been scheduled for your convenience.`,
         createdAt: new Date().toISOString()
       }
     ];
