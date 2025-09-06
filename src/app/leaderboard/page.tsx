@@ -2,8 +2,6 @@
 import { Trophy, Medal, Crown, Star, Award, TrendingUp, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// Leaderboard page component
-
 export default function LeaderboardPage() {
   const leaderboardData = [
     { id: 1, name: 'EcoWarrior42', score: 2450, avatar: '🌟', level: 'Platinum', wasteProcessed: '145kg', co2Saved: '89kg' },
@@ -23,7 +21,7 @@ export default function LeaderboardPage() {
     Bronze: { color: '#fed7aa', bgColor: 'rgba(254, 215, 170, 0.1)', borderColor: '#fb923c' },
   };
 
-  const getRankIcon = (index: number) => {
+  const getRankIcon = (index) => {
     if (index === 0) return <Crown style={{ width: '28px', height: '28px', color: '#fbbf24' }} />;
     if (index === 1) return <Medal style={{ width: '28px', height: '28px', color: '#9ca3af' }} />;
     if (index === 2) return <Award style={{ width: '28px', height: '28px', color: '#fb923c' }} />;
@@ -51,7 +49,6 @@ export default function LeaderboardPage() {
       background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%)'
     }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 24px' }}>
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -93,7 +90,6 @@ export default function LeaderboardPage() {
           </p>
         </motion.div>
 
-        {/* Stats Cards */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -141,7 +137,6 @@ export default function LeaderboardPage() {
           </div>
         </motion.div>
 
-        {/* Top 3 Podium */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -149,7 +144,6 @@ export default function LeaderboardPage() {
           style={{ marginBottom: '48px' }}
         >
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '24px', alignItems: 'end' }}>
-            {/* 2nd Place */}
             <div style={{
               background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
               backdropFilter: 'blur(20px)',
@@ -167,7 +161,6 @@ export default function LeaderboardPage() {
               <p style={{ fontSize: '14px', color: '#6b7280', margin: 0 }}>{leaderboardData[1].wasteProcessed} processed</p>
             </div>
 
-            {/* 1st Place */}
             <div style={{
               background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
               backdropFilter: 'blur(20px)',
@@ -197,7 +190,6 @@ export default function LeaderboardPage() {
               <p style={{ fontSize: '16px', color: '#6b7280', margin: 0 }}>{leaderboardData[0].wasteProcessed} processed</p>
             </div>
 
-            {/* 3rd Place */}
             <div style={{
               background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
               backdropFilter: 'blur(20px)',
@@ -217,7 +209,6 @@ export default function LeaderboardPage() {
           </div>
         </motion.div>
 
-        {/* Full Leaderboard */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -256,24 +247,15 @@ export default function LeaderboardPage() {
                   transition: 'all 0.3s ease',
                   cursor: 'pointer'
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(5, 150, 105, 0.02)';
-                  e.currentTarget.style.transform = 'translateX(4px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.transform = 'translateX(0)';
-                }}
               >
-                {/* Rank & Avatar */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                   {getRankIcon(index)}
                   <div style={{
                     width: '48px',
                     height: '48px',
                     borderRadius: '16px',
-                    background: levelConfig[user.level as keyof typeof levelConfig].bgColor,
-                    border: `2px solid ${levelConfig[user.level as keyof typeof levelConfig].borderColor}`,
+                    background: levelConfig[user.level].bgColor,
+                    border: `2px solid ${levelConfig[user.level].borderColor}`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -283,16 +265,15 @@ export default function LeaderboardPage() {
                   </div>
                 </div>
 
-                {/* User Info */}
                 <div>
                   <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#111827', marginBottom: '4px', margin: 0 }}>{user.name}</h3>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '14px', color: '#6b7280' }}>
                     <span style={{
                       padding: '4px 12px',
                       borderRadius: '12px',
-                      background: levelConfig[user.level as keyof typeof levelConfig].bgColor,
-                      color: levelConfig[user.level as keyof typeof levelConfig].color,
-                      border: `1px solid ${levelConfig[user.level as keyof typeof levelConfig].borderColor}`,
+                      background: levelConfig[user.level].bgColor,
+                      color: levelConfig[user.level].color,
+                      border: `1px solid ${levelConfig[user.level].borderColor}`,
                       fontWeight: '500'
                     }}>
                       {user.level}
@@ -302,7 +283,6 @@ export default function LeaderboardPage() {
                   </div>
                 </div>
 
-                {/* Score */}
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: '28px', fontWeight: '700', color: '#059669', marginBottom: '4px' }}>
                     {user.score.toLocaleString()}
@@ -312,9 +292,8 @@ export default function LeaderboardPage() {
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Your Rank */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
