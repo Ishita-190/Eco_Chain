@@ -98,42 +98,67 @@ export function Footer() {
           </div>
 
           {/* Stay Updated */}
-          <div>
-            <h3 style={{ color: 'white', fontWeight: '600', marginBottom: '16px', fontSize: '18px' }}>Stay Updated</h3>
-            <p style={{ color: '#9ca3af', marginBottom: '16px', fontSize: '14px' }}>
-              Subscribe for eco-tips and updates
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02))',
+            borderRadius: '20px',
+            padding: '24px',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(10px)'
+          }}>
+            <h3 style={{ color: 'white', fontWeight: '600', marginBottom: '8px', fontSize: '18px' }}>Join Our Eco-Conscious Community</h3>
+            <p style={{ color: '#9ca3af', marginBottom: '20px', fontSize: '14px', lineHeight: '1.5' }}>
+              Be part of the movement that's creating a sustainable future through everyday actions and community collaboration.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <input 
                 type="email" 
                 placeholder="Enter your email" 
                 style={{
-                  backgroundColor: 'rgba(75, 85, 99, 0.3)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
                   color: 'white',
-                  border: '1px solid rgba(107, 114, 128, 0.5)',
-                  borderRadius: '8px',
-                  padding: '10px 12px',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '16px',
+                  padding: '14px 18px',
                   outline: 'none',
-                  fontSize: '14px'
+                  fontSize: '14px',
+                  transition: 'all 0.3s ease'
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.borderColor = 'rgba(5, 150, 105, 0.5)';
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
                 }}
               />
               <button style={{
-                backgroundColor: '#059669',
+                background: 'linear-gradient(135deg, #059669, #047857)',
                 color: 'white',
                 border: 'none',
-                borderRadius: '8px',
-                padding: '10px 16px',
+                borderRadius: '16px',
+                padding: '14px 20px',
                 cursor: 'pointer',
-                fontWeight: '500',
+                fontWeight: '600',
                 fontSize: '14px',
-                transition: 'background-color 0.2s'
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 15px rgba(5, 150, 105, 0.3)'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#047857'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#059669'}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(5, 150, 105, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 15px rgba(5, 150, 105, 0.3)';
+              }}
               >
-                Subscribe
+                Join the Movement
               </button>
             </div>
+            <p style={{ color: '#6b7280', fontSize: '12px', marginTop: '12px', textAlign: 'center' }}>
+              Your data is secure. We never share your information.
+            </p>
           </div>
         </div>
 
