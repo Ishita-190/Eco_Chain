@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { usePageTransition } from '@/src/hooks/usePageTransition';
+import { useRouter } from 'next/navigation';
 import { 
   Recycle, 
   Globe, 
@@ -285,7 +285,7 @@ const LeaderboardItem = ({
 );
 
 export default function EcoChainLanding() {
-  const { navigateTo, isTransitioning } = usePageTransition();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [activeTab, setActiveTab] = useState("monthly");
   
@@ -439,11 +439,7 @@ export default function EcoChainLanding() {
             
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '48px', width: '100%' }}>
               <button
-                onClick={() => {
-                  console.log('Join Eco Leaders clicked, navigating to /leaderboard');
-                  navigateTo('/leaderboard');
-                }}
-                disabled={isTransitioning}
+                onClick={() => router.push('/leaderboard')}
                 style={{
                   background: 'linear-gradient(135deg, #059669, #047857)',
                   color: 'white',
@@ -452,7 +448,7 @@ export default function EcoChainLanding() {
                   fontSize: '18px',
                   fontWeight: '600',
                   border: 'none',
-                  cursor: isTransitioning ? 'not-allowed' : 'pointer',
+                  cursor: 'pointer',
                   boxShadow: '0 10px 30px rgba(5, 150, 105, 0.3)',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   minWidth: '240px',
@@ -460,19 +456,15 @@ export default function EcoChainLanding() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '12px',
-                  opacity: isTransitioning ? 0.7 : 1
+                  opacity: 1
                 }}
                 onMouseEnter={(e) => {
-                  if (!isTransitioning) {
-                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
-                    e.currentTarget.style.boxShadow = '0 15px 40px rgba(5, 150, 105, 0.4)';
-                  }
+                  e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(5, 150, 105, 0.4)';
                 }}
                 onMouseLeave={(e) => {
-                  if (!isTransitioning) {
-                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(5, 150, 105, 0.3)';
-                  }
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(5, 150, 105, 0.3)';
                 }}
               >
                 <Trophy style={{ height: '24px', width: '24px' }} />
