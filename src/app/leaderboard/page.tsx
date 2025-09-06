@@ -15,10 +15,10 @@ export default function LeaderboardPage() {
   ];
 
   const levelConfig = {
-    Platinum: { color: '#e0e7ff', bgColor: 'rgba(224, 231, 255, 0.1)', borderColor: '#a5b4fc' },
-    Gold: { color: '#fef3c7', bgColor: 'rgba(254, 243, 199, 0.1)', borderColor: '#fbbf24' },
-    Silver: { color: '#f3f4f6', bgColor: 'rgba(243, 244, 246, 0.1)', borderColor: '#9ca3af' },
-    Bronze: { color: '#fed7aa', bgColor: 'rgba(254, 215, 170, 0.1)', borderColor: '#fb923c' },
+    Platinum: { color: '#1e1b4b', bgColor: 'linear-gradient(135deg, #e0e7ff, #c7d2fe)', borderColor: '#6366f1' },
+    Gold: { color: '#92400e', bgColor: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderColor: '#f59e0b' },
+    Silver: { color: '#374151', bgColor: 'linear-gradient(135deg, #f3f4f6, #e5e7eb)', borderColor: '#6b7280' },
+    Bronze: { color: '#9a3412', bgColor: 'linear-gradient(135deg, #fed7aa, #fdba74)', borderColor: '#ea580c' },
   };
 
   const getRankIcon = (index: number) => {
@@ -244,8 +244,18 @@ export default function LeaderboardPage() {
                   alignItems: 'center',
                   padding: '24px 32px',
                   borderBottom: index < leaderboardData.length - 1 ? '1px solid rgba(5, 150, 105, 0.1)' : 'none',
-                  transition: 'all 0.3s ease',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(5, 150, 105, 0.02)';
+                  e.currentTarget.style.transform = 'scale(1.02) translateX(4px)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(5, 150, 105, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.transform = 'scale(1) translateX(0)';
+                  e.currentTarget.style.boxShadow = 'none';
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -269,12 +279,15 @@ export default function LeaderboardPage() {
                   <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#111827', marginBottom: '4px', margin: 0 }}>{user.name}</h3>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '14px', color: '#6b7280' }}>
                     <span style={{
-                      padding: '4px 12px',
-                      borderRadius: '12px',
+                      padding: '6px 14px',
+                      borderRadius: '16px',
                       background: levelConfig[user.level as keyof typeof levelConfig].bgColor,
                       color: levelConfig[user.level as keyof typeof levelConfig].color,
-                      border: `1px solid ${levelConfig[user.level as keyof typeof levelConfig].borderColor}`,
-                      fontWeight: '500'
+                      border: `2px solid ${levelConfig[user.level as keyof typeof levelConfig].borderColor}`,
+                      fontWeight: '600',
+                      fontSize: '13px',
+                      textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
                     }}>
                       {user.level}
                     </span>
