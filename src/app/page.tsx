@@ -439,11 +439,7 @@ export default function EcoChainLanding() {
             
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '32px', marginBottom: '48px', width: '100%' }}>
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log('Start Your Eco Journey clicked');
-                  navigateTo('/upload');
-                }}
+                onClick={() => navigateTo('/upload')}
                 disabled={isTransitioning}
                 style={{
                   background: 'linear-gradient(135deg, #059669, #047857)',
