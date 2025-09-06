@@ -71,7 +71,7 @@ export default function SchedulePage() {
       router.push('/');
     } catch (err) {
       console.error('Schedule error:', err);
-      alert('Failed to schedule pickup. Please try again.');
+      alert(`Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
       setIsSubmitting(false);
     }
