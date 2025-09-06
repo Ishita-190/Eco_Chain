@@ -75,7 +75,7 @@ export default function TrackCollectionPage() {
     return (
       <div style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 50%, #a7f3d0 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -109,7 +109,7 @@ export default function TrackCollectionPage() {
     return (
       <div style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 50%, #a7f3d0 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -184,7 +184,7 @@ export default function TrackCollectionPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 50%, #a7f3d0 100%)',
       position: 'relative'
     }}>
       {/* Floating particles background */}
@@ -404,9 +404,9 @@ export default function TrackCollectionPage() {
         </div>
 
         {/* Content Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '40px' }}>
-          {/* Left Column */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px' }}>
+          {/* Centered Content */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', width: '100%', maxWidth: '800px' }}>
             {/* Collection Details */}
             <div style={{
               background: 'rgba(255, 255, 255, 0.95)',
@@ -555,7 +555,7 @@ export default function TrackCollectionPage() {
             </div>
           </div>
 
-          {/* Right Column - Impact */}
+          {/* Impact Section */}
           {collection.status === 'COMPLETED' && collection.actualWeight && (
             <div style={{
               background: 'rgba(255, 255, 255, 0.95)',
@@ -563,7 +563,8 @@ export default function TrackCollectionPage() {
               padding: '40px',
               boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
               border: '1px solid rgba(255, 255, 255, 0.3)',
-              height: 'fit-content'
+              width: '100%',
+              maxWidth: '800px'
             }}>
               <h3 style={{
                 fontSize: '24px',
