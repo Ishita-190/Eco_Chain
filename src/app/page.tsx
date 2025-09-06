@@ -439,7 +439,10 @@ export default function EcoChainLanding() {
             
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '48px', width: '100%' }}>
               <button
-                onClick={() => navigateTo('/leaderboard')}
+                onClick={() => {
+                  console.log('Join Eco Leaders clicked, navigating to /leaderboard');
+                  navigateTo('/leaderboard');
+                }}
                 disabled={isTransitioning}
                 style={{
                   background: 'linear-gradient(135deg, #059669, #047857)',
