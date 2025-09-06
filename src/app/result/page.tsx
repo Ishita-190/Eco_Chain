@@ -26,7 +26,7 @@ interface Classification {
   imageUrl?: string;
 }
 
-
+export default function ResultPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const classificationId = searchParams.get('classificationId');
