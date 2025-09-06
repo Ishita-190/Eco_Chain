@@ -1,6 +1,9 @@
 "use client";
 
+import { usePageTransition } from '@/src/hooks/usePageTransition';
+
 export function Footer() {
+  const { navigateTo, isTransitioning } = usePageTransition();
   const quickLinks = [
     { label: "Home", href: "/" },
     { label: "Upload", href: "/upload" },
@@ -32,7 +35,8 @@ export function Footer() {
               {quickLinks.map((item) => (
                 <button
                   key={item.href}
-                  onClick={() => window.location.href = item.href}
+                  onClick={() => navigateTo(item.href)}
+                  disabled={isTransitioning}
                   style={{
                     padding: '8px 12px',
                     borderRadius: '8px',
@@ -68,7 +72,8 @@ export function Footer() {
               {resources.map((item) => (
                 <button
                   key={item.href}
-                  onClick={() => window.location.href = item.href}
+                  onClick={() => navigateTo(item.href)}
+                  disabled={isTransitioning}
                   style={{
                     padding: '8px 12px',
                     borderRadius: '8px',

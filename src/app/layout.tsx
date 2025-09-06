@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { Providers } from "./providers";
 import { Footer } from "@/src/components/Footer";
 import { Header } from "@/src/components/Header";
+import { PageTransition } from "@/src/components/PageTransition";
 
 // Body font
 const inter = Inter({ subsets: ["latin"], weight: ["400", "600", "700"], variable: "--font-inter" });
@@ -25,7 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             {/* Main content */}
             <main className="flex-1 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-              {children}
+              <PageTransition>
+                {children}
+              </PageTransition>
             </main>
 
             {/* Footer */}

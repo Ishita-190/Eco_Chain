@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { usePageTransition } from "@/src/hooks/usePageTransition";
 import { cn } from "@/src/lib/utils";
 
 export function Header() {
   const pathname = usePathname();
+  const { navigateTo, isTransitioning } = usePageTransition();
   const isActive = (path: string) => pathname === path;
 
   const navItems = [
@@ -46,7 +48,8 @@ export function Header() {
             {navItems.map((item) => (
               <button
                 key={item.href}
-                onClick={() => window.location.href = item.href}
+                onClick={() => navigateTo(item.href)}
+                disabled={isTransitioning}
                 style={{
                   padding: '12px 20px',
                   borderRadius: '12px',
@@ -54,21 +57,27 @@ export function Header() {
                   fontWeight: '500',
                   border: 'none',
                   cursor: 'pointer',
-                  transition: 'all 0.2s ease',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   backgroundColor: isActive(item.href) ? '#059669' : 'transparent',
                   color: isActive(item.href) ? 'white' : '#374151',
-                  fontFamily: 'Inter, sans-serif'
+                  fontFamily: 'Inter, sans-serif',
+                  transform: 'translateY(0)',
+                  boxShadow: isActive(item.href) ? '0 4px 12px rgba(5, 150, 105, 0.3)' : 'none'
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive(item.href)) {
                     e.currentTarget.style.backgroundColor = '#f0fdf4';
                     e.currentTarget.style.color = '#059669';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(5, 150, 105, 0.15)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isActive(item.href)) {
                     e.currentTarget.style.backgroundColor = 'transparent';
                     e.currentTarget.style.color = '#374151';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
                   }
                 }}
               >
