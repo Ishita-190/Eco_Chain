@@ -346,12 +346,31 @@ export default function EcoChainLanding() {
                 <h2 className="text-2xl font-bold text-center mb-8 text-green-800">How It Works</h2>
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                   <motion.button 
-                    className="flex flex-col items-center text-center relative bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/30 max-w-xs cursor-pointer"
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      position: 'relative',
+                      background: 'rgba(255, 255, 255, 0.8)',
+                      backdropFilter: 'blur(10px)',
+                      padding: '32px',
+                      borderRadius: '24px',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.5)',
+                      maxWidth: '300px',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
+                    }}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    whileHover={{ scale: 1.1, boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)" }}
+                    whileHover={{ 
+                      scale: 1.1, 
+                      boxShadow: "0 20px 50px rgba(0, 0, 0, 0.2)",
+                      background: "rgba(255, 255, 255, 0.95)"
+                    }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <div className="relative mb-4">
@@ -362,8 +381,8 @@ export default function EcoChainLanding() {
                         1
                       </div>
                     </div>
-                    <h3 className="font-bold text-green-800 mb-3 text-lg">Upload & Classify</h3>
-                    <p className="text-gray-700 leading-relaxed">Take a photo of your waste item and let our AI identify the type and recycling method</p>
+                    <h3 style={{ fontWeight: 'bold', color: '#166534', marginBottom: '12px', fontSize: '18px' }}>Upload & Classify</h3>
+                    <p style={{ color: '#374151', lineHeight: '1.6' }}>Take a photo of your waste item and let our AI identify the type and recycling method</p>
                   </motion.button>
                   
                   <div className="hidden md:block relative">
@@ -377,12 +396,31 @@ export default function EcoChainLanding() {
                   </div>
                   
                   <motion.button 
-                    className="flex flex-col items-center text-center relative bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/30 max-w-xs cursor-pointer"
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      position: 'relative',
+                      background: 'rgba(255, 255, 255, 0.8)',
+                      backdropFilter: 'blur(10px)',
+                      padding: '32px',
+                      borderRadius: '24px',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.5)',
+                      maxWidth: '300px',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
+                    }}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
-                    whileHover={{ scale: 1.1, boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)" }}
+                    whileHover={{ 
+                      scale: 1.1, 
+                      boxShadow: "0 20px 50px rgba(0, 0, 0, 0.2)",
+                      background: "rgba(255, 255, 255, 0.95)"
+                    }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <div className="relative mb-4">
@@ -393,8 +431,8 @@ export default function EcoChainLanding() {
                         2
                       </div>
                     </div>
-                    <h3 className="font-bold text-blue-800 mb-3 text-lg">Schedule & Track</h3>
-                    <p className="text-gray-700 leading-relaxed">Book pickup or drop-off and track your collection progress with our visual flowmap</p>
+                    <h3 style={{ fontWeight: 'bold', color: '#1e40af', marginBottom: '12px', fontSize: '18px' }}>Schedule & Track</h3>
+                    <p style={{ color: '#374151', lineHeight: '1.6' }}>Book pickup or drop-off and track your collection progress with our visual flowmap</p>
                   </motion.button>
                   
                   <div className="hidden md:block relative">
@@ -408,12 +446,31 @@ export default function EcoChainLanding() {
                   </div>
                   
                   <motion.button 
-                    className="flex flex-col items-center text-center relative bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/30 max-w-xs cursor-pointer"
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      position: 'relative',
+                      background: 'rgba(255, 255, 255, 0.8)',
+                      backdropFilter: 'blur(10px)',
+                      padding: '32px',
+                      borderRadius: '24px',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.5)',
+                      maxWidth: '300px',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
+                    }}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.5 }}
-                    whileHover={{ scale: 1.1, boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)" }}
+                    whileHover={{ 
+                      scale: 1.1, 
+                      boxShadow: "0 20px 50px rgba(0, 0, 0, 0.2)",
+                      background: "rgba(255, 255, 255, 0.95)"
+                    }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <div className="relative mb-4">
@@ -424,8 +481,8 @@ export default function EcoChainLanding() {
                         3
                       </div>
                     </div>
-                    <h3 className="font-bold text-purple-800 mb-3 text-lg">Earn & Impact</h3>
-                    <p className="text-gray-700 leading-relaxed">Receive ECO credits and see your environmental impact in our community dashboard</p>
+                    <h3 style={{ fontWeight: 'bold', color: '#6b21a8', marginBottom: '12px', fontSize: '18px' }}>Earn & Impact</h3>
+                    <p style={{ color: '#374151', lineHeight: '1.6' }}>Receive ECO credits and see your environmental impact in our community dashboard</p>
                   </motion.button>
                 </div>
                 
