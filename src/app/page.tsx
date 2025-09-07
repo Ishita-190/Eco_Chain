@@ -344,7 +344,7 @@ export default function EcoChainLanding() {
               <div className="absolute inset-0 bg-gradient-to-r from-green-100/20 to-emerald-100/20 rounded-2xl"></div>
               <div className="relative z-10">
                 <h2 className="text-2xl font-bold text-center mb-8 text-green-800">How It Works</h2>
-                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-8">
                   <motion.button 
                     style={{
                       display: 'flex',
