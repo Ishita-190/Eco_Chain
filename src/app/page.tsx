@@ -344,7 +344,7 @@ export default function EcoChainLanding() {
               <div className="absolute inset-0 bg-gradient-to-r from-green-100/20 to-emerald-100/20 rounded-2xl"></div>
               <div className="relative z-10">
                 <h2 className="text-2xl font-bold text-center mb-8 text-green-800">How It Works</h2>
-                <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+                <div className="flex flex-col items-center gap-8">
                   <motion.button 
                     style={{
                       display: 'flex',
@@ -385,15 +385,7 @@ export default function EcoChainLanding() {
                     <p style={{ color: '#374151', lineHeight: '1.6' }}>Take a photo of your waste item and let our AI identify the type and recycling method</p>
                   </motion.button>
                   
-                  <div className="hidden md:block relative">
-                    <div className="flex items-center">
-                      <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full"></div>
-                      <div className="w-0 h-0 border-l-8 border-l-emerald-500 border-t-4 border-b-4 border-t-transparent border-b-transparent ml-1"></div>
-                    </div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md">
-                      <ArrowRight className="h-4 w-4 text-green-600" />
-                    </div>
-                  </div>
+
                   
                   <motion.button 
                     style={{
@@ -435,15 +427,7 @@ export default function EcoChainLanding() {
                     <p style={{ color: '#374151', lineHeight: '1.6' }}>Book pickup or drop-off and track your collection progress with our visual flowmap</p>
                   </motion.button>
                   
-                  <div className="hidden md:block relative">
-                    <div className="flex items-center">
-                      <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"></div>
-                      <div className="w-0 h-0 border-l-8 border-l-purple-500 border-t-4 border-b-4 border-t-transparent border-b-transparent ml-1"></div>
-                    </div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md">
-                      <ArrowRight className="h-4 w-4 text-blue-600" />
-                    </div>
-                  </div>
+
                   
                   <motion.button 
                     style={{
