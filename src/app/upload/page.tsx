@@ -394,6 +394,26 @@ export default function UploadPage() {
                 </p>
               </div>
             </div>
+            
+            <div style={{
+              marginTop: '32px',
+              textAlign: 'center',
+              padding: '24px',
+              background: 'rgba(255, 255, 255, 0.5)',
+              borderRadius: '16px',
+              border: '1px solid rgba(5, 150, 105, 0.1)'
+            }}>
+              <img 
+                src="/WhatsApp Image 2025-09-07 at 18.13.38.jpeg" 
+                alt="Example waste classification" 
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                  borderRadius: '12px',
+                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)'
+                }}
+              />
+            </div>
           </div>
         </motion.div>
       </div>
