@@ -344,23 +344,23 @@ export default function EcoChainLanding() {
               <div className="absolute inset-0 bg-gradient-to-r from-green-100/20 to-emerald-100/20 rounded-2xl"></div>
               <div className="relative z-10">
                 <h2 className="text-2xl font-bold text-center mb-8 text-green-800">How It Works</h2>
-                <div className="flex flex-col items-center gap-8">
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px', width: '100%' }}>
                   <motion.button 
                     style={{
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
                       textAlign: 'center',
-                      position: 'relative',
                       background: 'rgba(255, 255, 255, 0.8)',
                       backdropFilter: 'blur(10px)',
                       padding: '32px',
                       borderRadius: '24px',
                       boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.5)',
-                      maxWidth: '300px',
+                      width: '300px',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      margin: '0 auto'
                     }}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -373,19 +373,17 @@ export default function EcoChainLanding() {
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <div className="relative mb-4">
-                      <div className="bg-gradient-to-br from-green-400 to-emerald-500 p-6 rounded-full shadow-xl">
-                        <TrendingUp className="h-10 w-10 text-white" />
+                    <div style={{ position: 'relative', marginBottom: '16px' }}>
+                      <div style={{ background: 'linear-gradient(135deg, #4ade80, #10b981)', padding: '24px', borderRadius: '50%', boxShadow: '0 10px 25px rgba(16, 185, 129, 0.3)' }}>
+                        <TrendingUp style={{ width: '40px', height: '40px', color: 'white' }} />
                       </div>
-                      <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                      <div style={{ position: 'absolute', top: '-8px', right: '-8px', background: '#fbbf24', color: '#92400e', fontSize: '12px', fontWeight: 'bold', padding: '4px 8px', borderRadius: '50%' }}>
                         1
                       </div>
                     </div>
                     <h3 style={{ fontWeight: 'bold', color: '#166534', marginBottom: '12px', fontSize: '18px' }}>Upload & Classify</h3>
-                    <p style={{ color: '#374151', lineHeight: '1.6' }}>Take a photo of your waste item and let our AI identify the type and recycling method</p>
+                    <p style={{ color: '#374151', lineHeight: '1.6', margin: 0 }}>Take a photo of your waste item and let our AI identify the type and recycling method</p>
                   </motion.button>
-                  
-
                   
                   <motion.button 
                     style={{
@@ -393,16 +391,16 @@ export default function EcoChainLanding() {
                       flexDirection: 'column',
                       alignItems: 'center',
                       textAlign: 'center',
-                      position: 'relative',
                       background: 'rgba(255, 255, 255, 0.8)',
                       backdropFilter: 'blur(10px)',
                       padding: '32px',
                       borderRadius: '24px',
                       boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.5)',
-                      maxWidth: '300px',
+                      width: '300px',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      margin: '0 auto'
                     }}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -415,19 +413,17 @@ export default function EcoChainLanding() {
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <div className="relative mb-4">
-                      <div className="bg-gradient-to-br from-blue-400 to-cyan-500 p-6 rounded-full shadow-xl">
-                        <Award className="h-10 w-10 text-white" />
+                    <div style={{ position: 'relative', marginBottom: '16px' }}>
+                      <div style={{ background: 'linear-gradient(135deg, #60a5fa, #06b6d4)', padding: '24px', borderRadius: '50%', boxShadow: '0 10px 25px rgba(6, 182, 212, 0.3)' }}>
+                        <Award style={{ width: '40px', height: '40px', color: 'white' }} />
                       </div>
-                      <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                      <div style={{ position: 'absolute', top: '-8px', right: '-8px', background: '#fbbf24', color: '#92400e', fontSize: '12px', fontWeight: 'bold', padding: '4px 8px', borderRadius: '50%' }}>
                         2
                       </div>
                     </div>
                     <h3 style={{ fontWeight: 'bold', color: '#1e40af', marginBottom: '12px', fontSize: '18px' }}>Schedule & Track</h3>
-                    <p style={{ color: '#374151', lineHeight: '1.6' }}>Book pickup or drop-off and track your collection progress with our visual flowmap</p>
+                    <p style={{ color: '#374151', lineHeight: '1.6', margin: 0 }}>Book pickup or drop-off and track your collection progress with our visual flowmap</p>
                   </motion.button>
-                  
-
                   
                   <motion.button 
                     style={{
@@ -435,16 +431,16 @@ export default function EcoChainLanding() {
                       flexDirection: 'column',
                       alignItems: 'center',
                       textAlign: 'center',
-                      position: 'relative',
                       background: 'rgba(255, 255, 255, 0.8)',
                       backdropFilter: 'blur(10px)',
                       padding: '32px',
                       borderRadius: '24px',
                       boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.5)',
-                      maxWidth: '300px',
+                      width: '300px',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      margin: '0 auto'
                     }}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -457,20 +453,18 @@ export default function EcoChainLanding() {
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <div className="relative mb-4">
-                      <div className="bg-gradient-to-br from-purple-400 to-pink-500 p-6 rounded-full shadow-xl">
-                        <Sparkles className="h-10 w-10 text-white" />
+                    <div style={{ position: 'relative', marginBottom: '16px' }}>
+                      <div style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)', padding: '24px', borderRadius: '50%', boxShadow: '0 10px 25px rgba(168, 85, 247, 0.3)' }}>
+                        <Sparkles style={{ width: '40px', height: '40px', color: 'white' }} />
                       </div>
-                      <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                      <div style={{ position: 'absolute', top: '-8px', right: '-8px', background: '#fbbf24', color: '#92400e', fontSize: '12px', fontWeight: 'bold', padding: '4px 8px', borderRadius: '50%' }}>
                         3
                       </div>
                     </div>
                     <h3 style={{ fontWeight: 'bold', color: '#6b21a8', marginBottom: '12px', fontSize: '18px' }}>Earn & Impact</h3>
-                    <p style={{ color: '#374151', lineHeight: '1.6' }}>Receive ECO credits and see your environmental impact in our community dashboard</p>
+                    <p style={{ color: '#374151', lineHeight: '1.6', margin: 0 }}>Receive ECO credits and see your environmental impact in our community dashboard</p>
                   </motion.button>
                 </div>
-                
-
               </div>
             </div>
             <div className="flex justify-center mb-6 mt-12">
