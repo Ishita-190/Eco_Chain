@@ -404,7 +404,7 @@ export default function UploadPage() {
               border: '1px solid rgba(5, 150, 105, 0.1)'
             }}>
               <img 
-                src="/WhatsApp Image 2025-09-07 at 18.13.38.jpeg" 
+                src="/image.png" 
                 alt="Example waste classification" 
                 style={{
                   maxWidth: '100%',
