@@ -346,7 +346,7 @@ export default function EcoChainLanding() {
                 <h2 className="text-2xl font-bold text-center mb-8 text-green-800">How It Works</h2>
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                   <motion.button 
-                    className="flex flex-col items-center text-center relative bg-white p-8 rounded-2xl shadow-lg border border-gray-200 max-w-xs cursor-pointer"
+                    className="flex flex-col items-center text-center relative bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/30 max-w-xs cursor-pointer"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -377,7 +377,7 @@ export default function EcoChainLanding() {
                   </div>
                   
                   <motion.button 
-                    className="flex flex-col items-center text-center relative bg-white p-8 rounded-2xl shadow-lg border border-gray-200 max-w-xs cursor-pointer"
+                    className="flex flex-col items-center text-center relative bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/30 max-w-xs cursor-pointer"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -408,7 +408,7 @@ export default function EcoChainLanding() {
                   </div>
                   
                   <motion.button 
-                    className="flex flex-col items-center text-center relative bg-white p-8 rounded-2xl shadow-lg border border-gray-200 max-w-xs cursor-pointer"
+                    className="flex flex-col items-center text-center relative bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/30 max-w-xs cursor-pointer"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -432,7 +432,7 @@ export default function EcoChainLanding() {
 
               </div>
             </div>
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-center mb-6 mt-12">
               <div className="w-full flex justify-center">
                 <WasteCounter />
               </div>
