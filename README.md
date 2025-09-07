@@ -1,16 +1,17 @@
 # README.md
-# EcoCommerce Platform
+# Eco_Chain Platform
 
-A comprehensive waste management platform that rewards users with blockchain-based eco credits for proper waste disposal.
+A modern waste management platform that rewards users with blockchain-based eco credits for proper waste disposal, featuring an intuitive visual tracking system.
 
 ## 🌟 Features
 
 - **AI-Powered Classification**: Advanced image recognition for waste type identification
 - **Smart Matching**: Find compatible recycling facilities near you
 - **Blockchain Rewards**: Earn ECO tokens stored securely on Ethereum
-- **Real-time Tracking**: Monitor your order from pickup to credit minting
-- **PWA Support**: Mobile-first design with offline capabilities
-- **Gasless Experience**: No gas fees for users - all handled by relayers
+- **Visual Flow Tracking**: Interactive flowmap showing collection progress with smooth animations
+- **Modern UI/UX**: Clean, responsive design with glass morphism effects
+- **Smooth Navigation**: Seamless page transitions and user experience
+- **Feedback System**: Integrated user feedback and reporting functionality
 
 ## 🏗️ Architecture
 
@@ -30,10 +31,11 @@ A comprehensive waste management platform that rewards users with blockchain-bas
 - **Fallback Logic**: Handles edge cases gracefully
 
 ### Frontend (Next.js 14)
-- **App Router**: Modern React architecture
-- **Wallet Integration**: RainbowKit + wagmi
-- **Real-time Updates**: WebSocket connections for live tracking
-- **Mobile PWA**: Installable progressive web app
+- **App Router**: Modern React architecture with smooth page transitions
+- **Visual Tracking**: Interactive flowmap with status progression
+- **Modern Design**: Glass morphism effects and gradient backgrounds
+- **Responsive Layout**: Mobile-first design with centered content
+- **User Feedback**: Integrated feedback and reporting system
 
 ### Project Structure
 ```
@@ -116,65 +118,66 @@ codesynth_1-8/
 
 ### Prerequisites
 - Node.js 20+
-- Python 3.11+
-- Docker & Docker Compose
-- PostgreSQL
-- Redis
+- PostgreSQL (configured with Prisma)
+- Git
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-org/ecocommerce.git
-   cd ecocommerce
+   git clone https://github.com/Ishita-190/codesynth_1.git
+   cd codesynth_1-11
    ```
 
-2. **Run setup script**
+2. **Install dependencies**
    ```bash
-   chmod +x scripts/setup.sh
-   ./scripts/setup.sh
+   npm install
    ```
 
 3. **Configure environment**
    ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
+   cp .env.example .env.local
+   # Add your JWT_SECRET and database configuration
    ```
 
-4. **Start development environment**
+4. **Start development server**
    ```bash
-   docker-compose up
+   npm run dev
    ```
 
-5. **Deploy smart contracts**
-   ```bash
-   npm run deploy:contracts
-   ```
+5. **Access the application**
+   - Frontend: http://localhost:3000
+   - Features: Visual tracking, feedback system, smooth animations
 
-### Development
+### Key Pages
 
-- **Frontend**: http://localhost:3000
-- **AI Service**: http://localhost:8000
-- **Database**: localhost:5432
-- **Redis**: localhost:6379
+- **Home**: Landing page with enhanced footer and modern design
+- **Schedule**: Pickup/dropoff scheduling with improved UI
+- **Tracking**: Visual flowmap showing collection progress (/track/[id])
+- **Feedback**: User feedback and reporting system (/feedback)
+- **Profile & Leaderboard**: User engagement features
 
 ## 📱 User Flow
 
 1. **Upload**: Take photo of waste item
 2. **Classify**: AI identifies waste type and provides guidance
 3. **Match**: System suggests nearby compatible facilities
-4. **Schedule**: Book pickup or drop-off appointment
-5. **Verify**: Facility staff confirms waste collection
-6. **Reward**: Eco credits automatically minted to wallet
+4. **Schedule**: Book pickup or drop-off appointment with modern UI
+5. **Track**: Visual flowmap shows real-time collection progress
+6. **Verify**: Facility staff confirms waste collection
+7. **Reward**: Eco credits automatically minted to wallet
+8. **Feedback**: Rate and provide feedback on the service
 
 ## 🔧 API Endpoints
 
 ### Main APIs
 - `POST /api/uploads` - Upload image to IPFS
 - `POST /api/classify` - Classify waste with AI
-- `POST /api/orders` - Create pickup order
+- `POST /api/orders` - Create pickup/dropoff request
 - `POST /api/orders/:id/verify` - Verify waste collection
-- `GET /api/orders/:id/timeline` - Get order status
+- `GET /api/orders/:id/timeline` - Get collection status and timeline
+- `POST /api/auth` - Authentication for mock users
+- `POST /api/feedback` - Submit user feedback and reports
 
 ### AI Service
 - `POST /classify` - Classify waste from image/CID
@@ -197,12 +200,14 @@ Each transaction creates measurable environmental benefit:
 - **Recycling Metrics**: Material recovery statistics
 - **User Rankings**: Gamified environmental leadership
 
-## 📊 Analytics & Monitoring
+## 🎨 UI/UX Improvements
 
-- **Real-time Dashboards**: Order processing metrics
-- **Environmental Impact**: CO2 savings, waste diverted
-- **User Engagement**: Activity patterns and retention
-- **System Health**: API performance and uptime
+- **Visual Tracking**: Interactive flowmap with animated progress indicators
+- **Modern Design**: Glass morphism effects and gradient backgrounds
+- **Smooth Transitions**: Page animations and hover effects
+- **Responsive Layout**: Mobile-first design with centered content
+- **Enhanced Footer**: Improved design with better navigation
+- **Feedback Integration**: User rating and reporting system
 
 ## 🚢 Deployment
 
@@ -248,12 +253,14 @@ pytest ai-service/tests/
 npm run test:e2e
 ```
 
-## 📈 Performance Targets
+## 🔄 Recent Updates
 
-- **Classification**: <3s p95 response time
-- **Order Creation**: <500ms API response
-- **Credit Minting**: <2 minutes end-to-end
-- **Uptime**: 99.9% availability
+- **Enhanced Tracking Page**: Visual flowmap with real-time status updates
+- **Improved Navigation**: Smooth page transitions and animations
+- **Modern UI Design**: Glass morphism and gradient styling
+- **Feedback System**: Integrated user feedback and reporting
+- **Simplified Authentication**: Mock authentication for development
+- **Responsive Design**: Centered layout with better mobile support
 
 ## 🤝 Contributing
 
