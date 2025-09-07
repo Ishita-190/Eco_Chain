@@ -20,6 +20,7 @@ import {
   Trophy,
   Sparkles
 } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/src/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar";
@@ -340,44 +341,107 @@ export default function EcoChainLanding() {
                 <span className="animate-wave inline-block">Making a difference, one recycled item at a time</span>
               </p>
             </div>
-            <div className="relative">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-8 py-6">
-                <div className="flex flex-col items-center text-center relative">
-                  <div className="bg-green-100 p-4 rounded-full mb-3 shadow-md">
-                    <TrendingUp className="h-8 w-8 text-green-600" />
+            <div className="relative bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-200 shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-r from-green-100/20 to-emerald-100/20 rounded-2xl"></div>
+              <div className="relative z-10">
+                <h2 className="text-2xl font-bold text-center mb-8 text-green-800">How It Works</h2>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                  <motion.div 
+                    className="flex flex-col items-center text-center relative"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="relative">
+                      <div className="bg-gradient-to-br from-green-400 to-emerald-500 p-6 rounded-full mb-4 shadow-xl">
+                        <TrendingUp className="h-10 w-10 text-white" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                        1
+                      </div>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-green-200 max-w-xs transform hover:shadow-xl transition-all duration-300">
+                      <h3 className="font-bold text-green-800 mb-3 text-lg">Upload & Classify</h3>
+                      <p className="text-gray-700 leading-relaxed">Take a photo of your waste item and let our AI identify the type and recycling method</p>
+                    </div>
+                  </motion.div>
+                  
+                  <div className="hidden md:block relative">
+                    <div className="flex items-center">
+                      <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full"></div>
+                      <div className="w-0 h-0 border-l-8 border-l-emerald-500 border-t-4 border-b-4 border-t-transparent border-b-transparent ml-1"></div>
+                    </div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md">
+                      <ArrowRight className="h-4 w-4 text-green-600" />
+                    </div>
                   </div>
-                  <div className="bg-white p-4 rounded-xl shadow-sm border border-green-100 max-w-xs">
-                    <h3 className="font-semibold text-green-800 mb-2">Step 1</h3>
-                    <p className="text-sm text-gray-700">Track your environmental impact in real-time</p>
+                  
+                  <motion.div 
+                    className="flex flex-col items-center text-center relative"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="relative">
+                      <div className="bg-gradient-to-br from-blue-400 to-cyan-500 p-6 rounded-full mb-4 shadow-xl">
+                        <Award className="h-10 w-10 text-white" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                        2
+                      </div>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-blue-200 max-w-xs transform hover:shadow-xl transition-all duration-300">
+                      <h3 className="font-bold text-blue-800 mb-3 text-lg">Schedule & Track</h3>
+                      <p className="text-gray-700 leading-relaxed">Book pickup or drop-off and track your collection progress with our visual flowmap</p>
+                    </div>
+                  </motion.div>
+                  
+                  <div className="hidden md:block relative">
+                    <div className="flex items-center">
+                      <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"></div>
+                      <div className="w-0 h-0 border-l-8 border-l-purple-500 border-t-4 border-b-4 border-t-transparent border-b-transparent ml-1"></div>
+                    </div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md">
+                      <ArrowRight className="h-4 w-4 text-blue-600" />
+                    </div>
                   </div>
+                  
+                  <motion.div 
+                    className="flex flex-col items-center text-center relative"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="relative">
+                      <div className="bg-gradient-to-br from-purple-400 to-pink-500 p-6 rounded-full mb-4 shadow-xl">
+                        <Sparkles className="h-10 w-10 text-white" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                        3
+                      </div>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-purple-200 max-w-xs transform hover:shadow-xl transition-all duration-300">
+                      <h3 className="font-bold text-purple-800 mb-3 text-lg">Earn & Impact</h3>
+                      <p className="text-gray-700 leading-relaxed">Receive ECO credits and see your environmental impact in our community dashboard</p>
+                    </div>
+                  </motion.div>
                 </div>
                 
-                <div className="hidden md:block flex-1 h-0.5 bg-gradient-to-r from-green-300 to-emerald-400 mx-4 relative">
-                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-emerald-400 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
-                </div>
-                
-                <div className="flex flex-col items-center text-center relative">
-                  <div className="bg-green-100 p-4 rounded-full mb-3 shadow-md">
-                    <Award className="h-8 w-8 text-green-600" />
-                  </div>
-                  <div className="bg-white p-4 rounded-xl shadow-sm border border-green-100 max-w-xs">
-                    <h3 className="font-semibold text-green-800 mb-2">Step 2</h3>
-                    <p className="text-sm text-gray-700">Earn tokens for every sustainable action</p>
-                  </div>
-                </div>
-                
-                <div className="hidden md:block flex-1 h-0.5 bg-gradient-to-r from-green-300 to-emerald-400 mx-4 relative">
-                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-emerald-400 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
-                </div>
-                
-                <div className="flex flex-col items-center text-center relative">
-                  <div className="bg-green-100 p-4 rounded-full mb-3 shadow-md">
-                    <Users className="h-8 w-8 text-green-600" />
-                  </div>
-                  <div className="bg-white p-4 rounded-xl shadow-sm border border-green-100 max-w-xs">
-                    <h3 className="font-semibold text-green-800 mb-2">Step 3</h3>
-                    <p className="text-sm text-gray-700">Join a global community of eco-warriors</p>
-                  </div>
+                <div className="mt-8 text-center">
+                  <motion.button
+                    onClick={() => router.push('/upload')}
+                    className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Start Your Eco Journey
+                  </motion.button>
                 </div>
               </div>
             </div>
