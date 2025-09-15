@@ -67,6 +67,30 @@ export default function SchedulePage() {
       }
       
       const { orderId } = await response.json();
+      
+      // Create notification for successful order placement
+      try {
+        const notification = {
+          id: `local_${Date.now()}`,
+          title: '📅 Pickup Scheduled',
+          message: `Your ${pickupType.toLowerCase().replace('_', '-')} is scheduled for ${selectedDate} at ${selectedTime}`,
+          icon: '🚛',
+          timestamp: new Date().toISOString(),
+          read: false,
+          data: { orderId, wasteType: 'waste', date: `${selectedDate} at ${selectedTime}`, pickupType }
+        };
+        
+        // Store in localStorage
+        const existing = JSON.parse(localStorage.getItem('eco_notifications') || '[]');
+        existing.unshift(notification);
+        localStorage.setItem('eco_notifications', JSON.stringify(existing));
+        
+        // Trigger notification refresh
+        window.dispatchEvent(new Event('newNotification'));
+      } catch (notifError) {
+        console.log('Notification creation failed:', notifError);
+      }
+      
       alert(`Pickup scheduled! Order ID: ${orderId}`);
       router.push(`/track/${orderId}`);
     } catch (err) {
