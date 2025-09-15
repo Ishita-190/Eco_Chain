@@ -57,17 +57,47 @@ export default function UploadPage() {
 
     setIsUploading(true);
     try {
-      // TODO: Replace with actual API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Convert image to base64
+      const base64 = await fileToBase64(file);
+      
+      // Call classification API
+      const response = await fetch('/api/classify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          imageBase64: base64.split(',')[1], // Remove data:image/jpeg;base64, prefix
+          imageUrl: preview
+        })
+      });
 
-      // Navigate to result page with mock classification ID
-      router.push('/result?classificationId=123');
+      if (!response.ok) {
+        throw new Error('Classification failed');
+      }
+
+      const result = await response.json();
+      
+      // Store result in sessionStorage for result page
+      sessionStorage.setItem('classificationResult', JSON.stringify(result));
+      
+      // Navigate to result page
+      router.push(`/result?id=${result.classification.id}`);
     } catch (error) {
-      console.error('Upload failed:', error);
-      alert('Upload failed. Please try again.');
+      console.error('Classification failed:', error);
+      alert('Classification failed. Please try again.');
     } finally {
       setIsUploading(false);
     }
+  };
+
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+    });
   };
 
   return (

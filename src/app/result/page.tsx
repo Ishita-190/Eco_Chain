@@ -37,67 +37,56 @@ export default function ResultPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!classificationId) {
+    const id = searchParams.get('id');
+    if (!id) {
       router.push('/');
       return;
     }
 
     fetchData();
-  }, [classificationId]);
+  }, [searchParams]);
 
   const fetchData = async () => {
     try {
-      // In a real implementation, fetch classification and facilities data
-      // For demo purposes, using mock data
-      setClassification({
-        id: classificationId!,
-        label: 'plastic',
-        confidence: 0.85,
-        imageUrl: '/placeholder-waste.jpg'
-      });
-
-      setFacilities([
-        {
-          id: '1',
-          name: 'GreenCycle Recycling Center',
-          address: '123 Eco Street, Delhi, DL 110001',
-          lat: 28.6139,
-          lng: 77.2090,
-          phone: '+91 11 1234 5678',
+      // Get classification result from sessionStorage
+      const storedResult = sessionStorage.getItem('classificationResult');
+      if (storedResult) {
+        const result = JSON.parse(storedResult);
+        setClassification(result.classification);
+        setFacilities(result.facilities.map((f: any, index: number) => ({
+          id: f.id.toString(),
+          name: f.name,
+          address: f.address,
+          lat: 28.6139 + (index * 0.01),
+          lng: 77.2090 + (index * 0.01),
+          phone: `+91 11 ${1000 + index}${2000 + index}`,
           typesAccepted: ['plastic', 'metal', 'paper'],
           operatingHours: {
             weekdays: '8:00 AM - 6:00 PM',
             weekends: '9:00 AM - 4:00 PM'
           },
           verifiedAt: '2024-01-15'
-        },
-        {
-          id: '2',
-          name: 'EcoWaste Solutions',
-          address: '456 Green Avenue, Delhi, DL 110002',
-          lat: 28.6239,
-          lng: 77.2190,
-          phone: '+91 11 8765 4321',
-          typesAccepted: ['plastic', 'glass', 'organic'],
-          operatingHours: {
-            weekdays: '9:00 AM - 5:00 PM',
-            weekends: '10:00 AM - 3:00 PM'
-          },
-          verifiedAt: '2024-01-20'
-        },
-        {
-          id: '3',
-          name: 'Delhi Waste Management',
-          address: '789 Clean Road, Delhi, DL 110003',
-          lat: 28.6339,
-          lng: 77.2290,
-          typesAccepted: ['plastic', 'metal', 'paper', 'glass'],
-          operatingHours: {
-            weekdays: '7:00 AM - 7:00 PM',
-            weekends: '8:00 AM - 5:00 PM'
+        })));
+      } else {
+        // Fallback to mock data
+        setClassification({
+          id: Date.now().toString(),
+          label: 'plastic',
+          confidence: 0.85
+        });
+        setFacilities([
+          {
+            id: '1',
+            name: 'GreenCycle Center',
+            address: '123 Eco Street',
+            lat: 28.6139,
+            lng: 77.2090,
+            phone: '+91 11 1234 5678',
+            typesAccepted: ['plastic'],
+            operatingHours: { weekdays: '8:00 AM - 6:00 PM', weekends: '9:00 AM - 4:00 PM' }
           }
-        }
-      ]);
+        ]);
+      }
     } catch (error) {
       console.error('Failed to fetch data:', error);
     } finally {
@@ -206,11 +195,10 @@ export default function ResultPage() {
                   fontSize: '32px',
                   fontWeight: '700',
                   color: '#1f2937',
-                  textTransform: 'capitalize',
                   marginBottom: '8px',
                   margin: 0
                 }}>
-                  {classification.label} Waste Classification
+                  Type: <span style={{ textTransform: 'capitalize' }}>{classification.label}</span>
                 </h2>
                 <p style={{
                   fontSize: '18px',
