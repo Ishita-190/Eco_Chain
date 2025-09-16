@@ -44,6 +44,7 @@
     "@radix-ui/react-toggle-group": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@supabase/supabase-js": "^2.57.4",
+    "@tensorflow/tfjs": "^4.22.0",
     "@upstash/redis": "1.35.3",
     "@vercel/kv": "0.2.4",
     "@wagmi/connectors": "5.9.8",
