@@ -2,6 +2,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, Star, Send, CheckCircle, AlertTriangle } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function FeedbackPage() {
   const [feedbackType, setFeedbackType] = useState('feedback');
@@ -10,10 +15,32 @@ export default function FeedbackPage() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    try {
+      const { error } = await supabase.from('feedback').insert({
+        type: feedbackType,
+        rating: feedbackType === 'feedback' ? rating : null, // only store rating for feedback
+        message: feedback,
+        email: email || null
+      });
+
+      if (error) {
+        console.error('Feedback submission failed:', error);
+      } else {
+        console.log('Feedback submitted successfully');
+      // Clear form fields
+        setFeedback('');
+        setEmail('');
+        setRating(0);
+      }
+    } catch (err) {
+      console.error('Feedback submission error:', err);
+    } finally {
+    // You can keep the thank you animation for a few seconds
+      setTimeout(() => setSubmitted(false), 3000);
+    }
   };
 
   return (
