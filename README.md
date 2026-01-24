@@ -305,10 +305,6 @@ npm run test:e2e
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - **TensorFlow.js Team** for MobileNet model and JavaScript ML framework
