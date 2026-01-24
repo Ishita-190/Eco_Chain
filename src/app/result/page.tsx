@@ -200,15 +200,6 @@ export default function ResultPage() {
                 }}>
                   Type: <span style={{ textTransform: 'capitalize' }}>{classification.label}</span>
                 </h2>
-                <p style={{
-                  fontSize: '18px',
-                  color: '#6b7280',
-                  margin: 0
-                }}>
-                  Confidence: <span style={{ fontWeight: '600', color: '#059669' }}>
-                    {Math.round(classification.confidence * 100)}%
-                  </span>
-                </p>
               </div>
               {classification.imageUrl && (
                 <div style={{
