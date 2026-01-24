@@ -1,4 +1,4 @@
-# README.md
+
 # Eco_Chain Platform
 
 A modern waste management platform that rewards users with blockchain-based eco credits for proper waste disposal, featuring an intuitive visual tracking system and AI-powered waste classification.
