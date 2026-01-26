@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
-import { GradientText } from "@/src/components/ui/dynamic-text";
+import { GradientText, Typewriter } from "@/src/components/ui/dynamic-text";
 import { 
   Recycle, 
   Globe, 
@@ -94,36 +94,6 @@ const CountUp = ({ end, duration }: { end: number; duration: number }) => {
 };
 
 
-const Typewriter = ({ texts, typingSpeed = 100 }: { texts: string[]; typingSpeed?: number }) => {
-  const [currentText, setCurrentText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [mounted, setMounted] = useState(false);
-  
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
-  useEffect(() => {
-    if (!mounted) return;
-    const text = texts[currentIndex % texts.length];
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i < text.length) {
-        setCurrentText(text.slice(0, i + 1));
-        i++;
-      } else {
-        clearInterval(timer);
-        setTimeout(() => {
-          setCurrentIndex((prev) => prev + 1);
-        }, 2000);
-      }
-    }, typingSpeed);
-    return () => clearInterval(timer);
-  }, [currentIndex, texts, typingSpeed, mounted]);
-  
-  if (!mounted) return <span>{texts[0]}</span>;
-  return <span>{currentText}</span>;
-};
 
 const ShimmerText = ({ text }: { text: string }) => (
   <span className="animate-shimmer bg-gradient-to-r from-gray-900 via-gray-600 to-gray-900 bg-clip-text text-transparent">
