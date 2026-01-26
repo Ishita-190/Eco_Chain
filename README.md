@@ -1,4 +1,4 @@
-# README.md
+
 # Eco_Chain Platform
 
 A modern waste management platform that rewards users with blockchain-based eco credits for proper waste disposal, featuring an intuitive visual tracking system and AI-powered waste classification.
@@ -304,10 +304,6 @@ npm run test:e2e
 3. Commit changes (`git commit -m 'Add amazing feature'`)
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
