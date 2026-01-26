@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
+import { GradientText } from "@/src/components/ui/dynamic-text";
 import { 
   Recycle, 
   Globe, 
@@ -92,11 +93,6 @@ const CountUp = ({ end, duration }: { end: number; duration: number }) => {
   return <span>{count.toLocaleString()}</span>;
 };
 
-const GradientText = ({ text }: { text: string }) => (
-  <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
-    {text}
-  </span>
-);
 
 const Typewriter = ({ texts, typingSpeed = 100 }: { texts: string[]; typingSpeed?: number }) => {
   const [currentText, setCurrentText] = useState("");
