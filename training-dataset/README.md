@@ -36,9 +36,3 @@ training-dataset/
 - **Fruits**: Apple cores, banana peels, orange peels
 - **Vegetables**: Potato peels, carrot tops, lettuce
 - **Food**: Bread, meat scraps, cooked food
-
-## Training Process
-1. Collect 1000+ total images (200 per category)
-2. Use Teachable Machine (teachablemachine.withgoogle.com)
-3. Export model for integration
-4. Expected accuracy: 75-85%
